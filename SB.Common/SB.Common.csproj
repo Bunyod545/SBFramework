@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>SBCommon</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Logics\Business\Subcounts\" />
+  </ItemGroup>
+
+</Project>
