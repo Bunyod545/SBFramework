@@ -1,4 +1,4 @@
-﻿namespace SBCommon.Logics.Business.Base.Interfaces
+﻿namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 

@@ -3,11 +3,11 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface IIdentifiedTyped : IIdentified
+    public interface ISubmitable
     {
         /// <summary>
         /// 
         /// </summary>
-        long TypeId { get; }
+        void BeforeSubmit();
     }
 }

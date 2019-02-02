@@ -1,5 +1,4 @@
 ﻿using System;
-using SBCommon.Logics.Business.Base.Interfaces;
 
 namespace SBCommon.Logics.Business.Registers.AccumulatingRegisters
 {

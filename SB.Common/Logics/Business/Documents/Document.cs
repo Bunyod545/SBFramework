@@ -1,18 +1,23 @@
-﻿namespace SBCommon.Logics.Business.Documents
+﻿using System;
+
+namespace SBCommon.Logics.Business.Documents
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class Document : IDocument
+    public abstract class Document : SBObject, IDocument
     {
         /// <summary>
         /// 
         /// </summary>
-        public virtual long Id { get; set; }
-
+        public virtual DateTime Date { get; set; }
+       
         /// <summary>
         /// 
         /// </summary>
-        public virtual long TypeId { get; }
+        public virtual void BeforeSubmit()
+        {
+
+        }
     }
 }

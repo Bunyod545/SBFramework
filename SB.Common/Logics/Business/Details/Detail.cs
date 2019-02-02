@@ -1,6 +1,4 @@
-﻿using SBCommon.Logics.Business.Base.Abstract;
-
-namespace SBCommon.Logics.Business.Details
+﻿namespace SBCommon.Logics.Business.Details
 {
     /// <summary>
     /// 
