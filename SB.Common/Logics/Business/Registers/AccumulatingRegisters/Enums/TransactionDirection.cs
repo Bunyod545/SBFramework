@@ -1,4 +1,4 @@
-﻿namespace SBCommon.Logics.Business.Registers.AccumulatingRegisters
+﻿namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 

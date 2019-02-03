@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using SBCommon.Helpers;
 
 namespace SBCommon.Logics.Metadata
 {
@@ -9,6 +8,22 @@ namespace SBCommon.Logics.Metadata
     /// </summary>
     public partial class SBType
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private void InternalInitialize()
+        {
+            try
+            {
+                Initialize();
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
+                throw;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>

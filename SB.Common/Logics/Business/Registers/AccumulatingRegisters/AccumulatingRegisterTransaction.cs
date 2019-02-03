@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBCommon.Logics.Business.Registers.AccumulatingRegisters
+namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 
@@ -22,8 +22,8 @@ namespace SBCommon.Logics.Business.Registers.AccumulatingRegisters
         /// </summary>
         public TransactionDirection TransactionDirection
         {
-            get { return Direction ? TransactionDirection.Income : TransactionDirection.Outcome; }
-            set { Direction = value == TransactionDirection.Income; }
+            get => Direction ? TransactionDirection.Income : TransactionDirection.Outcome;
+            set => Direction = value == TransactionDirection.Income;
         }
     }
 }

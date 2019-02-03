@@ -40,7 +40,7 @@ namespace SB.Common.Logics.SynonymProviders
         /// <returns></returns>
         public static string Get(MemberInfo memberInfo)
         {
-            return  Get($"{memberInfo.ReflectedType.Name}.{memberInfo.Name}");
+            return  Get($"{memberInfo?.ReflectedType?.Name}.{memberInfo?.Name}");
         }
 
         /// <summary>

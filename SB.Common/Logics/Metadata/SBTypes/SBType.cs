@@ -26,7 +26,7 @@ namespace SBCommon.Logics.Metadata
         {
             TypeId = typeId;
             ClrType = clrType;
-            Initialize();
+            InternalInitialize();
         }
     }
 }

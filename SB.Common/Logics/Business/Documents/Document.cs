@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBCommon.Logics.Business.Documents
+namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 
