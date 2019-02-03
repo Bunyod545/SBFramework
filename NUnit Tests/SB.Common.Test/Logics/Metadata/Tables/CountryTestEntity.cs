@@ -1,4 +1,4 @@
-﻿using SBCommon.Logics.Business.Entitys;
+﻿using SBCommon.Logics.Business;
 
 namespace SB.Common.Test.Logics.Metadata.Tables
 {
