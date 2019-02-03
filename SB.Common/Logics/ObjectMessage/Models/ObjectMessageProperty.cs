@@ -80,6 +80,20 @@ namespace SB.Common.Logics.ObjectMessage
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="property"></param>
+        public void ReplaceProperty(object obj, string property)
+        {
+            var index = Properties.FindIndex(l => l.PropertyObject == obj);
+            if (index != -1)
+                Properties.RemoveRange(index, Properties.Count - index);
+
+            Properties.Add(new ObjectMessagePropertyInfo(obj, property));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Clear()
         {
             Properties.Clear();

@@ -13,7 +13,7 @@ namespace SB.Common.Test.Logics.Metadata
         /// 
         /// </summary>
         [Test]
-        public void Test()
+        public void MetadataTest()
         {
             SBType.Initializer = new SBTypeTestInitializer();
             SBType.InitializeTypes();

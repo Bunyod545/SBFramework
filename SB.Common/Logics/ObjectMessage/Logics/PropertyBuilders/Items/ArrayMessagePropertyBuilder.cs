@@ -70,7 +70,7 @@ namespace SB.Common.Logics.ObjectMessage
             sb.Append(index);
             sb.Append(Strings.RSquareBracket);
 
-            messageProperty.ReplaceLast(enumerator, sb.ToString());
+            messageProperty.ReplaceProperty(enumerator, sb.ToString());
             PropertyManager.BuildInnerProperties(enumerator.Current, messageProperty);
         }
     }
