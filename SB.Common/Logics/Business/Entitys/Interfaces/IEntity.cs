@@ -1,4 +1,6 @@
-﻿namespace SBCommon.Logics.Business.Entitys
+﻿using SBCommon.Logics.Metadata;
+
+namespace SBCommon.Logics.Business.Entitys
 {
     /// <summary>
     /// 

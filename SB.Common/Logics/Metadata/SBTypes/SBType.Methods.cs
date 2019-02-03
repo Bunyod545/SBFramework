@@ -12,6 +12,14 @@ namespace SBCommon.Logics.Metadata
         /// <summary>
         /// 
         /// </summary>
+        public virtual void Initialize()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public object CreateInstance()
         {
             return ClrType.GetConstructor(Type.EmptyTypes)?.Invoke(null);

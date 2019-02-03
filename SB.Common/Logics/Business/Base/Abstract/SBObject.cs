@@ -1,4 +1,6 @@
-﻿namespace SBCommon.Logics.Business
+﻿using SBCommon.Logics.Metadata;
+
+namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 
@@ -11,7 +13,7 @@
         /// <returns></returns>
         protected override long GetTypeId()
         {
-            throw new System.NotImplementedException();
+            return SBType.GetTypeId(this);
         }
     }
 }

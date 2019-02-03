@@ -5,7 +5,7 @@ namespace SBCommon.Logics.Metadata
     /// <summary>
     /// 
     /// </summary>
-    public partial class SBType
+    public class SBTypeInfo
     {
         /// <summary>
         /// 
@@ -20,13 +20,20 @@ namespace SBCommon.Logics.Metadata
         /// <summary>
         /// 
         /// </summary>
+        public SBTypeInfo()
+        {
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="typeId"></param>
         /// <param name="clrType"></param>
-        public SBType(long typeId, Type clrType)
+        public SBTypeInfo(long typeId, Type clrType)
         {
             TypeId = typeId;
             ClrType = clrType;
-            Initialize();
         }
     }
 }

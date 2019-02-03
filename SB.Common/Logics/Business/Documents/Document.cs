@@ -11,7 +11,12 @@ namespace SBCommon.Logics.Business.Documents
         /// 
         /// </summary>
         public virtual DateTime Date { get; set; }
-       
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected DateTime PeriodicDate { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
