@@ -110,5 +110,18 @@ namespace SB.Common.Test.Logics.ObjectMessage
 
             Assert.AreEqual(buildResult, "First Name: Alex, Second Name: Sophia");
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Test]
+        public void BuildWithListPropertiesAndWithOutArgIndex()
+        {
+            var names = new List<object> { new { Name = "Alex" }, new { Name = "Sophia" } };
+            var builder = new ObjectMessageBuilder("First Name: {[0].Name}, Second Name: {[1].Name}");
+            var buildResult = builder.Build(names);
+
+            Assert.AreEqual(buildResult, "First Name: Alex, Second Name: Sophia");
+        }
     }
 }

@@ -110,9 +110,13 @@ namespace SB.Common.Logics.ObjectMessage
         /// <param name="index"></param>
         private void BuildArgWithoutProperty(object arg, int index)
         {
+            InitalizeCirculationObjects(arg);
             var propInfo = new ObjectMessageProperty();
-            propInfo.AddToStartArgsIndex(index, propInfo);
+            PropertyManager.Build(arg, propInfo);
 
+            InitalizeCirculationObjects(arg);
+            propInfo = new ObjectMessageProperty();
+            propInfo.AddToStartArgsIndex(index, propInfo);
             PropertyManager.Build(arg, propInfo);
         }
 
