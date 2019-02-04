@@ -28,6 +28,16 @@ namespace SB.Common.Logics.SynonymProviders.Logics
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="synonymInfo"></param>
+        public static void AddSynonym(SynonymInfo synonymInfo)
+        {
+            if(synonymInfo != null)
+                Synonyms.Add(synonymInfo);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
         public string Get(string key)
@@ -46,7 +56,7 @@ namespace SB.Common.Logics.SynonymProviders.Logics
             if (Synonyms == null)
                 return key;
 
-            var synonymInfo = Synonyms.FirstOrDefault(f => f.Key == key);
+            var synonymInfo = Synonyms.ToList().FirstOrDefault(f => f.Key == key);
             if (synonymInfo == null)
                 return key;
 
