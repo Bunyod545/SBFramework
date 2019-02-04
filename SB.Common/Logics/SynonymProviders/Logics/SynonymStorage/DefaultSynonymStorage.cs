@@ -56,6 +56,7 @@ namespace SB.Common.Logics.SynonymProviders.Logics
             if (Synonyms == null)
                 return key;
 
+            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
             var synonymInfo = Synonyms.ToList().FirstOrDefault(f => f.Key == key);
             if (synonymInfo == null)
                 return key;

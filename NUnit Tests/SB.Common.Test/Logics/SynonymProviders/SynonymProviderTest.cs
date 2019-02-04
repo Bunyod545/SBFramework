@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SB.Common.Logics.SynonymProviders;
 using SB.Common.Logics.SynonymProviders.Helpers;
 using SB.Common.Logics.SynonymProviders.Logics;
@@ -33,10 +32,14 @@ namespace SB.Common.Test.Logics.SynonymProviders
         [Test]
         public void GetSynonymTest()
         {
-            CultureInfo.CurrentCulture = CultureHelper.EnLanguage;
+            var synonym = SynonymProvider.Get(typeof(SynonymProviderTest), CultureHelper.UzLanguage);
+            Assert.AreEqual(synonym, nameof(SynonymProviderTest) + nameof(SynonymInfo.Uz));
 
-            var synonym = SynonymProvider.Get(typeof(SynonymProviderTest));
+            synonym = SynonymProvider.Get(typeof(SynonymProviderTest), CultureHelper.EnLanguage);
             Assert.AreEqual(synonym, nameof(SynonymProviderTest) + nameof(SynonymInfo.En));
+
+            synonym = SynonymProvider.Get(typeof(SynonymProviderTest), CultureHelper.RuLanguage);
+            Assert.AreEqual(synonym, nameof(SynonymProviderTest) + nameof(SynonymInfo.Ru));
         }
     }
 }
