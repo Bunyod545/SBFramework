@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using SBCommon.Logics.Business;
 
 namespace SB.EntityFramework.Context.Tables
 {
@@ -6,7 +7,7 @@ namespace SB.EntityFramework.Context.Tables
     /// 
     /// </summary>
     [Table("Types", Schema = "SB")]
-    public class SbType
+    public class SbType : IIdentified
     {
         /// <summary>
         /// 
