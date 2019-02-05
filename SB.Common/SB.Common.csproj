@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Logics\Business\Subcounts\" />
+    <Compile Remove="Logics\Business\Subcounts\**" />
+    <EmbeddedResource Remove="Logics\Business\Subcounts\**" />
+    <None Remove="Logics\Business\Subcounts\**" />
   </ItemGroup>
 
 </Project>

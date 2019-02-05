@@ -1,7 +1,7 @@
 ﻿using System;
 using SBCommon.Logics.Metadata;
 
-namespace SB.Common.Test.Logics.Metadata
+namespace SB.Common.Test.Logics.Metadata.Types
 {
     /// <summary>
     /// 

@@ -8,6 +8,6 @@ namespace SBCommon.Logics.Business
     [SBType(typeof(SBEntityType))]
     public abstract class Entity : SBObject, IEntity
     {
- 
+       
     }
 }

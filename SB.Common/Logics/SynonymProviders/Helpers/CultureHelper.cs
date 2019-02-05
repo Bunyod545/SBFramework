@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace SB.Common.Logics.SynonymProviders.Helpers
+namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 

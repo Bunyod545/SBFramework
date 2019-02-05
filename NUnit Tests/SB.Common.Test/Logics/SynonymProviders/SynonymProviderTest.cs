@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
 using SB.Common.Logics.SynonymProviders;
-using SB.Common.Logics.SynonymProviders.Helpers;
-using SB.Common.Logics.SynonymProviders.Logics;
-using SB.Common.Logics.SynonymProviders.Models;
 
 namespace SB.Common.Test.Logics.SynonymProviders
 {

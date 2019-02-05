@@ -1,8 +1,6 @@
-﻿using SB.Common.Logics.SynonymProviders.Interfaces;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Reflection;
-using SB.Common.Logics.SynonymProviders.Logics;
 
 namespace SB.Common.Logics.SynonymProviders
 {

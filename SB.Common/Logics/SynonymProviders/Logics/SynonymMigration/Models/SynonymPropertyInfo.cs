@@ -1,8 +1,8 @@
-﻿using SB.Common.Logics.SynonymProviders.Models;
+﻿using SB.Common.Logics.SynonymProviders;
 using System.Globalization;
 using System.Reflection;
 
-namespace SB.Common.Logics.SynonymProviders.Logics.SynonymMigration.Models
+namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 

@@ -1,7 +1,4 @@
-﻿using SB.Common.Logics.SynonymProviders.Helpers;
-using SB.Common.Logics.SynonymProviders.Logics.SynonymMigration;
-
-namespace SB.Common.Logics.SynonymProviders.Models
+﻿namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 

@@ -1,11 +1,8 @@
-﻿using SB.Common.Logics.SynonymProviders.Helpers;
-using SB.Common.Logics.SynonymProviders.Interfaces;
-using SB.Common.Logics.SynonymProviders.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace SB.Common.Logics.SynonymProviders.Logics
+namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 

@@ -4,11 +4,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using SB.Common.Logics.SynonymProviders.Logics.SynonymMigration.Models;
-using SB.Common.Logics.SynonymProviders.Models;
 using SBCommon.Extensions;
 
-namespace SB.Common.Logics.SynonymProviders.Logics.SynonymMigration
+namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 

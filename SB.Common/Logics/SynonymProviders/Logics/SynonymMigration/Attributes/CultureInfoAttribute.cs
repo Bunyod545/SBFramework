@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace SB.Common.Logics.SynonymProviders.Logics.SynonymMigration
+namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 

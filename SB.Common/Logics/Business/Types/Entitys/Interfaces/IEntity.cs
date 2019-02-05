@@ -1,6 +1,4 @@
-﻿using SBCommon.Logics.Metadata;
-
-namespace SBCommon.Logics.Business
+﻿namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 

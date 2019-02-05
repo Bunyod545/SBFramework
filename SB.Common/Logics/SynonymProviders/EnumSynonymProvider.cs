@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using SB.Common.Logics.SynonymProviders.Logics;
-using SB.Common.Logics.SynonymProviders.Interfaces;
 
 namespace SB.Common.Logics.SynonymProviders
 {

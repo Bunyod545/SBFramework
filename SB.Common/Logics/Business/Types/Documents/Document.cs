@@ -1,10 +1,12 @@
 ﻿using System;
+using SBCommon.Logics.Metadata;
 
 namespace SBCommon.Logics.Business
 {
     /// <summary>
     /// 
     /// </summary>
+    [SBType(typeof(SBDocumentType))]
     public abstract class Document : SBObject, IDocument
     {
         /// <summary>

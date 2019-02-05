@@ -6,11 +6,11 @@ namespace SBCommon.Logics.Business
     /// 
     /// </summary>
     [SBType(typeof(SBDetailType))]
-    public interface IDetail : IIdentifiedTyped
+    public class Detail : SBObject, IDetail
     {
         /// <summary>
         /// 
         /// </summary>
-        long RowNumber { get; set; }
+        public virtual long RowNumber { get; set; }
     }
 }

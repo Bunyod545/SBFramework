@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SB.Common.Logics.SynonymProviders.Logics.SynonymMigration
+namespace SB.Common.Logics.SynonymProviders
 {
     /// <summary>
     /// 
