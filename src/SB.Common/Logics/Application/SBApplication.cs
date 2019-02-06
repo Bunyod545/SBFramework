@@ -1,4 +1,5 @@
 ﻿using System;
+using SBCommon.Logics.Metadata;
 
 namespace SBCommon.Logics.Application
 {
@@ -25,6 +26,11 @@ namespace SBCommon.Logics.Application
         /// <summary>
         /// 
         /// </summary>
+        public ISBTypesInitializer SbTypesInitializer { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private SBApplication()
         {
             Current = this;
@@ -39,6 +45,10 @@ namespace SBCommon.Logics.Application
                 throw new Exception("Application already initialized!");
 
             Database?.Initialize();
+
+            SBType.Initializer = SbTypesInitializer;
+            SBType.InitializeTypes();
+
             IsInitialized = true;
         }
 

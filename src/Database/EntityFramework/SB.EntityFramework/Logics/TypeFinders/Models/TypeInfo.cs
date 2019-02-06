@@ -1,4 +1,5 @@
 ﻿using System;
+using SB.EntityFramework.Context.Tables;
 
 namespace SB.EntityFramework
 {
@@ -29,6 +30,55 @@ namespace SB.EntityFramework
         public TypeInfo(Type clrType)
         {
             ClrType = clrType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeInfo"></param>
+        /// <param name="sbType"></param>
+        /// <returns></returns>
+        public static bool operator ==(SbType sbType, TypeInfo typeInfo)
+        {
+            return typeInfo == sbType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sbType"></param>
+        /// <param name="typeInfo"></param>
+        /// <returns></returns>
+        public static bool operator !=(SbType sbType, TypeInfo typeInfo)
+        {
+            return !(sbType == typeInfo);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeInfo"></param>
+        /// <param name="sbType"></param>
+        /// <returns></returns>
+        public static bool operator ==(TypeInfo typeInfo, SbType sbType)
+        {
+            if (typeInfo == null || sbType == null)
+                return false;
+
+            return typeInfo.Schema == sbType.Prefix &&
+                   typeInfo.Name == sbType.Name;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="typeInfo"></param>
+        /// <param name="sbType"></param>
+        /// <returns></returns>
+        public static bool operator !=(TypeInfo typeInfo, SbType sbType)
+        {
+            return !(typeInfo == sbType);
         }
     }
 }

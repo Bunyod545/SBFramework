@@ -74,6 +74,25 @@ namespace SB.EntityFramework
         /// <returns></returns>
         public static TypeInfo GetTypeInfo(PropertyInfo property)
         {
+            var tableType = GetTableType(property);
+            if (tableType == null)
+                return null;
+
+            var attr = tableType.GetCustomAttribute<TableAttribute>();
+            var typeInfo = new TypeInfo(tableType);
+
+            typeInfo.Name = attr?.Name ?? property.Name;
+            typeInfo.Schema = attr?.Schema ?? EFContext.DefaultSchema;
+            return typeInfo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        public static Type GetTableType(PropertyInfo property)
+        {
             var propType = property.PropertyType;
             if (!propType.IsGenericType)
                 return null;
@@ -81,29 +100,7 @@ namespace SB.EntityFramework
             if (propType.GetGenericTypeDefinition() != typeof(DbSet<>))
                 return null;
 
-            var tableType = propType.GenericTypeArguments[0];
-            var attr = tableType.GetCustomAttribute<TableAttribute>();
-
-            var typeInfo = new TypeInfo(tableType);
-            if (attr == null)
-            {
-                typeInfo.Schema = EFContext.DefaultSchema;
-                typeInfo.Name = property.Name;
-                return typeInfo;
-            }
-
-            typeInfo.Name = attr.Name;
-            typeInfo.Schema = attr.Schema ?? EFContext.DefaultSchema;
-            return typeInfo;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static List<Type> GetContextTypes()
-        {
-            return Assemblies.SelectMany(GetContextTypes).ToList();
+            return propType.GenericTypeArguments[0];
         }
 
         /// <summary>

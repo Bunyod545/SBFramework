@@ -17,6 +17,7 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
         public void TableNameFromPropertyAndDefaultSchema()
         {
             var table = GetTypeInfo(typeof(TestTable));
+
             Assert.NotNull(table);
             Assert.AreEqual(table.Name, nameof(Context.TestContext.TestTables));
             Assert.AreEqual(table.Schema, EFContext.DefaultSchema);
@@ -29,6 +30,7 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
         public void TableNameAndDefaultSchema()
         {
             var table = GetTypeInfo(typeof(TestTableWithName));
+
             Assert.NotNull(table);
             Assert.AreEqual(table.Name, TestTableWithName.TableName);
             Assert.AreEqual(table.Schema, EFContext.DefaultSchema);
@@ -41,6 +43,7 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
         public void TableNameAndSchema()
         {
             var table = GetTypeInfo(typeof(TestTableWithNameAndSchema));
+
             Assert.NotNull(table);
             Assert.AreEqual(table.Name, TestTableWithNameAndSchema.TableName);
             Assert.AreEqual(table.Schema, TestTableWithNameAndSchema.Schema);
