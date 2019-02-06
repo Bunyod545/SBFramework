@@ -12,5 +12,10 @@ namespace SB.EntityFramework.Context
         /// 
         /// </summary>
         public static ISBDatabase SbDatabase { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DefaultSchema = "dbo";
     }
 }

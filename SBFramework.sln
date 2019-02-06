@@ -19,7 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.EntityFramework", "src\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.EntityFramework.SqlServer", "src\Database\EntityFramework\SB.EntityFramework.SqlServer\SB.EntityFramework.SqlServer.csproj", "{F293C5E2-6341-4942-A02F-EB30350947CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.AspNetCore", "src\SB.AspNetCore\SB.AspNetCore.csproj", "{42CBAC0D-57E4-4B42-B0A6-FDC1774B4A9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.AspNetCore", "src\SB.AspNetCore\SB.AspNetCore.csproj", "{42CBAC0D-57E4-4B42-B0A6-FDC1774B4A9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{38B5B18A-B0BC-4283-8572-6EE6E2447AF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFramework", "{C805EAD7-D60D-43D3-970B-250BFF337849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.EntityFramework.Test", "NUnit Tests\Database\EntityFramework\SB.EntityFramework.Test\SB.EntityFramework.Test.csproj", "{04EB888D-E30F-4CA6-9ED1-FE6EAFB885EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,10 @@ Global
 		{42CBAC0D-57E4-4B42-B0A6-FDC1774B4A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42CBAC0D-57E4-4B42-B0A6-FDC1774B4A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42CBAC0D-57E4-4B42-B0A6-FDC1774B4A9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04EB888D-E30F-4CA6-9ED1-FE6EAFB885EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04EB888D-E30F-4CA6-9ED1-FE6EAFB885EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04EB888D-E30F-4CA6-9ED1-FE6EAFB885EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04EB888D-E30F-4CA6-9ED1-FE6EAFB885EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +69,9 @@ Global
 		{3244DCF6-3A88-4699-BC40-7FBCC0256409} = {BF8D8B70-AA68-4ECD-AA72-1509948ADF0A}
 		{F293C5E2-6341-4942-A02F-EB30350947CE} = {BF8D8B70-AA68-4ECD-AA72-1509948ADF0A}
 		{42CBAC0D-57E4-4B42-B0A6-FDC1774B4A9F} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
+		{38B5B18A-B0BC-4283-8572-6EE6E2447AF7} = {093CEE95-3D29-4DC4-B25B-529DA3F7050B}
+		{C805EAD7-D60D-43D3-970B-250BFF337849} = {38B5B18A-B0BC-4283-8572-6EE6E2447AF7}
+		{04EB888D-E30F-4CA6-9ED1-FE6EAFB885EE} = {C805EAD7-D60D-43D3-970B-250BFF337849}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

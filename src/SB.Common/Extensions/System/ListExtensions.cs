@@ -43,5 +43,17 @@ namespace SBCommon.Extensions
         {
             return list == null || !list.Any();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
+        public static void AddUnique<T>(this List<T> list, T item)
+        {
+            if(!list.Contains(item))
+                list.Add(item);
+        }
     }
 }
