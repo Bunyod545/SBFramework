@@ -6,8 +6,17 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
     /// <summary>
     /// 
     /// </summary>
-    [Table("TestTableWithNameAndSchemas", Schema = "SB")]
+    [Table(TableName, Schema = Schema)]
     public class TestTableWithNameAndSchema : Entity
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string TableName = "TestTableWithNameAndSchemas";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string Schema = "SB";
     }
 }

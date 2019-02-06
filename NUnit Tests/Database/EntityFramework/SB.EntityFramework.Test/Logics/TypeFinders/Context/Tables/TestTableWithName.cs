@@ -6,8 +6,12 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
     /// <summary>
     /// 
     /// </summary>
-    [Table("TestTableWithNames")]
+    [Table(TableName)]
     public class TestTableWithName : Entity
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string TableName = "TestTableWithNames";
     }
 }

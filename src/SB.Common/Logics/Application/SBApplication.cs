@@ -5,8 +5,13 @@ namespace SBCommon.Logics.Application
     /// <summary>
     /// 
     /// </summary>
-    public abstract class SBApplication
+    public class SBApplication : ISBApplication
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static SBApplication Current { get; private set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -20,6 +25,14 @@ namespace SBCommon.Logics.Application
         /// <summary>
         /// 
         /// </summary>
+        private SBApplication()
+        {
+            Current = this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Initialize()
         {
             if (IsInitialized)
@@ -27,6 +40,15 @@ namespace SBCommon.Logics.Application
 
             Database?.Initialize();
             IsInitialized = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static ISBApplication Create()
+        {
+            return Current ?? new SBApplication();
         }
     }
 }
