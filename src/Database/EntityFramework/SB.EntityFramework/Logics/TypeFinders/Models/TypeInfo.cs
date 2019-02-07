@@ -35,50 +35,15 @@ namespace SB.EntityFramework
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="typeInfo"></param>
-        /// <param name="sbType"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
-        public static bool operator ==(SbType sbType, TypeInfo typeInfo)
+        public bool IsEqual(SbType type)
         {
-            return typeInfo == sbType;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sbType"></param>
-        /// <param name="typeInfo"></param>
-        /// <returns></returns>
-        public static bool operator !=(SbType sbType, TypeInfo typeInfo)
-        {
-            return !(sbType == typeInfo);
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="typeInfo"></param>
-        /// <param name="sbType"></param>
-        /// <returns></returns>
-        public static bool operator ==(TypeInfo typeInfo, SbType sbType)
-        {
-            if (typeInfo == null || sbType == null)
+            if (type == null)
                 return false;
 
-            return typeInfo.Schema == sbType.Prefix &&
-                   typeInfo.Name == sbType.Name;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="typeInfo"></param>
-        /// <param name="sbType"></param>
-        /// <returns></returns>
-        public static bool operator !=(TypeInfo typeInfo, SbType sbType)
-        {
-            return !(typeInfo == sbType);
+            return Schema == type.Prefix &&
+                   Name == type.Name;
         }
     }
 }

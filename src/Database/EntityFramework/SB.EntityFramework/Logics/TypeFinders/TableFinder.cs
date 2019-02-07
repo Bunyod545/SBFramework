@@ -22,9 +22,15 @@ namespace SB.EntityFramework
         /// <summary>
         /// 
         /// </summary>
+        public static List<TypeInfo> CacheTypeInfos { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         static TableFinder()
         {
             Assemblies = new List<Assembly>();
+            CacheTypeInfos = new List<TypeInfo>();
         }
 
         /// <summary>
@@ -43,6 +49,9 @@ namespace SB.EntityFramework
         /// <returns></returns>
         public static List<TypeInfo> GetTypeInfos()
         {
+            if (CacheTypeInfos != null && CacheTypeInfos.Any())
+                return CacheTypeInfos;
+
             return Assemblies.SelectMany(GetTypeInfos).ToList();
         }
 
@@ -83,6 +92,8 @@ namespace SB.EntityFramework
 
             typeInfo.Name = attr?.Name ?? property.Name;
             typeInfo.Schema = attr?.Schema ?? EFContext.DefaultSchema;
+
+            CacheTypeInfos.Add(typeInfo);
             return typeInfo;
         }
 

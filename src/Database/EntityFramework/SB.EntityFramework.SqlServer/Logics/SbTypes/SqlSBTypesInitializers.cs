@@ -9,7 +9,7 @@ namespace SB.EntityFramework.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public class SBTypesInitializers : ISBTypesInitializer
+    public class SqlSBTypesInitializers : ISBTypesInitializer
     {
         /// <summary>
         /// 
@@ -29,9 +29,18 @@ namespace SB.EntityFramework.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        public SBTypesInitializers()
+        public SqlSBTypesInitializers()
         {
             Context = new SqlServerContext();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        public SqlSBTypesInitializers(SqlServerContext context)
+        {
+            Context = context;
         }
 
         /// <summary>
@@ -42,6 +51,7 @@ namespace SB.EntityFramework.SqlServer
         {
             SbTypes = Context.SbTypes.ToList();
             TypeInfos = TableFinder.GetTypeInfos();
+            MigrateTypes();
 
             return TypeInfos.Select(GetTypeInfo).Where(w => w != null).ToList();
         }
@@ -53,7 +63,7 @@ namespace SB.EntityFramework.SqlServer
         /// <returns></returns>
         public SBTypeInfo GetTypeInfo(TypeInfo typeInfo)
         {
-            var sbType = SbTypes.FirstOrDefault(f => f == typeInfo);
+            var sbType = SbTypes.FirstOrDefault(typeInfo.IsEqual);
             return sbType == null ? null : new SBTypeInfo(sbType.Id, typeInfo.ClrType);
         }
 
@@ -72,7 +82,7 @@ namespace SB.EntityFramework.SqlServer
         /// <param name="typeInfo"></param>
         public void MigrateType(TypeInfo typeInfo)
         {
-            var sbType = SbTypes.FirstOrDefault(f => f == typeInfo);
+            var sbType = SbTypes.FirstOrDefault(typeInfo.IsEqual);
             if (sbType != null)
                 return;
 

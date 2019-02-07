@@ -22,5 +22,15 @@ namespace SB.EntityFramework.SqlServer.Context
         {
             optionsBuilder.UseSqlServer(SbDatabase.ConnectionString);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SbType>().HasAlternateKey(i => new { i.Prefix, i.Name }).HasName("IX_NameAndSchema");
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

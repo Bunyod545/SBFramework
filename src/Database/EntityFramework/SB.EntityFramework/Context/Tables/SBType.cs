@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SBCommon.Logics.Business;
 
 namespace SB.EntityFramework.Context.Tables
@@ -12,6 +13,7 @@ namespace SB.EntityFramework.Context.Tables
         /// <summary>
         /// 
         /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         /// <summary>

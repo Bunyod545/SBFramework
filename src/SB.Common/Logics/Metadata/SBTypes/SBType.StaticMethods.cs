@@ -55,6 +55,26 @@ namespace SBCommon.Logics.Metadata
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static SBType GetType<T>()
+        {
+            return GetType(typeof(T));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clrType"></param>
+        /// <returns></returns>
+        public static SBType GetType(Type clrType)
+        {
+            return CacheList.FirstOrDefault(f => f.ClrType == clrType);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="typeId"></param>
         /// <returns></returns>
         public static SBType GetType(long typeId)
