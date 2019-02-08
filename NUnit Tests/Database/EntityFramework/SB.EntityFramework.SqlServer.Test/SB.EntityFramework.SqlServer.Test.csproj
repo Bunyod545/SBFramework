@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\src\Database\EntityFramework\SB.EntityFramework.SqlServer\SB.EntityFramework.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\..\src\Database\EntityFramework\SB.EntityFramework\SB.EntityFramework.csproj" />
     <ProjectReference Include="..\..\..\..\src\SB.Common\SB.Common.csproj" />
   </ItemGroup>

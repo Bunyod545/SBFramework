@@ -2,26 +2,17 @@
 using SB.EntityFramework.Context;
 using SB.EntityFramework.Context.Tables;
 
-namespace SB.EntityFramework.SqlServer.Context
+namespace SB.EntityFramework
 {
     /// <summary>
     /// 
     /// </summary>
-    public class SqlServerContext : EFContext
+    public abstract class SBSystemContext : EFContext
     {
         /// <summary>
         /// 
         /// </summary>
         public DbSet<SbType> SbTypes { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(SbDatabase.ConnectionString);
-        }
 
         /// <summary>
         /// 

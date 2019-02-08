@@ -3,7 +3,7 @@ using SB.EntityFramework.Context;
 using SB.EntityFramework.Context.Tables;
 using SBCommon.Logics.Business;
 
-namespace SB.EntityFramework.SqlServer.Test.Logics.SbTypes
+namespace SB.EntityFramework.Test.Logics.SbTypes.Context.Tables
 {
     /// <summary>
     /// 
@@ -27,7 +27,7 @@ namespace SB.EntityFramework.SqlServer.Test.Logics.SbTypes
         IEntity IOwned.Owner
         {
             get => Owner;
-            set => Owner = (Country) value;
+            set => Owner = (Country)value;
         }
 
         /// <summary>

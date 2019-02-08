@@ -1,7 +1,7 @@
 ﻿using SB.EntityFramework.Logics.Database;
 using SBCommon.Logics.Application;
 
-namespace SB.EntityFramework.SqlServer.Extensions
+namespace SB.EntityFramework
 {
     /// <summary>
     /// 
@@ -12,7 +12,7 @@ namespace SB.EntityFramework.SqlServer.Extensions
         /// 
         /// </summary>
         /// <returns></returns>
-        public static ISBApplication UseEFSqlServer(this ISBApplication app, string connectionString)
+        public static ISBApplication UseEntityFramework(this ISBApplication app, string connectionString)
         {
             app.Database = new EFDatabase();
             app.Database.ConnectionString = connectionString;

@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SB.EntityFramework.Context.Tables;
-using SB.EntityFramework.SqlServer.Context;
 using SBCommon.Logics.Metadata;
 
-namespace SB.EntityFramework.SqlServer
+namespace SB.EntityFramework
 {
     /// <summary>
     /// 
     /// </summary>
-    public class SqlSBTypesInitializers : ISBTypesInitializer
+    public class EFSBTypesInitializers : ISBTypesInitializer
     {
         /// <summary>
         /// 
@@ -24,21 +23,13 @@ namespace SB.EntityFramework.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        public SqlServerContext Context { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public SqlSBTypesInitializers()
-        {
-            Context = new SqlServerContext();
-        }
+        public SBSystemContext Context { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public SqlSBTypesInitializers(SqlServerContext context)
+        public EFSBTypesInitializers(SBSystemContext context)
         {
             Context = context;
         }
@@ -50,7 +41,7 @@ namespace SB.EntityFramework.SqlServer
         public IEnumerable<SBTypeInfo> GetTypeInfos()
         {
             SbTypes = Context.SbTypes.ToList();
-            TypeInfos = TableFinder.GetTypeInfos();
+            TypeInfos = TableFinder.InitalizeTypeInfos();
             MigrateTypes();
 
             return TypeInfos.Select(GetTypeInfo).Where(w => w != null).ToList();
@@ -86,9 +77,11 @@ namespace SB.EntityFramework.SqlServer
             if (sbType != null)
                 return;
 
-            sbType = new SbType();
-            sbType.Name = typeInfo.Name;
-            sbType.Prefix = typeInfo.Schema;
+            sbType = new SbType
+            {
+                Name = typeInfo.Name,
+                Prefix = typeInfo.Schema
+            };
 
             Context.Add(sbType);
             SbTypes.Add(sbType);

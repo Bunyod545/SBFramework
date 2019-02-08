@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using SBCommon.Logics.Business;
@@ -14,6 +15,15 @@ namespace SBCommon.Logics.Metadata
         /// 
         /// </summary>
         public static ISBTypesInitializer Initializer { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void InitializeTypes(ISBTypesInitializer initializer)
+        {
+            Initializer = initializer;
+            InitializeTypes();
+        }
 
         /// <summary>
         /// 
@@ -45,11 +55,20 @@ namespace SBCommon.Logics.Metadata
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
+        public static List<SBType> GetTypes()
+        {
+            return CacheList.ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static SBType GetType(SBObject obj)
         {
-            return CacheList.FirstOrDefault(f => f.TypeId == obj?.TypeId);
+            return CacheList.ToList().FirstOrDefault(f => f.TypeId == obj?.TypeId);
         }
 
         /// <summary>
@@ -69,7 +88,7 @@ namespace SBCommon.Logics.Metadata
         /// <returns></returns>
         public static SBType GetType(Type clrType)
         {
-            return CacheList.FirstOrDefault(f => f.ClrType == clrType);
+            return CacheList.ToList().FirstOrDefault(f => f.ClrType == clrType);
         }
 
         /// <summary>
@@ -79,7 +98,7 @@ namespace SBCommon.Logics.Metadata
         /// <returns></returns>
         public static SBType GetType(long typeId)
         {
-            return CacheList.FirstOrDefault(f => f.TypeId == typeId);
+            return CacheList.ToList().FirstOrDefault(f => f.TypeId == typeId);
         }
 
         /// <summary>
@@ -99,7 +118,7 @@ namespace SBCommon.Logics.Metadata
         /// <returns></returns>
         public static long GetTypeId(Type type)
         {
-            return CacheList.FirstOrDefault(f => f.ClrType == type)?.TypeId ?? -1;
+            return CacheList.ToList().FirstOrDefault(f => f.ClrType == type)?.TypeId ?? -1;
         }
     }
 }

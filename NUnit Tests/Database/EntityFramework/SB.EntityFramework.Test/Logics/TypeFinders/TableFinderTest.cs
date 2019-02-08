@@ -55,7 +55,7 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
         /// <returns></returns>
         public TypeInfo GetTypeInfo(Type clrType)
         {
-            var typeInfos = TableFinder.GetTypeInfos(typeof(Context.TestContext));
+            var typeInfos = TableFinder.InitalizeTypeInfos(typeof(Context.TestContext));
             Assert.AreEqual(3, typeInfos.Count);
 
             return typeInfos.FirstOrDefault(f=>f.ClrType == clrType);

@@ -3,18 +3,18 @@ using SB.EntityFramework.Context;
 using SB.EntityFramework.Context.Tables;
 using SBCommon.Logics.Business;
 
-namespace SB.EntityFramework.SqlServer.Test.Logics.SbTypes
+namespace SB.EntityFramework.Test.Logics.SbTypes
 {
     /// <summary>
     /// 
     /// </summary>
     [Table(TableName, Schema = EFContext.DefaultSchema)]
-    public class Employee : Entity
+    public class Country : Entity
     {
         /// <summary>
         /// 
         /// </summary>
-        public const string TableName = "Employees";
+        public const string TableName = "Countries";
 
         /// <summary>
         /// 

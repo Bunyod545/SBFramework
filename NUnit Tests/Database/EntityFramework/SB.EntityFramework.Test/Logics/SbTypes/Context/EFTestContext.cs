@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using SB.EntityFramework.SqlServer.Context;
-using SBCommon.Logics.Business;
+using SB.EntityFramework.Test.Logics.SbTypes.Context.Tables;
 
-namespace SB.EntityFramework.SqlServer.Test.Logics.SbTypes
+namespace SB.EntityFramework.Test.Logics.SbTypes.Context
 {
     /// <summary>
     /// 
     /// </summary>
-    public class SqlTestContext : SqlServerContext
+    public class EFTestContext : SBSystemContext
     {
         /// <summary>
         /// 
@@ -31,7 +29,7 @@ namespace SB.EntityFramework.SqlServer.Test.Logics.SbTypes
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(nameof(SqlTestContext));
+            optionsBuilder.UseInMemoryDatabase(nameof(EFTestContext));
         }
     }
 }

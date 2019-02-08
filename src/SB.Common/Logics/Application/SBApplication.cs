@@ -16,7 +16,12 @@ namespace SBCommon.Logics.Application
         /// <summary>
         /// 
         /// </summary>
-        public bool IsInitialized { get; private set; }
+        bool ISBApplication.IsInitialized => IsInitialized;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static bool IsInitialized { get; private set; }
 
         /// <summary>
         /// 
@@ -26,7 +31,7 @@ namespace SBCommon.Logics.Application
         /// <summary>
         /// 
         /// </summary>
-        public ISBTypesInitializer SbTypesInitializer { get; set; }
+        public ISBTypesInitializer TypesInitializer { get; set; }
 
         /// <summary>
         /// 
@@ -41,15 +46,26 @@ namespace SBCommon.Logics.Application
         /// </summary>
         public void Initialize()
         {
+            Validate();
+            Database.Initialize();
+            SBType.InitializeTypes(TypesInitializer);
+
+            IsInitialized = true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Validate()
+        {
             if (IsInitialized)
                 throw new Exception("Application already initialized!");
 
-            Database?.Initialize();
+            if (Database == null)
+                throw new ArgumentNullException(nameof(Database));
 
-            SBType.Initializer = SbTypesInitializer;
-            SBType.InitializeTypes();
-
-            IsInitialized = true;
+            if (TypesInitializer == null)
+                throw new ArgumentNullException(nameof(TypesInitializer));
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using SB.EntityFramework.Context;
+using SB.EntityFramework.Context.Tables;
 using SBCommon.Extensions;
 
 namespace SB.EntityFramework
@@ -23,7 +24,7 @@ namespace SB.EntityFramework
         /// 
         /// </summary>
         public static List<TypeInfo> CacheTypeInfos { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -46,13 +47,22 @@ namespace SB.EntityFramework
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public static void RemoveTable<T>()
+        {
+            CacheTypeInfos.RemoveAll(r => r.ClrType == typeof(T));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
-        public static List<TypeInfo> GetTypeInfos()
+        public static List<TypeInfo> InitalizeTypeInfos()
         {
             if (CacheTypeInfos != null && CacheTypeInfos.Any())
                 return CacheTypeInfos;
 
-            return Assemblies.SelectMany(GetTypeInfos).ToList();
+            return Assemblies.SelectMany(InitalizeTypeInfos).ToList();
         }
 
         /// <summary>
@@ -60,9 +70,9 @@ namespace SB.EntityFramework
         /// </summary>
         /// <param name="assembly"></param>
         /// <returns></returns>
-        public static List<TypeInfo> GetTypeInfos(Assembly assembly)
+        public static List<TypeInfo> InitalizeTypeInfos(Assembly assembly)
         {
-            return GetContextTypes(assembly).SelectMany(GetTypeInfos).ToList();
+            return GetContextTypes(assembly).SelectMany(InitalizeTypeInfos).ToList();
         }
 
         /// <summary>
@@ -70,7 +80,7 @@ namespace SB.EntityFramework
         /// </summary>
         /// <param name="contextType"></param>
         /// <returns></returns>
-        public static List<TypeInfo> GetTypeInfos(Type contextType)
+        public static List<TypeInfo> InitalizeTypeInfos(Type contextType)
         {
             var props = contextType.GetProperties();
             return props.Select(GetTypeInfo).ToList(w => w != null);
@@ -84,7 +94,7 @@ namespace SB.EntityFramework
         public static TypeInfo GetTypeInfo(PropertyInfo property)
         {
             var tableType = GetTableType(property);
-            if (tableType == null)
+            if (tableType == null || tableType == typeof(SbType))
                 return null;
 
             var attr = tableType.GetCustomAttribute<TableAttribute>();
