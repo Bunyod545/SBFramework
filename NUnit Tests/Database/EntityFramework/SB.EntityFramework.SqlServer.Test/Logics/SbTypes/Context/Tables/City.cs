@@ -14,7 +14,7 @@ namespace SB.EntityFramework.SqlServer.Test.Logics.SbTypes
         /// <summary>
         /// 
         /// </summary>
-        public const string TableName = "Citys";
+        public const string TableName = "Cities";
 
         /// <summary>
         /// 
