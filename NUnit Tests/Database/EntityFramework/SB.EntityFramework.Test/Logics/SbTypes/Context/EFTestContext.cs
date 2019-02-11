@@ -32,5 +32,18 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
         {
             optionsBuilder.UseInMemoryDatabase(nameof(EFTestContext));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("dbo");
+
+            modelBuilder.Entity<Country>()
+                .Property(sample => sample.Name)
+                .HasColumnType("char(3)");
+        }
     }
 }

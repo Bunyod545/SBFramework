@@ -19,6 +19,11 @@ namespace SB.EntityFramework.Test.Logics.SbTypes
         /// <summary>
         /// 
         /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public static SbType GetSbType()
         {

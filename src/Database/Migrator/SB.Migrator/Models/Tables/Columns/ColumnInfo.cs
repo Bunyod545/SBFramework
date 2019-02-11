@@ -18,6 +18,11 @@
         /// <summary>
         /// 
         /// </summary>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsAllowNull { get; set; }
 
         /// <summary>

@@ -75,6 +75,7 @@ namespace SB.Migrator.SqlServer.Logics.Database
             column.Name = sqlColumn.Name;
             column.DefaultValue = sqlColumn.DefaultValue;
             column.IsAllowNull = sqlColumn.IsNullable;
+            column.Type = sqlColumn.DataType;
             column.Table = table;
 
             return column;

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SB.EntityFramework;
 using SB.EntityFramework.Context;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Models;
+using SB.Migrator.Models.Column;
+using SB.Migrator.Models.Tables.Constraints;
 using TypeInfo = SB.EntityFramework.TypeInfo;
 
 namespace SB.Migrator.EntityFramework
@@ -78,24 +81,64 @@ namespace SB.Migrator.EntityFramework
             if (!(Activator.CreateInstance(contextType) is EFContext context))
                 return new List<EFTableInfo>();
 
-            var entityTypes = context.Model.GetEntityTypes();
-            return entityTypes.Select(ConvertToTableInfo).ToList();
+            var entityTypes = context.Model.GetEntityTypes().Where(w => !w.IsQueryType);
+            return entityTypes.Select(s => ConvertToTableInfo(context, s)).ToList();
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="context"></param>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private EFTableInfo ConvertToTableInfo(IEntityType entity)
+        private EFTableInfo ConvertToTableInfo(EFContext context, IEntityType entity)
         {
+            if (entity.IsQueryType)
+                return null;
+
             var mapping = entity.Relational();
 
             var tableInfo = new EFTableInfo();
+            tableInfo.Context = context;
+            tableInfo.Entity = entity;
             tableInfo.Name = mapping.TableName;
             tableInfo.Schema = mapping.Schema;
+            tableInfo.ClrType = entity.ClrType;
+            tableInfo.Columns = GetColumns(tableInfo);
 
             return tableInfo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        private List<ColumnInfo> GetColumns(EFTableInfo table)
+        {
+            var props = table.Entity.GetProperties();
+            return props.Select(s => GetColumn(table, s)).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        private ColumnInfo GetColumn(EFTableInfo table, IProperty property)
+        {
+            var columnRelational = property.Relational();
+            var mapping = property.FindRelationalMapping();
+
+            var column = new ColumnInfo();
+            column.Table = table;
+            column.Name = columnRelational.ColumnName;
+            column.Type = columnRelational.ColumnType ?? mapping.StoreType;
+            column.IsAllowNull = property.IsNullable;
+            column.DefaultValue = columnRelational.DefaultValue;
+
+            return column;
         }
     }
 }
