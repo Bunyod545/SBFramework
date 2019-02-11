@@ -1,9 +1,9 @@
-﻿namespace SB.Migrator.Models.Column
+﻿namespace SB.Migrator.Models.Tables.Constraints
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ColumnInfo
+    public class KeyInfo
     {
         /// <summary>
         /// 
@@ -18,20 +18,10 @@
         /// <summary>
         /// 
         /// </summary>
-        public bool IsAllowNull { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public object DefaultValue { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            return $"{Table}.{Name}";
+            return $"{Table} {Name}";
         }
     }
 }

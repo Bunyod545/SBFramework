@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Tables\Keys\" />
-    <Folder Include="Models\Tables\Constraints\" />
-    <Folder Include="Models\Tables\Indexes\" />
-    <Folder Include="Models\Tables\Triggers\" />
+    <Compile Remove="Models\Tables\Indexes\**" />
+    <Compile Remove="Models\Tables\Triggers\**" />
+    <EmbeddedResource Remove="Models\Tables\Indexes\**" />
+    <EmbeddedResource Remove="Models\Tables\Triggers\**" />
+    <None Remove="Models\Tables\Indexes\**" />
+    <None Remove="Models\Tables\Triggers\**" />
   </ItemGroup>
 
 </Project>

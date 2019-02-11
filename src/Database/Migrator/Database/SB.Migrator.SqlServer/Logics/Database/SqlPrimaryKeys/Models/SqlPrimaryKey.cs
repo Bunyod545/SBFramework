@@ -1,28 +1,28 @@
-﻿namespace SB.Migrator.Logics.DatabaseCommands
+﻿namespace SB.Migrator.SqlServer
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDatabaseCommand
+    public class SqlPrimaryKey
     {
         /// <summary>
         /// 
         /// </summary>
-        int Order { get; }
+        public string TableSchema { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        string CommandText { get; }
+        public string TableName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        void BuildCommandText();
+        public string ColumnName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        void Execute();
+        public string ConstraintName { get; set; }
     }
 }

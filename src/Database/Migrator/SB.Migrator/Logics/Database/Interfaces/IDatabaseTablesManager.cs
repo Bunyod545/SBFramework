@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SB.Migrator.Models.Table;
+using SB.Migrator.Models;
 
 namespace SB.Migrator.Logics.Database
 {
