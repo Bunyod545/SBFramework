@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Tables\Keys\" />
+    <Folder Include="Models\Tables\Constraints\" />
+    <Folder Include="Models\Tables\Indexes\" />
+    <Folder Include="Models\Tables\Triggers\" />
+  </ItemGroup>
+
+</Project>

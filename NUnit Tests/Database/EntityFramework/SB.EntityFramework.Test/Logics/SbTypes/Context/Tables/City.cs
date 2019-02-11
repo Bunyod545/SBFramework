@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using SB.EntityFramework.Context;
 using SB.EntityFramework.Context.Tables;
-using SBCommon.Logics.Business;
+using SB.Common.Logics.Business;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes.Context.Tables
 {

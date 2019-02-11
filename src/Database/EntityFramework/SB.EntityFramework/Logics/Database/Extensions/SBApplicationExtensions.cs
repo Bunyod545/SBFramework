@@ -1,5 +1,5 @@
 ﻿using SB.EntityFramework.Logics.Database;
-using SBCommon.Logics.Application;
+using SB.Common.Logics.Application;
 
 namespace SB.EntityFramework
 {

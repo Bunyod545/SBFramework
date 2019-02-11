@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace SBCommon.Helpers
+namespace SB.Common.Helpers
 {
     /// <summary>
     /// 

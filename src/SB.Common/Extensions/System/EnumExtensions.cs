@@ -1,7 +1,7 @@
 ﻿using SB.Common.Logics.SynonymProviders;
 using System;
 
-namespace SBCommon.Extensions.System
+namespace SB.Common.Extensions.System
 {
     /// <summary>
     /// 

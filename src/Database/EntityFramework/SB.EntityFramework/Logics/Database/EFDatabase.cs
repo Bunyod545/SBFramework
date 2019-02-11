@@ -1,5 +1,5 @@
 ﻿using SB.EntityFramework.Context;
-using SBCommon.Logics.Application;
+using SB.Common.Logics.Application;
 
 namespace SB.EntityFramework.Logics.Database
 {
@@ -19,6 +19,7 @@ namespace SB.EntityFramework.Logics.Database
         public void Initialize()
         {
             EFContext.SbDatabase = this;
+            SBMigrationManager.Migrate();
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using SBCommon.Helpers;
+﻿using SB.Common.Helpers;
 using System.Globalization;
 
-namespace SBCommon.Extensions.System
+namespace SB.Common.Extensions.System
 {
     /// <summary>
     /// 

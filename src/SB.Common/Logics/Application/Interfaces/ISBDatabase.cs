@@ -1,4 +1,4 @@
-﻿namespace SBCommon.Logics.Application
+﻿namespace SB.Common.Logics.Application
 {
     /// <summary>
     /// 

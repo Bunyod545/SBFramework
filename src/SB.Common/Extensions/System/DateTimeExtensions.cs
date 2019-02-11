@@ -1,4 +1,6 @@
-﻿namespace System
+﻿using SB.Common.Helpers;
+
+namespace System
 {
     /// <summary>
     /// 
@@ -32,7 +34,7 @@
         /// <returns></returns>
         public static DateTime StartOfMonth(this DateTime date)
         {
-            return new DateTime(date.Year, date.Month, 1, 0, 0, 0);
+            return new DateTime(date.Year, date.Month, 1).BeginOfDay();
         }
 
         /// <summary>
@@ -43,7 +45,7 @@
         public static DateTime EndOfMonth(this DateTime date)
         {
             var days = DateTime.DaysInMonth(date.Year, date.Month);
-            return new DateTime(date.Year, date.Month, days, 23, 59, 59);
+            return new DateTime(date.Year, date.Month, days).EndOfDay();
         }
         /// <summary>
         /// 
@@ -62,7 +64,37 @@
         /// <returns></returns>
         public static DateTime EndOfYear(this DateTime date)
         {
-            return new DateTime(date.Year, 12, 31, 23, 59, 59);
+            return new DateTime(date.Year, 12, 31).EndOfDay();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime GetQuarterBegin(this DateTime date)
+        {
+            return QuarterHelper.GetQuarterBegin(date);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime GetQuarterEnd(this DateTime date)
+        {
+            return QuarterHelper.GetQuarterEnd(date);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static int GetQuarterNumber(this DateTime date)
+        {
+            return QuarterHelper.GetQuarterNumber(date);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
-using SBCommon.Helpers;
+using SB.Common.Helpers;
 
-namespace SBCommon.Logics.Metadata
+namespace SB.Common.Logics.Metadata
 {
     /// <summary>
     /// 

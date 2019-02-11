@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SBCommon.Logics.Metadata
+namespace SB.Common.Logics.Metadata
 {
     /// <summary>
     /// 

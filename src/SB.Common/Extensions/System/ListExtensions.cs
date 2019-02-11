@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SBCommon.Extensions
+namespace SB.Common.Extensions
 {
     /// <summary>
     /// 

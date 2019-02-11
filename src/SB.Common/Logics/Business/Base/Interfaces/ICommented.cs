@@ -1,4 +1,4 @@
-﻿namespace SBCommon.Logics.Business
+﻿namespace SB.Common.Logics.Business
 {
     /// <summary>
     /// 

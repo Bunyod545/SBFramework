@@ -1,13 +1,13 @@
-﻿namespace SBCommon.Logics.Business
+﻿namespace SB.Common.Logics.Business
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface ISubmitable
+    public interface IAfterSubmitable
     {
         /// <summary>
         /// 
         /// </summary>
-        void BeforeSubmit();
+        void AfterSubmit();
     }
 }

@@ -3,7 +3,7 @@ using NUnit.Framework;
 using SB.EntityFramework.Context.Tables;
 using SB.EntityFramework.Test.Logics.SbTypes.Context;
 using SB.EntityFramework.Test.Logics.SbTypes.Context.Tables;
-using SBCommon.Logics.Metadata;
+using SB.Common.Logics.Metadata;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes
 {

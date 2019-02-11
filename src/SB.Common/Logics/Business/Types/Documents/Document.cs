@@ -1,7 +1,8 @@
 ﻿using System;
-using SBCommon.Logics.Metadata;
+using SB.Common.Logics.Business.Types.Documents;
+using SB.Common.Logics.Metadata;
 
-namespace SBCommon.Logics.Business
+namespace SB.Common.Logics.Business
 {
     /// <summary>
     /// 
@@ -24,7 +25,7 @@ namespace SBCommon.Logics.Business
         /// </summary>
         public virtual void BeforeSubmit()
         {
-
+            PeriodicDate = DocumentTimeStampHelper.GetPeriodicDate(this);
         }
     }
 }

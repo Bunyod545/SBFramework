@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using SBCommon.Logics.Business;
+using SB.Common.Logics.Business;
 
 namespace SB.EntityFramework.Test.Logics.TypeFinders
 {

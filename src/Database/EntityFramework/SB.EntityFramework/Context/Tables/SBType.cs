@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using SBCommon.Logics.Business;
+using SB.Common.Logics.Business;
 
 namespace SB.EntityFramework.Context.Tables
 {

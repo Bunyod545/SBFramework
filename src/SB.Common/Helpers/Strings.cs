@@ -1,4 +1,4 @@
-﻿namespace SBCommon.Helpers
+﻿namespace SB.Common.Helpers
 {
     /// <summary>
     /// 

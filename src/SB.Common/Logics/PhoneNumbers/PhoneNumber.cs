@@ -1,5 +1,5 @@
-﻿using SBCommon.Extensions;
-using SBCommon.Helpers;
+﻿using SB.Common.Extensions;
+using SB.Common.Helpers;
 
 namespace SB.Common.Logics.PhoneNumbers
 {

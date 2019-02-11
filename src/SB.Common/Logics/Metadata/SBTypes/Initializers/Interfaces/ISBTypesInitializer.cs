@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SBCommon.Logics.Metadata
+namespace SB.Common.Logics.Metadata
 {
     /// <summary>
     /// 

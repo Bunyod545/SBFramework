@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using SBCommon.Extensions;
+using SB.Common.Extensions;
 
 namespace SB.Common.Logics.SynonymProviders
 {

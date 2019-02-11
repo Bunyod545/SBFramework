@@ -1,4 +1,4 @@
-﻿using SBCommon.Helpers;
+﻿using SB.Common.Helpers;
 
 namespace SB.Common.Logics.ObjectMessage
 {

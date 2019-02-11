@@ -4,9 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using SB.EntityFramework.Context;
 using SB.EntityFramework.Context.Tables;
-using SBCommon.Extensions;
+using SB.Common.Extensions;
 
 namespace SB.EntityFramework
 {
@@ -18,7 +19,14 @@ namespace SB.EntityFramework
         /// <summary>
         /// 
         /// </summary>
-        public static List<Assembly> Assemblies { get; }
+        public static List<Assembly> Assemblies { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static List<Assembly> SafeAssemblies => Assemblies.Any() ? 
+                Assemblies : 
+                AppDomain.CurrentDomain.GetAssemblies().ToList();
 
         /// <summary>
         /// 
@@ -62,7 +70,7 @@ namespace SB.EntityFramework
             if (CacheTypeInfos != null && CacheTypeInfos.Any())
                 return CacheTypeInfos;
 
-            return Assemblies.SelectMany(InitalizeTypeInfos).ToList();
+            return SafeAssemblies.SelectMany(InitalizeTypeInfos).ToList();
         }
 
         /// <summary>
@@ -122,6 +130,16 @@ namespace SB.EntityFramework
                 return null;
 
             return propType.GenericTypeArguments[0];
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<Type> GetContextTypes()
+        {
+            var types = SafeAssemblies.SelectMany(s=>s.GetTypes());
+            return types.Where(w => typeof(EFContext).IsAssignableFrom(w)).ToList();
         }
 
         /// <summary>

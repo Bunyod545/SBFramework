@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SBCommon.Logics.Business;
+using SB.Common.Logics.Business;
 
-namespace SBCommon.Logics.Metadata
+namespace SB.Common.Logics.Metadata
 {
     /// <summary>
     /// 

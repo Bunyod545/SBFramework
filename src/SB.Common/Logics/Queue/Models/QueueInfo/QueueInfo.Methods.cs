@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using SB.Common.Logics.Queue.Enums;
-using SBCommon.Extensions;
+using SB.Common.Extensions;
 
 namespace SB.Common.Logics.Queue.Models
 {

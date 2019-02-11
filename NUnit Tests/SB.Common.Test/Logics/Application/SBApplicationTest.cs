@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using SB.EntityFramework;
-using SBCommon.Logics.Application;
+using SB.Common.Logics.Application;
 
 namespace SB.Common.Test.Logics.Application
 {

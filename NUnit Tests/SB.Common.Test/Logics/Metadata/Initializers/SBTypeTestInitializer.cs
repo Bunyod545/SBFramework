@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using SB.Common.Test.Logics.Metadata.Tables;
-using SBCommon.Logics.Metadata;
+using SB.Common.Logics.Metadata;
 
 namespace SB.Common.Test.Logics.Metadata.Initializers
 {

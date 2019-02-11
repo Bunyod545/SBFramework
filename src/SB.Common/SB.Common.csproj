@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>SBCommon</RootNamespace>
+    <RootNamespace>SB.Common</RootNamespace>
     <Authors>Bunyod545</Authors>
     <Company>SB</Company>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

@@ -1,4 +1,4 @@
-﻿namespace SBCommon.Extensions
+﻿namespace SB.Common.Extensions
 {
     /// <summary>
     /// 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SBCommon.Logics.Metadata
+namespace SB.Common.Logics.Metadata
 {
     /// <summary>
     /// 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SB.EntityFramework.Context.Tables;
-using SBCommon.Logics.Metadata;
+using SB.Common.Logics.Metadata;
 
 namespace SB.EntityFramework
 {

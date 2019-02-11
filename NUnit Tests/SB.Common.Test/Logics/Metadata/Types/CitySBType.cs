@@ -1,5 +1,5 @@
 ﻿using System;
-using SBCommon.Logics.Metadata;
+using SB.Common.Logics.Metadata;
 
 namespace SB.Common.Test.Logics.Metadata.Types
 {

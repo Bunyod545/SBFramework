@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace SBCommon.Helpers
+namespace SB.Common.Helpers
 {
     /// <summary>
     /// 

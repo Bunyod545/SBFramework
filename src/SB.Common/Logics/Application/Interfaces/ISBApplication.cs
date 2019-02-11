@@ -1,6 +1,6 @@
-﻿using SBCommon.Logics.Metadata;
+﻿using SB.Common.Logics.Metadata;
 
-namespace SBCommon.Logics.Application
+namespace SB.Common.Logics.Application
 {
     /// <summary>
     /// 

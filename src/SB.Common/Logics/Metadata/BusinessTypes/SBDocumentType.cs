@@ -1,7 +1,7 @@
-﻿using SBCommon.Logics.Business;
+﻿using SB.Common.Logics.Business;
 using System;
 
-namespace SBCommon.Logics.Metadata
+namespace SB.Common.Logics.Metadata
 {
     /// <summary>
     /// 
