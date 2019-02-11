@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 using SB.EntityFramework.Context;
+using SB.Migrator.EntityFramework;
 
 namespace SB.EntityFramework.Test.Logics.TypeFinders
 {
@@ -10,6 +12,16 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
     /// </summary>
     public class TableFinderTest
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        [Test]
+        public void Test()
+        {
+            TableFinder.AddAssembly(Assembly.GetExecutingAssembly());
+            var tables = new EFCodeTablesManager().GetTableInfos();
+        }
+
         /// <summary>
         /// 
         /// </summary>

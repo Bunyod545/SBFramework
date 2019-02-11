@@ -6,6 +6,7 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
     /// <summary>
     /// 
     /// </summary>
+    [SBMigration]
     public class EFTestContext : SBSystemContext
     {
         /// <summary>
