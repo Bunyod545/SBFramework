@@ -1,5 +1,6 @@
 ﻿using SB.Migrator.Logics.Code;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.DatabaseCommands;
 
 namespace SB.Migrator
 {
@@ -17,6 +18,11 @@ namespace SB.Migrator
         /// 
         /// </summary>
         IDatabaseTablesManager DatabaseTablesManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IDatabaseCommandManager DatabaseCommandManager { get; }
 
         /// <summary>
         /// 

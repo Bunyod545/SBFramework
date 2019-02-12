@@ -1,21 +1,20 @@
-﻿using SB.Migrator.Models.Column;
+﻿using System;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IColumnCommand : IDatabaseCommand
+    public class CommandServiceInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        ColumnInfo Column { get; }
+        public Type CommandType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="column"></param>
-        void SetColumn(ColumnInfo column);
+        public Type CommandImplementType { get; set; }
     }
 }

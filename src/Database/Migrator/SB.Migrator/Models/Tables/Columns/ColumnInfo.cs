@@ -56,6 +56,15 @@ namespace SB.Migrator.Models.Column
         /// 
         /// </summary>
         /// <returns></returns>
+        public bool IsPrimary()
+        {
+            return Table?.PrimaryKey?.PrimaryColumn == this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{Table}.{Name}";
@@ -64,10 +73,26 @@ namespace SB.Migrator.Models.Column
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="column1"></param>
+        /// <param name="column2"></param>
         /// <returns></returns>
-        public bool IsPrimary()
+        public static bool operator ==(ColumnInfo column1, ColumnInfo column2)
         {
-            return Table?.PrimaryKey?.PrimaryColumn == this;
+            if (Equals(column1, null) || Equals(column2, null))
+                return false;
+
+            return column1.Name == column2.Name;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column1"></param>
+        /// <param name="column2"></param>
+        /// <returns></returns>
+        public static bool operator !=(ColumnInfo column1, ColumnInfo column2)
+        {
+            return !(column1 == column2);
         }
     }
 }
