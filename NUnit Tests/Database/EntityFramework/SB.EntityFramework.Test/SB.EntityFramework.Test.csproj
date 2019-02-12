@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Database\EntityFramework\SB.EntityFramework\SB.EntityFramework.csproj" />
     <ProjectReference Include="..\..\..\..\src\Database\Migrator\Code\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\Migrator\Database\SB.Migrator.SqlServer\SB.Migrator.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\..\src\SB.Common\SB.Common.csproj" />
   </ItemGroup>
 

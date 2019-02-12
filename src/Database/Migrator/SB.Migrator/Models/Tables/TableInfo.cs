@@ -18,6 +18,11 @@ namespace SB.Migrator.Models
         /// <summary>
         /// 
         /// </summary>
+        public string NewName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Schema { get; set; }
 
         /// <summary>

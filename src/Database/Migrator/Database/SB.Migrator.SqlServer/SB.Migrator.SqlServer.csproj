@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SB.Common\SB.Common.csproj" />
     <ProjectReference Include="..\..\SB.Migrator\SB.Migrator.csproj" />
   </ItemGroup>
 

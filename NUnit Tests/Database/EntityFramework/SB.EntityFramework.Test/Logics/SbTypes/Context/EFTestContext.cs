@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using SB.EntityFramework.Test.Logics.SbTypes.Context.Tables;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes.Context

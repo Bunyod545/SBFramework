@@ -15,7 +15,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="info"></param>
-        void SetTable(TableInfo info);
+        /// <param name="table"></param>
+        void SetTable(TableInfo table);
     }
 }

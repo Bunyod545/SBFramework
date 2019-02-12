@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SB.EntityFramework;
 using SB.EntityFramework.Context;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
-using TypeInfo = SB.EntityFramework.TypeInfo;
 
 namespace SB.Migrator.EntityFramework
 {
@@ -33,7 +30,6 @@ namespace SB.Migrator.EntityFramework
         public List<TableInfo> GetTableInfos()
         {
             _tableInfos = GetTables();
-
             return _tableInfos.Select(s => (TableInfo)s).ToList();
         }
 
@@ -163,6 +159,5 @@ namespace SB.Migrator.EntityFramework
 
             return result;
         }
-
     }
 }

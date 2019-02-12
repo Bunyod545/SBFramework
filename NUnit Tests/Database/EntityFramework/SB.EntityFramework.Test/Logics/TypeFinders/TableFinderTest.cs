@@ -4,6 +4,9 @@ using System.Reflection;
 using NUnit.Framework;
 using SB.EntityFramework.Context;
 using SB.Migrator.EntityFramework;
+using SB.Migrator.Helpers;
+using SB.Migrator.SqlServer;
+using SB.Migrator.SqlServer.Logics.Database;
 
 namespace SB.EntityFramework.Test.Logics.TypeFinders
 {
@@ -18,6 +21,20 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
         [Test]
         public void Test()
         {
+            MigrateHelper.ConnectionString = "Server=MWI_91\\SQLSERVER2014;Database=TestEF;Trusted_Connection=True;";
+            var sqlDatabaseManager = new SqlDatabaseTablesManager();
+            var sqlTables = sqlDatabaseManager.GetTableInfos();
+
+            foreach (var table in sqlTables)
+            {
+                table.Name = table.Name + "3";
+
+                var createTableCommand = new SqlCreateTableCommand();
+                createTableCommand.SetTable(table);
+                createTableCommand.BuildCommandText();
+                createTableCommand.Execute();
+            }
+
             TableFinder.AddAssembly(Assembly.GetExecutingAssembly());
             var tables = new EFCodeTablesManager().GetTableInfos();
         }
