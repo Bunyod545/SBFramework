@@ -1,4 +1,6 @@
-﻿namespace SB.Migrator.Models.Column
+﻿using System;
+
+namespace SB.Migrator.Models.Column
 {
     /// <summary>
     /// 
@@ -19,6 +21,11 @@
         /// 
         /// </summary>
         public string Type { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Type ClrType { get; set; }
 
         /// <summary>
         /// 

@@ -105,6 +105,7 @@ namespace SB.Migrator.EntityFramework
             tableInfo.Schema = mapping.Schema;
             tableInfo.ClrType = entity.ClrType;
             tableInfo.Columns = GetColumns(tableInfo);
+            tableInfo.PrimaryKey = GetPrimaryKeyInfo(tableInfo);
 
             return tableInfo;
         }
@@ -129,16 +130,39 @@ namespace SB.Migrator.EntityFramework
         private ColumnInfo GetColumn(EFTableInfo table, IProperty property)
         {
             var columnRelational = property.Relational();
-            var mapping = property.FindRelationalMapping();
 
             var column = new ColumnInfo();
             column.Table = table;
             column.Name = columnRelational.ColumnName;
-            column.Type = columnRelational.ColumnType ?? mapping.StoreType;
+            column.Type = columnRelational.ColumnType;
             column.IsAllowNull = property.IsNullable;
+            column.ClrType = property.ClrType;
             column.DefaultValue = columnRelational.DefaultValue;
 
             return column;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        private PrimaryKeyInfo GetPrimaryKeyInfo(EFTableInfo table)
+        {
+            var primary = table.Entity.FindPrimaryKey();
+            if (primary == null)
+                return null;
+
+            var primaryRelational = primary.Relational();
+            if (primaryRelational == null)
+                return null;
+
+            var result = new PrimaryKeyInfo();
+            result.Name = primaryRelational.Name;
+            result.Table = table;
+
+            return result;
+        }
+
     }
 }
