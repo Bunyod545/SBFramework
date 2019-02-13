@@ -1,4 +1,5 @@
 ﻿using System;
+using SB.Migrator.Models.Tables.Columns;
 
 namespace SB.Migrator.Models.Column
 {
@@ -25,12 +26,7 @@ namespace SB.Migrator.Models.Column
         /// <summary>
         /// 
         /// </summary>
-        public string Type { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Type ClrType { get; set; }
+        public ColumnTypeInfo Type { get; set; }
 
         /// <summary>
         /// 
@@ -46,11 +42,6 @@ namespace SB.Migrator.Models.Column
         /// 
         /// </summary>
         public Identity Identity { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int? CharacterMaximumLenght { get; set; }
 
         /// <summary>
         /// 

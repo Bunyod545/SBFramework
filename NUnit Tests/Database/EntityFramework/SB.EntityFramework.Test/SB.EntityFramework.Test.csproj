@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -8,14 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.1" />
-    <PackageReference Include="nunit" Version="3.11.0" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Database\EntityFramework\SB.EntityFramework\SB.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\..\..\src\Database\Migrator\Code\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework.SqlServer\SB.Migrator.EntityFramework.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj" />
     <ProjectReference Include="..\..\..\..\src\Database\Migrator\Database\SB.Migrator.SqlServer\SB.Migrator.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\..\src\SB.Common\SB.Common.csproj" />
   </ItemGroup>

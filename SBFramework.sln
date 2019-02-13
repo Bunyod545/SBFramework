@@ -33,7 +33,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{DC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.SqlServer", "src\Database\Migrator\Database\SB.Migrator.SqlServer\SB.Migrator.SqlServer.csproj", "{CE35B84D-693A-481B-8331-A6F01A0103E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.EntityFramework", "src\Database\Migrator\Code\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj", "{2EEFDE6F-07A0-4A34-BE29-C6BCD115F161}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFramework", "{FB76CA98-B878-4253-BA22-F1A002A1E4C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.EntityFramework", "src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj", "{9D907655-E7AC-48DE-BC2B-B7A10E149C87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.EntityFramework.SqlServer", "src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework.SqlServer\SB.Migrator.EntityFramework.SqlServer.csproj", "{019D013D-3DA3-46E0-B609-B852F667D2F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,10 +69,14 @@ Global
 		{CE35B84D-693A-481B-8331-A6F01A0103E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE35B84D-693A-481B-8331-A6F01A0103E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE35B84D-693A-481B-8331-A6F01A0103E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EEFDE6F-07A0-4A34-BE29-C6BCD115F161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EEFDE6F-07A0-4A34-BE29-C6BCD115F161}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EEFDE6F-07A0-4A34-BE29-C6BCD115F161}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EEFDE6F-07A0-4A34-BE29-C6BCD115F161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,7 +95,9 @@ Global
 		{34764869-89AD-4B44-8E52-C884ECE17810} = {4DEAB15B-270F-4188-8DE3-2EF0C52C9C83}
 		{DCF5476E-BF46-43B6-A442-C2C8556B1CC3} = {4DEAB15B-270F-4188-8DE3-2EF0C52C9C83}
 		{CE35B84D-693A-481B-8331-A6F01A0103E3} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
-		{2EEFDE6F-07A0-4A34-BE29-C6BCD115F161} = {34764869-89AD-4B44-8E52-C884ECE17810}
+		{FB76CA98-B878-4253-BA22-F1A002A1E4C8} = {34764869-89AD-4B44-8E52-C884ECE17810}
+		{9D907655-E7AC-48DE-BC2B-B7A10E149C87} = {FB76CA98-B878-4253-BA22-F1A002A1E4C8}
+		{019D013D-3DA3-46E0-B609-B852F667D2F6} = {FB76CA98-B878-4253-BA22-F1A002A1E4C8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

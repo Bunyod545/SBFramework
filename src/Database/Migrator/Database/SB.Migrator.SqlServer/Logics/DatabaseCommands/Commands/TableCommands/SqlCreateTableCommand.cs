@@ -39,7 +39,7 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder.AppendLine();
             ScriptBuilder.AppendFormat("[{0}] ", column.Name);
-            ScriptBuilder.Append(SqlTypeManager.GetColumnType(column));
+            ScriptBuilder.Append(column.Type.GetColumnType());
 
             BuildIdentity(column);
             BuildNullableInfo(column);

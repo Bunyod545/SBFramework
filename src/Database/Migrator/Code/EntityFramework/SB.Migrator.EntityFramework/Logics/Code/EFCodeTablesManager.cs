@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SB.EntityFramework;
 using SB.EntityFramework.Context;
 using SB.Migrator.Logics.Code;
@@ -22,6 +23,11 @@ namespace SB.Migrator.EntityFramework
         /// 
         /// </summary>
         private List<EFTableInfo> _tableInfos;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IEFColumnTypeInfoCreator TypeInfoCreator { get; set; }
 
         /// <summary>
         /// 
@@ -130,9 +136,8 @@ namespace SB.Migrator.EntityFramework
             var column = new ColumnInfo();
             column.Table = table;
             column.Name = columnRelational.ColumnName;
-            column.Type = columnRelational.ColumnType;
+            column.Type = TypeInfoCreator?.Create(property);
             column.IsAllowNull = property.IsNullable;
-            column.ClrType = property.ClrType;
             column.DefaultValue = columnRelational.DefaultValue;
 
             return column;
@@ -146,16 +151,17 @@ namespace SB.Migrator.EntityFramework
         private PrimaryKeyInfo GetPrimaryKeyInfo(EFTableInfo table)
         {
             var primary = table.Entity.FindPrimaryKey();
-            if (primary == null)
-                return null;
-
-            var primaryRelational = primary.Relational();
+            var primaryRelational = primary?.Relational();
             if (primaryRelational == null)
                 return null;
 
             var result = new PrimaryKeyInfo();
             result.Name = primaryRelational.Name;
             result.Table = table;
+
+            var prop = primary.Properties?.FirstOrDefault();
+            var name = prop?.Relational()?.ColumnName;
+            result.PrimaryColumn = table.GetColumn(name);
 
             return result;
         }

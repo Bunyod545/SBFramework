@@ -15,7 +15,7 @@ namespace SB.Migrator.SqlServer
             ScriptBuilder.AppendFormat("[{0}].[{1}]", Column.Table.Schema, Column.Table.Name);
 
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendFormat("ALTER COLUMN [{0}] {1}", Column.Name, SqlTypeManager.GetColumnType(Column));
+            ScriptBuilder.AppendFormat("ALTER COLUMN [{0}] {1}", Column.Name, Column.Type.GetColumnType());
         }
     }
 }
