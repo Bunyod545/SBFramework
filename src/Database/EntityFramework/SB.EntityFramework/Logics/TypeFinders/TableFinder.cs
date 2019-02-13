@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using SB.EntityFramework.Context;
 using SB.EntityFramework.Context.Tables;
 using SB.Common.Extensions;
@@ -19,7 +18,7 @@ namespace SB.EntityFramework
         /// <summary>
         /// 
         /// </summary>
-        public static List<Assembly> Assemblies { get; private set; }
+        public static List<Assembly> Assemblies { get; }
 
         /// <summary>
         /// 

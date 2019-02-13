@@ -22,6 +22,15 @@ namespace SB.EntityFramework.Context
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema(DefaultSchema);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="acceptAllChangesOnSuccess"></param>
         /// <returns></returns>
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

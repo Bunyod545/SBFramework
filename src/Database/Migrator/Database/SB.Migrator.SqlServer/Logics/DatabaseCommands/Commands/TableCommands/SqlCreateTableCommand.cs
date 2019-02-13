@@ -2,7 +2,7 @@
 using SB.Common.Helpers;
 using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models.Column;
-using SB.Migrator.SqlServer.Logics.DatabaseCommands.Helpers;
+using SB.Migrator.SqlServer.Logics.DatabaseCommands;
 
 namespace SB.Migrator.SqlServer
 {
@@ -14,7 +14,7 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        public override int Order => (int)CommandOrders.CreateTable;
+        public override int Order => (int)CommandOrder.CreateTable;
 
         /// <summary>
         /// 
@@ -43,7 +43,6 @@ namespace SB.Migrator.SqlServer
 
             BuildIdentity(column);
             BuildNullableInfo(column);
-            BuildPrimary(column);
 
             ScriptBuilder.Append(Strings.Comma);
         }
@@ -68,16 +67,6 @@ namespace SB.Migrator.SqlServer
                 ScriptBuilder.Append(" NOT");
 
             ScriptBuilder.Append(" NULL");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="column"></param>
-        private void BuildPrimary(ColumnInfo column)
-        {
-            if (column.IsPrimary())
-                ScriptBuilder.Append(" PRIMARY KEY");
         }
     }
 }

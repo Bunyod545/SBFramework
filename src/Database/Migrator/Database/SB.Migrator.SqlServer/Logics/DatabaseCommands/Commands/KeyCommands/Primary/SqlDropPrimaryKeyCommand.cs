@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.SqlServer.Logics.DatabaseCommands;
 
 namespace SB.Migrator.SqlServer
 {
@@ -8,6 +9,11 @@ namespace SB.Migrator.SqlServer
     /// </summary>
     public class SqlDropPrimaryKeyCommand : SqlPrimaryKeyCommand, IDropPrimaryKeyCommand
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public override int Order => (int)CommandOrder.DropPrimaryKey;
+
         /// <summary>
         /// 
         /// </summary>

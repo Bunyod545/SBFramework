@@ -14,5 +14,24 @@
         /// 
         /// </summary>
         public int Seed { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Identity()
+        {
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="increment"></param>
+        /// <param name="seed"></param>
+        public Identity(int increment, int seed)
+        {
+            Increment = increment;
+            Seed = seed;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SB.Common.Extensions;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 
@@ -22,10 +23,27 @@ namespace SB.Migrator.Logics.DatabaseCommands
             if (databaseTable == null)
             {
                 CreateTable(codeTable);
+
+                CreatePrimaryKey(codeTable.PrimaryKey);
+                codeTable.ForeignKeys.ForEach(CreateForeignKey);
                 return;
             }
 
             codeTable.Columns.ForEach(f => MergeCodeColumn(f, databaseTable.Columns));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void CreateCodeTable(TableInfo codeTable)
+        {
+            CreateTable(codeTable);
+
+            if (codeTable.PrimaryKey != null)
+                CreatePrimaryKey(codeTable.PrimaryKey);
+
+            if (!codeTable.ForeignKeys.IsNullOrEmpty())
+                codeTable.ForeignKeys.ForEach(CreateForeignKey);
         }
 
         /// <summary>
@@ -44,7 +62,6 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             MergeCodeColumnName(codeColumn, databaseColumn);
             MergeCodeColumnType(codeColumn, databaseColumn);
-            MergeCodeColumnIdentity(codeColumn, databaseColumn);
             MergeCodeColumnIsAllowNull(codeColumn, databaseColumn);
             MergeCodeColumnDefaultValue(codeColumn, databaseColumn);
         }
@@ -67,20 +84,10 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="databaseColumn"></param>
         protected virtual void MergeCodeColumnType(ColumnInfo codeColumn, ColumnInfo databaseColumn)
         {
-            if(string.Equals(codeColumn.Type?.GetColumnType(), databaseColumn.Type?.GetColumnType(), StringComparison.CurrentCultureIgnoreCase))
+            if (string.Equals(codeColumn.Type?.GetColumnType(), databaseColumn.Type?.GetColumnType(), StringComparison.CurrentCultureIgnoreCase))
                 return;
 
             AlterColumn(codeColumn);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="codeColumn"></param>
-        /// <param name="databaseColumn"></param>
-        protected virtual void MergeCodeColumnIdentity(ColumnInfo codeColumn, ColumnInfo databaseColumn)
-        {
-
         }
 
         /// <summary>

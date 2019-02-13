@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SB.EntityFramework;
 using SB.EntityFramework.Context;
 using SB.Migrator.Logics.Code;
@@ -31,6 +30,8 @@ namespace SB.Migrator.EntityFramework
         public List<TableInfo> GetTableInfos()
         {
             _tableInfos = GetTables();
+            _tableInfos.ForEach(f=> f.ForeignKeys = GetForeignKeys(f));
+
             return _tableInfos.Select(s => (TableInfo)s).ToList();
         }
 
@@ -100,7 +101,7 @@ namespace SB.Migrator.EntityFramework
             tableInfo.ClrType = entity.ClrType;
             tableInfo.Columns = GetColumns(tableInfo);
             tableInfo.PrimaryKey = GetPrimaryKeyInfo(tableInfo);
-
+            
             return tableInfo;
         }
 
@@ -131,8 +132,18 @@ namespace SB.Migrator.EntityFramework
             column.Type = new EFColumnTypeInfo(property);
             column.IsAllowNull = property.IsNullable;
             column.DefaultValue = columnRelational.DefaultValue;
+            column.Identity = GetIdentity(property);
 
             return column;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private Identity GetIdentity(IProperty property)
+        {
+            return property.IsPrimaryKey() ? new Identity(1, 1) : null;
         }
 
         /// <summary>
@@ -156,6 +167,46 @@ namespace SB.Migrator.EntityFramework
             result.PrimaryColumn = table.GetColumn(name);
 
             return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        private List<ForeignKeyInfo> GetForeignKeys(EFTableInfo table)
+        {
+            var foreignKeys = table.Entity.GetForeignKeys();
+            return foreignKeys.Select(s => GetForeignKey(s, table)).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="foreignKey"></param>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        private ForeignKeyInfo GetForeignKey(IForeignKey foreignKey, EFTableInfo table)
+        {
+            var result = new ForeignKeyInfo();
+            result.Table = table;
+            result.Name = foreignKey.Relational().Name;
+            result.Column = table.GetColumn(foreignKey.GetColumnName());
+
+            result.ReferenceTable = GetReferenceTable(foreignKey);
+            result.ReferenceColumn = result.ReferenceTable.GetColumn(foreignKey.GetReferenceColumnName());
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        private EFTableInfo GetReferenceTable(IForeignKey key)
+        {
+            var entity = key.PrincipalEntityType.Relational();
+            return _tableInfos.FirstOrDefault(f => f.Schema == entity.Schema && f.Name == entity.TableName);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        private List<CommandServiceInfo> _serviceInfos;
+        private readonly List<CommandServiceInfo> _serviceInfos;
 
         /// <summary>
         /// 

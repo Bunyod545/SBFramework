@@ -13,4 +13,8 @@
     <None Remove="Models\Tables\Triggers\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SB.Common\SB.Common.csproj" />
+  </ItemGroup>
+
 </Project>
