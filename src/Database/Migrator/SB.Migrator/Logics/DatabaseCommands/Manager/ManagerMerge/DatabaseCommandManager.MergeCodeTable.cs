@@ -44,6 +44,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             MergeCodeColumnName(codeColumn, databaseColumn);
             MergeCodeColumnType(codeColumn, databaseColumn);
             MergeCodeColumnIdentity(codeColumn, databaseColumn);
+            MergeCodeColumnIsAllowNull(codeColumn, databaseColumn);
             MergeCodeColumnDefaultValue(codeColumn, databaseColumn);
         }
 
@@ -65,7 +66,10 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="databaseColumn"></param>
         protected virtual void MergeCodeColumnType(ColumnInfo codeColumn, ColumnInfo databaseColumn)
         {
+            if(codeColumn.Type == databaseColumn.Type)
+                return;
 
+            AlterColumn(codeColumn);
         }
 
         /// <summary>
@@ -83,9 +87,41 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <param name="codeColumn"></param>
         /// <param name="databaseColumn"></param>
+        protected virtual void MergeCodeColumnIsAllowNull(ColumnInfo codeColumn, ColumnInfo databaseColumn)
+        {
+            if (codeColumn.IsAllowNull == databaseColumn.IsAllowNull)
+                return;
+
+            AlterColumn(codeColumn);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codeColumn"></param>
+        /// <param name="databaseColumn"></param>
         protected virtual void MergeCodeColumnDefaultValue(ColumnInfo codeColumn, ColumnInfo databaseColumn)
         {
+            if (codeColumn.DefaultValue == null && databaseColumn.DefaultValue == null)
+                return;
 
+            if (codeColumn.DefaultValue == databaseColumn.DefaultValue)
+                return;
+
+            if (codeColumn.DefaultValue == null)
+            {
+                DropColumnDefaultValue(codeColumn);
+                return;
+            }
+
+            if (databaseColumn.DefaultValue == null)
+            {
+                CreateColumnDefaultValue(codeColumn);
+                return;
+            }
+
+            DropColumnDefaultValue(codeColumn);
+            CreateColumnDefaultValue(codeColumn);
         }
     }
 }
