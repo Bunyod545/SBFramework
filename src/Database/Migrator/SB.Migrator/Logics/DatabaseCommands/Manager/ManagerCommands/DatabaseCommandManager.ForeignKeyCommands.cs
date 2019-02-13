@@ -39,6 +39,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             service.SetForeignKey(foreignKey);
             service.BuildCommandText();
+            Commands.Add(service);
         }
     }
 }

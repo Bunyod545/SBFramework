@@ -17,7 +17,6 @@ namespace SB.Migrator
         {
             return !string.IsNullOrEmpty(codeColumn.NewName) &&
                    codeColumn.NewName != databaseColumn.Name;
-
         }
     }
 }

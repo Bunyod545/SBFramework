@@ -6,7 +6,7 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public class SqlDropPrimaryKeyCommand : SqlPrimaryKeyCommand, ICreatePrimaryKeyCommand
+    public class SqlDropPrimaryKeyCommand : SqlPrimaryKeyCommand, IDropPrimaryKeyCommand
     {
         /// <summary>
         /// 

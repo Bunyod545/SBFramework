@@ -7,7 +7,7 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public class SqlRenameColumnCommand : SqlColumnCommand, IDropColumnCommand
+    public class SqlRenameColumnCommand : SqlColumnCommand, IRenameColumnCommand
     {
         /// <summary>
         /// 

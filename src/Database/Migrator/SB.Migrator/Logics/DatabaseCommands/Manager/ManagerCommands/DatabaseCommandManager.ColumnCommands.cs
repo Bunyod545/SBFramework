@@ -56,6 +56,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             service.SetColumn(column);
             service.BuildCommandText();
+            Commands.Add(service);
         }
     }
 }

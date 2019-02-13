@@ -12,7 +12,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        public List<CommandServiceInfo> ServiceInfos { get; }
+        private List<CommandServiceInfo> _serviceInfos;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public CommandServices()
+        {
+            _serviceInfos = new List<CommandServiceInfo>();
+        }
 
         /// <summary>
         /// 
@@ -27,7 +35,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             service.CommandType = typeof(T);
             service.CommandImplementType = typeof(TCommand);
 
-            ServiceInfos.Add(service);
+            _serviceInfos.Add(service);
         }
 
         /// <summary>
@@ -36,7 +44,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <typeparam name="T"></typeparam>
         public void Remove<T>() where T : IDatabaseCommand
         {
-            ServiceInfos.RemoveAll(r => r.CommandType == typeof(T));
+            _serviceInfos.RemoveAll(r => r.CommandType == typeof(T));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ResetServices()
+        {
+            _serviceInfos.Clear();
         }
 
         /// <summary>
@@ -46,7 +62,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <returns></returns>
         public T GetCommand<T>() where T : class, IDatabaseCommand
         {
-            var service = ServiceInfos.FirstOrDefault(f => f.CommandType == typeof(T));
+            var service = _serviceInfos.FirstOrDefault(f => f.CommandType == typeof(T));
             if (service == null)
                 return null;
 

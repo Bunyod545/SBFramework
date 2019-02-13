@@ -37,7 +37,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.EntityFramework", "src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj", "{9D907655-E7AC-48DE-BC2B-B7A10E149C87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.EntityFramework.SqlServer", "src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework.SqlServer\SB.Migrator.EntityFramework.SqlServer.csproj", "{019D013D-3DA3-46E0-B609-B852F667D2F6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrator", "Migrator", "{C5750199-85C0-4684-8CDE-54DEC27BF815}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.Test", "NUnit Tests\Database\Migrator\SB.Migrator.Test\SB.Migrator.Test.csproj", "{E9DAE7B8-66E9-4F34-841D-087F5CEE6AD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,10 +75,10 @@ Global
 		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D907655-E7AC-48DE-BC2B-B7A10E149C87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{019D013D-3DA3-46E0-B609-B852F667D2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9DAE7B8-66E9-4F34-841D-087F5CEE6AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9DAE7B8-66E9-4F34-841D-087F5CEE6AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9DAE7B8-66E9-4F34-841D-087F5CEE6AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9DAE7B8-66E9-4F34-841D-087F5CEE6AD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,7 +99,8 @@ Global
 		{CE35B84D-693A-481B-8331-A6F01A0103E3} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
 		{FB76CA98-B878-4253-BA22-F1A002A1E4C8} = {34764869-89AD-4B44-8E52-C884ECE17810}
 		{9D907655-E7AC-48DE-BC2B-B7A10E149C87} = {FB76CA98-B878-4253-BA22-F1A002A1E4C8}
-		{019D013D-3DA3-46E0-B609-B852F667D2F6} = {FB76CA98-B878-4253-BA22-F1A002A1E4C8}
+		{C5750199-85C0-4684-8CDE-54DEC27BF815} = {38B5B18A-B0BC-4283-8572-6EE6E2447AF7}
+		{E9DAE7B8-66E9-4F34-841D-087F5CEE6AD6} = {C5750199-85C0-4684-8CDE-54DEC27BF815}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

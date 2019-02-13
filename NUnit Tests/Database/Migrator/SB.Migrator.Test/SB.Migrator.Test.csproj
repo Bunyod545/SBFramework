@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
+    <PackageReference Include="nunit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Database\EntityFramework\SB.EntityFramework\SB.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\Migrator\Database\SB.Migrator.SqlServer\SB.Migrator.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Database\Migrator\SB.Migrator\SB.Migrator.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SB.Migrator.Models;
 
 namespace SB.Migrator.Logics.DatabaseCommands
@@ -44,7 +45,8 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         public void Migrate()
         {
-            throw new NotImplementedException();
+            var commands = Commands.OrderBy(o => o.Order).ToList();
+            commands.ForEach(f => f.Execute());
         }
     }
 }

@@ -7,7 +7,7 @@ namespace SB.EntityFramework.Context.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("Types", Schema = "SB")]
+    [Table("Types")]
     public class SbType : IIdentified
     {
         /// <summary>

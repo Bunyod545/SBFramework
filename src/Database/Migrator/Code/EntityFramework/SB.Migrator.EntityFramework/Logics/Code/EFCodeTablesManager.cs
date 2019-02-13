@@ -27,11 +27,6 @@ namespace SB.Migrator.EntityFramework
         /// <summary>
         /// 
         /// </summary>
-        public IEFColumnTypeInfoCreator TypeInfoCreator { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         public List<TableInfo> GetTableInfos()
         {
@@ -95,9 +90,6 @@ namespace SB.Migrator.EntityFramework
         /// <returns></returns>
         private EFTableInfo ConvertToTableInfo(EFContext context, IEntityType entity)
         {
-            if (entity.IsQueryType)
-                return null;
-
             var mapping = entity.Relational();
 
             var tableInfo = new EFTableInfo();
@@ -136,7 +128,7 @@ namespace SB.Migrator.EntityFramework
             var column = new ColumnInfo();
             column.Table = table;
             column.Name = columnRelational.ColumnName;
-            column.Type = TypeInfoCreator?.Create(property);
+            column.Type = new EFColumnTypeInfo(property);
             column.IsAllowNull = property.IsNullable;
             column.DefaultValue = columnRelational.DefaultValue;
 

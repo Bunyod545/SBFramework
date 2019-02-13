@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
@@ -17,7 +18,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="databaseTables"></param>
         protected virtual void MergeCodeTable(TableInfo codeTable, List<TableInfo> databaseTables)
         {
-            var databaseTable = databaseTables.FirstOrDefault(f => f == codeTable);
+            var databaseTable = databaseTables.FirstOrDefault(f => f.IsEqual(codeTable));
             if (databaseTable == null)
             {
                 CreateTable(codeTable);
@@ -34,7 +35,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="databaseColumns"></param>
         protected virtual void MergeCodeColumn(ColumnInfo codeColumn, List<ColumnInfo> databaseColumns)
         {
-            var databaseColumn = databaseColumns.FirstOrDefault(f => f == codeColumn);
+            var databaseColumn = databaseColumns.FirstOrDefault(f => f.IsEqual(codeColumn));
             if (databaseColumn == null)
             {
                 CreateColumn(codeColumn);
@@ -66,7 +67,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="databaseColumn"></param>
         protected virtual void MergeCodeColumnType(ColumnInfo codeColumn, ColumnInfo databaseColumn)
         {
-            if(codeColumn.Type == databaseColumn.Type)
+            if(string.Equals(codeColumn.Type?.GetColumnType(), databaseColumn.Type?.GetColumnType(), StringComparison.CurrentCultureIgnoreCase))
                 return;
 
             AlterColumn(codeColumn);

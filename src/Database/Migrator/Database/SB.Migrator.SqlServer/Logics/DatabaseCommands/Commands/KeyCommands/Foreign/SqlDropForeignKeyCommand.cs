@@ -6,7 +6,7 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public class SqlDropForeignKeyCommand : SqlForeignKeyCommand, ICreateForeignKeyCommand
+    public class SqlDropForeignKeyCommand : SqlForeignKeyCommand, IDropForeignKeyCommand
     {
         /// <summary>
         /// 

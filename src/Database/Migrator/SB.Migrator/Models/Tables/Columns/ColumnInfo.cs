@@ -64,26 +64,11 @@ namespace SB.Migrator.Models.Column
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="column1"></param>
-        /// <param name="column2"></param>
+        /// <param name="column"></param>
         /// <returns></returns>
-        public static bool operator ==(ColumnInfo column1, ColumnInfo column2)
+        public bool IsEqual(ColumnInfo column)
         {
-            if (Equals(column1, null) || Equals(column2, null))
-                return false;
-
-            return column1.Name == column2.Name;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="column1"></param>
-        /// <param name="column2"></param>
-        /// <returns></returns>
-        public static bool operator !=(ColumnInfo column1, ColumnInfo column2)
-        {
-            return !(column1 == column2);
+            return column?.Name == Name;
         }
     }
 }

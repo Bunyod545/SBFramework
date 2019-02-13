@@ -6,7 +6,7 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public class SqlDropColumnDefaultValueCommand : SqlColumnDefaultValueCommand, ICreateColumnDefaultValueCommand
+    public class SqlDropColumnDefaultValueCommand : SqlColumnDefaultValueCommand, IDropColumnDefaultValueCommand
     {
         /// <summary>
         /// 

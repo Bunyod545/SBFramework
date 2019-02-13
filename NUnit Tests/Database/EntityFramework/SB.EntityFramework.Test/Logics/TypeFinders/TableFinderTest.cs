@@ -3,9 +3,10 @@ using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using SB.EntityFramework.Context;
+using SB.Migrator;
 using SB.Migrator.EntityFramework;
-using SB.Migrator.EntityFramework.SqlServer;
 using SB.Migrator.Helpers;
+using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.SqlServer;
 using SB.Migrator.SqlServer.Logics.Database;
 
@@ -16,19 +17,6 @@ namespace SB.EntityFramework.Test.Logics.TypeFinders
     /// </summary>
     public class TableFinderTest
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        [Test]
-        public void Test()
-        {
-            TableFinder.AddAssembly(Assembly.GetExecutingAssembly());
-            var manger = new EFCodeTablesManager();
-            manger.TypeInfoCreator = new EFSqlColumnTypeInfoCreator();
-
-            var tables = manger.GetTableInfos();
-        }
-
         /// <summary>
         /// 
         /// </summary>

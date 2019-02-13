@@ -38,6 +38,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             service.SetPrimaryKey(primaryKey);
             service.BuildCommandText();
+            Commands.Add(service);
         }
     }
 }

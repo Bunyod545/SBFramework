@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SB.EntityFramework.Test.Logics.SbTypes.Context.Tables;
+using SB.Migrator.Helpers;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes.Context
 {
@@ -8,7 +9,7 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
     /// 
     /// </summary>
     [SBMigration]
-    public class EFTestContext : SBSystemContext
+    public class EFMigrationTestContext : SBSystemContext
     {
         /// <summary>
         /// 
@@ -31,7 +32,7 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(nameof(EFTestContext));
+            optionsBuilder.UseSqlServer(MigrateHelper.ConnectionString);
         }
 
         /// <summary>

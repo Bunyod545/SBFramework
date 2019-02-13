@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
@@ -73,12 +74,22 @@ namespace SB.Migrator.SqlServer.Logics.Database
         {
             var column = new ColumnInfo();
             column.Name = sqlColumn.Name;
-            column.DefaultValue = sqlColumn.DefaultValue;
+            column.DefaultValue = GetDefaultValue(sqlColumn);
             column.IsAllowNull = sqlColumn.IsNullable;
             column.Type = new SqlColumnTypeInfo(sqlColumn);
             column.Table = table;
 
             return column;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        private object GetDefaultValue(SqlColumn column)
+        {
+            return column.DefaultValue is DBNull ? null : column.DefaultValue;
         }
 
         /// <summary>

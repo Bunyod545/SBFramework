@@ -71,27 +71,13 @@ namespace SB.Migrator.Models
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="table1"></param>
-        /// <param name="table2"></param>
         /// <returns></returns>
-        public static bool operator ==(TableInfo table1, TableInfo table2)
+        public virtual bool IsEqual(TableInfo table)
         {
-            if (table1 == null || table2 == null)
+            if (table == null)
                 return false;
 
-            return table1.Schema == table2.Schema &&
-                   table1.Name == table2.Name;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="table1"></param>
-        /// <param name="tableInfo2"></param>
-        /// <returns></returns>
-        public static bool operator !=(TableInfo table1, TableInfo tableInfo2)
-        {
-            return !(table1 == tableInfo2);
+            return table.Schema == Schema && table.Name == Name;
         }
     }
 }

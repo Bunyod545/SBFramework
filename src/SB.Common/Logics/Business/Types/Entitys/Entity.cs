@@ -8,6 +8,9 @@ namespace SB.Common.Logics.Business
     [SBType(typeof(SBEntityType))]
     public abstract class Entity : SBObject, IEntity
     {
-       
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Name { get; set; }
     }
 }

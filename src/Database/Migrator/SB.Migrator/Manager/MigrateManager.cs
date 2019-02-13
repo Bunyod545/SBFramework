@@ -8,7 +8,7 @@ namespace SB.Migrator
     /// <summary>
     /// 
     /// </summary>
-    public abstract class MigrateManager : IMigrateManager
+    public class MigrateManager : IMigrateManager
     {
         /// <summary>
         /// 

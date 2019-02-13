@@ -5,6 +5,9 @@
     /// </summary>
     public interface IEntity : IIdentifiedTyped
     {
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        string Name { get; set; }
     }
 }

@@ -38,6 +38,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             service.SetTable(table);
             service.BuildCommandText();
+            Commands.Add(service);
         }
     }
 }
