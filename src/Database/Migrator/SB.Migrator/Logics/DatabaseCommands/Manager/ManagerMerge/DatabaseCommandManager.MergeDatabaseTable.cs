@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Models;
+using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -18,8 +19,27 @@ namespace SB.Migrator.Logics.DatabaseCommands
         {
             var codeTable = codeTables.FirstOrDefault(f => f.IsEqual(databaseTable));
             if (codeTable == null)
+            {
                 DropDatabaseTable(databaseTable);
+                return;
+            }
+
+            databaseTable.Columns.ForEach(f => MergeDatabaseColumn(f, codeTable));
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databaseColumn"></param>
+        /// <param name="codeTable"></param>
+        protected virtual void MergeDatabaseColumn(ColumnInfo databaseColumn, TableInfo codeTable)
+        {
+            var codeColumn = codeTable.GetColumn(databaseColumn.Name);
+            if (codeColumn == null)
+                DropColumn(databaseColumn);
+        }
+
+
 
         /// <summary>
         /// 
