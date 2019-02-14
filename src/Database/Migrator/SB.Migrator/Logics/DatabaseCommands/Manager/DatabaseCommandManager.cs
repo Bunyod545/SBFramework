@@ -36,6 +36,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="databaseTables"></param>
         public void MergeTables(List<TableInfo> codeTables, List<TableInfo> databaseTables)
         {
+            Commands.Clear();
             codeTables.ForEach(f => MergeCodeTable(f, databaseTables));
             databaseTables.ForEach(f => MergeDatabaseTable(f, codeTables));
         }

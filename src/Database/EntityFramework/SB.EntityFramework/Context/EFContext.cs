@@ -31,6 +31,16 @@ namespace SB.EntityFramework.Context
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public DbSet<T> GetTable<T>() where T : class
+        {
+            return Set<T>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="acceptAllChangesOnSuccess"></param>
         /// <returns></returns>
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

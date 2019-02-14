@@ -1,4 +1,7 @@
-﻿using EFSqlMigrationTestConsole.Contexts.Tables;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using EFSqlMigrationTestConsole.Contexts.Tables;
 using Microsoft.EntityFrameworkCore;
 using SB.EntityFramework;
 
@@ -8,11 +11,11 @@ namespace EFSqlMigrationTestConsole.Contexts
     /// 
     /// </summary>
     [SBMigration]
-    public class DataContext : SqlContext
+    public class TestContext : SqlContext
     {
         /// <summary>
         /// 
         /// </summary>
-        public DbSet<Country> Countries { get; set; }
+        public DbSet<City> Cities { get; set; }
     }
 }
