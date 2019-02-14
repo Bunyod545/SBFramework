@@ -17,27 +17,10 @@ namespace SB.Migrator.Test.Manager
         /// <summary>
         /// 
         /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         [Test]
         public void Migrate()
         {
-            MigrateHelper.ConnectionString = "Server=MWI_91\\SQLSERVER2014;Database=TestEF;Trusted_Connection=True;";
-            TableFinder.AddAssembly(Assembly.GetExecutingAssembly());
 
-            var migrateManager = new MigrateManager();
-            migrateManager.CodeTablesManager = new EFCodeTablesManager();
-            migrateManager.DatabaseTablesManager = new SqlDatabaseTablesManager();
-            migrateManager.DatabaseCommandManager = new DatabaseCommandManager();
-
-            migrateManager.DatabaseCommandManager.UseSqlCommands();
-            migrateManager.Migrate();
         }
     }
 }

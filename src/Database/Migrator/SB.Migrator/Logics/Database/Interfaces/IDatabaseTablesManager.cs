@@ -11,6 +11,21 @@ namespace SB.Migrator.Logics.Database
         /// <summary>
         /// 
         /// </summary>
+        MigrateManager MigrateManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IColumnTypeMappingSource ColumnTypeMappingSource { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        string DefaultSchema { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         List<TableInfo> GetTableInfos();
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 
 namespace SB.Migrator.Logics.Code
@@ -8,6 +9,11 @@ namespace SB.Migrator.Logics.Code
     /// </summary>
     public interface ICodeTablesManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        MigrateManager MigrateManager { get; }
+
         /// <summary>
         /// 
         /// </summary>

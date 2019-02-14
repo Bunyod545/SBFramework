@@ -21,7 +21,21 @@ namespace SB.Migrator.EntityFramework
         /// <summary>
         /// 
         /// </summary>
+        public MigrateManager MigrateManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private List<EFTableInfo> _tableInfos;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrateManager"></param>
+        public EFCodeTablesManager(MigrateManager migrateManager)
+        {
+            MigrateManager = migrateManager;
+        }
 
         /// <summary>
         /// 
@@ -97,7 +111,7 @@ namespace SB.Migrator.EntityFramework
             tableInfo.Context = context;
             tableInfo.Entity = entity;
             tableInfo.Name = mapping.TableName;
-            tableInfo.Schema = mapping.Schema;
+            tableInfo.Schema = mapping.Schema ?? MigrateManager.DatabaseTablesManager?.DefaultSchema;
             tableInfo.ClrType = entity.ClrType;
             tableInfo.Columns = GetColumns(tableInfo);
             tableInfo.PrimaryKey = GetPrimaryKeyInfo(tableInfo);

@@ -28,6 +28,14 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        public MigrateManager()
+        {
+            DatabaseCommandManager = new DatabaseCommandManager();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void Migrate()
         {
             Validate();

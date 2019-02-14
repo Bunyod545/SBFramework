@@ -1,11 +1,10 @@
-﻿using SB.Migrator;
-using SB.Migrator.EntityFramework;
+﻿using System.Reflection;
+using SB.Migrator;
 using SB.Migrator.Helpers;
-using SB.Migrator.Logics.DatabaseCommands;
-using SB.Migrator.SqlServer;
+using SB.Migrator.Metadata;
 using SB.Migrator.SqlServer.Logics.Database;
 
-namespace EFSqlMigrationTestConsole
+namespace MetadataSqlMigrationTestConsole
 {
     /// <summary>
     /// 
@@ -21,12 +20,12 @@ namespace EFSqlMigrationTestConsole
         /// 
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        internal static void Main(string[] args)
         {
             MigrateHelper.ConnectionString = ConnectionString;
 
             var migrateManager = new MigrateManager();
-            migrateManager.CodeTablesManager = new EFCodeTablesManager(migrateManager);
+            migrateManager.CodeTablesManager = new MetadataCodeTablesManager(migrateManager);
             migrateManager.DatabaseTablesManager = new SqlDatabaseTablesManager(migrateManager);
 
             migrateManager.Migrate();

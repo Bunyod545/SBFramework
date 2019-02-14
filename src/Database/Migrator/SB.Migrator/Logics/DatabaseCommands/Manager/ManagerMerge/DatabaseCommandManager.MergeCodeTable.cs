@@ -29,6 +29,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
                 return;
             }
 
+            MergeCodeTableForeignKeys(codeTable, databaseTable);
             codeTable.Columns.ForEach(f => MergeCodeColumn(f, databaseTable.Columns));
         }
 
@@ -130,6 +131,16 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             DropColumnDefaultValue(codeColumn);
             CreateColumnDefaultValue(codeColumn);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codeTable"></param>
+        /// <param name="databaseTable"></param>
+        protected virtual void MergeCodeTableForeignKeys(TableInfo codeTable, TableInfo databaseTable)
+        {
+
         }
     }
 }

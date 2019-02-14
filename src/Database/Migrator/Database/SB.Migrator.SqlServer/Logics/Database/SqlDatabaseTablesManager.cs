@@ -5,6 +5,7 @@ using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource;
 
 namespace SB.Migrator.SqlServer.Logics.Database
 {
@@ -17,6 +18,32 @@ namespace SB.Migrator.SqlServer.Logics.Database
         /// 
         /// </summary>
         private List<TableInfo> _tableInfos;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string DefaultSchema => "dbo";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public MigrateManager MigrateManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IColumnTypeMappingSource ColumnTypeMappingSource { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrateManager"></param>
+        public SqlDatabaseTablesManager(MigrateManager migrateManager)
+        {
+            MigrateManager = migrateManager;
+            MigrateManager.DatabaseCommandManager.UseSqlCommands();
+            ColumnTypeMappingSource = new SqlColumnTypeMappingSource();
+        }
 
         /// <summary>
         /// 

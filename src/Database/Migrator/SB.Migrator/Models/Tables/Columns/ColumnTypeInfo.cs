@@ -13,6 +13,23 @@
         /// <summary>
         /// 
         /// </summary>
+        public ColumnTypeInfo()
+        {
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        public ColumnTypeInfo(string type)
+        {
+            Type = type;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public virtual string GetColumnType()
         {
