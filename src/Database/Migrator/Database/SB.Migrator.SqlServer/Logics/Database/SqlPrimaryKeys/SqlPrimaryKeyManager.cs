@@ -8,22 +8,30 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public static class SqlPrimaryKeyManager
+    public class SqlPrimaryKeyManager : SqlBaseMappingManager
     {
         /// <summary>
         /// 
         /// </summary>
-        internal static List<SqlPrimaryKey> SqlPrimaryKeys { get; private set; }
+        protected List<SqlPrimaryKey> SqlPrimaryKeys { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databaseTablesManager"></param>
+        public SqlPrimaryKeyManager(SqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        {
+
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public static void InitializePrimaryKeys()
+        public void InitializePrimaryKeys()
         {
             SqlPrimaryKeys = new List<SqlPrimaryKey>();
-            var command = SqlCommandHelper.GetSqlCommand(Scripts.SelectPrimaryKeys);
+            var command = GetSqlCommand(Scripts.SelectPrimaryKeys);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
@@ -38,7 +46,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private static SqlPrimaryKey ReaderToPrimaryKey(SqlDataReader reader)
+        private SqlPrimaryKey ReaderToPrimaryKey(SqlDataReader reader)
         {
             return new SqlPrimaryKey
             {
@@ -54,11 +62,12 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public static SqlPrimaryKey GetPrimaryKey(SqlTable table)
+        public SqlPrimaryKey GetPrimaryKey(SqlTable table)
         {
             return SqlPrimaryKeys?.FirstOrDefault(f =>
                 f.TableSchema == table.Schema &&
                 f.TableName == table.Name);
         }
+
     }
 }

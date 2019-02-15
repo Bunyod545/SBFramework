@@ -21,5 +21,22 @@ namespace SB.Migrator.Metadata
         /// 
         /// </summary>
         public string ReferenceColumn { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ForeignKeyAttribute()
+        {
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="referencedTable"></param>
+        public ForeignKeyAttribute(Type referencedTable)
+        {
+            ReferencedTable = referencedTable;
+        }
     }
 }

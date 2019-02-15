@@ -28,9 +28,16 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager()
+        public string ConnectionString { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
+        public MigrateManager(string connectionString)
         {
-            DatabaseCommandManager = new DatabaseCommandManager();
+            ConnectionString = connectionString;
+            DatabaseCommandManager = new DatabaseCommandManager(this);
         }
 
         /// <summary>

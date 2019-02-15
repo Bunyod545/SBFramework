@@ -13,7 +13,7 @@ namespace SB.Migrator.Metadata
     /// <summary>
     /// 
     /// </summary>
-    public class MetadataCodeTablesManager : ICodeTablesManager
+    public class MetadataCodeTablesManager : CodeTablesManager
     {
         /// <summary>
         /// 
@@ -23,22 +23,22 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager MigrateManager { get; }
+        public MetadataManager MetadataManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        public MetadataCodeTablesManager(MigrateManager migrateManager)
+        public MetadataCodeTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
-            MigrateManager = migrateManager;
+            MetadataManager = new MetadataManager();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<TableInfo> GetTableInfos()
+        public override List<TableInfo> GetTableInfos()
         {
             var codeTables = MetadataManager.GetTables();
             _tableInfos = codeTables.Select(GetTableInfo).ToList();

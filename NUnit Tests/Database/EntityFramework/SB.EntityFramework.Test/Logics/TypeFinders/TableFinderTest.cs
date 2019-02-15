@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using NUnit.Framework;
 using SB.EntityFramework.Context;
-using SB.Migrator;
-using SB.Migrator.EntityFramework;
-using SB.Migrator.Helpers;
-using SB.Migrator.Logics.DatabaseCommands;
-using SB.Migrator.SqlServer;
-using SB.Migrator.SqlServer.Logics.Database;
 
 namespace SB.EntityFramework.Test.Logics.TypeFinders
 {

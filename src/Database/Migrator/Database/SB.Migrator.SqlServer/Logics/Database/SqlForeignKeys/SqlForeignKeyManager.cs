@@ -9,21 +9,29 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public static class SqlForeignKeyManager
+    public class SqlForeignKeyManager : SqlBaseMappingManager
     {
         /// <summary>
         /// 
         /// </summary>
-        internal static List<SqlForeignKey> SqlForeignKeys { get; private set; }
+        protected List<SqlForeignKey> SqlForeignKeys { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databaseTablesManager"></param>
+        public SqlForeignKeyManager(SqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        {
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public static void InitializeForeignKeys()
+        public void InitializeForeignKeys()
         {
             SqlForeignKeys = new List<SqlForeignKey>();
-            var command = SqlCommandHelper.GetSqlCommand(Scripts.SelectForeignKeys);
+            var command = GetSqlCommand(Scripts.SelectForeignKeys);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
@@ -38,7 +46,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private static SqlForeignKey ReaderToPrimaryKey(SqlDataReader reader)
+        private SqlForeignKey ReaderToPrimaryKey(SqlDataReader reader)
         {
             return new SqlForeignKey
             {
@@ -57,7 +65,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public static List<SqlForeignKey> GetForeignKeys(TableInfo table)
+        public List<SqlForeignKey> GetForeignKeys(TableInfo table)
         {
             if (SqlForeignKeys == null)
                 return new List<SqlForeignKey>();
@@ -66,5 +74,6 @@ namespace SB.Migrator.SqlServer
                 f.TableSchema == table.Schema &&
                 f.TableName == table.Name).ToList();
         }
+
     }
 }

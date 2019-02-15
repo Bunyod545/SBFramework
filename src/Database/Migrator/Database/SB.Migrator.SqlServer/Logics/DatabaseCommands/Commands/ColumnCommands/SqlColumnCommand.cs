@@ -1,4 +1,5 @@
-﻿using SB.Migrator.Logics.DatabaseCommands;
+﻿using System.Text;
+using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.SqlServer
@@ -20,6 +21,30 @@ namespace SB.Migrator.SqlServer
         public virtual void SetColumn(ColumnInfo column)
         {
             Column = column;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void SetAlterTable()
+        {
+            ScriptBuilder = new StringBuilder();
+            ScriptBuilder.Append("ALTER TABLE ");
+            ScriptBuilder.Append($"[{Column.Table.Schema}].[{Column.Table.Name}]");
+            ScriptBuilder.AppendLine();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void SetColumnInfo()
+        {
+            ScriptBuilder.Append($" [{Column.Name}] {Column.Type.GetColumnType()}");
+
+            if (!Column.IsAllowNull)
+                ScriptBuilder.Append(" NOT");
+
+            ScriptBuilder.Append(" NULL");
         }
     }
 }

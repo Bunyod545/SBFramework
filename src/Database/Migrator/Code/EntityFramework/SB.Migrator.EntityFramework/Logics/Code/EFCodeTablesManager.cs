@@ -16,13 +16,8 @@ namespace SB.Migrator.EntityFramework
     /// <summary>
     /// 
     /// </summary>
-    public class EFCodeTablesManager : ICodeTablesManager
+    public class EFCodeTablesManager : CodeTablesManager
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public MigrateManager MigrateManager { get; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -32,16 +27,16 @@ namespace SB.Migrator.EntityFramework
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        public EFCodeTablesManager(MigrateManager migrateManager)
+        public EFCodeTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
-            MigrateManager = migrateManager;
+
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<TableInfo> GetTableInfos()
+        public override List<TableInfo> GetTableInfos()
         {
             _tableInfos = GetTables();
             _tableInfos.ForEach(f=> f.ForeignKeys = GetForeignKeys(f));

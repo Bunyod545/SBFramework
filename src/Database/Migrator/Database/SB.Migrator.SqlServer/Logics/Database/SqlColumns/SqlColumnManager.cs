@@ -8,20 +8,28 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public static class SqlColumnManager
+    public class SqlColumnManager : SqlBaseMappingManager
     {
         /// <summary>
         /// 
         /// </summary>
-        internal static List<SqlColumn> SqlColumns { get; private set; }
+        protected List<SqlColumn> SqlColumns { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public static void InitializeColumns()
+        /// <param name="databaseTablesManager"></param>
+        public SqlColumnManager(SqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        {
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void InitializeColumns()
         {
             SqlColumns = new List<SqlColumn>();
-            var command = SqlCommandHelper.GetSqlCommand(Scripts.SelectColumns);
+            var command = GetSqlCommand(Scripts.SelectColumns);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
@@ -36,7 +44,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private static SqlColumn ReaderToColumn(SqlDataReader reader)
+        private SqlColumn ReaderToColumn(SqlDataReader reader)
         {
             return new SqlColumn
             {
@@ -61,7 +69,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="sqlTable"></param>
         /// <returns></returns>
-        public static List<SqlColumn> GetSqlColumns(SqlTable sqlTable)
+        public List<SqlColumn> GetSqlColumns(SqlTable sqlTable)
         {
             if (SqlColumns == null)
                 return new List<SqlColumn>();
@@ -70,5 +78,6 @@ namespace SB.Migrator.SqlServer
                 w.TableSchema == sqlTable.Schema &&
                 w.TableName == sqlTable.Name).ToList();
         }
+
     }
 }

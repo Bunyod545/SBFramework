@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Models;
 
@@ -18,13 +17,19 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        public MigrateManager MigrateManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public List<IDatabaseCommand> Commands { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DatabaseCommandManager()
+        public DatabaseCommandManager(MigrateManager migrateManager)
         {
+            MigrateManager = migrateManager;
             CommandServices = new CommandServices();
             Commands = new List<IDatabaseCommand>();
         }
@@ -47,7 +52,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         public void Migrate()
         {
             var commands = Commands.OrderBy(o => o.Order).ToList();
-            commands.ForEach(f => f.Execute());
+            commands.ForEach(f => f.Execute(MigrateManager.ConnectionString));
         }
     }
 }

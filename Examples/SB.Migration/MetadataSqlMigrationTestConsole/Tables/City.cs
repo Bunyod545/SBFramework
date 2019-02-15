@@ -17,7 +17,12 @@ namespace MetadataSqlMigrationTestConsole.Tables
         /// <summary>
         /// 
         /// </summary>
-        [Column, ForeignKey]
+        [Column, ForeignKey(typeof(Country))]
+        public long OwnerId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Country Owner { get; set; }
     }
 }

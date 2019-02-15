@@ -27,6 +27,11 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        string ConnectionString { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         void Migrate();
     }
 }

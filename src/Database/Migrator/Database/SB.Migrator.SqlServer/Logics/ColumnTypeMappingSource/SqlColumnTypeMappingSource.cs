@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using SB.Common.Helpers;
 using SB.Migrator.Logics.Database;
 
 namespace SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource
@@ -48,7 +49,8 @@ namespace SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource
         /// <returns></returns>
         public string FindType(Type systemType)
         {
-            return TypeMapping.TryGetValue(systemType, out var storeType) ? storeType : null;
+            var originalType = TypesHelper.GetOriginalType(systemType);
+            return TypeMapping.TryGetValue(originalType, out var storeType) ? storeType : null;
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SB.EntityFramework.Test.Logics.SbTypes.Context.Tables;
-using SB.Migrator.Helpers;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes.Context
 {
@@ -32,7 +30,6 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(MigrateHelper.ConnectionString);
         }
 
         /// <summary>

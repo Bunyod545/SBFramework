@@ -7,12 +7,12 @@ using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource;
 
-namespace SB.Migrator.SqlServer.Logics.Database
+namespace SB.Migrator.SqlServer
 {
     /// <summary>
     /// 
     /// </summary>
-    public class SqlDatabaseTablesManager : IDatabaseTablesManager
+    public class SqlDatabaseTablesManager : DatabaseTablesManager
     {
         /// <summary>
         /// 
@@ -22,34 +22,48 @@ namespace SB.Migrator.SqlServer.Logics.Database
         /// <summary>
         /// 
         /// </summary>
-        public string DefaultSchema => "dbo";
+        public override string DefaultSchema => "dbo";
 
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager MigrateManager { get; set; }
+        protected SqlTableManager SqlTableManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IColumnTypeMappingSource ColumnTypeMappingSource { get; }
+        protected SqlColumnManager SqlColumnManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected SqlPrimaryKeyManager SqlPrimaryKeyManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected SqlForeignKeyManager SqlForeignKeyManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        public SqlDatabaseTablesManager(MigrateManager migrateManager)
+        public SqlDatabaseTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
-            MigrateManager = migrateManager;
             MigrateManager.DatabaseCommandManager.UseSqlCommands();
             ColumnTypeMappingSource = new SqlColumnTypeMappingSource();
+
+            SqlTableManager = new SqlTableManager(this);
+            SqlColumnManager = new SqlColumnManager(this);
+            SqlPrimaryKeyManager = new SqlPrimaryKeyManager(this);
+            SqlForeignKeyManager = new SqlForeignKeyManager(this);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<TableInfo> GetTableInfos()
+        public override List<TableInfo> GetTableInfos()
         {
             SqlTableManager.InitializeTables();
             SqlColumnManager.InitializeColumns();
