@@ -8,6 +8,11 @@
         /// <summary>
         /// 
         /// </summary>
+        BeforeActualization,
+
+        /// <summary>
+        /// 
+        /// </summary>
         CreateTable,
 
         /// <summary>
@@ -69,5 +74,10 @@
         /// 
         /// </summary>
         CreateForeignKey,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        AfterActualization,
     }
 }

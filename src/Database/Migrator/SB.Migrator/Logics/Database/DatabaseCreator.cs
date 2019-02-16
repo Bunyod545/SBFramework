@@ -8,13 +8,13 @@
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager MigrateManager { get; }
+        public IMigrateManager MigrateManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        protected DatabaseCreator(MigrateManager migrateManager)
+        protected DatabaseCreator(IMigrateManager migrateManager)
         {
             MigrateManager = migrateManager;
         }

@@ -8,11 +8,10 @@ namespace SB.Migrator.Logics.Database
     /// </summary>
     public abstract class DatabaseTablesManager : IDatabaseTablesManager
     {
-
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager MigrateManager { get; }
+        public IMigrateManager MigrateManager { get; }
 
         /// <summary>
         /// 
@@ -28,7 +27,7 @@ namespace SB.Migrator.Logics.Database
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        protected DatabaseTablesManager(MigrateManager migrateManager)
+        protected DatabaseTablesManager(IMigrateManager migrateManager)
         {
             MigrateManager = migrateManager;
         }

@@ -2,6 +2,10 @@
 using SB.Migrator.Metadata;
 using SB.Migrator.SqlServer;
 
+[assembly: BeforeActualization("BeforeActualizationScripts.resources")]
+[assembly: Migrate("MetadataSqlMigration", "1.0.0.2")]
+[assembly: AfterActualization("AfterActualizationScripts.resources")]
+
 namespace MetadataSqlMigrationTestConsole
 {
     /// <summary>
@@ -12,7 +16,7 @@ namespace MetadataSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.;Database=TestEFSql2;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=.;Database=TestEFSql3;Trusted_Connection=True;";
 
         /// <summary>
         /// 

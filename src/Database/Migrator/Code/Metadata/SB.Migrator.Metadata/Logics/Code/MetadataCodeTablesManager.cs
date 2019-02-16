@@ -6,6 +6,7 @@ using SB.Migrator.Logics.Code;
 using SB.Migrator.Metadata.Logics.Code.Models;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
+using SB.Migrator.Models.Scripts;
 using SB.Migrator.Models.Tables.Constraints;
 
 namespace SB.Migrator.Metadata
@@ -31,7 +32,27 @@ namespace SB.Migrator.Metadata
         /// <param name="migrateManager"></param>
         public MetadataCodeTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
-            MetadataManager = new MetadataManager();
+            MetadataManager = new MetadataManager(migrateManager);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override List<ScriptInfo> GetBeforeActualizationScripts()
+        {
+            var scripts = MetadataManager.GetBeforeActualizationScripts();
+            return scripts.Select(s => (ScriptInfo)new MetadataScriptInfo(s)).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override List<ScriptInfo> GetAfterActualizationScripts()
+        {
+            var scripts = MetadataManager.GetAfterActualizationScripts();
+            return scripts.Select(s => (ScriptInfo)new MetadataScriptInfo(s)).ToList();
         }
 
         /// <summary>
@@ -42,7 +63,7 @@ namespace SB.Migrator.Metadata
         {
             var codeTables = MetadataManager.GetTables();
             _tableInfos = codeTables.Select(GetTableInfo).ToList();
-            _tableInfos.ForEach(f=>f.ForeignKeys = GetForeignKeys(f));
+            _tableInfos.ForEach(f => f.ForeignKeys = GetForeignKeys(f));
 
             return _tableInfos.Select(s => (TableInfo)s).ToList();
         }

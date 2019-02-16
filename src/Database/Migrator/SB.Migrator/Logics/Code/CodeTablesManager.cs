@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SB.Migrator.Models;
+using SB.Migrator.Models.Scripts;
 
 namespace SB.Migrator.Logics.Code
 {
@@ -11,17 +12,35 @@ namespace SB.Migrator.Logics.Code
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager MigrateManager { get; }
+        public IMigrateManager MigrateManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        protected CodeTablesManager(MigrateManager migrateManager)
+        protected CodeTablesManager(IMigrateManager migrateManager)
         {
             MigrateManager = migrateManager;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<ScriptInfo> GetBeforeActualizationScripts()
+        {
+            return new List<ScriptInfo>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<ScriptInfo> GetAfterActualizationScripts()
+        {
+            return new List<ScriptInfo>();
+        }
+        
         /// <summary>
         /// 
         /// </summary>

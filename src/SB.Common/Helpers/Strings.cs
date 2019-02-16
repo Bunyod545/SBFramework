@@ -109,5 +109,10 @@
         /// 
         /// </summary>
         public const string RBracket = ")";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string BottomLine = "_";
     }
 }

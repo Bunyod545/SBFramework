@@ -13,6 +13,16 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        public event MigrateBeginHandler MigrateBegin;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event MigrateEndHandler MigrateEnd;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ICodeTablesManager CodeTablesManager { get; set; }
 
         /// <summary>
@@ -29,6 +39,11 @@ namespace SB.Migrator
         /// 
         /// </summary>
         public IDatabaseCreator DatabaseCreator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IMigrationsHistoryRepository MigrationsHistoryRepository { get; set; }
 
         /// <summary>
         /// 
@@ -55,11 +70,15 @@ namespace SB.Migrator
             if (!DatabaseCreator.IsDatabaseExists())
                 DatabaseCreator.CreateDatabase();
 
+            OnMigrateBegin();
+
             var codeTables = CodeTablesManager.GetTableInfos();
             var databaseTables = DatabaseTablesManager.GetTableInfos();
 
             DatabaseCommandManager.MergeTables(codeTables, databaseTables);
             DatabaseCommandManager.Migrate();
+
+            OnMigrateEnd();
         }
 
         /// <summary>
@@ -67,6 +86,9 @@ namespace SB.Migrator
         /// </summary>
         protected virtual void Validate()
         {
+            if (DatabaseCreator == null)
+                throw new ArgumentNullException(nameof(DatabaseCreator));
+
             if (CodeTablesManager == null)
                 throw new ArgumentNullException(nameof(CodeTablesManager));
 
@@ -75,6 +97,22 @@ namespace SB.Migrator
 
             if (DatabaseCommandManager == null)
                 throw new ArgumentNullException(nameof(DatabaseCommandManager));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnMigrateBegin()
+        {
+            MigrateBegin?.Invoke(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void OnMigrateEnd()
+        {
+            MigrateEnd?.Invoke(this);
         }
     }
 }

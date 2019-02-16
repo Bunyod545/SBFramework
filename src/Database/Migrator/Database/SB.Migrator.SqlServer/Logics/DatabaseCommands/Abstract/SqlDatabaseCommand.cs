@@ -53,7 +53,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        private SqlCommand GetSqlCommand(string connectionString)
+        protected virtual SqlCommand GetSqlCommand(string connectionString)
         {
             var connection = new SqlConnection(connectionString);
             connection.Open();

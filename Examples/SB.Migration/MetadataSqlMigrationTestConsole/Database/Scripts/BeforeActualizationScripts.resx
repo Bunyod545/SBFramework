@@ -117,66 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="InsertHistoryVersion" xml:space="preserve">
-    <value>INSERT INTO [dbo].[MigrationsHistory] ([Name] ,[Version])
-VALUES ('{0}' ,'{1}')</value>
-  </data>
-  <data name="InsertHistoryVersion2" xml:space="preserve">
-    <value>INSERT INTO [dbo].[MigrationsHistory] ([Name] ,[Version2])
-VALUES ('{0}' ,'{1}')</value>
-  </data>
-  <data name="SelectColumns" xml:space="preserve">
-    <value>SELECT * FROM INFORMATION_SCHEMA.COLUMNS</value>
-  </data>
-  <data name="SelectForeignKeys" xml:space="preserve">
-    <value>SELECT
-    f.name as CONSTRAINT_NAME
-   ,OBJECT_SCHEMA_NAME(f.parent_object_id) AS REFERENCING_TABLE_SCHEMA_NAME
-   ,OBJECT_NAME(f.parent_object_id) AS REFERENCING_TABLE_NAME
-   ,COL_NAME(fc.parent_object_id, fc.parent_column_id) AS REFERENCING_COLUMN_NAME 
-   ,OBJECT_SCHEMA_NAME (f.referenced_object_id) AS REFERENCED_TABLE_SCHEMA_NAME
-   ,OBJECT_NAME (f.referenced_object_id) AS REFERENCED_TABLE_NAME
-   ,COL_NAME(fc.referenced_object_id, fc.referenced_column_id) AS REFERENCED_COLUMN_NAME
-   ,delete_referential_action_desc AS DELETE_ACTION
-   ,update_referential_action_desc AS UPDATE_ACTION
-
-FROM sys.foreign_keys AS f
-INNER JOIN sys.foreign_key_columns AS fc
-   ON f.object_id = fc.constraint_object_id</value>
-  </data>
-  <data name="SelectHistory" xml:space="preserve">
-    <value>SELECT TOP 1 *
-FROM [dbo].[MigrationsHistory]
-WHERE Name = '{0}'</value>
-  </data>
-  <data name="SelectMigrationsHistory" xml:space="preserve">
-    <value>SELECT [Id]
-      ,[Name]
-      ,[Version]
-      ,[Version2]
-  FROM [dbo].[MigrationsHistory]</value>
-  </data>
-  <data name="SelectPrimaryKeys" xml:space="preserve">
-    <value>SELECT KU.TABLE_SCHEMA, KU.TABLE_NAME, COLUMN_NAME, TC.CONSTRAINT_NAME
-FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS TC
-INNER JOIN
-INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS KU
-ON TC.CONSTRAINT_TYPE = 'PRIMARY KEY' AND
-TC.CONSTRAINT_NAME = KU.CONSTRAINT_NAME;</value>
-  </data>
-  <data name="SelectTables" xml:space="preserve">
-    <value>SELECT TABLE_SCHEMA, TABLE_NAME 
-FROM INFORMATION_SCHEMA.TABLES     
-WHERE TABLE_TYPE='BASE TABLE'</value>
-  </data>
-  <data name="UpdateHistoryVersion" xml:space="preserve">
-    <value>UPDATE [dbo].[MigrationsHistory]
-SET [Version] = '{1}'
-WHERE [Name] = '{0}'</value>
-  </data>
-  <data name="UpdateHistoryVersion2" xml:space="preserve">
-    <value>UPDATE [dbo].[MigrationsHistory]
-SET [Version2] = '{1}'
-WHERE [Name] = '{0}'</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="1.0.0.1_udf_GetLastDayOfMonthFunctionCreate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>files\1.0.0.1_udf_getlastdayofmonthfunctioncreate.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

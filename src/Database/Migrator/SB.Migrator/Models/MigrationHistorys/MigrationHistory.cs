@@ -1,24 +1,23 @@
-﻿namespace SB.Migrator.Logics.Database
+﻿namespace SB.Migrator.Models.MigrationHistorys
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDatabaseCreator
+    public class MigrationHistory
     {
         /// <summary>
         /// 
         /// </summary>
-        IMigrateManager MigrateManager { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        bool IsDatabaseExists();
+        public string Version { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        void CreateDatabase();
+        public string Version2 { get; set; }
     }
 }

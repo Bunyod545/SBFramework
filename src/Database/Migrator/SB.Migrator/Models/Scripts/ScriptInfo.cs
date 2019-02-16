@@ -1,24 +1,25 @@
-﻿namespace SB.Migrator.Logics.Database
+﻿using System;
+
+namespace SB.Migrator.Models.Scripts
 {
     /// <summary>
     /// 
     /// </summary>
-    public interface IDatabaseCreator
+    public class ScriptInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        IMigrateManager MigrateManager { get; }
+        public string ScriptText { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        bool IsDatabaseExists();
+        public string MigrateName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        void CreateDatabase();
+        public Version Version { get; set; }
     }
 }
