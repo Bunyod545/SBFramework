@@ -28,6 +28,11 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        public IDatabaseCreator DatabaseCreator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string ConnectionString { get; }
 
         /// <summary>
@@ -47,6 +52,9 @@ namespace SB.Migrator
         {
             Validate();
 
+            if (!DatabaseCreator.IsDatabaseExists())
+                DatabaseCreator.CreateDatabase();
+
             var codeTables = CodeTablesManager.GetTableInfos();
             var databaseTables = DatabaseTablesManager.GetTableInfos();
 
@@ -59,7 +67,7 @@ namespace SB.Migrator
         /// </summary>
         protected virtual void Validate()
         {
-            if(CodeTablesManager == null)
+            if (CodeTablesManager == null)
                 throw new ArgumentNullException(nameof(CodeTablesManager));
 
             if (DatabaseTablesManager == null)

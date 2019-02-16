@@ -50,6 +50,7 @@ namespace SB.Migrator.SqlServer
         /// <param name="migrateManager"></param>
         public SqlDatabaseTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
+            MigrateManager.DatabaseCreator = new SqlDatabaseCreator(migrateManager);
             MigrateManager.DatabaseCommandManager.UseSqlCommands();
             ColumnTypeMappingSource = new SqlColumnTypeMappingSource();
 

@@ -12,7 +12,7 @@ namespace MetadataSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.;Database=TestEFSql;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=.;Database=TestEFSql2;Trusted_Connection=True;";
 
         /// <summary>
         /// 
