@@ -20,6 +20,11 @@ namespace EFSqlMigrationTestConsole.Contexts.Tables
         /// <summary>
         /// 
         /// </summary>
+        public int Test { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         IEntity IOwned.Owner
         {
             get => Owner;
