@@ -23,6 +23,7 @@
         /// <summary>
         /// 
         /// </summary>
-        void Execute();
+        /// <param name="connectionString"></param>
+        void Execute(string connectionString);
     }
 }

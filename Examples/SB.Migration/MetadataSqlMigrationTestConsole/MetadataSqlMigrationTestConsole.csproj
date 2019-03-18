@@ -11,4 +11,13 @@
     <ProjectReference Include="..\..\..\src\SB.Common\SB.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Update="Database\Scripts\AfterActualizationScripts.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Database\Scripts\BeforeActualizationScripts.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

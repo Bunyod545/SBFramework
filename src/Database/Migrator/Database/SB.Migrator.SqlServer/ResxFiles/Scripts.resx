@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InsertHistoryVersion" xml:space="preserve">
+    <value>INSERT INTO [dbo].[MigrationsHistory] ([Name] ,[Version])
+VALUES ('{0}' ,'{1}')</value>
+  </data>
+  <data name="InsertHistoryVersion2" xml:space="preserve">
+    <value>INSERT INTO [dbo].[MigrationsHistory] ([Name] ,[Version2])
+VALUES ('{0}' ,'{1}')</value>
+  </data>
   <data name="SelectColumns" xml:space="preserve">
     <value>SELECT * FROM INFORMATION_SCHEMA.COLUMNS</value>
   </data>
@@ -136,6 +144,18 @@ FROM sys.foreign_keys AS f
 INNER JOIN sys.foreign_key_columns AS fc
    ON f.object_id = fc.constraint_object_id</value>
   </data>
+  <data name="SelectHistory" xml:space="preserve">
+    <value>SELECT TOP 1 *
+FROM [dbo].[MigrationsHistory]
+WHERE Name = '{0}'</value>
+  </data>
+  <data name="SelectMigrationsHistory" xml:space="preserve">
+    <value>SELECT [Id]
+      ,[Name]
+      ,[Version]
+      ,[Version2]
+  FROM [dbo].[MigrationsHistory]</value>
+  </data>
   <data name="SelectPrimaryKeys" xml:space="preserve">
     <value>SELECT KU.TABLE_SCHEMA, KU.TABLE_NAME, COLUMN_NAME, TC.CONSTRAINT_NAME
 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS TC
@@ -148,5 +168,15 @@ TC.CONSTRAINT_NAME = KU.CONSTRAINT_NAME;</value>
     <value>SELECT TABLE_SCHEMA, TABLE_NAME 
 FROM INFORMATION_SCHEMA.TABLES     
 WHERE TABLE_TYPE='BASE TABLE'</value>
+  </data>
+  <data name="UpdateHistoryVersion" xml:space="preserve">
+    <value>UPDATE [dbo].[MigrationsHistory]
+SET [Version] = '{1}'
+WHERE [Name] = '{0}'</value>
+  </data>
+  <data name="UpdateHistoryVersion2" xml:space="preserve">
+    <value>UPDATE [dbo].[MigrationsHistory]
+SET [Version2] = '{1}'
+WHERE [Name] = '{0}'</value>
   </data>
 </root>

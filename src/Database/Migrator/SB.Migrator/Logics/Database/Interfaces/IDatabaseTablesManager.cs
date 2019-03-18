@@ -11,7 +11,7 @@ namespace SB.Migrator.Logics.Database
         /// <summary>
         /// 
         /// </summary>
-        MigrateManager MigrateManager { get; set; }
+        IMigrateManager MigrateManager { get; }
 
         /// <summary>
         /// 

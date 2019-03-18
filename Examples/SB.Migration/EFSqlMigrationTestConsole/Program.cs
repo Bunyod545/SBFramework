@@ -1,9 +1,6 @@
 ﻿using SB.Migrator;
 using SB.Migrator.EntityFramework;
-using SB.Migrator.Helpers;
-using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.SqlServer;
-using SB.Migrator.SqlServer.Logics.Database;
 
 namespace EFSqlMigrationTestConsole
 {
@@ -15,7 +12,7 @@ namespace EFSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.\\SQLSERVER2014;Database=TestEFSql;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=.;Database=TestEFSql;Trusted_Connection=True;";
 
         /// <summary>
         /// 
@@ -23,9 +20,7 @@ namespace EFSqlMigrationTestConsole
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            MigrateHelper.ConnectionString = ConnectionString;
-
-            var migrateManager = new MigrateManager();
+            var migrateManager = new MigrateManager(ConnectionString);
             migrateManager.CodeTablesManager = new EFCodeTablesManager(migrateManager);
             migrateManager.DatabaseTablesManager = new SqlDatabaseTablesManager(migrateManager);
 

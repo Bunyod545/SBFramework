@@ -1,11 +1,13 @@
-﻿using System.Text;
+﻿using System.Data.SqlClient;
+using System.Text;
+using SB.Migrator.Logics.DatabaseCommands;
 
 namespace SB.Migrator.SqlServer
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class SqlDatabaseCommand
+    public abstract class SqlDatabaseCommand : IDatabaseCommand
     {
         /// <summary>
         /// 
@@ -39,10 +41,24 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        public virtual void Execute()
+        /// <param name="connectionString"></param>
+        public virtual void Execute(string connectionString)
         {
-            var command = SqlCommandHelper.GetSqlCommand(CommandText);
+            var command = GetSqlCommand(connectionString);
             command.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        protected virtual SqlCommand GetSqlCommand(string connectionString)
+        {
+            var connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            return new SqlCommand(CommandText, connection);
         }
     }
 }

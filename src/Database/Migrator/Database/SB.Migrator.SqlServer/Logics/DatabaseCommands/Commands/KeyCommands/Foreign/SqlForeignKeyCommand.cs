@@ -28,7 +28,9 @@ namespace SB.Migrator.SqlServer
         /// <returns></returns>
         protected string GetForeignKeyName()
         {
-            return string.IsNullOrEmpty(ForeignKey.Name) ? $"FK_{ForeignKey.Table.Name}" : ForeignKey.Name;
+            return string.IsNullOrEmpty(ForeignKey.Name) ? 
+                $"FK_{ForeignKey.Table.Name}_{ForeignKey.ReferenceTable.Name}" : 
+                ForeignKey.Name;
         }
     }
 }

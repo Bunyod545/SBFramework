@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using SB.Common.Extensions;
+using SB.Migrator.Metadata.Logics.Metadata.Models;
 
 namespace SB.Migrator.Metadata
 {
@@ -14,31 +15,63 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public static List<Assembly> Assemblies { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public static List<Assembly> SafeAssemblies =>
-            Assemblies.Any() ?
-                Assemblies : 
-                AppDomain.CurrentDomain.GetAssemblies().ToList();
+        public static List<AssemblyMetadata> Assemblies { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         static MetadataTablesHelper()
         {
-            Assemblies = new List<Assembly>();
+            InitializeAssemblies();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void InitializeAssemblies()
+        {
+            Assemblies = new List<AssemblyMetadata>();
+
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
+            assemblies.ForEach(InitializeAssembly);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="assembly"></param>
-        public static void AddAssembly(Assembly assembly)
+        private static void InitializeAssembly(Assembly assembly)
         {
-            Assemblies.Add(assembly);
+            var attr = assembly.GetCustomAttribute<MigrateAttribute>();
+            if (attr == null)
+                return;
+
+            var metadata = new AssemblyMetadata(attr.Name, attr.Version, assembly);
+            metadata.BeforeActualizationScripts = MetadataScriptsHelper.GetBeforeActualizationScripts(assembly);
+            metadata.BeforeActualizationScripts.ForEach(f=>f.MigrateName = attr.Name);
+
+            metadata.AfterActualizationScripts = MetadataScriptsHelper.GetAfterActualizationScripts(assembly);
+            metadata.AfterActualizationScripts.ForEach(f => f.MigrateName = attr.Name);
+
+            Assemblies.Add(metadata);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<ScriptMetadata> GetBeforeActualizationScripts()
+        {
+            return Assemblies.SelectMany(s => s.BeforeActualizationScripts).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<ScriptMetadata> GetAfterActualizationScripts()
+        {
+            return Assemblies.SelectMany(s => s.AfterActualizationScripts).ToList();
         }
 
         /// <summary>
@@ -47,7 +80,7 @@ namespace SB.Migrator.Metadata
         /// <returns></returns>
         public static List<Type> GetTableTypes()
         {
-            var types = SafeAssemblies.SelectMany(s => s.GetTypes());
+            var types = Assemblies.SelectMany(s => s.Assembly.GetTypes());
             return types.ToList(w => w.IsClass && !w.IsAbstract && w.IsHasAttribute<TableAttribute>());
         }
     }

@@ -16,22 +16,18 @@ namespace SB.Migrator.SqlServer
         {
             manager.CommandServices.ResetServices();
             manager.CommandServices.Add<ICreateTableCommand, SqlCreateTableCommand>();
-            manager.CommandServices.Add<IDropTableCommand, SqlDropTableCommand>();
             manager.CommandServices.Add<IRenameTableCommand, SqlRenameTableCommand>();
 
             manager.CommandServices.Add<ICreateColumnCommand, SqlCreateColumnCommand>();
             manager.CommandServices.Add<IAlterColumnCommand, SqlAlterColumnCommand>();
-            manager.CommandServices.Add<IDropColumnCommand, SqlDropColumnCommand>();
             manager.CommandServices.Add<IRenameColumnCommand, SqlRenameColumnCommand>();
 
             manager.CommandServices.Add<ICreateColumnDefaultValueCommand, SqlCreateColumnDefaultValueCommand>();
-            manager.CommandServices.Add<IDropColumnDefaultValueCommand, SqlDropColumnDefaultValueCommand>();
-
             manager.CommandServices.Add<ICreatePrimaryKeyCommand, SqlCreatePrimaryKeyCommand>();
-            manager.CommandServices.Add<IDropPrimaryKeyCommand, SqlDropPrimaryKeyCommand>();
-
             manager.CommandServices.Add<ICreateForeignKeyCommand, SqlCreateForeignKeyCommand>();
-            manager.CommandServices.Add<IDropForeignKeyCommand, SqlDropForeignKeyCommand>();
+
+            manager.CommandServices.Add<IBeforeActualizationScriptCommand, SqlBeforeActualizationScriptCommand>();
+            manager.CommandServices.Add<IAfterActualizationScriptCommand, SqlAfterActualizationScriptCommand>();
 
             return manager;
         }

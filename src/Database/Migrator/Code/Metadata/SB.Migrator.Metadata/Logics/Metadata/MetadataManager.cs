@@ -4,32 +4,129 @@ using System.Linq;
 using System.Reflection;
 using SB.Common.Extensions;
 using SB.Migrator.Metadata.Logics.Metadata.Models;
+using SB.Migrator.Models.MigrationHistorys;
 
 namespace SB.Migrator.Metadata
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class MetadataManager
+    public class MetadataManager
     {
         /// <summary>
         /// 
         /// </summary>
-        private static readonly List<TableMetadata> Tables;
+        private readonly List<TableMetadata> _tables;
 
         /// <summary>
         /// 
         /// </summary>
-        static MetadataManager()
+        public MigrateManager MigrateManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IMigrationsHistoryRepository HistoryRepository => MigrateManager?.MigrationsHistoryRepository;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<AssemblyMetadata> Assemblies { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migrateManager"></param>
+        public MetadataManager(MigrateManager migrateManager)
         {
-            Tables = new List<TableMetadata>();
+            MigrateManager = migrateManager;
+            MigrateManager.MigrateBegin += manager => InitializeAssemblies(); 
+            _tables = new List<TableMetadata>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void InitializeAssemblies()
+        {
+            Assemblies = new List<AssemblyMetadata>();
+            MetadataTablesHelper.Assemblies.ForEach(InitializeAssembly);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assembly"></param>
+        private void InitializeAssembly(AssemblyMetadata assembly)
+        {
+            var history = HistoryRepository.GetMigrationHistory(assembly.MigrateName);
+            if (history == null)
+            {
+                Assemblies.Add(assembly);
+                return;
+            }
+
+            var migrateVersion = Version.Parse(assembly.MigrateVersion);
+            var version = Version.Parse(history.Version);
+            var version2 = Version.Parse(history.Version2);
+
+            if (migrateVersion > version || migrateVersion > version2)
+                Assemblies.Add(assembly);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<TableMetadata> GetTables()
+        public List<ScriptMetadata> GetBeforeActualizationScripts()
+        {
+            return Assemblies.SelectMany(GetBeforeActualizationScript).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        private List<ScriptMetadata> GetBeforeActualizationScript(AssemblyMetadata assembly)
+        {
+            var history = HistoryRepository.GetMigrationHistory(assembly.MigrateName);
+            if (history == null)
+                return assembly.BeforeActualizationScripts;
+
+            var version = Version.Parse(history.Version);
+            return assembly.BeforeActualizationScripts.ToList(w => w.Version > version);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<ScriptMetadata> GetAfterActualizationScripts()
+        {
+            return Assemblies.SelectMany(GetAfterActualizationScript).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        private List<ScriptMetadata> GetAfterActualizationScript(AssemblyMetadata assembly)
+        {
+            var history = HistoryRepository.GetMigrationHistory(assembly.MigrateName);
+            if (history == null)
+                return assembly.AfterActualizationScripts;
+
+            var version2 = Version.Parse(history.Version2);
+            return assembly.AfterActualizationScripts.ToList(w => w.Version > version2);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<TableMetadata> GetTables()
         {
             var tableTypes = MetadataTablesHelper.GetTableTypes();
             return tableTypes.Select(GetTable).ToList();
@@ -40,9 +137,9 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="tableType"></param>
         /// <returns></returns>
-        public static TableMetadata GetTable(Type tableType)
+        protected virtual TableMetadata GetTable(Type tableType)
         {
-            var tableMetadata = Tables.FirstOrDefault(f => f.TableType == tableType);
+            var tableMetadata = _tables.FirstOrDefault(f => f.TableType == tableType);
             if (tableMetadata != null)
                 return tableMetadata;
 
@@ -56,7 +153,7 @@ namespace SB.Migrator.Metadata
             tableMetadata.PrimaryKey = GetPrimaryKey(tableMetadata);
             tableMetadata.ForeignKeys = GetForeignKeys(tableMetadata);
 
-            Tables.Add(tableMetadata);
+            _tables.Add(tableMetadata);
             return tableMetadata;
         }
 
@@ -65,7 +162,7 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="tableMetadata"></param>
         /// <returns></returns>
-        public static List<ColumnMetadata> GetColumns(TableMetadata tableMetadata)
+        protected virtual List<ColumnMetadata> GetColumns(TableMetadata tableMetadata)
         {
             var props = tableMetadata.TableType.GetProperties();
             return props.Select(p => GetColumn(p, tableMetadata)).ToList(w => w != null);
@@ -77,7 +174,7 @@ namespace SB.Migrator.Metadata
         /// <param name="property"></param>
         /// <param name="tableMetadata"></param>
         /// <returns></returns>
-        public static ColumnMetadata GetColumn(PropertyInfo property, TableMetadata tableMetadata)
+        protected virtual ColumnMetadata GetColumn(PropertyInfo property, TableMetadata tableMetadata)
         {
             var propAttr = property.GetCustomAttribute<ColumnAttribute>();
             if (propAttr == null)
@@ -100,7 +197,7 @@ namespace SB.Migrator.Metadata
         /// <param name="propAttr"></param>
         /// <param name="columnMetadata"></param>
         /// <returns></returns>
-        public static bool ColumnIsAllowNull(ColumnAttribute propAttr, ColumnMetadata columnMetadata)
+        protected virtual bool ColumnIsAllowNull(ColumnAttribute propAttr, ColumnMetadata columnMetadata)
         {
             if (propAttr.IsAllowNull.HasValue && propAttr.IsAllowNull.Value)
                 return true;
@@ -114,7 +211,7 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="tableMetadata"></param>
         /// <returns></returns>
-        public static PrimaryKeyMetadata GetPrimaryKey(TableMetadata tableMetadata)
+        protected virtual PrimaryKeyMetadata GetPrimaryKey(TableMetadata tableMetadata)
         {
             var column = tableMetadata.Columns.FirstOrDefault(f => f.Property.IsHasAttribute<PrimaryKeyAttribute>());
             if (column == null)
@@ -133,11 +230,10 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="tableMetadata"></param>
         /// <returns></returns>
-        public static List<ForeignKeyMetadata> GetForeignKeys(TableMetadata tableMetadata)
+        protected virtual List<ForeignKeyMetadata> GetForeignKeys(TableMetadata tableMetadata)
         {
             var columns = tableMetadata.Columns.ToList(f => f.Property.IsHasAttribute<ForeignKeyAttribute>());
             return columns.Select(GetForeignKey).ToList(w => w != null);
-
         }
 
         /// <summary>
@@ -145,7 +241,7 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="columnMetadata"></param>
         /// <returns></returns>
-        public static ForeignKeyMetadata GetForeignKey(ColumnMetadata columnMetadata)
+        protected virtual ForeignKeyMetadata GetForeignKey(ColumnMetadata columnMetadata)
         {
             var attr = columnMetadata.Property.GetCustomAttribute<ForeignKeyAttribute>();
             if (attr == null)

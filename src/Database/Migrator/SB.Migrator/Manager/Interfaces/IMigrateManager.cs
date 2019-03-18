@@ -7,22 +7,59 @@ namespace SB.Migrator
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="migrateManager"></param>
+    public delegate void MigrateBeginHandler(IMigrateManager migrateManager);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="migrateManager"></param>
+    public delegate void MigrateEndHandler(IMigrateManager migrateManager);
+
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IMigrateManager
     {
         /// <summary>
         /// 
         /// </summary>
-        ICodeTablesManager CodeTablesManager { get; }
+        event MigrateBeginHandler MigrateBegin;
 
         /// <summary>
         /// 
         /// </summary>
-        IDatabaseTablesManager DatabaseTablesManager { get; }
+        event MigrateEndHandler MigrateEnd;
 
         /// <summary>
         /// 
         /// </summary>
-        IDatabaseCommandManager DatabaseCommandManager { get; }
+        ICodeTablesManager CodeTablesManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IDatabaseTablesManager DatabaseTablesManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IDatabaseCommandManager DatabaseCommandManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IDatabaseCreator DatabaseCreator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        IMigrationsHistoryRepository MigrationsHistoryRepository { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        string ConnectionString { get; }
 
         /// <summary>
         /// 

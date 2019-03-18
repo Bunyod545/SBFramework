@@ -61,6 +61,26 @@ namespace SB.Migrator.SqlServer.ResxFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO [dbo].[MigrationsHistory] ([Name] ,[Version])
+        ///VALUES (&apos;{0}&apos; ,&apos;{1}&apos;).
+        /// </summary>
+        internal static string InsertHistoryVersion {
+            get {
+                return ResourceManager.GetString("InsertHistoryVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO [dbo].[MigrationsHistory] ([Name] ,[Version2])
+        ///VALUES (&apos;{0}&apos; ,&apos;{1}&apos;).
+        /// </summary>
+        internal static string InsertHistoryVersion2 {
+            get {
+                return ResourceManager.GetString("InsertHistoryVersion2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM INFORMATION_SCHEMA.COLUMNS.
         /// </summary>
         internal static string SelectColumns {
@@ -87,6 +107,30 @@ namespace SB.Migrator.SqlServer.ResxFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT TOP 1 *
+        ///FROM [dbo].[MigrationsHistory]
+        ///WHERE Name = &apos;{0}&apos;.
+        /// </summary>
+        internal static string SelectHistory {
+            get {
+                return ResourceManager.GetString("SelectHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT [Id]
+        ///      ,[Name]
+        ///      ,[Version]
+        ///      ,[Version2]
+        ///  FROM [dbo].[MigrationsHistory].
+        /// </summary>
+        internal static string SelectMigrationsHistory {
+            get {
+                return ResourceManager.GetString("SelectMigrationsHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT KU.TABLE_SCHEMA, KU.TABLE_NAME, COLUMN_NAME, TC.CONSTRAINT_NAME
         ///FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS TC
         ///INNER JOIN
@@ -108,6 +152,28 @@ namespace SB.Migrator.SqlServer.ResxFiles {
         internal static string SelectTables {
             get {
                 return ResourceManager.GetString("SelectTables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE [dbo].[MigrationsHistory]
+        ///SET [Version] = &apos;{1}&apos;
+        ///WHERE [Name] = &apos;{0}&apos;.
+        /// </summary>
+        internal static string UpdateHistoryVersion {
+            get {
+                return ResourceManager.GetString("UpdateHistoryVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE [dbo].[MigrationsHistory]
+        ///SET [Version2] = &apos;{1}&apos;
+        ///WHERE [Name] = &apos;{0}&apos;.
+        /// </summary>
+        internal static string UpdateHistoryVersion2 {
+            get {
+                return ResourceManager.GetString("UpdateHistoryVersion2", resourceCulture);
             }
         }
     }
