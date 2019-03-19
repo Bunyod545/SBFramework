@@ -14,22 +14,22 @@ namespace SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource
         /// <summary>
         /// 
         /// </summary>
-        private readonly Dictionary<Type, string> TypeMapping;
+        private readonly Dictionary<Type, string> _typeMapping;
 
         /// <summary>
         /// 
         /// </summary>
         public SqlColumnTypeMappingSource()
         {
-            TypeMapping = new Dictionary<Type, string>();
-            TypeMapping.Add(typeof(bool), "bit");
-            TypeMapping.Add(typeof(int), "int");
-            TypeMapping.Add(typeof(long), "bigint");
-            TypeMapping.Add(typeof(short), "smallint");
-            TypeMapping.Add(typeof(DateTime), "datetime");
-            TypeMapping.Add(typeof(decimal), "decimal(18, 2)");
-            TypeMapping.Add(typeof(float), "float");
-            TypeMapping.Add(typeof(string), "nvarchar(max)");
+            _typeMapping = new Dictionary<Type, string>();
+            _typeMapping.Add(typeof(bool), "bit");
+            _typeMapping.Add(typeof(int), "int");
+            _typeMapping.Add(typeof(long), "bigint");
+            _typeMapping.Add(typeof(short), "smallint");
+            _typeMapping.Add(typeof(DateTime), "datetime");
+            _typeMapping.Add(typeof(decimal), "decimal(18, 2)");
+            _typeMapping.Add(typeof(float), "float");
+            _typeMapping.Add(typeof(string), "nvarchar(max)");
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource
         public string FindType(Type systemType)
         {
             var originalType = TypesHelper.GetOriginalType(systemType);
-            return TypeMapping.TryGetValue(originalType, out var storeType) ? storeType : null;
+            return _typeMapping.TryGetValue(originalType, out var storeType) ? storeType : null;
         }
     }
 }

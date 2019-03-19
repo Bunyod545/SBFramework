@@ -33,6 +33,11 @@ namespace SB.Migrator.Models
         /// <summary>
         /// 
         /// </summary>
+        public List<TableValueInfo> TableValues { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public PrimaryKeyInfo PrimaryKey { get; set; }
 
         /// <summary>
@@ -46,6 +51,7 @@ namespace SB.Migrator.Models
         public TableInfo()
         {
             Columns = new List<ColumnInfo>();
+            TableValues = new List<TableValueInfo>();
             ForeignKeys = new List<ForeignKeyInfo>();
         }
 

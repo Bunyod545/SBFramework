@@ -129,7 +129,37 @@ namespace SB.Migrator.Metadata
         public List<TableMetadata> GetTables()
         {
             var tableTypes = MetadataTablesHelper.GetTableTypes();
-            return tableTypes.Select(GetTable).ToList();
+            return tableTypes.Select(GetTableMetadata).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tableType"></param>
+        /// <returns></returns>
+        protected virtual TableMetadata GetTableMetadata(Type tableType)
+        {
+            var tableMetadata = _tables.FirstOrDefault(f => f.TableType == tableType);
+            if (tableMetadata != null)
+                return tableMetadata;
+
+            if (tableType.IsEnum)
+                return GetEnumTable(tableType);
+
+            return GetTable(tableType);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tableType"></param>
+        /// <returns></returns>
+        protected virtual TableMetadata GetEnumTable(Type tableType)
+        {
+            var metadata = MetadataEnumTablesHelper.GetTableMetadata(tableType);
+            _tables.Add(metadata);
+
+            return metadata;
         }
 
         /// <summary>
@@ -139,13 +169,9 @@ namespace SB.Migrator.Metadata
         /// <returns></returns>
         protected virtual TableMetadata GetTable(Type tableType)
         {
-            var tableMetadata = _tables.FirstOrDefault(f => f.TableType == tableType);
-            if (tableMetadata != null)
-                return tableMetadata;
-
             var tableAttr = tableType.GetCustomAttribute<TableAttribute>();
 
-            tableMetadata = new TableMetadata();
+            var tableMetadata = new TableMetadata();
             tableMetadata.TableType = tableType;
             tableMetadata.Name = tableAttr?.Name ?? tableType.Name;
             tableMetadata.Schema = tableAttr?.Schema;

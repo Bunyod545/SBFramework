@@ -53,6 +53,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.Metadata", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetadataSqlMigrationTestConsole", "Examples\SB.Migration\MetadataSqlMigrationTestConsole\MetadataSqlMigrationTestConsole.csproj", "{798D2795-0CDC-4A94-BEF9-D4BFC2F570E9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{62FF18C4-7093-4F1F-8CA7-1A950ED2EE1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metadata", "Metadata", "{77613051-4536-477A-8F71-2D155ED2AF1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.Metadata.Test", "NUnit Tests\Database\Migrator\Code\Metadata\SB.Migrator.Metadata.Test\SB.Migrator.Metadata.Test.csproj", "{7647345E-542A-4BC5-AA4A-67D98942351E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +109,10 @@ Global
 		{798D2795-0CDC-4A94-BEF9-D4BFC2F570E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{798D2795-0CDC-4A94-BEF9-D4BFC2F570E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{798D2795-0CDC-4A94-BEF9-D4BFC2F570E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7647345E-542A-4BC5-AA4A-67D98942351E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7647345E-542A-4BC5-AA4A-67D98942351E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7647345E-542A-4BC5-AA4A-67D98942351E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7647345E-542A-4BC5-AA4A-67D98942351E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +140,9 @@ Global
 		{0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809} = {EF10AA03-534F-4903-B30D-D3BF7A53AFDA}
 		{DBBA5941-8F3C-4B3B-925C-66209D5DB037} = {5593B696-5483-4142-BA53-CC19A5FD48CD}
 		{798D2795-0CDC-4A94-BEF9-D4BFC2F570E9} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
+		{62FF18C4-7093-4F1F-8CA7-1A950ED2EE1E} = {C5750199-85C0-4684-8CDE-54DEC27BF815}
+		{77613051-4536-477A-8F71-2D155ED2AF1A} = {62FF18C4-7093-4F1F-8CA7-1A950ED2EE1E}
+		{7647345E-542A-4BC5-AA4A-67D98942351E} = {77613051-4536-477A-8F71-2D155ED2AF1A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

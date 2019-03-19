@@ -81,7 +81,7 @@ namespace SB.Migrator.Metadata
         public static List<Type> GetTableTypes()
         {
             var types = Assemblies.SelectMany(s => s.Assembly.GetTypes());
-            return types.ToList(w => w.IsClass && !w.IsAbstract && w.IsHasAttribute<TableAttribute>());
+            return types.ToList(w => w.IsHasAttribute<TableAttribute>());
         }
     }
 }
