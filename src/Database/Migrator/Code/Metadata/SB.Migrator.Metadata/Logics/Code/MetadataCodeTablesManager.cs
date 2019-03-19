@@ -8,6 +8,7 @@ using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Scripts;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Values;
 
 namespace SB.Migrator.Metadata
 {
@@ -81,6 +82,7 @@ namespace SB.Migrator.Metadata
             tableInfo.Schema = tableMetadata.Schema ?? MigrateManager.DatabaseTablesManager?.DefaultSchema;
             tableInfo.Columns = GetColumns(tableInfo, tableMetadata);
             tableInfo.PrimaryKey = GetPrimaryKey(tableInfo, tableMetadata);
+            tableInfo.TableValues = GetTableValues(tableInfo, tableMetadata);
 
             return tableInfo;
         }
@@ -144,6 +146,46 @@ namespace SB.Migrator.Metadata
             primaryKey.PrimaryColumn = tableInfo.GetColumn(primaryKeyMetadata.PrimaryColumn?.Name);
 
             return primaryKey;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private List<TableValueInfo> GetTableValues(TableInfo tableInfo, TableMetadata tableMetadata)
+        {
+            var result = new List<TableValueInfo>();
+            foreach (var valueMetadata in tableMetadata.TableValues)
+            {
+                var value = new TableValueInfo();
+                value.Table = tableInfo;
+                value.Value = GetTableValue(valueMetadata, tableInfo);
+
+                result.Add(value);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="valueMetadata"></param>
+        /// <param name="tableInfo"></param>
+        /// <returns></returns>
+        private List<TableValueItemInfo> GetTableValue(TableValueMetadata valueMetadata, TableInfo tableInfo)
+        {
+            var result = new List<TableValueItemInfo>();
+            foreach (var valueItemMetadata in valueMetadata.ValueMetadata)
+            {
+                var valueItem = new TableValueItemInfo();
+                valueItem.Value = valueItemMetadata.Value;
+                valueItem.Column = tableInfo.GetColumn(valueItemMetadata.Column?.Name);
+
+                result.Add(valueItem);
+            }
+
+            return result;
         }
 
         /// <summary>

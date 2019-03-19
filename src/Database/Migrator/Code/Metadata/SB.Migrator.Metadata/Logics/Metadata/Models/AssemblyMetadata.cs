@@ -40,7 +40,7 @@ namespace SB.Migrator.Metadata
         /// <param name="migrateVersion"></param>
         /// <param name="migrateName"></param>
         /// <param name="assembly"></param>
-        public AssemblyMetadata(string migrateVersion, string migrateName, Assembly assembly)
+        public AssemblyMetadata(string migrateName, string migrateVersion, Assembly assembly)
         {
             MigrateName = migrateName;
             MigrateVersion = migrateVersion;

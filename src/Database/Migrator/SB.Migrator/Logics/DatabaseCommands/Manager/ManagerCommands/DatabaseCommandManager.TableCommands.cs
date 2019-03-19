@@ -15,7 +15,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         {
             TableCommand<ICreateTableCommand>(table);
         }
-
+        
         /// <summary>
         /// 
         /// </summary>
@@ -23,6 +23,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         protected virtual void DropTable(TableInfo table)
         {
             TableCommand<IDropTableCommand>(table);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        protected virtual void SetTableValues(TableInfo table)
+        {
+            TableCommand<ISetTableValuesCommand>(table);
         }
 
         /// <summary>

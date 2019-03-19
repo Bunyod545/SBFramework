@@ -23,28 +23,16 @@ namespace SB.Migrator.Logics.DatabaseCommands
             if (databaseTable == null)
             {
                 CreateTable(codeTable);
-
                 CreatePrimaryKey(codeTable.PrimaryKey);
                 codeTable.ForeignKeys.ForEach(CreateForeignKey);
+                MergeTableValues(codeTable);
+
                 return;
             }
 
             MergeCodeTableForeignKeys(codeTable, databaseTable);
             codeTable.Columns.ForEach(f => MergeCodeColumn(f, databaseTable.Columns));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void CreateCodeTable(TableInfo codeTable)
-        {
-            CreateTable(codeTable);
-
-            if (codeTable.PrimaryKey != null)
-                CreatePrimaryKey(codeTable.PrimaryKey);
-
-            if (!codeTable.ForeignKeys.IsNullOrEmpty())
-                codeTable.ForeignKeys.ForEach(CreateForeignKey);
+            MergeTableValues(codeTable);
         }
 
         /// <summary>
@@ -141,6 +129,16 @@ namespace SB.Migrator.Logics.DatabaseCommands
         protected virtual void MergeCodeTableForeignKeys(TableInfo codeTable, TableInfo databaseTable)
         {
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codeTableInfo"></param>
+        protected virtual void MergeTableValues(TableInfo codeTableInfo)
+        {
+            if (!codeTableInfo.TableValues.IsNullOrEmpty())
+                SetTableValues(codeTableInfo);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace MetadataSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.;Database=TestEFSql3;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=MWI_91\\SQLSERVER2014;Database=TestMetadataMigrator;Trusted_Connection=True;";
 
         /// <summary>
         /// 

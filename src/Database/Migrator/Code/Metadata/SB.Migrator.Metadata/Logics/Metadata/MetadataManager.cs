@@ -40,7 +40,7 @@ namespace SB.Migrator.Metadata
         public MetadataManager(MigrateManager migrateManager)
         {
             MigrateManager = migrateManager;
-            MigrateManager.MigrateBegin += manager => InitializeAssemblies(); 
+            MigrateManager.MigrateBegin += manager => InitializeAssemblies();
             _tables = new List<TableMetadata>();
         }
 
@@ -67,8 +67,11 @@ namespace SB.Migrator.Metadata
             }
 
             var migrateVersion = Version.Parse(assembly.MigrateVersion);
-            var version = Version.Parse(history.Version);
-            var version2 = Version.Parse(history.Version2);
+            if (!Version.TryParse(history.Version, out var version))
+                version = new Version();
+
+            if (!Version.TryParse(history.Version2, out var version2))
+                version2 = new Version();
 
             if (migrateVersion > version || migrateVersion > version2)
                 Assemblies.Add(assembly);

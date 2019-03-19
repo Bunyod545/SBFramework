@@ -1,4 +1,6 @@
-﻿using SB.Migrator.Models;
+﻿using System.Collections.Generic;
+using SB.Migrator.Models;
+using SB.Migrator.Models.Tables.Values;
 
 namespace SB.Migrator
 {
@@ -15,6 +17,6 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
-        public object Value { get; set; }
+        public List<TableValueItemInfo> Value { get; set; }
     }
 }

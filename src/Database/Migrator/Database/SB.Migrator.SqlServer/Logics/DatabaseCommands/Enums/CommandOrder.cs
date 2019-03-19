@@ -28,6 +28,11 @@
         /// <summary>
         /// 
         /// </summary>
+        SetTableValue,
+
+        /// <summary>
+        /// 
+        /// </summary>
         CreateColumn,
 
         /// <summary>
