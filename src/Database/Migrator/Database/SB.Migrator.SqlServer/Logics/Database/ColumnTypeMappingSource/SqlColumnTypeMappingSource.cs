@@ -50,6 +50,9 @@ namespace SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource
         public string FindType(Type systemType)
         {
             var originalType = TypesHelper.GetOriginalType(systemType);
+            if (originalType.IsEnum)
+                originalType = typeof(int);
+
             return _typeMapping.TryGetValue(originalType, out var storeType) ? storeType : null;
         }
     }

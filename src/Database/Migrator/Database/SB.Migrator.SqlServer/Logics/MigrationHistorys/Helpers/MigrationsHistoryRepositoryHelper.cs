@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using SB.Common.Extensions;
@@ -51,7 +52,10 @@ namespace SB.Migrator.SqlServer
         public bool IsHistoryTableExists()
         {
             var command = GetCommand($"SELECT OBJECT_ID('{HistoryTable}', 'U')");
-            return !(command.ExecuteScalar() is DBNull);
+            var result = !(command.ExecuteScalar() is DBNull);
+
+            DisposeCommand(command);
+            return result;
         }
 
         /// <summary>
@@ -105,6 +109,8 @@ namespace SB.Migrator.SqlServer
 
             while (reader.Read())
                 yield return new SqlMigrationHistory(reader);
+
+            DisposeCommand(command);
         }
 
         /// <summary>
@@ -134,6 +140,7 @@ namespace SB.Migrator.SqlServer
             var command = GetCommand(commandText);
 
             command.ExecuteNonQuery();
+            DisposeCommand(command);
         }
 
         /// <summary>
@@ -147,6 +154,7 @@ namespace SB.Migrator.SqlServer
             var command = GetCommand(commandText);
 
             command.ExecuteNonQuery();
+            DisposeCommand(command);
         }
 
         /// <summary>
@@ -190,7 +198,10 @@ namespace SB.Migrator.SqlServer
             var command = GetCommand(commandText);
             var reader = command.ExecuteReader();
 
-            return !reader.Read() ? null : new SqlMigrationHistory(reader);
+            var result = !reader.Read() ? null : new SqlMigrationHistory(reader);
+            DisposeCommand(command);
+
+            return result;
         }
 
         /// <summary>
@@ -204,6 +215,7 @@ namespace SB.Migrator.SqlServer
             var command = GetCommand(commandText);
 
             command.ExecuteNonQuery();
+            DisposeCommand(command);
         }
 
         /// <summary>
@@ -217,6 +229,7 @@ namespace SB.Migrator.SqlServer
             var command = GetCommand(commandText);
 
             command.ExecuteNonQuery();
+            DisposeCommand(command);
         }
 
         /// <summary>
@@ -229,7 +242,20 @@ namespace SB.Migrator.SqlServer
             var commandText = string.Format(Scripts.SelectHistory, name);
             var command = GetCommand(commandText);
 
-            return command.ExecuteScalar() != null;
+            var result = command.ExecuteScalar() != null;
+            DisposeCommand(command);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        private void DisposeCommand(SqlCommand command)
+        {
+            command.Connection.Close();
+            command.Dispose();
         }
 
         /// <summary>

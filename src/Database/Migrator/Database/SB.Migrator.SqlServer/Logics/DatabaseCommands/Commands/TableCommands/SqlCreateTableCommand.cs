@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using SB.Common.Helpers;
+using SB.Migrator.Helpers;
 using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models.Column;
 using SB.Migrator.SqlServer.Logics.DatabaseCommands;
@@ -67,6 +68,16 @@ namespace SB.Migrator.SqlServer
                 ScriptBuilder.Append(" NOT");
 
             ScriptBuilder.Append(" NULL");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
+        public override void Execute(string connectionString)
+        {
+            base.Execute(connectionString);
+            MigrationCommandEvents.TableCreatedInvoke(Table);
         }
     }
 }
