@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Models;
+using SB.Migrator.Models.MigrationHistorys;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -63,6 +65,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             commands.ForEach(f => f.Execute(MigrateManager.ConnectionString));
 
             AfterMigrate();
+            CorrectMigrateVersions();
         }
 
         /// <summary>
@@ -99,6 +102,44 @@ namespace SB.Migrator.Logics.DatabaseCommands
                 afterActualization.Execute(MigrateManager.ConnectionString);
                 HistoryRepository.SetVersion2(afterScript.MigrateName, afterScript.Version.ToString());
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CorrectMigrateVersions()
+        {
+            var actualVersions = MigrateManager.CodeTablesManager.GetMigrationVersionInfos();
+            actualVersions.ForEach(CorrectMigrateVersion);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="actualVersionInfo"></param>
+        private void CorrectMigrateVersion(MigrationVersionInfo actualVersionInfo)
+        {
+            var databaseHistory = HistoryRepository.GetMigrationHistory(actualVersionInfo.Name);
+            if (databaseHistory == null)
+            {
+                HistoryRepository.InsertHistoryInfo(actualVersionInfo.Name, actualVersionInfo.Version);
+                return;
+            }
+
+            if (!Version.TryParse(databaseHistory.Version, out var version))
+                version = new Version();
+
+            if (!Version.TryParse(databaseHistory.Version2, out var version2))
+                version2 = new Version();
+
+            if (!Version.TryParse(actualVersionInfo.Version, out var actualVersion))
+                actualVersion = new Version();
+
+            if (actualVersion > version)
+                HistoryRepository.SetVersion(actualVersionInfo.Name, actualVersionInfo.Version);
+
+            if (actualVersion > version2)
+                HistoryRepository.SetVersion2(actualVersionInfo.Name, actualVersionInfo.Version);
         }
     }
 }

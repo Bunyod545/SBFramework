@@ -30,6 +30,13 @@ namespace SB.Migrator
         /// </summary>
         /// <param name="name"></param>
         /// <param name="version"></param>
+        void InsertHistoryInfo(string name, string version);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="version"></param>
         void SetVersion(string name, string version);
 
         /// <summary>

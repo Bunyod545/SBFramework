@@ -15,6 +15,6 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public List<TableValueItemMetadata> ValueMetadata { get; set; }
+        public List<TableValueItemMetadata> ValueItems { get; set; }
     }
 }

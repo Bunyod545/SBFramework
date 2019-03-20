@@ -38,6 +38,16 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="codeTable"></param>
+        /// <param name="databaseTable"></param>
+        protected virtual void MergeCodeTableForeignKeys(TableInfo codeTable, TableInfo databaseTable)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="codeColumn"></param>
         /// <param name="databaseColumns"></param>
         protected virtual void MergeCodeColumn(ColumnInfo codeColumn, List<ColumnInfo> databaseColumns)
@@ -119,16 +129,6 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             DropColumnDefaultValue(codeColumn);
             CreateColumnDefaultValue(codeColumn);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="codeTable"></param>
-        /// <param name="databaseTable"></param>
-        protected virtual void MergeCodeTableForeignKeys(TableInfo codeTable, TableInfo databaseTable)
-        {
-
         }
 
         /// <summary>

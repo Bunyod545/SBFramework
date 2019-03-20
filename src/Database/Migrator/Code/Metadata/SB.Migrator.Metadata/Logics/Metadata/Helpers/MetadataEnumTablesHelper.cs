@@ -108,7 +108,7 @@ namespace SB.Migrator.Metadata
             {
                 var valueMetadata = new TableValueMetadata();
                 valueMetadata.Table = tableMetadata;
-                valueMetadata.ValueMetadata = GetValueMetadata(value, tableMetadata).ToList();
+                valueMetadata.ValueItems = GetValueItemsMetadata(value, tableMetadata).ToList();
 
                 result.Add(valueMetadata);
             }
@@ -120,8 +120,9 @@ namespace SB.Migrator.Metadata
         /// 
         /// </summary>
         /// <param name="value"></param>
+        /// <param name="tableMetadata"></param>
         /// <returns></returns>
-        private static IEnumerable<TableValueItemMetadata> GetValueMetadata(object value, TableMetadata tableMetadata)
+        private static IEnumerable<TableValueItemMetadata> GetValueItemsMetadata(object value, TableMetadata tableMetadata)
         {
             var idValue = new TableValueItemMetadata();
             idValue.Column = tableMetadata.GetColumnMetadata(nameof(EnumTableMetadata.Id));
@@ -132,6 +133,11 @@ namespace SB.Migrator.Metadata
             nameValue.Column = tableMetadata.GetColumnMetadata(nameof(EnumTableMetadata.Name));
             nameValue.Value = value.ToSafeString();
             yield return nameValue;
+
+            var synonymValue = new TableValueItemMetadata();
+            synonymValue.Column = tableMetadata.GetColumnMetadata(nameof(EnumTableMetadata.Synonym));
+            synonymValue.Value = string.Empty;
+            yield return synonymValue;
         }
     }
 }

@@ -55,33 +55,5 @@ namespace SB.Migrator.Metadata
 
             Assemblies.Add(metadata);
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static List<ScriptMetadata> GetBeforeActualizationScripts()
-        {
-            return Assemblies.SelectMany(s => s.BeforeActualizationScripts).ToList();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static List<ScriptMetadata> GetAfterActualizationScripts()
-        {
-            return Assemblies.SelectMany(s => s.AfterActualizationScripts).ToList();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static List<Type> GetTableTypes()
-        {
-            var types = Assemblies.SelectMany(s => s.Assembly.GetTypes());
-            return types.ToList(w => w.IsHasAttribute<TableAttribute>());
-        }
     }
 }

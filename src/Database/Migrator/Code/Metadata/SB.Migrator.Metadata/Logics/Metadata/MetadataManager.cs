@@ -66,13 +66,13 @@ namespace SB.Migrator.Metadata
                 return;
             }
 
-            var migrateVersion = Version.Parse(assembly.MigrateVersion);
             if (!Version.TryParse(history.Version, out var version))
                 version = new Version();
 
             if (!Version.TryParse(history.Version2, out var version2))
                 version2 = new Version();
 
+            var migrateVersion = Version.Parse(assembly.MigrateVersion);
             if (migrateVersion > version || migrateVersion > version2)
                 Assemblies.Add(assembly);
         }
@@ -97,7 +97,9 @@ namespace SB.Migrator.Metadata
             if (history == null)
                 return assembly.BeforeActualizationScripts;
 
-            var version = Version.Parse(history.Version);
+            if (!Version.TryParse(history.Version, out var version))
+                version = new Version();
+
             return assembly.BeforeActualizationScripts.ToList(w => w.Version > version);
         }
 
@@ -121,7 +123,9 @@ namespace SB.Migrator.Metadata
             if (history == null)
                 return assembly.AfterActualizationScripts;
 
-            var version2 = Version.Parse(history.Version2);
+            if (!Version.TryParse(history.Version2, out var version2))
+                version2 = new Version();
+
             return assembly.AfterActualizationScripts.ToList(w => w.Version > version2);
         }
 
@@ -131,7 +135,9 @@ namespace SB.Migrator.Metadata
         /// <returns></returns>
         public List<TableMetadata> GetTables()
         {
-            var tableTypes = MetadataTablesHelper.GetTableTypes();
+            var types = Assemblies.SelectMany(s => s.Assembly.GetTypes());
+            var tableTypes = types.ToList(w => w.IsHasAttribute<TableAttribute>());
+
             return tableTypes.Select(GetTableMetadata).ToList();
         }
 

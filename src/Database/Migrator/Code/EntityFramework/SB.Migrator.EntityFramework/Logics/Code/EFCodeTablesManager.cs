@@ -9,6 +9,7 @@ using SB.EntityFramework.Context;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
+using SB.Migrator.Models.MigrationHistorys;
 using SB.Migrator.Models.Tables.Constraints;
 
 namespace SB.Migrator.EntityFramework
@@ -216,6 +217,15 @@ namespace SB.Migrator.EntityFramework
         {
             var entity = key.PrincipalEntityType.Relational();
             return _tableInfos.FirstOrDefault(f => f.Schema == entity.Schema && f.Name == entity.TableName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override List<MigrationVersionInfo> GetMigrationVersionInfos()
+        {
+            return new List<MigrationVersionInfo>();
         }
     }
 }

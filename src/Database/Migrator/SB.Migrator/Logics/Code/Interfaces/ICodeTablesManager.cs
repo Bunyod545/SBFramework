@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SB.Migrator.Models;
+using SB.Migrator.Models.MigrationHistorys;
 using SB.Migrator.Models.Scripts;
 
 namespace SB.Migrator.Logics.Code
@@ -31,5 +32,11 @@ namespace SB.Migrator.Logics.Code
         /// </summary>
         /// <returns></returns>
         List<TableInfo> GetTableInfos();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        List<MigrationVersionInfo> GetMigrationVersionInfos();
     }
 }

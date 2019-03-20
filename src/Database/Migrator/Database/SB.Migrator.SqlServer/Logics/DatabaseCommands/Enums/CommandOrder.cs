@@ -28,7 +28,7 @@
         /// <summary>
         /// 
         /// </summary>
-        SetTableValue,
+        TableValue,
 
         /// <summary>
         /// 

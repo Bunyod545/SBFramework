@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public interface ISetTableValuesCommand : ITableCommand
+    public interface ITableValuesCommand : ITableCommand
     {
         
     }

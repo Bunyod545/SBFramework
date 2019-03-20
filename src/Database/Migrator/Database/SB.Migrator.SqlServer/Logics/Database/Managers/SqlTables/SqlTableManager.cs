@@ -44,6 +44,10 @@ namespace SB.Migrator.SqlServer
 
             while (reader.Read())
                 SqlTables.Add(new SqlTable(reader["TABLE_SCHEMA"] as string, reader["TABLE_NAME"] as string));
+
+            const string name = MigrationsHistoryRepositoryHelper.HistoryTable;
+            const string schema = MigrationsHistoryRepositoryHelper.HistoryTableSchema;
+            SqlTables.RemoveAll(r => r.Name == name && r.Schema == schema);
         }
 
     }

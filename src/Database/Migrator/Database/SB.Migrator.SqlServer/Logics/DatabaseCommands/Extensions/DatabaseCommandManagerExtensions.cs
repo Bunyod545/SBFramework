@@ -17,7 +17,7 @@ namespace SB.Migrator.SqlServer
             manager.CommandServices.ResetServices();
             manager.CommandServices.Add<ICreateTableCommand, SqlCreateTableCommand>();
             manager.CommandServices.Add<IRenameTableCommand, SqlRenameTableCommand>();
-            manager.CommandServices.Add<ISetTableValuesCommand, SqlSetTableValuesCommand>();
+            manager.CommandServices.Add<ITableValuesCommand, SqlTableValuesCommand>();
 
             manager.CommandServices.Add<ICreateColumnCommand, SqlCreateColumnCommand>();
             manager.CommandServices.Add<IAlterColumnCommand, SqlAlterColumnCommand>();

@@ -31,7 +31,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <param name="table"></param>
         protected virtual void SetTableValues(TableInfo table)
         {
-            TableCommand<ISetTableValuesCommand>(table);
+            TableCommand<ITableValuesCommand>(table);
         }
 
         /// <summary>

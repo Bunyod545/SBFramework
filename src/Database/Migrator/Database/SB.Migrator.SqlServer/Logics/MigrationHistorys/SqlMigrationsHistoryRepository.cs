@@ -58,6 +58,17 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="name"></param>
+        /// <param name="version"></param>
+        public void InsertHistoryInfo(string name, string version)
+        {
+            SetVersion(name, version);
+            SetVersion2(name, version);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         protected bool CheckHistoryTableExists()
         {

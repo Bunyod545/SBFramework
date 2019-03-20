@@ -18,12 +18,12 @@
         /// <summary>
         /// 
         /// </summary>
-        public const string Space = " ";
+        public const string QuestionMark = "?";
 
         /// <summary>
         /// 
         /// </summary>
-        public const string QuestionMark = "?";
+        public const string Semicolon = ";";
 
         /// <summary>
         /// 

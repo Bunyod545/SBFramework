@@ -6,6 +6,7 @@ using SB.Migrator.Logics.Code;
 using SB.Migrator.Metadata.Logics.Code.Models;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
+using SB.Migrator.Models.MigrationHistorys;
 using SB.Migrator.Models.Scripts;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.Models.Tables.Values;
@@ -159,7 +160,7 @@ namespace SB.Migrator.Metadata
             {
                 var value = new TableValueInfo();
                 value.Table = tableInfo;
-                value.Value = GetTableValue(valueMetadata, tableInfo);
+                value.ValueItems = GetTableValueItems(valueMetadata, tableInfo);
 
                 result.Add(value);
             }
@@ -173,19 +174,19 @@ namespace SB.Migrator.Metadata
         /// <param name="valueMetadata"></param>
         /// <param name="tableInfo"></param>
         /// <returns></returns>
-        private List<TableValueItemInfo> GetTableValue(TableValueMetadata valueMetadata, TableInfo tableInfo)
+        private List<TableValueItemInfo> GetTableValueItems(TableValueMetadata valueMetadata, TableInfo tableInfo)
         {
-            var result = new List<TableValueItemInfo>();
-            foreach (var valueItemMetadata in valueMetadata.ValueMetadata)
+            var valueItems = new List<TableValueItemInfo>();
+            foreach (var valueItemMetadata in valueMetadata.ValueItems)
             {
                 var valueItem = new TableValueItemInfo();
                 valueItem.Value = valueItemMetadata.Value;
                 valueItem.Column = tableInfo.GetColumn(valueItemMetadata.Column?.Name);
 
-                result.Add(valueItem);
+                valueItems.Add(valueItem);
             }
 
-            return result;
+            return valueItems;
         }
 
         /// <summary>
@@ -232,6 +233,19 @@ namespace SB.Migrator.Metadata
                 return foreignKey?.ReferenceTable?.PrimaryKey?.PrimaryColumn;
 
             return foreignKey.ReferenceTable.GetColumn(referenceColumn);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override List<MigrationVersionInfo> GetMigrationVersionInfos()
+        {
+            return MetadataManager.Assemblies.Select(s => new MigrationVersionInfo
+            {
+                Name = s.MigrateName,
+                Version = s.MigrateVersion
+            }).ToList();
         }
     }
 }

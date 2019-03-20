@@ -17,6 +17,6 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
-        public List<TableValueItemInfo> Value { get; set; }
+        public List<TableValueItemInfo> ValueItems { get; set; }
     }
 }

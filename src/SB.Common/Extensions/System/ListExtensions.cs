@@ -52,8 +52,30 @@ namespace SB.Common.Extensions
         /// <param name="item"></param>
         public static void AddUnique<T>(this List<T> list, T item)
         {
-            if(!list.Contains(item))
+            if (!list.Contains(item))
                 list.Add(item);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
+        public static bool IsNotLast<T>(this List<T> list, T item)
+        {
+            return !list.IsLast(item);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
+        public static bool IsLast<T>(this List<T> list, T item)
+        {
+            return ReferenceEquals(list.LastOrDefault(), item);
         }
     }
 }
