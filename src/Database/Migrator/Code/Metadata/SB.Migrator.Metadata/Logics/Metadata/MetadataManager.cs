@@ -31,16 +31,23 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public List<AssemblyMetadata> Assemblies { get; private set; }
+        public List<AssemblyMetadata> Assemblies { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        public MetadataManager(MigrateManager migrateManager)
+        public MetadataManager(MigrateManager migrateManager) : this()
         {
             MigrateManager = migrateManager;
             MigrateManager.MigrateBegin += manager => InitializeAssemblies();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public MetadataManager()
+        {
             _tables = new List<TableMetadata>();
         }
 

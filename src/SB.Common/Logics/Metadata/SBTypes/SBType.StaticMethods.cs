@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using SB.Common.Logics.Business;
+using SB.Common.Logics.Metadata.BusinessTypes;
 
 namespace SB.Common.Logics.Metadata
 {
@@ -43,11 +44,17 @@ namespace SB.Common.Logics.Metadata
         /// </summary>
         private static void InitializeType(SBTypeInfo info)
         {
-            var sbTypeAttribute = info.ClrType.GetCustomAttribute<SBTypeAttribute>(true);
-            if (sbTypeAttribute == null)
-                throw new InvalidOperationException($"Type {info.ClrType} not marked with SBTypeAttribute!");
+            if (info.ClrType.IsEnum)
+            {
+                AddToCache(new SBEnumType(info.TypeId, info.ClrType));
+                return;
+            }
 
-            var type = sbTypeAttribute.SBType;
+            var sbTypeAttribute = info.ClrType.GetCustomAttribute<SBTypeAttribute>(true);
+            var type = sbTypeAttribute?.SBType;
+            if (type == null)
+                type = typeof(SBType);
+
             var sbType = (SBType)Activator.CreateInstance(type, info.TypeId, info.ClrType);
             AddToCache(sbType);
         }
