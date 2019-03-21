@@ -213,11 +213,26 @@ namespace SB.Migrator.Metadata
             foreignKey.Column = table.GetColumn(foreignKeyMetadata.Column.Name);
             foreignKey.Table = table;
 
-            var referencedTable = foreignKeyMetadata.ReferencedTable;
-            foreignKey.ReferenceTable = _tableInfos.FirstOrDefault(f => f.TableMetadata.TableType == referencedTable);
+            foreignKey.ReferenceTable = GetReferenceTable(foreignKeyMetadata);
             foreignKey.ReferenceColumn = GetReferenceColumn(foreignKey, foreignKeyMetadata);
 
             return foreignKey;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="foreignKeyMetadata"></param>
+        /// <returns></returns>
+        private TableInfo GetReferenceTable(ForeignKeyMetadata foreignKeyMetadata)
+        {
+            var referencedTable = foreignKeyMetadata.ReferencedTable;
+            var tableInfo = _tableInfos.FirstOrDefault(f => f.TableMetadata.TableType == referencedTable);
+            if (tableInfo != null)
+                return tableInfo;
+
+            var tableMetadata = MetadataManager.GetTableMetadata(referencedTable);
+            return GetTableInfo(tableMetadata);
         }
 
         /// <summary>
