@@ -29,7 +29,7 @@ namespace SB.Migrator.SqlServer
         protected string GetForeignKeyName()
         {
             return string.IsNullOrEmpty(ForeignKey.Name) ? 
-                $"FK_{ForeignKey.Table.Name}_{ForeignKey.ReferenceTable.Name}" : 
+                $"FK_{ForeignKey.Table.Name}_{ForeignKey.ReferenceTable.Name}_{ForeignKey.Column.Name}" : 
                 ForeignKey.Name;
         }
     }

@@ -46,6 +46,9 @@ namespace SB.Migrator.SqlServer
         {
             var command = GetSqlCommand(connectionString);
             command.ExecuteNonQuery();
+
+            command.Connection.Close();
+            command.Dispose();
         }
 
         /// <summary>
