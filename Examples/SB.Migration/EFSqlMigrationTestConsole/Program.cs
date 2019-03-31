@@ -1,6 +1,6 @@
 ﻿using SB.Migrator;
-using SB.Migrator.EntityFramework;
-using SB.Migrator.SqlServer;
+using SB.Migrator.EntityFramework.Logics.Code.Extensions;
+using SB.Migrator.SqlServer.Logics.Database.Extensions;
 
 namespace EFSqlMigrationTestConsole
 {
@@ -20,11 +20,10 @@ namespace EFSqlMigrationTestConsole
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            var migrateManager = new MigrateManager(ConnectionString);
-            migrateManager.CodeTablesManager = new EFCodeTablesManager(migrateManager);
-            migrateManager.DatabaseTablesManager = new SqlDatabaseTablesManager(migrateManager);
-
-            migrateManager.Migrate();
+            MigrateManager.Create(ConnectionString)
+                .UseSqlServerDatabase()
+                .UseEfCodeTablesManager()
+                .Migrate();
         }
     }
 }
