@@ -18,7 +18,7 @@ namespace SB.Common.Logics.Business
         /// <summary>
         /// 
         /// </summary>
-        protected DateTime PeriodicDate { get; set; }
+        protected virtual DateTime PeriodicDate { get; set; }
 
         /// <summary>
         /// 

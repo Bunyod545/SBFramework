@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using SB.Common.Extensions;
 using SB.Migrator.Metadata.Logics.Metadata.Models;
-using SB.Migrator.Models.MigrationHistorys;
 
 namespace SB.Migrator.Metadata
 {
@@ -31,16 +30,23 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public List<AssemblyMetadata> Assemblies { get; private set; }
+        public List<AssemblyMetadata> Assemblies { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        public MetadataManager(MigrateManager migrateManager)
+        public MetadataManager(MigrateManager migrateManager) : this()
         {
             MigrateManager = migrateManager;
             MigrateManager.MigrateBegin += manager => InitializeAssemblies();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public MetadataManager()
+        {
             _tables = new List<TableMetadata>();
         }
 
@@ -138,7 +144,13 @@ namespace SB.Migrator.Metadata
             var types = Assemblies.SelectMany(s => s.Assembly.GetTypes());
             var tableTypes = types.ToList(w => w.IsHasAttribute<TableAttribute>());
 
-            return tableTypes.Select(GetTableMetadata).ToList();
+            foreach (var tableType in tableTypes)
+            {
+                var metadata = GetTableMetadata(tableType);
+                _tables.Add(metadata);
+            }
+
+            return _tables;
         }
 
         /// <summary>
@@ -146,29 +158,16 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="tableType"></param>
         /// <returns></returns>
-        protected virtual TableMetadata GetTableMetadata(Type tableType)
+        public virtual TableMetadata GetTableMetadata(Type tableType)
         {
             var tableMetadata = _tables.FirstOrDefault(f => f.TableType == tableType);
             if (tableMetadata != null)
                 return tableMetadata;
 
             if (tableType.IsEnum)
-                return GetEnumTable(tableType);
+                return MetadataEnumTablesHelper.GetTableMetadata(tableType);
 
             return GetTable(tableType);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tableType"></param>
-        /// <returns></returns>
-        protected virtual TableMetadata GetEnumTable(Type tableType)
-        {
-            var metadata = MetadataEnumTablesHelper.GetTableMetadata(tableType);
-            _tables.Add(metadata);
-
-            return metadata;
         }
 
         /// <summary>
@@ -188,7 +187,6 @@ namespace SB.Migrator.Metadata
             tableMetadata.PrimaryKey = GetPrimaryKey(tableMetadata);
             tableMetadata.ForeignKeys = GetForeignKeys(tableMetadata);
 
-            _tables.Add(tableMetadata);
             return tableMetadata;
         }
 

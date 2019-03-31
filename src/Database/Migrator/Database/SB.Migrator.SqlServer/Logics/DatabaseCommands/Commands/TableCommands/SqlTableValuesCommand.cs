@@ -168,6 +168,9 @@ namespace SB.Migrator.SqlServer
                 command.Connection = connection;
                 command.ExecuteNonQuery();
             }
+
+            connection.Close();
+            Commands.ForEach(f => f.Dispose());
         }
 
     }

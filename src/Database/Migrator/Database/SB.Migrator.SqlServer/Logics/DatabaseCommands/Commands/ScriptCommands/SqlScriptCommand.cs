@@ -70,7 +70,6 @@ namespace SB.Migrator.SqlServer
             try
             {
                 InternalExecute(connectionString);
-                Transaction.Commit();
             }
             catch (Exception e)
             {
@@ -96,6 +95,10 @@ namespace SB.Migrator.SqlServer
                 command.CommandText = commandText;
                 command.ExecuteNonQuery();
             }
+
+            Transaction.Commit();
+            command.Connection.Close();
+            command.Dispose();
         }
     }
 }

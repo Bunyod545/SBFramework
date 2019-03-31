@@ -10,6 +10,11 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
+        public static string DefaultSchema { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
@@ -32,6 +37,7 @@ namespace SB.Migrator.Metadata
         public TableAttribute(string name)
         {
             Name = name;
+            Schema = DefaultSchema;
         }
 
         /// <summary>

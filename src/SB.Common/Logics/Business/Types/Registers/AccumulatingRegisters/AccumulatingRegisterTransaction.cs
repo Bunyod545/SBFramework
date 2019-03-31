@@ -10,12 +10,32 @@ namespace SB.Common.Logics.Business
         /// <summary>
         /// 
         /// </summary>
-        public DateTime Moment { get; set; }
+        public virtual long Registrator { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public bool Direction { get; set; }
+        public virtual Document CachedRegistrator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual long RegistratorType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual DateTime Moment { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual long RowNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual bool Direction { get; set; }
 
         /// <summary>
         /// 
