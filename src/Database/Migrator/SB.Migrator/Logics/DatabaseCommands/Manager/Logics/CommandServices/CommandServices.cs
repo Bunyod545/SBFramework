@@ -27,9 +27,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <typeparam name="TCommand"></typeparam>
-        public void Add<T, TCommand>()
-            where T : IDatabaseCommand
-            where TCommand : IDatabaseCommand
+        public void Add<T, TCommand>() where T : IDatabaseCommand where TCommand : IDatabaseCommand, T
         {
             var service = new CommandServiceInfo();
             service.CommandType = typeof(T);
@@ -66,7 +64,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             if (service == null)
                 return null;
 
-            return (T) Activator.CreateInstance(service.CommandImplementType);
+            return (T)Activator.CreateInstance(service.CommandImplementType);
         }
     }
 }

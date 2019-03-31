@@ -12,7 +12,7 @@ namespace EFSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.;Database=TestEFSql;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=User\\SQLEXPRESS;Database=TestEFSql;Trusted_Connection=True;";
 
         /// <summary>
         /// 
