@@ -3,7 +3,7 @@ using SB.Migrator.Metadata;
 using SB.Migrator.SqlServer;
 
 [assembly: BeforeActualization("BeforeActualizationScripts.resources")]
-[assembly: Migrate("MetadataSqlMigration", "1.0.0.3")]
+[assembly: Migrate("MetadataSqlMigration", "1.0.0.4")]
 [assembly: AfterActualization("AfterActualizationScripts.resources")]
 
 namespace MetadataSqlMigrationTestConsole
@@ -16,7 +16,7 @@ namespace MetadataSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=MWI_91\\SQLSERVER2014;Database=TestMetadataMigrator;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=.;Database=TestMetadataMigrator;Trusted_Connection=True;";
 
         /// <summary>
         /// 

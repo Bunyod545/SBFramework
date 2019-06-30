@@ -178,7 +178,7 @@ namespace SB.Migrator.SqlServer
             foreignKey.Table = table;
             foreignKey.Column = table.GetColumn(sqlForeignKey.ColumnName);
             foreignKey.ReferenceTable = _tableInfos.FirstOrDefault(sqlForeignKey.IsReferenceTable);
-            foreignKey.ReferenceColumn = foreignKey.Table?.Columns.FirstOrDefault(sqlForeignKey.IsReferenceColumn);
+            foreignKey.ReferenceColumn = foreignKey.ReferenceTable?.Columns.FirstOrDefault(sqlForeignKey.IsReferenceColumn);
 
             return foreignKey;
         }

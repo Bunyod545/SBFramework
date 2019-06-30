@@ -74,6 +74,5 @@ namespace SB.Migrator.SqlServer
                 f.TableSchema == table.Schema &&
                 f.TableName == table.Name).ToList();
         }
-
     }
 }
