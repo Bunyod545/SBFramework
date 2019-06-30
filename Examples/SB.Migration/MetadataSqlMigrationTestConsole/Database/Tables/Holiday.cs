@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SB.Migrator.Metadata;
-using SB.Migrator.Metadata.Test.Logics.Metadata.Helpers;
+﻿using SB.Migrator.Metadata;
 
 namespace MetadataSqlMigrationTestConsole.Database.Tables
 {

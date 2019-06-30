@@ -1,12 +1,12 @@
 ﻿using SB.Migrator.Metadata;
 
-namespace MetadataSqlMigrationTestConsole.Tables
+namespace MetadataSqlMigrationTestConsole.Database.Tables
 {
     /// <summary>
     /// 
     /// </summary>
     [Table("Citys")]
-    public partial class City
+    public class City
     {   
         /// <summary>
         /// 

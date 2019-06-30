@@ -1,4 +1,6 @@
-﻿namespace SB.Migrator.Metadata.Test.Logics.Metadata.Helpers
+﻿using SB.Migrator.Metadata;
+
+namespace MetadataSqlMigrationTestConsole.Database.Tables
 {
     /// <summary>
     /// 

@@ -3,7 +3,6 @@ using SB.Common.Helpers;
 using SB.Migrator.Helpers;
 using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models.Column;
-using SB.Migrator.SqlServer.Logics.DatabaseCommands;
 
 namespace SB.Migrator.SqlServer
 {

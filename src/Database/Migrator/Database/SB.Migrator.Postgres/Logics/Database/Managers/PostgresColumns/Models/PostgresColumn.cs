@@ -1,88 +1,73 @@
-﻿namespace SB.Migrator.SqlServer.Logics.DatabaseCommands
+﻿namespace SB.Migrator.Postgres
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum CommandOrder
+    public class PostgresColumn
     {
         /// <summary>
         /// 
         /// </summary>
-        BeforeActualization,
+        public string TableSchema { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        CreateTable,
+        public string TableName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DropColumn,
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        RenameTable,
+        public int Position { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        TableValue,
+        public object DefaultValue { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        CreateColumn,
+        public bool IsNullable { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        AlterColumn,
+        public string DataType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        RenameColumn,
+        public int? CharacterMaximumLenght { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DropColumnDefaultValue,
+        public int? CharacterOctetLenght { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        CreateColumnDefaultValue,
+        public int? NumericPrecision { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DropPrimaryKey,
+        public int? NumericPrecisionRadix { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        CreatePrimaryKey,
+        public int? NumericScale { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        DropForeignKey,
-
-        /// <summary>
-        /// 
-        /// </summary>
-        DropTable,
-
-        /// <summary>
-        /// 
-        /// </summary>
-        CreateForeignKey,
-
-        /// <summary>
-        /// 
-        /// </summary>
-        AfterActualization,
+        public int? DateTimePrecision { get; set; }
     }
 }

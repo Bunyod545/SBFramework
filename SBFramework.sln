@@ -57,7 +57,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{62FF18C4-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Metadata", "Metadata", "{77613051-4536-477A-8F71-2D155ED2AF1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.Metadata.Test", "NUnit Tests\Database\Migrator\Code\Metadata\SB.Migrator.Metadata.Test\SB.Migrator.Metadata.Test.csproj", "{7647345E-542A-4BC5-AA4A-67D98942351E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.Metadata.Test", "NUnit Tests\Database\Migrator\Code\Metadata\SB.Migrator.Metadata.Test\SB.Migrator.Metadata.Test.csproj", "{7647345E-542A-4BC5-AA4A-67D98942351E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.Postgres", "src\Database\Migrator\Database\SB.Migrator.Postgres\SB.Migrator.Postgres.csproj", "{B939E23D-11D3-4993-8DDA-D51A63A802A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetadataPostgresMigrationTestConsole", "Examples\SB.Migration\MetadataPostgresMigrationTestConsole\MetadataPostgresMigrationTestConsole.csproj", "{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -113,6 +117,14 @@ Global
 		{7647345E-542A-4BC5-AA4A-67D98942351E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7647345E-542A-4BC5-AA4A-67D98942351E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7647345E-542A-4BC5-AA4A-67D98942351E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B939E23D-11D3-4993-8DDA-D51A63A802A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B939E23D-11D3-4993-8DDA-D51A63A802A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B939E23D-11D3-4993-8DDA-D51A63A802A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B939E23D-11D3-4993-8DDA-D51A63A802A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -143,6 +155,8 @@ Global
 		{62FF18C4-7093-4F1F-8CA7-1A950ED2EE1E} = {C5750199-85C0-4684-8CDE-54DEC27BF815}
 		{77613051-4536-477A-8F71-2D155ED2AF1A} = {62FF18C4-7093-4F1F-8CA7-1A950ED2EE1E}
 		{7647345E-542A-4BC5-AA4A-67D98942351E} = {77613051-4536-477A-8F71-2D155ED2AF1A}
+		{B939E23D-11D3-4993-8DDA-D51A63A802A3} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
+		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

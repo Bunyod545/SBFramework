@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
 using SB.Common.Extensions;
 using SB.Common.Helpers;
 using SB.Migrator.Extensions;
 using SB.Migrator.Logics.DatabaseCommands;
-using SB.Migrator.SqlServer.Logics.DatabaseCommands;
 
 namespace SB.Migrator.SqlServer
 {
