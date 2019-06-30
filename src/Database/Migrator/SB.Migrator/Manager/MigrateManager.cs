@@ -114,5 +114,15 @@ namespace SB.Migrator
         {
             MigrateEnd?.Invoke(this);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        public static MigrateManager Create(string connectionString)
+        {
+            return new MigrateManager(connectionString);
+        }
     }
 }

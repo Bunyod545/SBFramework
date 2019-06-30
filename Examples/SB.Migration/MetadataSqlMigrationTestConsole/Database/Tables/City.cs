@@ -35,6 +35,7 @@ namespace MetadataSqlMigrationTestConsole.Tables
         /// <summary>
         /// 
         /// </summary>
+        [IgnoreColumn]
         public Country Owner { get; set; }
     }
 }

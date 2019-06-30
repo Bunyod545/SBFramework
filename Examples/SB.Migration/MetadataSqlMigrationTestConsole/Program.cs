@@ -1,9 +1,10 @@
 ﻿using SB.Migrator;
 using SB.Migrator.Metadata;
-using SB.Migrator.SqlServer;
+using SB.Migrator.Metadata.Logics.Code.Extensions;
+using SB.Migrator.SqlServer.Logics.Database.Extensions;
 
 [assembly: BeforeActualization("BeforeActualizationScripts.resources")]
-[assembly: Migrate("MetadataSqlMigration", "1.0.0.4")]
+[assembly: Migrate("MetadataSqlMigration", "1.0.0.3")]
 [assembly: AfterActualization("AfterActualizationScripts.resources")]
 
 namespace MetadataSqlMigrationTestConsole
@@ -16,7 +17,7 @@ namespace MetadataSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.;Database=TestMetadataMigrator;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=User\\SQLEXPRESS;Database=TestMetadataMigrator;Trusted_Connection=True;";
 
         /// <summary>
         /// 
@@ -24,11 +25,10 @@ namespace MetadataSqlMigrationTestConsole
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            var migrateManager = new MigrateManager(ConnectionString);
-            migrateManager.CodeTablesManager = new MetadataCodeTablesManager(migrateManager);
-            migrateManager.DatabaseTablesManager = new SqlDatabaseTablesManager(migrateManager);
-
-            migrateManager.Migrate();
+            MigrateManager.Create(ConnectionString)
+                .UseSqlServerDatabase()
+                .UseMetadataManager()
+                .Migrate();
         }
     }
 }
