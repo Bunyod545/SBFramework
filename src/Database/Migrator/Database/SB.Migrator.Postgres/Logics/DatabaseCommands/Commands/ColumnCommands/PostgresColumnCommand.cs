@@ -31,7 +31,7 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"[{Column.Table.Schema}].[{Column.Table.Name}]");
+            ScriptBuilder.Append($"{Column.Table.Schema}.\"{Column.Table.Name}\"");
             ScriptBuilder.AppendLine();
         }
 
@@ -40,7 +40,7 @@ namespace SB.Migrator.Postgres
         /// </summary>
         protected void SetColumnInfo()
         {
-            ScriptBuilder.Append($" [{Column.Name}] {Column.Type.GetColumnType()}");
+            ScriptBuilder.Append($" \"{Column.Name}\" {Column.Type.GetColumnType()}");
 
             if (!Column.IsAllowNull)
                 ScriptBuilder.Append(" NOT");

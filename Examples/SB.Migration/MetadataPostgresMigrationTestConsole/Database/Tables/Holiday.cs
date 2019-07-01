@@ -5,7 +5,7 @@ namespace MetadataPostgresMigrationTestConsole.Database.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("Holiday")]
+    [Table("Holidays")]
     public class Holiday
     {
         /// <summary>

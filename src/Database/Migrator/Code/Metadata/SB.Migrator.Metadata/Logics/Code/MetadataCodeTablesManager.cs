@@ -21,7 +21,12 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        private List<MetadataTableInfo> _tableInfos;
+        private List<MetadataTableInfo> _metadataTableInfos;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<TableInfo> _tableInfos;
 
         /// <summary>
         /// 
@@ -60,14 +65,28 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public MetadataTableInfo GetTableMetadata(Type type)
+        {
+            GetTableInfos();
+            return _metadataTableInfos.FirstOrDefault(f => f.TableMetadata.TableType == type);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public override List<TableInfo> GetTableInfos()
         {
-            var codeTables = MetadataManager.GetTables();
-            _tableInfos = codeTables.Select(GetTableInfo).ToList();
-            _tableInfos.ForEach(f => f.ForeignKeys = GetForeignKeys(f));
+            if (_tableInfos != null && _tableInfos.Any())
+                return _tableInfos;
 
-            return _tableInfos.Select(s => (TableInfo)s).ToList();
+            var codeTables = MetadataManager.GetTables();
+            _metadataTableInfos = codeTables.Select(GetTableInfo).ToList();
+            _metadataTableInfos.ForEach(f => f.ForeignKeys = GetForeignKeys(f));
+
+            return _tableInfos = _metadataTableInfos.Select(s => (TableInfo)s).ToList();
         }
 
         /// <summary>
@@ -227,7 +246,7 @@ namespace SB.Migrator.Metadata
         private TableInfo GetReferenceTable(ForeignKeyMetadata foreignKeyMetadata)
         {
             var referencedTable = foreignKeyMetadata.ReferencedTable;
-            var tableInfo = _tableInfos.FirstOrDefault(f => f.TableMetadata.TableType == referencedTable);
+            var tableInfo = _metadataTableInfos.FirstOrDefault(f => f.TableMetadata.TableType == referencedTable);
             if (tableInfo != null)
                 return tableInfo;
 

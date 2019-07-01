@@ -10,8 +10,10 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
-        protected virtual void CreateColumnDefaultValue(ColumnInfo column)
+        /// <param name="databaseColumn"></param>
+        protected virtual void CreateColumnDefaultValue(ColumnInfo column, ColumnInfo databaseColumn)
         {
             ColumnDefaultValueCommand<ICreateColumnDefaultValueCommand>(column);
         }
@@ -19,7 +21,9 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
+        /// <param name="databaseColumn"></param>
         protected virtual void DropColumnDefaultValue(ColumnInfo column)
         {
             ColumnDefaultValueCommand<IDropColumnDefaultValueCommand>(column);
@@ -30,15 +34,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
-        protected virtual void ColumnDefaultValueCommand<T>(ColumnInfo column) where T : class, IColumnDefaultValueCommand
+        protected virtual T ColumnDefaultValueCommand<T>(ColumnInfo column) where T : class, IColumnDefaultValueCommand
         {
             var service = CommandServices.GetCommand<T>();
             if (service == null)
-                return;
+                return null;
 
             service.SetColumn(column);
-            service.BuildCommandText();
             Commands.Add(service);
+            return service;
         }
     }
 }

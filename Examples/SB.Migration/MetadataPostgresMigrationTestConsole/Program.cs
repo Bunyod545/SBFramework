@@ -1,10 +1,11 @@
-﻿using SB.Migrator;
+﻿using System;
+using SB.Migrator;
 using SB.Migrator.Metadata;
 using SB.Migrator.Metadata.Logics.Code.Extensions;
 using SB.Migrator.Postgres.Logics.Database.Extensions;
 
 [assembly: BeforeActualization("BeforeActualizationScripts.resources")]
-[assembly: Migrate("MetadataPostgresMigration", "1.0.0.3")]
+[assembly: Migrate("MetadataPostgresMigration", "1.0.0.17")]
 [assembly: AfterActualization("AfterActualizationScripts.resources")]
 
 namespace MetadataPostgresMigrationTestConsole
@@ -29,6 +30,9 @@ namespace MetadataPostgresMigrationTestConsole
                 .UsePostgresServerDatabase()
                 .UseMetadataManager()
                 .Migrate();
+
+            Console.WriteLine("Migrate success");
+            Console.ReadLine();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace SB.Migrator.Postgres
         /// <returns></returns>
         public string GetConstraintName()
         {
-            return $" [DF_{Column}]";
+            return $" DF_{Column}";
         }
     }
 }

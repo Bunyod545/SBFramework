@@ -1,4 +1,5 @@
 ﻿using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.SqlServer
 {
@@ -11,6 +12,20 @@ namespace SB.Migrator.SqlServer
         /// 
         /// </summary>
         public override int Order => (int)CommandOrder.AlterColumn;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ColumnInfo DatabaseColumn { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column"></param>
+        public void SetDatabaseColumn(ColumnInfo column)
+        {
+            DatabaseColumn = column;
+        }
 
         /// <summary>
         /// 

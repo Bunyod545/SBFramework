@@ -22,14 +22,14 @@ namespace SB.Migrator.Postgres
         public PostgresColumnTypeMappingSource()
         {
             _typeMapping = new Dictionary<Type, string>();
-            _typeMapping.Add(typeof(bool), "bit");
-            _typeMapping.Add(typeof(int), "int");
+            _typeMapping.Add(typeof(bool), "boolean");
+            _typeMapping.Add(typeof(int), "integer");
             _typeMapping.Add(typeof(long), "bigint");
             _typeMapping.Add(typeof(short), "smallint");
-            _typeMapping.Add(typeof(DateTime), "datetime");
-            _typeMapping.Add(typeof(decimal), "decimal(18, 2)");
-            _typeMapping.Add(typeof(float), "float");
-            _typeMapping.Add(typeof(string), "nvarchar(max)");
+            _typeMapping.Add(typeof(DateTime), "date");
+            _typeMapping.Add(typeof(decimal), "money");
+            _typeMapping.Add(typeof(float), "real");
+            _typeMapping.Add(typeof(string), "text");
         }
 
         /// <summary>

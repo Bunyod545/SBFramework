@@ -1,4 +1,5 @@
-﻿using SB.Migrator;
+﻿using System;
+using SB.Migrator;
 using SB.Migrator.Metadata;
 using SB.Migrator.Metadata.Logics.Code.Extensions;
 using SB.Migrator.SqlServer.Logics.Database.Extensions;
@@ -29,6 +30,9 @@ namespace MetadataSqlMigrationTestConsole
                 .UseSqlServerDatabase()
                 .UseMetadataManager()
                 .Migrate();
+
+            Console.WriteLine("Migrate success");
+            Console.ReadLine();
         }
     }
 }

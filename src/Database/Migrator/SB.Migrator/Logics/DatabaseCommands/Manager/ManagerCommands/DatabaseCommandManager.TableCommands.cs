@@ -39,15 +39,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="table"></param>
-        protected virtual void TableCommand<T>(TableInfo table) where T : class, ITableCommand
+        protected virtual T TableCommand<T>(TableInfo table) where T : class, ITableCommand
         {
             var service = CommandServices.GetCommand<T>();
             if (service == null)
-                return;
+                return null;
 
             service.SetTable(table);
-            service.BuildCommandText();
             Commands.Add(service);
+            return service;
         }
     }
 }

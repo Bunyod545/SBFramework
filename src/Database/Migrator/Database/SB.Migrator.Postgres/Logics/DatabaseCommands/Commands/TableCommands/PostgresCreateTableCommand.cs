@@ -30,6 +30,9 @@ namespace SB.Migrator.Postgres
             Table.Columns.ForEach(BuildColumn);
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(Strings.RBracket);
+            ScriptBuilder.Append(Strings.Semicolon);
+
+            AlterPrimaryKeyIdentitySequence();
         }
 
         /// <summary>
@@ -42,21 +45,11 @@ namespace SB.Migrator.Postgres
             ScriptBuilder.AppendFormat("\"{0}\" ", column.Name);
             ScriptBuilder.Append(column.Type.GetColumnType());
 
-            BuildIdentity(column);
             BuildNullableInfo(column);
+            BuildIdentity(column);
 
             if (Table.Columns.IsNotLast(column))
                 ScriptBuilder.Append(Strings.Comma);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="column"></param>
-        private void BuildIdentity(ColumnInfo column)
-        {
-            if (column.Identity != null)
-                ScriptBuilder.Append(" PRIMARY KEY");
         }
 
         /// <summary>
@@ -69,6 +62,49 @@ namespace SB.Migrator.Postgres
                 ScriptBuilder.Append(" NOT");
 
             ScriptBuilder.Append(" NULL");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column"></param>
+        private void BuildIdentity(ColumnInfo column)
+        {
+            if (column.Identity == null)
+                return;
+
+            ScriptBuilder.Append($" DEFAULT nextval('\"{GetSequenceName()}\"')");
+
+            var scriptBuilder = new StringBuilder();
+            scriptBuilder.AppendLine($"CREATE SEQUENCE \"{GetSequenceName()}\";");
+            scriptBuilder.AppendLine();
+            scriptBuilder.Append(ScriptBuilder);
+
+            ScriptBuilder = scriptBuilder;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void AlterPrimaryKeyIdentitySequence()
+        {
+            if (Table.PrimaryKey?.PrimaryColumn?.Identity == null)
+                return;
+
+            ScriptBuilder.AppendLine();
+            ScriptBuilder.AppendLine();
+            ScriptBuilder.AppendLine($"ALTER SEQUENCE \"{GetSequenceName()}\"");
+            ScriptBuilder.Append("OWNED BY ");
+            ScriptBuilder.AppendFormat("{0}.\"{1}\".\"{2}\"", Table.Schema, Table.Name, Table.PrimaryKey.PrimaryColumn.Name);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private string GetSequenceName()
+        {
+            return $"{Table.Name}_{Table.PrimaryKey.PrimaryColumn.Name}_seq";
         }
 
         /// <summary>

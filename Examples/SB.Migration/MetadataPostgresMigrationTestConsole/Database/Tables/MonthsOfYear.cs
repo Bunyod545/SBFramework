@@ -5,7 +5,7 @@ namespace MetadataPostgresMigrationTestConsole.Database.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("enum_MonthsOfYear", "dbo")]
+    [Table("MonthsOfYear")]
     public enum MonthsOfYear
     {
         /// <summary>

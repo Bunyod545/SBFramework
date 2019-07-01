@@ -39,6 +39,9 @@ namespace SB.Migrator.Metadata
             if (!string.IsNullOrEmpty(Type))
                 return Type;
 
+            if (ClrType.IsHasAttribute<TableAttribute>())
+                return CodeTablesManager.GetTableMetadata(ClrType)?.PrimaryKey?.PrimaryColumn?.Type?.GetColumnType(); 
+
             var databaseManager = CodeTablesManager.MigrateManager?.DatabaseTablesManager;
             return databaseManager?.ColumnTypeMappingSource.FindType(ClrType);
         }

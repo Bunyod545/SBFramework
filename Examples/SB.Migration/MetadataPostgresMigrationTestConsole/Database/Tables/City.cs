@@ -29,13 +29,7 @@ namespace MetadataPostgresMigrationTestConsole.Database.Tables
         /// <summary>
         /// 
         /// </summary>
-        [Column, ForeignKey(typeof(Country))]
-        public long OwnerId { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [IgnoreColumn]
+        [Column, ForeignKey]
         public Country Owner { get; set; }
     }
 }

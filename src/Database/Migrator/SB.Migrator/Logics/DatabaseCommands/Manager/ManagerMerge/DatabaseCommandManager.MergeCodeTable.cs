@@ -4,6 +4,7 @@ using System.Linq;
 using SB.Common.Extensions;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
+using SB.Migrator.Models.Tables.Constraints;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -30,7 +31,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
                 return;
             }
 
-            MergeCodeTableForeignKeys(codeTable, databaseTable);
+            codeTable.ForeignKeys.ForEach(f => MergeCodeTableForeignKey(f, databaseTable.ForeignKeys));
             codeTable.Columns.ForEach(f => MergeCodeColumn(f, databaseTable.Columns));
             MergeTableValues(codeTable);
         }
@@ -38,11 +39,13 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="codeTable"></param>
-        /// <param name="databaseTable"></param>
-        protected virtual void MergeCodeTableForeignKeys(TableInfo codeTable, TableInfo databaseTable)
+        /// <param name="codeForeignKey"></param>
+        /// <param name="databaseForeignKeys"></param>
+        protected virtual void MergeCodeTableForeignKey(ForeignKeyInfo codeForeignKey, List<ForeignKeyInfo> databaseForeignKeys)
         {
-
+            var databaseForeignKey = databaseForeignKeys.FirstOrDefault(f => f.IsEqual(codeForeignKey));
+            if (databaseForeignKey == null)
+                CreateForeignKey(codeForeignKey);
         }
 
         /// <summary>
@@ -86,7 +89,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             if (string.Equals(codeColumn.Type?.GetColumnType(), databaseColumn.Type?.GetColumnType(), StringComparison.CurrentCultureIgnoreCase))
                 return;
 
-            AlterColumn(codeColumn);
+            AlterColumn(codeColumn, databaseColumn);
         }
 
         /// <summary>
@@ -99,7 +102,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             if (codeColumn.IsAllowNull == databaseColumn.IsAllowNull)
                 return;
 
-            AlterColumn(codeColumn);
+            AlterColumn(codeColumn, databaseColumn);
         }
 
         /// <summary>
@@ -123,12 +126,12 @@ namespace SB.Migrator.Logics.DatabaseCommands
 
             if (databaseColumn.DefaultValue == null)
             {
-                CreateColumnDefaultValue(codeColumn);
+                CreateColumnDefaultValue(codeColumn, databaseColumn);
                 return;
             }
 
             DropColumnDefaultValue(codeColumn);
-            CreateColumnDefaultValue(codeColumn);
+            CreateColumnDefaultValue(codeColumn, databaseColumn);
         }
 
         /// <summary>

@@ -31,15 +31,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="foreignKey"></param>
-        protected virtual void ForeignKeyCommand<T>(ForeignKeyInfo foreignKey) where T : class, IForeignKeyCommand
+        protected virtual T ForeignKeyCommand<T>(ForeignKeyInfo foreignKey) where T : class, IForeignKeyCommand
         {
             var service = CommandServices.GetCommand<T>();
             if (service == null)
-                return;
+                return null;
 
             service.SetForeignKey(foreignKey);
-            service.BuildCommandText();
             Commands.Add(service);
+            return service;
         }
     }
 }

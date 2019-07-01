@@ -2,6 +2,7 @@
 using System.Linq;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
+using SB.Migrator.Models.Tables.Constraints;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -25,6 +26,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             }
 
             databaseTable.Columns.ForEach(f => MergeDatabaseColumn(f, codeTable));
+            databaseTable.ForeignKeys.ForEach(f => MergeDatabaseTableForeignKey(f, codeTable.ForeignKeys));
         }
 
         /// <summary>
@@ -39,7 +41,17 @@ namespace SB.Migrator.Logics.DatabaseCommands
                 DropColumn(databaseColumn);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databaseForeignKey"></param>
+        /// <param name="codeForeignKeys"></param>
+        protected virtual void MergeDatabaseTableForeignKey(ForeignKeyInfo databaseForeignKey, List<ForeignKeyInfo> codeForeignKeys)
+        {
+            var codeForeignKey = codeForeignKeys.FirstOrDefault(f => f.IsEqual(databaseForeignKey));
+            if (codeForeignKey == null)
+                DropForeignKey(databaseForeignKey);
+        }
 
         /// <summary>
         /// 

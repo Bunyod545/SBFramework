@@ -1,7 +1,7 @@
-﻿INSERT INTO [dbo].[Countrys] ([Name] ,[DesignedName])
-VALUES ('Uzbekiston' ,'Uzbekistan')
+﻿INSERT INTO public."Countrys" ("Name" ,"DesignedName")
+VALUES ('Uzbekiston' ,'Uzbekistan');
 
 GO
 
-INSERT INTO [dbo].[Countrys] ([Name] ,[DesignedName])
-VALUES ('Rossiya' ,'Russia')
+INSERT INTO public."Countrys" ("Name" ,"DesignedName")
+VALUES ('Rossiya' ,'Russia');

@@ -5,6 +5,7 @@ using SB.Common.Extensions;
 using SB.Common.Helpers;
 using SB.Migrator.Extensions;
 using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.Postgres
 {
@@ -39,27 +40,10 @@ namespace SB.Migrator.Postgres
         private void BuildValueCommand(TableValueInfo tableValueInfo)
         {
             ScriptBuilder = new StringBuilder();
-            BuildIfStatement();
             BuildUpdateCommand();
             BuildInsertCommand();
+
             BuildCommand(tableValueInfo);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void BuildIfStatement()
-        {
-            ScriptBuilder.Append("IF EXISTS(SELECT * FROM ");
-            ScriptBuilder.AppendFormat(Table.ToString());
-            ScriptBuilder.Append(" WHERE ");
-
-            var primaryColumn = Table.GetPrimaryColumnName();
-            ScriptBuilder.Append(primaryColumn);
-            ScriptBuilder.Append(Strings.Equal);
-            ScriptBuilder.Append($"@{primaryColumn}");
-            ScriptBuilder.Append(Strings.RBracket);
-            ScriptBuilder.AppendLine();
         }
 
         /// <summary>
@@ -67,30 +51,29 @@ namespace SB.Migrator.Postgres
         /// </summary>
         private void BuildUpdateCommand()
         {
-            ScriptBuilder.Append("UPDATE ");
-            ScriptBuilder.AppendFormat(Table.ToString());
-            ScriptBuilder.Append(" SET ");
-
-            foreach (var column in Table.GetAdditionalColumns())
-            {
-                ScriptBuilder.Append(column.Name);
-                ScriptBuilder.Append(Strings.Equal);
-                ScriptBuilder.Append($"@{column.Name}");
-
-                if (Table.Columns.IsNotLast(column))
-                    ScriptBuilder.Append(Strings.Comma);
-
-                ScriptBuilder.Append(Strings.WhiteSpace);
-            }
+            ScriptBuilder.Append("WITH upsert AS (UPDATE ");
+            ScriptBuilder.Append($"{GetTableName()} SET ");
+            Table.Columns.ForEach(BuildUpdateSet);
 
             var primaryColumn = Table.GetPrimaryColumnName();
-            ScriptBuilder.Append("WHERE ");
-            ScriptBuilder.Append(primaryColumn);
-            ScriptBuilder.Append(Strings.Equal);
-            ScriptBuilder.Append($"@{primaryColumn}");
+            ScriptBuilder.Append($"WHERE \"{primaryColumn}\" = @{primaryColumn}");
+            ScriptBuilder.AppendLine(" RETURNING *)");
+        }
 
-            ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendLine("ELSE");
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column"></param>
+        private void BuildUpdateSet(ColumnInfo column)
+        {
+            ScriptBuilder.Append($"\"{column.Name}\"");
+            ScriptBuilder.Append(" = ");
+            ScriptBuilder.Append($"@{column.Name}");
+
+            if (Table.Columns.IsNotLast(column))
+                ScriptBuilder.Append(Strings.Comma);
+
+            ScriptBuilder.Append(Strings.WhiteSpace);
         }
 
         /// <summary>
@@ -99,36 +82,45 @@ namespace SB.Migrator.Postgres
         private void BuildInsertCommand()
         {
             ScriptBuilder.Append("INSERT INTO ");
-            ScriptBuilder.AppendFormat(Table.ToString());
+            ScriptBuilder.Append($"{GetTableName()}");
             ScriptBuilder.Append(Strings.LBracket);
 
-            foreach (var column in Table.Columns)
-            {
-                ScriptBuilder.Append(column.Name);
-
-                if (Table.Columns.IsLast(column))
-                    continue;
-
-                ScriptBuilder.Append(Strings.Comma);
-                ScriptBuilder.Append(Strings.WhiteSpace);
-            }
-
+            Table.Columns.ForEach(BuildColumn);
             ScriptBuilder.AppendLine(Strings.RBracket);
-            ScriptBuilder.Append("VALUES(");
 
-            foreach (var column in Table.Columns)
-            {
-                ScriptBuilder.Append($"@{column.Name}");
+            ScriptBuilder.Append("SELECT ");
+            Table.Columns.ForEach(BuildValue);
 
-                if (Table.Columns.IsLast(column))
-                    continue;
+            ScriptBuilder.AppendLine();
+            ScriptBuilder.Append("WHERE NOT EXISTS (SELECT 1 FROM upsert);");
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void BuildColumn(ColumnInfo column)
+        {
+            ScriptBuilder.Append($"\"{column.Name}\"");
 
-                ScriptBuilder.Append(Strings.Comma);
-                ScriptBuilder.Append(Strings.WhiteSpace);
-            }
+            if (Table.Columns.IsLast(column))
+                return;
 
-            ScriptBuilder.Append(Strings.RBracket);
-            ScriptBuilder.Append(Strings.Semicolon);
+            ScriptBuilder.Append(Strings.Comma);
+            ScriptBuilder.Append(Strings.WhiteSpace);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column"></param>
+        private void BuildValue(ColumnInfo column)
+        {
+            ScriptBuilder.Append($"@{column.Name}");
+
+            if (Table.Columns.IsLast(column))
+                return;
+
+            ScriptBuilder.Append(Strings.Comma);
+            ScriptBuilder.Append(Strings.WhiteSpace);
         }
 
         /// <summary>
@@ -139,14 +131,9 @@ namespace SB.Migrator.Postgres
         {
             var command = new NpgsqlCommand();
             command.CommandText = ScriptBuilder.ToString();
-            foreach (var valueItem in tableValueInfo.ValueItems)
-            {
-                var param = new NpgsqlParameter();
-                param.ParameterName = $"@{valueItem.Column.Name}";
-                param.Value = valueItem.Value;
 
-                command.Parameters.Add(param);
-            }
+            foreach (var valueItem in tableValueInfo.ValueItems)
+                command.Parameters.AddWithValue($"{valueItem.Column.Name}", valueItem.Value);
 
             Commands.Add(command);
         }
@@ -163,12 +150,12 @@ namespace SB.Migrator.Postgres
             foreach (var command in Commands)
             {
                 command.Connection = connection;
+                command.Prepare();
                 command.ExecuteNonQuery();
             }
 
             connection.Close();
             Commands.ForEach(f => f.Dispose());
         }
-
     }
 }

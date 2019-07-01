@@ -5,7 +5,7 @@ namespace SB.Migrator.Postgres
     /// <summary>
     /// 
     /// </summary>
-    public class SqlDropColumnCommand : PostgresColumnCommand, IDropColumnCommand
+    public class PostgresDropColumnCommand : PostgresColumnCommand, IDropColumnCommand
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace SB.Migrator.Postgres
         protected override void InternalBuildCommandText()
         {
             SetAlterTable();
-            ScriptBuilder.Append($"DROP COLUMN [{Column.Name}]");
+            ScriptBuilder.Append($"DROP COLUMN \"{Column.Name}\"");
         }
     }
 }

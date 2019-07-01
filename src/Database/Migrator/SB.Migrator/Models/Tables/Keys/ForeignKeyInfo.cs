@@ -21,5 +21,20 @@ namespace SB.Migrator.Models.Tables.Constraints
         /// 
         /// </summary>
         public ColumnInfo ReferenceColumn { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool IsEqual(ForeignKeyInfo foreignKey)
+        {
+            if (foreignKey == null)
+                return false;
+
+            return Table.IsEqual(foreignKey.Table) &&
+                   Column.IsEqual(foreignKey.Column) &&
+                   ReferenceTable.IsEqual(foreignKey.ReferenceTable) &&
+                   ReferenceColumn.IsEqual(foreignKey.ReferenceColumn);
+        }
     }
 }

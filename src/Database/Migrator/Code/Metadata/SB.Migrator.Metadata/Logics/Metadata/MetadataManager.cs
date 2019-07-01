@@ -143,12 +143,7 @@ namespace SB.Migrator.Metadata
         {
             var types = Assemblies.SelectMany(s => s.Assembly.GetTypes());
             var tableTypes = types.ToList(w => w.IsHasAttribute<TableAttribute>());
-
-            foreach (var tableType in tableTypes)
-            {
-                var metadata = GetTableMetadata(tableType);
-                _tables.Add(metadata);
-            }
+            tableTypes.ForEach(f => GetTableMetadata(f));
 
             return _tables;
         }
@@ -164,10 +159,12 @@ namespace SB.Migrator.Metadata
             if (tableMetadata != null)
                 return tableMetadata;
 
-            if (tableType.IsEnum)
-                return MetadataEnumTablesHelper.GetTableMetadata(tableType);
+            var metadata = tableType.IsEnum
+                ? MetadataEnumTablesHelper.GetTableMetadata(tableType)
+                : GetTable(tableType);
 
-            return GetTable(tableType);
+            _tables.Add(metadata);
+            return metadata;
         }
 
         /// <summary>
@@ -285,7 +282,7 @@ namespace SB.Migrator.Metadata
             foreignKey.Name = attr.Name;
             foreignKey.Table = columnMetadata.Table;
             foreignKey.ReferencedTable = attr.ReferencedTable ?? columnMetadata.Property.PropertyType;
-            foreignKey.ReferencedColumn = attr.ReferenceColumn;
+            foreignKey.ReferencedColumn = attr.ReferenceColumn ?? GetTableMetadata(foreignKey.ReferencedTable)?.PrimaryKey?.PrimaryColumn?.Name;
 
             return foreignKey;
         }

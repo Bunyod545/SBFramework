@@ -30,15 +30,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="primaryKey"></param>
-        protected virtual void PrimaryKeyCommand<T>(PrimaryKeyInfo primaryKey) where T : class, IPrimaryKeyCommand
+        protected virtual T PrimaryKeyCommand<T>(PrimaryKeyInfo primaryKey) where T : class, IPrimaryKeyCommand
         {
             var service = CommandServices.GetCommand<T>();
             if (service == null)
-                return;
+                return null;
 
             service.SetPrimaryKey(primaryKey);
-            service.BuildCommandText();
             Commands.Add(service);
+            return service;
         }
     }
 }

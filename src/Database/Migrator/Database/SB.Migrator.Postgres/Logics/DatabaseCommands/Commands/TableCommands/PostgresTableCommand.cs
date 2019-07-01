@@ -21,5 +21,14 @@ namespace SB.Migrator.Postgres
         {
             Table = info;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetTableName()
+        {
+            return $"{Table.Schema}.\"{Table.Name}\"";
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
         protected virtual void CreateColumn(ColumnInfo column)
         {
@@ -19,15 +20,19 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
-        protected virtual void AlterColumn(ColumnInfo column)
+        /// <param name="databaseColumn"></param>
+        protected virtual void AlterColumn(ColumnInfo column, ColumnInfo databaseColumn)
         {
-            ColumnCommand<IAlterColumnCommand>(column);
+            var alterColumnCommand = ColumnCommand<IAlterColumnCommand>(column);
+            alterColumnCommand?.SetDatabaseColumn(databaseColumn);
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
         protected virtual void RenameColumn(ColumnInfo column)
         {
@@ -37,6 +42,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
         protected virtual void DropColumn(ColumnInfo column)
         {
@@ -48,15 +54,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="column"></param>
-        protected virtual void ColumnCommand<T>(ColumnInfo column) where T : class, IColumnCommand
+        protected virtual T ColumnCommand<T>(ColumnInfo column) where T : class, IColumnCommand
         {
             var service = CommandServices.GetCommand<T>();
             if (service == null)
-                return;
+                return null;
 
             service.SetColumn(column);
-            service.BuildCommandText();
             Commands.Add(service);
+            return service;
         }
     }
 }
