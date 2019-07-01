@@ -22,14 +22,10 @@ namespace SB.Migrator.Postgres
             manager.CommandServices.Add<ICreateColumnCommand, PostgresCreateColumnCommand>();
             manager.CommandServices.Add<IAlterColumnCommand, PostgresAlterColumnCommand>();
             manager.CommandServices.Add<IRenameColumnCommand, PostgresRenameColumnCommand>();
-            manager.CommandServices.Add<IDropColumnCommand, PostgresDropColumnCommand>();
 
             manager.CommandServices.Add<ICreateColumnDefaultValueCommand, PostgresCreateColumnDefaultValueCommand>();
             manager.CommandServices.Add<ICreatePrimaryKeyCommand, PostgresCreatePrimaryKeyCommand>();
-            manager.CommandServices.Add<IDropPrimaryKeyCommand, PostgresDropPrimaryKeyCommand>();
-
             manager.CommandServices.Add<ICreateForeignKeyCommand, PostgresCreateForeignKeyCommand>();
-            manager.CommandServices.Add<IDropForeignKeyCommand, PostgresDropForeignKeyCommand>();
 
             manager.CommandServices.Add<IBeforeActualizationScriptCommand, PostgresBeforeActualizationScriptCommand>();
             manager.CommandServices.Add<IAfterActualizationScriptCommand, PostgresAfterActualizationScriptCommand>();

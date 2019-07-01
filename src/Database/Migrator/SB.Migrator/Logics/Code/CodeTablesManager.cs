@@ -27,6 +27,14 @@ namespace SB.Migrator.Logics.Code
         /// <summary>
         /// 
         /// </summary>
+        public virtual void Initialize()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public virtual List<ScriptInfo> GetBeforeActualizationScripts()
         {

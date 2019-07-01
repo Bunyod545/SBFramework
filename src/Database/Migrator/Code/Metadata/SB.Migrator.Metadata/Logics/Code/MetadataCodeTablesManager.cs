@@ -45,6 +45,15 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
+        public override void Initialize()
+        {
+            base.Initialize();
+            MetadataManager.InitializeAssemblies();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public override List<ScriptInfo> GetBeforeActualizationScripts()
         {

@@ -26,6 +26,11 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        void Initialize();
+
+        /// <summary>
+        /// 
+        /// </summary>
         void MergeTables(List<TableInfo> codeTables, List<TableInfo> databaseTables);
 
         /// <summary>

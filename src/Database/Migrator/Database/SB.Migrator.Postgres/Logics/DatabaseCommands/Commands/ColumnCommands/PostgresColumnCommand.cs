@@ -40,12 +40,28 @@ namespace SB.Migrator.Postgres
         /// </summary>
         protected void SetColumnInfo()
         {
-            ScriptBuilder.Append($" \"{Column.Name}\" {Column.Type.GetColumnType()}");
+            ScriptBuilder.Append($" {GetColumnName()} {Column.Type.GetColumnType()}");
+            SetColumnNullableInfo();
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void SetColumnNullableInfo()
+        {
             if (!Column.IsAllowNull)
                 ScriptBuilder.Append(" NOT");
 
             ScriptBuilder.Append(" NULL");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string GetColumnName()
+        {
+            return $"\"{Column.Name}\"";
         }
     }
 }

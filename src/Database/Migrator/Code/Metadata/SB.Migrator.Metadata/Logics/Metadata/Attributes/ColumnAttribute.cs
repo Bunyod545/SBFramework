@@ -20,7 +20,16 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public bool? IsAllowNull { get; set; }
+        public bool? IsNullable { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsAllowNull
+        {
+            get => IsNullable.GetValueOrDefault();
+            set => IsNullable = value;
+        }
 
         /// <summary>
         /// 

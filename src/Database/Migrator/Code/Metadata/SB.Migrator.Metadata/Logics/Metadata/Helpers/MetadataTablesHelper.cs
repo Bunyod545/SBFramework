@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SB.Common.Extensions;
-using SB.Migrator.Metadata.Logics.Metadata.Models;
 
 namespace SB.Migrator.Metadata
 {

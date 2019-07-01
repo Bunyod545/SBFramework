@@ -44,6 +44,14 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        public void Initialize()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="codeTables"></param>
         /// <param name="databaseTables"></param>
         public void MergeTables(List<TableInfo> codeTables, List<TableInfo> databaseTables)
@@ -59,6 +67,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         public void Migrate()
         {
+            Commands.ForEach(f => f.BuildCommandText());
             BeforeMigrate();
 
             var commands = Commands.OrderBy(o => o.Order).ToList();

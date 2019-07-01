@@ -39,7 +39,6 @@ namespace SB.Migrator.Metadata
         public MetadataManager(MigrateManager migrateManager) : this()
         {
             MigrateManager = migrateManager;
-            MigrateManager.MigrateBegin += manager => InitializeAssemblies();
         }
 
         /// <summary>
@@ -229,8 +228,8 @@ namespace SB.Migrator.Metadata
         /// <returns></returns>
         protected virtual bool ColumnIsAllowNull(ColumnAttribute propAttr, ColumnMetadata columnMetadata)
         {
-            if (propAttr.IsAllowNull.HasValue && propAttr.IsAllowNull.Value)
-                return true;
+            if (propAttr.IsNullable.HasValue)
+                return propAttr.IsNullable.Value;
 
             var type = columnMetadata.Property.PropertyType;
             return type.IsClass || type.IsNullable();

@@ -28,5 +28,10 @@ namespace SB.Migrator.Logics.Database
         /// </summary>
         /// <returns></returns>
         List<TableInfo> GetTableInfos();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void Initialize();
     }
 }

@@ -35,6 +35,14 @@ namespace SB.Migrator.Logics.Database
         /// <summary>
         /// 
         /// </summary>
+        public virtual void Initialize()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public abstract List<TableInfo> GetTableInfos();
     }

@@ -34,6 +34,11 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        IMigrateValidator Validator { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ICodeTablesManager CodeTablesManager { get; set; }
 
         /// <summary>

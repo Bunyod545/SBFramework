@@ -38,5 +38,10 @@ namespace SB.Migrator.Logics.Code
         /// </summary>
         /// <returns></returns>
         List<MigrationVersionInfo> GetMigrationVersionInfos();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void Initialize();
     }
 }

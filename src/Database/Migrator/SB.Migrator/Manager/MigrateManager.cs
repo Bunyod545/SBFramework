@@ -23,6 +23,11 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        public IMigrateValidator Validator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ICodeTablesManager CodeTablesManager { get; set; }
 
         /// <summary>
@@ -65,38 +70,54 @@ namespace SB.Migrator
         /// </summary>
         public void Migrate()
         {
-            Validate();
+            if (Validator == null)
+                throw new ArgumentNullException(nameof(Validator));
 
-            if (!DatabaseCreator.IsDatabaseExists())
-                DatabaseCreator.CreateDatabase();
+            Validator.Valid();
+            CheckAndCreateDatabase();
 
             OnMigrateBegin();
+            InitializeManagers();
 
-            var codeTables = CodeTablesManager.GetTableInfos();
-            var databaseTables = DatabaseTablesManager.GetTableInfos();
+            if (Validator.IsActual())
+            {
+                OnMigrateEnd();
+                return;
+            }
 
-            DatabaseCommandManager.MergeTables(codeTables, databaseTables);
-            DatabaseCommandManager.Migrate();
-
+            InternalMigrate();
             OnMigrateEnd();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void Validate()
+        protected virtual void CheckAndCreateDatabase()
         {
-            if (DatabaseCreator == null)
-                throw new ArgumentNullException(nameof(DatabaseCreator));
+            if (!DatabaseCreator.IsDatabaseExists())
+                DatabaseCreator.CreateDatabase();
+        }
 
-            if (CodeTablesManager == null)
-                throw new ArgumentNullException(nameof(CodeTablesManager));
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void InitializeManagers()
+        {
+            CodeTablesManager.Initialize();
+            DatabaseTablesManager.Initialize();
+            DatabaseCommandManager.Initialize();
+        }
 
-            if (DatabaseTablesManager == null)
-                throw new ArgumentNullException(nameof(DatabaseTablesManager));
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual void InternalMigrate()
+        {
+            var codeTables = CodeTablesManager.GetTableInfos();
+            var databaseTables = DatabaseTablesManager.GetTableInfos();
 
-            if (DatabaseCommandManager == null)
-                throw new ArgumentNullException(nameof(DatabaseCommandManager));
+            DatabaseCommandManager.MergeTables(codeTables, databaseTables);
+            DatabaseCommandManager.Migrate();
         }
 
         /// <summary>
