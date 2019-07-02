@@ -1,6 +1,4 @@
-﻿using SB.Common.Logics.Business;
-
-namespace EFPostgresMigrationTestConsole.Contexts.Tables
+﻿namespace EFPostgresMigrationTestConsole.Contexts.Tables
 {
     /// <summary>
     /// 

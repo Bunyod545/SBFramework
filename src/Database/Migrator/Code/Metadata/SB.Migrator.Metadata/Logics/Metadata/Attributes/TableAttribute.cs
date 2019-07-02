@@ -5,7 +5,7 @@ namespace SB.Migrator.Metadata
     /// <summary>
     /// 
     /// </summary>
-    public class TableAttribute : Attribute
+    public class TableAttribute : System.ComponentModel.DataAnnotations.Schema.TableAttribute
     {
         /// <summary>
         /// 
@@ -15,28 +15,17 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Schema { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public TableAttribute()
+        public TableAttribute() : base(null)
         {
-            
+
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
-        public TableAttribute(string name)
+        public TableAttribute(string name) : base(name)
         {
-            Name = name;
             Schema = DefaultSchema;
         }
 
@@ -45,9 +34,8 @@ namespace SB.Migrator.Metadata
         /// </summary>
         /// <param name="name"></param>
         /// <param name="schema"></param>
-        public TableAttribute(string name, string schema)
+        public TableAttribute(string name, string schema) : base(name)
         {
-            Name = name;
             Schema = schema;
         }
     }

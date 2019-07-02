@@ -1,5 +1,4 @@
-﻿using System;
-using SB.Migrator.Metadata;
+﻿using SB.Migrator.Metadata;
 
 namespace MetadataPostgresMigrationTestConsole.Database.Tables
 {

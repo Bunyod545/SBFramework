@@ -217,7 +217,7 @@ namespace SB.Migrator.Metadata
             columnMetadata.Table = tableMetadata;
             columnMetadata.Property = property;
             columnMetadata.Name = propAttr.Name ?? property.Name;
-            columnMetadata.Type = propAttr.Type;
+            columnMetadata.Type = propAttr.TypeName;
             columnMetadata.IsAllowNull = ColumnIsAllowNull(propAttr, columnMetadata);
             columnMetadata.DefaultValue = propAttr.DefaultValue;
 
