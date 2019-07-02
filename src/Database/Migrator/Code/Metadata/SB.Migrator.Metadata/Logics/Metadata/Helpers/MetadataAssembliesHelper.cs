@@ -8,7 +8,7 @@ namespace SB.Migrator.Metadata
     /// <summary>
     /// 
     /// </summary>
-    public static class MetadataTablesHelper
+    public static class MetadataAssembliesHelper
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
-        static MetadataTablesHelper()
+        static MetadataAssembliesHelper()
         {
             InitializeAssemblies();
         }

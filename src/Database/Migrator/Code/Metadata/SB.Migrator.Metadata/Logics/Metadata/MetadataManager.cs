@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using SB.Common.Extensions;
 using SB.Migrator.Metadata.Logics.Metadata.Models;
+using SB.Migrator.Models.MigrationHistorys;
 
 namespace SB.Migrator.Metadata
 {
@@ -55,16 +56,19 @@ namespace SB.Migrator.Metadata
         public void InitializeAssemblies()
         {
             Assemblies = new List<AssemblyMetadata>();
-            MetadataTablesHelper.Assemblies.ForEach(InitializeAssembly);
+
+            var migrationHistorys = HistoryRepository.GetMigrationHistories();
+            MetadataAssembliesHelper.Assemblies.ForEach(f => InitializeAssembly(f, migrationHistorys));
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="assembly"></param>
-        private void InitializeAssembly(AssemblyMetadata assembly)
+        /// <param name="migrationHistorys"></param>
+        private void InitializeAssembly(AssemblyMetadata assembly, List<MigrationHistory> migrationHistorys)
         {
-            var history = HistoryRepository.GetMigrationHistory(assembly.MigrateName);
+            var history = migrationHistorys.FirstOrDefault(f => f.Name == assembly.MigrateName);
             if (history == null)
             {
                 Assemblies.Add(assembly);

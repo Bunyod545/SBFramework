@@ -1,15 +1,15 @@
-﻿namespace SB.Migrator.Postgres.Logics.MigrationValidators
+﻿namespace SB.Migrator.EntityFramework.Logics.Code.Logics.MigrationValidators
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PostgresMigrationValidator : DefaultMigrateValidator
+    public class EntityFrameworkMigrationValidator : DefaultMigrateValidator
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="migrateManager"></param>
-        public PostgresMigrationValidator(MigrateManager migrateManager) : base(migrateManager)
+        public EntityFrameworkMigrationValidator(MigrateManager migrateManager) : base(migrateManager)
         {
         }
 

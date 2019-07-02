@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SB.EntityFramework;
 using SB.EntityFramework.Context;
+using SB.Migrator.EntityFramework.Logics.Code.Logics.MigrationValidators;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
@@ -30,7 +31,7 @@ namespace SB.Migrator.EntityFramework
         /// <param name="migrateManager"></param>
         public EFCodeTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
-
+            MigrateManager.Validator = new EntityFrameworkMigrationValidator(migrateManager);
         }
 
         /// <summary>
@@ -86,7 +87,7 @@ namespace SB.Migrator.EntityFramework
         /// <returns></returns>
         private List<EFTableInfo> GetTable(Type contextType)
         {
-            if (!(Activator.CreateInstance(contextType) is EFContext context))
+            if (!(Activator.CreateInstance(contextType) is DbContext context))
                 return new List<EFTableInfo>();
 
             var entityTypes = context.Model.GetEntityTypes().Where(w => !w.IsQueryType);
@@ -99,7 +100,7 @@ namespace SB.Migrator.EntityFramework
         /// <param name="context"></param>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private EFTableInfo ConvertToTableInfo(EFContext context, IEntityType entity)
+        private EFTableInfo ConvertToTableInfo(DbContext context, IEntityType entity)
         {
             var mapping = entity.Relational();
 

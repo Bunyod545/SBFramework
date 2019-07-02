@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SB.Common.Extensions;
 using SB.Migrator.Logics.Code;
+using SB.Migrator.Metadata.Logics.Code.Logics.MigrationValidators;
 using SB.Migrator.Metadata.Logics.Code.Models;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
@@ -40,6 +41,7 @@ namespace SB.Migrator.Metadata
         public MetadataCodeTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
             MetadataManager = new MetadataManager(migrateManager);
+            MigrateManager.Validator = new MetadataMigrationValidator(migrateManager, MetadataManager);
         }
 
         /// <summary>
