@@ -75,16 +75,12 @@ namespace SB.Migrator
 
             Validator.Valid();
             CheckAndCreateDatabase();
-
-            OnMigrateBegin();
             InitializeManagers();
 
             if (Validator.IsActual())
-            {
-                OnMigrateEnd();
                 return;
-            }
 
+            OnMigrateBegin();
             InternalMigrate();
             OnMigrateEnd();
         }

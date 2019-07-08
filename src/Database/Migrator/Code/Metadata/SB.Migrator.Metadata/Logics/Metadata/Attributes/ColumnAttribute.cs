@@ -1,22 +1,10 @@
-﻿using System;
-
-namespace SB.Migrator.Metadata
+﻿namespace SB.Migrator.Metadata
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ColumnAttribute : Attribute
+    public class ColumnAttribute : System.ComponentModel.DataAnnotations.Schema.ColumnAttribute
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Type { get; set; }
-
         /// <summary>
         /// 
         /// </summary>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Database\Migrator\Code\EntityFramework\SB.Migrator.EntityFramework\SB.Migrator.EntityFramework.csproj" />
+    <ProjectReference Include="..\..\..\src\Database\Migrator\Database\SB.Migrator.Postgres\SB.Migrator.Postgres.csproj" />
+    <ProjectReference Include="..\..\..\src\Database\Migrator\SB.Migrator\SB.Migrator.csproj" />
+  </ItemGroup>
+
+</Project>

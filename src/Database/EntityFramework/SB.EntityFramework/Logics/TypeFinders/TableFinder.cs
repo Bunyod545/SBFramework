@@ -138,7 +138,7 @@ namespace SB.EntityFramework
         public static List<Type> GetContextTypes()
         {
             var types = SafeAssemblies.SelectMany(s=>s.GetTypes());
-            return types.Where(w => typeof(EFContext).IsAssignableFrom(w)).ToList();
+            return types.Where(w => typeof(DbContext).IsAssignableFrom(w)).ToList();
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace SB.EntityFramework
         public static List<Type> GetContextTypes(Assembly assembly)
         {
             var types = assembly.GetTypes();
-            return types.Where(w => typeof(EFContext).IsAssignableFrom(w)).ToList();
+            return types.Where(w => typeof(DbContext).IsAssignableFrom(w)).ToList();
         }
     }
 }

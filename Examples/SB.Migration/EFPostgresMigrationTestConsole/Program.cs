@@ -1,24 +1,19 @@
 ﻿using System;
 using SB.Migrator;
-using SB.Migrator.Metadata;
-using SB.Migrator.Metadata.Logics.Code.Extensions;
+using SB.Migrator.EntityFramework.Logics.Code.Extensions;
 using SB.Migrator.Postgres.Logics.Database.Extensions;
 
-[assembly: BeforeActualization("BeforeActualizationScripts.resources")]
-[assembly: Migrate("MetadataPostgresMigration", "1.0.0.22")]
-[assembly: AfterActualization("AfterActualizationScripts.resources")]
-
-namespace MetadataPostgresMigrationTestConsole
+namespace EFPostgresMigrationTestConsole
 {
     /// <summary>
     /// 
     /// </summary>
-    internal class Program
+    public class Program
     {
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=TestMetadataMigrator;";
+        public const string ConnectionString = "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=TestEfMigrator;";
 
         /// <summary>
         /// 
@@ -28,7 +23,7 @@ namespace MetadataPostgresMigrationTestConsole
         {
             MigrateManager.Create(ConnectionString)
                 .UsePostgresServerDatabase()
-                .UseMetadataManager()
+                .UseEfCodeTablesManager()
                 .Migrate();
 
             Console.WriteLine("Migrate success");

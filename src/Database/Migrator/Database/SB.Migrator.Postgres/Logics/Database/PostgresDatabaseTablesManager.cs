@@ -5,7 +5,6 @@ using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
-using SB.Migrator.Postgres.Logics.MigrationValidators;
 
 namespace SB.Migrator.Postgres
 {
@@ -52,7 +51,6 @@ namespace SB.Migrator.Postgres
         {
             MigrateManager.DatabaseCreator = new PostgresDatabaseCreator(migrateManager);
             MigrateManager.MigrationsHistoryRepository = new PostgresMigrationsHistoryRepository(migrateManager);
-            MigrateManager.Validator = new PostgresMigrationValidator(migrateManager);
             MigrateManager.DatabaseCommandManager.UsePostgresCommands();
             ColumnTypeMappingSource = new PostgresColumnTypeMappingSource();
 
