@@ -6,7 +6,6 @@ using SB.Migrator.Models;
 using SB.Migrator.Models.MigrationHistorys;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.MySql.ResxFiles;
-using SB.Migrator.Postgres;
 
 namespace SB.Migrator.MySql
 {
@@ -19,11 +18,6 @@ namespace SB.Migrator.MySql
         /// 
         /// </summary>
         public const string HistoryTable = "MigrationsHistory";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string HistoryTableSchema = "public";
 
         /// <summary>
         /// 
@@ -50,10 +44,11 @@ namespace SB.Migrator.MySql
         /// <returns></returns>
         public bool IsHistoryTableExists()
         {
-            var command = GetCommand($@" SELECT 1
+            var command = GetCommand($@" SELECT *
                                          FROM   information_schema.tables 
-                                         WHERE  table_schema = '{HistoryTableSchema}'
-                                         AND    table_name = '{HistoryTable}'");
+                                         WHERE  table_schema = '{GetDatabaseName()}'
+                                         AND    table_name = '{HistoryTable}'
+                                         LIMIT 1");
 
             var result = command.ExecuteScalar() != null;
             DisposeCommand(command);
@@ -67,7 +62,7 @@ namespace SB.Migrator.MySql
         {
             var table = new TableInfo();
             table.Name = HistoryTable;
-            table.Schema = HistoryTableSchema;
+            table.Schema = GetDatabaseName();
 
             var idColumn = MigrationsHistoryTableHelper.GetIdColumn();
             idColumn.Table = table;
@@ -99,9 +94,19 @@ namespace SB.Migrator.MySql
         /// 
         /// </summary>
         /// <returns></returns>
+        public string GetDatabaseName()
+        {
+            return new MySqlConnectionStringBuilder(ConnectionString).Database;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<MigrationHistory> GetMigrationHistories()
         {
-            var command = GetCommand(Scripts.SelectMigrationsHistory);
+            var commandText = string.Format(Scripts.SelectMigrationsHistory, GetDatabaseName());
+            var command = GetCommand(commandText);
             var reader = command.ExecuteReader();
 
             while (reader.Read())

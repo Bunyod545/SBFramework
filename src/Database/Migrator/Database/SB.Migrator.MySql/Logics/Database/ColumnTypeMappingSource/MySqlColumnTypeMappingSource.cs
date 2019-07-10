@@ -4,7 +4,7 @@ using System.Reflection;
 using SB.Common.Helpers;
 using SB.Migrator.Logics.Database;
 
-namespace SB.Migrator.Postgres
+namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 
@@ -27,8 +27,8 @@ namespace SB.Migrator.Postgres
             _typeMapping.Add(typeof(long), "bigint");
             _typeMapping.Add(typeof(short), "smallint");
             _typeMapping.Add(typeof(DateTime), "date");
-            _typeMapping.Add(typeof(decimal), "money");
-            _typeMapping.Add(typeof(float), "real");
+            _typeMapping.Add(typeof(decimal), "decimal");
+            _typeMapping.Add(typeof(float), "float");
             _typeMapping.Add(typeof(string), "text");
         }
 

@@ -2,7 +2,7 @@
 using SB.Common.Helpers;
 using SB.Migrator.Models.Tables.Columns;
 
-namespace SB.Migrator.Postgres
+namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 

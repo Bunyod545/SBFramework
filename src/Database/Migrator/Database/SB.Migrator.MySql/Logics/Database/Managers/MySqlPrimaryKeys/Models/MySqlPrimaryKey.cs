@@ -1,9 +1,9 @@
-﻿namespace SB.Migrator.Postgres
+﻿namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PostgresPrimaryKey
+    public class MySqlPrimaryKey
     {
         /// <summary>
         /// 

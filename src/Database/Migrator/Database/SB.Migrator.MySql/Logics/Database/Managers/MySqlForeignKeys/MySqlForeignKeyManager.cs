@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Npgsql;
+using MySql.Data.MySqlClient;
 using SB.Migrator.Models;
-using SB.Migrator.Postgres.ResxFiles;
+using SB.Migrator.MySql.ResxFiles;
 
-namespace SB.Migrator.Postgres
+namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PostgresForeignKeyManager : MySqlBaseMappingManager
+    public class MySqlForeignKeyManager : MySqlBaseMappingManager
     {
         /// <summary>
         /// 
         /// </summary>
-        protected List<PostgresForeignKey> PostgresForeignKeys { get; private set; }
+        protected List<MySqlForeignKey> MySqlForeignKeys { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="databaseTablesManager"></param>
-        public PostgresForeignKeyManager(MySqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        public MySqlForeignKeyManager(MySqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
         {
         }
 
@@ -30,15 +30,15 @@ namespace SB.Migrator.Postgres
         /// <returns></returns>
         public void InitializeForeignKeys()
         {
-            PostgresForeignKeys = new List<PostgresForeignKey>();
-            var command = GetPostgresCommand(Scripts.SelectForeignKeys);
+            MySqlForeignKeys = new List<MySqlForeignKey>();
+            var command = GetMySqlCommand(Scripts.SelectForeignKeys);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
                 return;
 
             while (reader.Read())
-                PostgresForeignKeys.Add(ReaderToPrimaryKey(reader));
+                MySqlForeignKeys.Add(ReaderToPrimaryKey(reader));
         }
 
         /// <summary>
@@ -46,9 +46,9 @@ namespace SB.Migrator.Postgres
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private PostgresForeignKey ReaderToPrimaryKey(NpgsqlDataReader reader)
+        private MySqlForeignKey ReaderToPrimaryKey(MySqlDataReader reader)
         {
-            return new PostgresForeignKey
+            return new MySqlForeignKey
             {
                 ConstraintName = reader["constraint_name"] as string,
                 TableSchema = reader["table_schema"] as string,
@@ -65,12 +65,12 @@ namespace SB.Migrator.Postgres
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public List<PostgresForeignKey> GetForeignKeys(TableInfo table)
+        public List<MySqlForeignKey> GetForeignKeys(TableInfo table)
         {
-            if (PostgresForeignKeys == null)
-                return new List<PostgresForeignKey>();
+            if (MySqlForeignKeys == null)
+                return new List<MySqlForeignKey>();
 
-            return PostgresForeignKeys.Where(f =>
+            return MySqlForeignKeys.Where(f =>
                 f.TableSchema == table.Schema &&
                 f.TableName == table.Name).ToList();
         }

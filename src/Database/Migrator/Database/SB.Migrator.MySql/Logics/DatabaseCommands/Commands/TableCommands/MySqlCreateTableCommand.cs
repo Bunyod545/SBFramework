@@ -24,15 +24,19 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("CREATE TABLE ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Table.Schema, Table.Name);
+            ScriptBuilder.AppendFormat("`{0}`.`{1}`", Table.Schema, Table.Name);
             ScriptBuilder.Append(Strings.LBracket);
-
             Table.Columns.ForEach(BuildColumn);
-            ScriptBuilder.AppendLine();
-            ScriptBuilder.Append(Strings.RBracket);
-            ScriptBuilder.Append(Strings.Semicolon);
 
-            AlterPrimaryKeyIdentitySequence();
+            var primaryColumn = Table.PrimaryKey?.PrimaryColumn;
+            if (primaryColumn != null)
+            {
+                ScriptBuilder.AppendLine(Strings.Comma);
+                ScriptBuilder.AppendLine($"PRIMARY KEY (`{primaryColumn.Name}`)");
+            }
+
+            ScriptBuilder.Append(Strings.RBracket);
+            ScriptBuilder.Append(" ENGINE=INNODB;");
         }
 
         /// <summary>
@@ -42,11 +46,13 @@ namespace SB.Migrator.MySql
         private void BuildColumn(ColumnInfo column)
         {
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendFormat("\"{0}\" ", column.Name);
+            ScriptBuilder.AppendFormat("`{0}` ", column.Name);
             ScriptBuilder.Append(column.Type.GetColumnType());
 
+            if (column.Identity != null)
+                ScriptBuilder.Append(" AUTO_INCREMENT");
+
             BuildNullableInfo(column);
-            BuildIdentity(column);
 
             if (Table.Columns.IsNotLast(column))
                 ScriptBuilder.Append(Strings.Comma);
@@ -62,49 +68,6 @@ namespace SB.Migrator.MySql
                 ScriptBuilder.Append(" NOT");
 
             ScriptBuilder.Append(" NULL");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="column"></param>
-        private void BuildIdentity(ColumnInfo column)
-        {
-            if (column.Identity == null)
-                return;
-
-            ScriptBuilder.Append($" DEFAULT nextval('\"{GetSequenceName()}\"')");
-
-            var scriptBuilder = new StringBuilder();
-            scriptBuilder.AppendLine($"CREATE SEQUENCE \"{GetSequenceName()}\";");
-            scriptBuilder.AppendLine();
-            scriptBuilder.Append(ScriptBuilder);
-
-            ScriptBuilder = scriptBuilder;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void AlterPrimaryKeyIdentitySequence()
-        {
-            if (Table.PrimaryKey?.PrimaryColumn?.Identity == null)
-                return;
-
-            ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendLine($"ALTER SEQUENCE \"{GetSequenceName()}\"");
-            ScriptBuilder.Append("OWNED BY ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\".\"{2}\"", Table.Schema, Table.Name, Table.PrimaryKey.PrimaryColumn.Name);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private string GetSequenceName()
-        {
-            return $"{Table.Name}_{Table.PrimaryKey.PrimaryColumn.Name}_seq";
         }
 
         /// <summary>

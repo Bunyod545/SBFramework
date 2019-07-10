@@ -128,8 +128,7 @@ VALUES ('{0}' ,'{1}')</value>
   <data name="SelectColumns" xml:space="preserve">
     <value>SELECT *
 FROM information_schema.columns
-WHERE table_schema != 'information_schema' 
-AND table_schema != 'pg_catalog'</value>
+WHERE TABLE_SCHEMA = '{0}'</value>
   </data>
   <data name="SelectForeignKeys" xml:space="preserve">
     <value>SELECT
@@ -157,11 +156,11 @@ WHERE "Name" = '{0}'
 LIMIT 1</value>
   </data>
   <data name="SelectMigrationsHistory" xml:space="preserve">
-    <value>SELECT "Id"
-      ,"Name"
-      ,"Version"
-      ,"Version2"
-  FROM public."MigrationsHistory"</value>
+    <value>SELECT `Id`
+      ,`Name`
+      ,`Version`
+      ,`Version2`
+  FROM `{0}`.`MigrationsHistory`</value>
   </data>
   <data name="SelectPrimaryKeys" xml:space="preserve">
     <value>SELECT *
@@ -172,13 +171,7 @@ AND tc.table_name = c.table_name AND ccu.column_name = c.column_name
 WHERE constraint_type = 'PRIMARY KEY';</value>
   </data>
   <data name="SelectTables" xml:space="preserve">
-    <value>SELECT
-   *
-FROM
-   pg_catalog.pg_tables
-WHERE
-   schemaname != 'pg_catalog'
-AND schemaname != 'information_schema';</value>
+    <value>SELECT * FROM information_schema.tables where `TABLE_SCHEMA` = '{0}';</value>
   </data>
   <data name="UpdateHistoryVersion" xml:space="preserve">
     <value>UPDATE public."MigrationsHistory"

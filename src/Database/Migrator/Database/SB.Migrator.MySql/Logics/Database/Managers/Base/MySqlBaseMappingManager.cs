@@ -26,7 +26,7 @@ namespace SB.Migrator.MySql
         /// </summary>
         /// <param name="commandText"></param>
         /// <returns></returns>
-        public MySqlCommand GetPostgresCommand(string commandText)
+        public MySqlCommand GetMySqlCommand(string commandText)
         {
             var connection = new MySqlConnection(DatabaseTablesManager.MigrateManager.ConnectionString);
             connection.Open();

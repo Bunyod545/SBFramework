@@ -1,12 +1,12 @@
 ﻿using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 
-namespace SB.Migrator.Postgres
+namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PostgresForeignKey
+    public class MySqlForeignKey
     {
         /// <summary>
         /// 

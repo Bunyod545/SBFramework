@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Models.MigrationHistorys;
-using SB.Migrator.Postgres;
 
 namespace SB.Migrator.MySql
 {

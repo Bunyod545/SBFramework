@@ -2,7 +2,7 @@
 using SB.Common.Extensions;
 using SB.Migrator.Models.MigrationHistorys;
 
-namespace SB.Migrator.Postgres
+namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 

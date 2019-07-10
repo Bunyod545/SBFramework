@@ -1,4 +1,4 @@
-﻿namespace SB.Migrator.Postgres
+﻿namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 

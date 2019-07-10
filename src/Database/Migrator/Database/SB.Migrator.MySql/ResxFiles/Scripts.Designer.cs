@@ -83,8 +83,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         /// <summary>
         ///   Looks up a localized string similar to SELECT *
         ///FROM information_schema.columns
-        ///WHERE table_schema != &apos;information_schema&apos; 
-        ///AND table_schema != &apos;pg_catalog&apos;.
+        ///WHERE TABLE_SCHEMA = &apos;{0}&apos;.
         /// </summary>
         internal static string SelectColumns {
             get {
@@ -128,11 +127,11 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT &quot;Id&quot;
-        ///      ,&quot;Name&quot;
-        ///      ,&quot;Version&quot;
-        ///      ,&quot;Version2&quot;
-        ///  FROM public.&quot;MigrationsHistory&quot;.
+        ///   Looks up a localized string similar to SELECT `Id`
+        ///      ,`Name`
+        ///      ,`Version`
+        ///      ,`Version2`
+        ///  FROM `{0}`.`MigrationsHistory`.
         /// </summary>
         internal static string SelectMigrationsHistory {
             get {
@@ -155,13 +154,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT
-        ///   *
-        ///FROM
-        ///   pg_catalog.pg_tables
-        ///WHERE
-        ///   schemaname != &apos;pg_catalog&apos;
-        ///AND schemaname != &apos;information_schema&apos;;.
+        ///   Looks up a localized string similar to SELECT * FROM information_schema.tables where `TABLE_SCHEMA` = &apos;{0}&apos;;.
         /// </summary>
         internal static string SelectTables {
             get {

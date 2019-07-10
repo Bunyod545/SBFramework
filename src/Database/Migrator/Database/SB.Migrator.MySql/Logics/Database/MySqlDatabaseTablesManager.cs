@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MySql.Data.MySqlClient;
 using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
-using SB.Migrator.Postgres;
 
 namespace SB.Migrator.MySql
 {
@@ -27,7 +27,7 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresTableManager MySqlTableManager { get; }
+        protected MySqlTableManager MySqlTableManager { get; }
 
         /// <summary>
         /// 
@@ -37,12 +37,12 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresPrimaryKeyManager MySqlPrimaryKeyManager { get; }
+        protected MySqlPrimaryKeyManager MySqlPrimaryKeyManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresForeignKeyManager MySqlForeignKeyManager { get; }
+        protected MySqlForeignKeyManager MySqlForeignKeyManager { get; }
 
         /// <summary>
         /// 
@@ -55,10 +55,19 @@ namespace SB.Migrator.MySql
             MigrateManager.DatabaseCommandManager.UseMySqlCommands();
             ColumnTypeMappingSource = new MySqlColumnTypeMappingSource();
 
-            MySqlTableManager = new PostgresTableManager(this);
+            MySqlTableManager = new MySqlTableManager(this);
             MySqlColumnManager = new MySqlColumnManager(this);
-            MySqlPrimaryKeyManager = new PostgresPrimaryKeyManager(this);
-            MySqlForeignKeyManager = new PostgresForeignKeyManager(this);
+            MySqlPrimaryKeyManager = new MySqlPrimaryKeyManager(this);
+            MySqlForeignKeyManager = new MySqlForeignKeyManager(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string GetDatabaseName()
+        {
+            return new MySqlConnectionStringBuilder(MigrateManager.ConnectionString).Database;
         }
 
         /// <summary>
@@ -84,7 +93,7 @@ namespace SB.Migrator.MySql
         /// </summary>
         /// <param name="postgresTable"></param>
         /// <returns></returns>
-        private TableInfo ConvertToTableInfo(PostgresTable postgresTable)
+        private TableInfo ConvertToTableInfo(MySqlTable postgresTable)
         {
             var table = new TableInfo();
             table.Schema = postgresTable.Schema;
@@ -101,7 +110,7 @@ namespace SB.Migrator.MySql
         /// <param name="table"></param>
         /// <param name="postgresTable"></param>
         /// <returns></returns>
-        private List<ColumnInfo> GetColumns(TableInfo table, PostgresTable postgresTable)
+        private List<ColumnInfo> GetColumns(TableInfo table, MySqlTable postgresTable)
         {
             var columns = MySqlColumnManager.GetSqlColumns(postgresTable);
             return columns.Select(s => ConvertToColumnInfo(table, s)).ToList();
@@ -141,7 +150,7 @@ namespace SB.Migrator.MySql
         /// <param name="table"></param>
         /// <param name="postgresTable"></param>
         /// <returns></returns>
-        private PrimaryKeyInfo GetPrimaryKeyInfo(TableInfo table, PostgresTable postgresTable)
+        private PrimaryKeyInfo GetPrimaryKeyInfo(TableInfo table, MySqlTable postgresTable)
         {
             var sqlPrimaryKey = MySqlPrimaryKeyManager.GetPrimaryKey(postgresTable);
             if (sqlPrimaryKey == null)
@@ -171,7 +180,7 @@ namespace SB.Migrator.MySql
         /// <param name="table"></param>
         /// <param name="postgresForeignKey"></param>
         /// <returns></returns>
-        private ForeignKeyInfo ConvertToForeignKeyInfo(TableInfo table, PostgresForeignKey postgresForeignKey)
+        private ForeignKeyInfo ConvertToForeignKeyInfo(TableInfo table, MySqlForeignKey postgresForeignKey)
         {
             var foreignKey = new ForeignKeyInfo();
             foreignKey.Name = postgresForeignKey.ConstraintName;

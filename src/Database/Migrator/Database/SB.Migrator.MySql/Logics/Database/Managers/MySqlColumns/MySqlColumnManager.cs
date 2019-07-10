@@ -2,7 +2,6 @@
 using System.Linq;
 using MySql.Data.MySqlClient;
 using SB.Migrator.MySql.ResxFiles;
-using SB.Migrator.Postgres;
 
 namespace SB.Migrator.MySql
 {
@@ -14,7 +13,7 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        protected List<MySqlColumn> PostgresColumns { get; set; }
+        protected List<MySqlColumn> MySqlColumns { get; set; }
 
         /// <summary>
         /// 
@@ -29,15 +28,16 @@ namespace SB.Migrator.MySql
         /// </summary>
         public void InitializeColumns()
         {
-            PostgresColumns = new List<MySqlColumn>();
-            var command = GetPostgresCommand(Scripts.SelectColumns);
-            var reader = command.ExecuteReader();
+            MySqlColumns = new List<MySqlColumn>();
+            var commandText = string.Format(Scripts.SelectColumns, DatabaseTablesManager.GetDatabaseName());
+            var command = GetMySqlCommand(commandText);
 
+            var reader = command.ExecuteReader();
             if (!reader.HasRows)
                 return;
 
             while (reader.Read())
-                PostgresColumns.Add(ReaderToColumn(reader));
+                MySqlColumns.Add(ReaderToColumn(reader));
         }
 
         /// <summary>
@@ -49,17 +49,16 @@ namespace SB.Migrator.MySql
         {
             return new MySqlColumn
             {
-                TableSchema = reader["table_schema"] as string,
-                TableName = reader["table_name"] as string,
-                Name = reader["column_name"] as string,
-                Position = (int)reader["ordinal_position"],
-                DefaultValue = reader["column_default"],
-                IsNullable = reader["is_nullable"]?.ToString() == "YES",
-                DataType = reader["data_type"] as string,
+                TableSchema = reader["TABLE_SCHEMA"] as string,
+                TableName = reader["TABLE_NAME"] as string,
+                Name = reader["COLUMN_NAME"] as string,
+                Position = (int)reader["ORDINAL_POSITION"],
+                DefaultValue = reader["COLUMN_DEFAULT"],
+                IsNullable = reader["IS_NULLABLE"]?.ToString() == "YES",
+                DataType = reader["DATA_TYPE"] as string,
                 CharacterMaximumLenght = reader["character_maximum_length"] as int?,
                 CharacterOctetLenght = reader["character_octet_length"] as int?,
                 NumericPrecision = reader["numeric_precision"] as int?,
-                NumericPrecisionRadix = reader["numeric_precision_radix"] as int?,
                 NumericScale = reader["numeric_scale"] as int?,
                 DateTimePrecision = reader["datetime_precision"] as int?,
             };
@@ -70,12 +69,12 @@ namespace SB.Migrator.MySql
         /// </summary>
         /// <param name="sqlTable"></param>
         /// <returns></returns>
-        public List<MySqlColumn> GetSqlColumns(PostgresTable sqlTable)
+        public List<MySqlColumn> GetSqlColumns(MySqlTable sqlTable)
         {
-            if (PostgresColumns == null)
+            if (MySqlColumns == null)
                 return new List<MySqlColumn>();
 
-            return PostgresColumns.Where(w =>
+            return MySqlColumns.Where(w =>
                 w.TableSchema == sqlTable.Schema &&
                 w.TableName == sqlTable.Name).ToList();
         }

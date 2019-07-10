@@ -1,9 +1,9 @@
-﻿namespace SB.Migrator.Postgres
+﻿namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PostgresTable
+    public class MySqlTable
     {
         /// <summary>
         /// 
@@ -18,7 +18,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public PostgresTable()
+        public MySqlTable()
         {
             
         }
@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="schema"></param>
         /// <param name="name"></param>
-        public PostgresTable(string schema, string name)
+        public MySqlTable(string schema, string name)
         {
             Schema = schema;
             Name = name;

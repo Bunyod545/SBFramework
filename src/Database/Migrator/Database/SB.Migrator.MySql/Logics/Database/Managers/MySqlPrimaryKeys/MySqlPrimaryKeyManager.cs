@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Npgsql;
-using SB.Migrator.Postgres.ResxFiles;
+using MySql.Data.MySqlClient;
+using SB.Migrator.MySql.ResxFiles;
 
-namespace SB.Migrator.Postgres
+namespace SB.Migrator.MySql
 {
     /// <summary>
     /// 
     /// </summary>
-    public class PostgresPrimaryKeyManager : MySqlBaseMappingManager
+    public class MySqlPrimaryKeyManager : MySqlBaseMappingManager
     {
         /// <summary>
         /// 
         /// </summary>
-        protected List<PostgresPrimaryKey> PostgresPrimaryKeys { get; private set; }
+        protected List<MySqlPrimaryKey> MySqlPrimaryKeys { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="databaseTablesManager"></param>
-        public PostgresPrimaryKeyManager(MySqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        public MySqlPrimaryKeyManager(MySqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
         {
 
         }
@@ -30,15 +30,15 @@ namespace SB.Migrator.Postgres
         /// <returns></returns>
         public void InitializePrimaryKeys()
         {
-            PostgresPrimaryKeys = new List<PostgresPrimaryKey>();
-            var command = GetPostgresCommand(Scripts.SelectPrimaryKeys);
+            MySqlPrimaryKeys = new List<MySqlPrimaryKey>();
+            var command = GetMySqlCommand(Scripts.SelectPrimaryKeys);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
                 return;
 
             while (reader.Read())
-                PostgresPrimaryKeys.Add(ReaderToPrimaryKey(reader));
+                MySqlPrimaryKeys.Add(ReaderToPrimaryKey(reader));
         }
 
         /// <summary>
@@ -46,9 +46,9 @@ namespace SB.Migrator.Postgres
         /// </summary>
         /// <param name="reader"></param>
         /// <returns></returns>
-        private PostgresPrimaryKey ReaderToPrimaryKey(NpgsqlDataReader reader)
+        private MySqlPrimaryKey ReaderToPrimaryKey(MySqlDataReader reader)
         {
-            return new PostgresPrimaryKey
+            return new MySqlPrimaryKey
             {
                 TableSchema = reader["table_schema"] as string,
                 TableName = reader["table_name"] as string,
@@ -62,9 +62,9 @@ namespace SB.Migrator.Postgres
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public PostgresPrimaryKey GetPrimaryKey(PostgresTable table)
+        public MySqlPrimaryKey GetPrimaryKey(MySqlTable table)
         {
-            return PostgresPrimaryKeys?.FirstOrDefault(f =>
+            return MySqlPrimaryKeys?.FirstOrDefault(f =>
                 f.TableSchema == table.Schema &&
                 f.TableName == table.Name);
         }

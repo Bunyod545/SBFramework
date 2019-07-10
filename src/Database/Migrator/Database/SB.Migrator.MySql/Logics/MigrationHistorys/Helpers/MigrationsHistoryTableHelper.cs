@@ -1,7 +1,6 @@
 ﻿using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Columns;
-using SB.Migrator.Postgres;
 
 namespace SB.Migrator.MySql
 {
@@ -19,7 +18,7 @@ namespace SB.Migrator.MySql
             var idColumn = new ColumnInfo();
             idColumn.Type = new ColumnTypeInfo("bigint");
             idColumn.Identity = new Identity(1, 1);
-            idColumn.IsAllowNull = true;
+            idColumn.IsAllowNull = false;
             idColumn.Name = nameof(MigrationsHistoryTable.Id);
 
             return idColumn;
