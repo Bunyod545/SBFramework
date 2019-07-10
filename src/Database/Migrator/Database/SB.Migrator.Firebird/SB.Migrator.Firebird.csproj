@@ -4,4 +4,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="6.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logics\Database\" />
+    <Folder Include="Logics\DatabaseCommands\" />
+    <Folder Include="Logics\MigrationHistorys\" />
+    <Folder Include="ResxFiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SB.Migrator\SB.Migrator.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -5,6 +5,7 @@ namespace SB.Migrator.Metadata
     /// <summary>
     /// 
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class| AttributeTargets.Enum)]
     public class TableAttribute : System.ComponentModel.DataAnnotations.Schema.TableAttribute
     {
         /// <summary>

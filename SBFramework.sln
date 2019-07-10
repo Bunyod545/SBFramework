@@ -63,11 +63,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.Postgres", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetadataPostgresMigrationTestConsole", "Examples\SB.Migration\MetadataPostgresMigrationTestConsole\MetadataPostgresMigrationTestConsole.csproj", "{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFPostgresMigrationTestConsole", "Examples\SB.Migration\EFPostgresMigrationTestConsole\EFPostgresMigrationTestConsole.csproj", "{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFPostgresMigrationTestConsole", "Examples\SB.Migration\EFPostgresMigrationTestConsole\EFPostgresMigrationTestConsole.csproj", "{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.MySql", "src\Database\Migrator\Database\SB.Migrator.MySql\SB.Migrator.MySql.csproj", "{DD2757D6-2ACC-432C-AC6B-FF8B53E46F27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.MySql", "src\Database\Migrator\Database\SB.Migrator.MySql\SB.Migrator.MySql.csproj", "{DD2757D6-2ACC-432C-AC6B-FF8B53E46F27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.Firebird", "src\Database\Migrator\Database\SB.Migrator.Firebird\SB.Migrator.Firebird.csproj", "{8C3B7C87-2E8C-4487-9E9D-C2212752F7A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.Firebird", "src\Database\Migrator\Database\SB.Migrator.Firebird\SB.Migrator.Firebird.csproj", "{8C3B7C87-2E8C-4487-9E9D-C2212752F7A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Migrator.Oracle", "src\Database\Migrator\Database\SB.Migrator.Oracle\SB.Migrator.Oracle.csproj", "{4DB0BB26-CEF0-467B-8ABA-BAD91E96D145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetadataMySqlMigrationTestConsole", "Examples\SB.Migration\MetadataMySqlMigrationTestConsole\MetadataMySqlMigrationTestConsole.csproj", "{CCB9AD02-0DDA-49C9-8457-A31585E60853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +135,10 @@ Global
 		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD2757D6-2ACC-432C-AC6B-FF8B53E46F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD2757D6-2ACC-432C-AC6B-FF8B53E46F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD2757D6-2ACC-432C-AC6B-FF8B53E46F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -139,10 +147,14 @@ Global
 		{8C3B7C87-2E8C-4487-9E9D-C2212752F7A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C3B7C87-2E8C-4487-9E9D-C2212752F7A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C3B7C87-2E8C-4487-9E9D-C2212752F7A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DB0BB26-CEF0-467B-8ABA-BAD91E96D145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DB0BB26-CEF0-467B-8ABA-BAD91E96D145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DB0BB26-CEF0-467B-8ABA-BAD91E96D145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DB0BB26-CEF0-467B-8ABA-BAD91E96D145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB9AD02-0DDA-49C9-8457-A31585E60853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB9AD02-0DDA-49C9-8457-A31585E60853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB9AD02-0DDA-49C9-8457-A31585E60853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB9AD02-0DDA-49C9-8457-A31585E60853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,9 +187,11 @@ Global
 		{7647345E-542A-4BC5-AA4A-67D98942351E} = {77613051-4536-477A-8F71-2D155ED2AF1A}
 		{B939E23D-11D3-4993-8DDA-D51A63A802A3} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
 		{BA855D31-7BBB-4ABB-A35F-FDEF0D2EBBEF} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
+		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
 		{DD2757D6-2ACC-432C-AC6B-FF8B53E46F27} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
 		{8C3B7C87-2E8C-4487-9E9D-C2212752F7A4} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
-		{CCDAB62B-59A7-4D32-A6D4-F025058D3D9A} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
+		{4DB0BB26-CEF0-467B-8ABA-BAD91E96D145} = {DCF5476E-BF46-43B6-A442-C2C8556B1CC3}
+		{CCB9AD02-0DDA-49C9-8457-A31585E60853} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}
