@@ -37,32 +37,32 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        public int? CharacterMaximumLenght { get; set; }
+        public uint? CharacterMaximumLenght { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? CharacterOctetLenght { get; set; }
+        public uint? CharacterOctetLenght { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? NumericPrecision { get; set; }
+        public uint? NumericPrecision { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? NumericPrecisionRadix { get; set; }
+        public uint? NumericPrecisionRadix { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? NumericScale { get; set; }
+        public uint? NumericScale { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? DateTimePrecision { get; set; }
+        public uint? DateTimePrecision { get; set; }
 
         /// <summary>
         /// 
@@ -125,7 +125,7 @@ namespace SB.Migrator.MySql
         /// 
         /// </summary>
         /// <returns></returns>
-        private string GetTypeWithLength(int lenght)
+        private string GetTypeWithLength(uint lenght)
         {
             var lenghtText = lenght == -1 ? "max" : lenght.ToString(); 
             return Type + Strings.LBracket + lenghtText + Strings.RBracket;

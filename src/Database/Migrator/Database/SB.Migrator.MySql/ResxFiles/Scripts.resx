@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="InsertHistoryVersion" xml:space="preserve">
-    <value>INSERT INTO public."MigrationsHistory" ("Name" ,"Version")
+    <value>INSERT INTO MigrationsHistory (`Name` ,`Version`)
 VALUES ('{0}' ,'{1}')</value>
   </data>
   <data name="InsertHistoryVersion2" xml:space="preserve">
-    <value>INSERT INTO public."MigrationsHistory" ("Name" ,"Version2")
+    <value>INSERT INTO MigrationsHistory (`Name` ,`Version2`)
 VALUES ('{0}' ,'{1}')</value>
   </data>
   <data name="SelectColumns" xml:space="preserve">
@@ -131,28 +131,15 @@ FROM information_schema.columns
 WHERE TABLE_SCHEMA = '{0}'</value>
   </data>
   <data name="SelectForeignKeys" xml:space="preserve">
-    <value>SELECT
-    tc.table_schema, 
-    tc.constraint_name, 
-    tc.table_name, 
-    kcu.column_name, 
-    ccu.table_schema AS foreign_table_schema,
-    ccu.table_name AS foreign_table_name,
-    ccu.column_name AS foreign_column_name 
-FROM 
-    information_schema.table_constraints AS tc 
-    JOIN information_schema.key_column_usage AS kcu
-      ON tc.constraint_name = kcu.constraint_name
-      AND tc.table_schema = kcu.table_schema
-    JOIN information_schema.constraint_column_usage AS ccu
-      ON ccu.constraint_name = tc.constraint_name
-      AND ccu.table_schema = tc.table_schema
-WHERE tc.constraint_type = 'FOREIGN KEY';</value>
+    <value>SELECT i.TABLE_SCHEMA, i.TABLE_NAME, i.CONSTRAINT_TYPE, i.CONSTRAINT_NAME, k.COLUMN_NAME, k.REFERENCED_TABLE_SCHEMA, k.REFERENCED_TABLE_NAME, k.REFERENCED_COLUMN_NAME 
+FROM information_schema.TABLE_CONSTRAINTS i 
+LEFT JOIN information_schema.KEY_COLUMN_USAGE k ON i.CONSTRAINT_NAME = k.CONSTRAINT_NAME 
+WHERE i.CONSTRAINT_TYPE = 'FOREIGN KEY' AND i.TABLE_SCHEMA = '{0}';</value>
   </data>
   <data name="SelectHistory" xml:space="preserve">
     <value>SELECT *
-FROM public."MigrationsHistory"
-WHERE "Name" = '{0}'
+FROM MigrationsHistory
+WHERE Name = '{0}'
 LIMIT 1</value>
   </data>
   <data name="SelectMigrationsHistory" xml:space="preserve">
@@ -163,12 +150,20 @@ LIMIT 1</value>
   FROM `{0}`.`MigrationsHistory`</value>
   </data>
   <data name="SelectPrimaryKeys" xml:space="preserve">
-    <value>SELECT *
-FROM information_schema.table_constraints tc 
-JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) 
-JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema
-AND tc.table_name = c.table_name AND ccu.column_name = c.column_name
-WHERE constraint_type = 'PRIMARY KEY';</value>
+    <value>select tab.table_schema,
+    sta.index_name as CONSTRAINT_NAME,
+    sta.seq_in_index as COLUMN_ID,
+    sta.column_name,
+    tab.table_name
+from information_schema.tables as tab
+inner join information_schema.statistics as sta
+        on sta.table_schema = tab.table_schema
+        and sta.table_name = tab.table_name
+        and sta.index_name = 'primary'
+where tab.table_schema = '{0}'
+    and tab.table_type = 'BASE TABLE'
+order by tab.table_name,
+    column_id;</value>
   </data>
   <data name="SelectTables" xml:space="preserve">
     <value>SELECT * FROM information_schema.tables where `TABLE_SCHEMA` = '{0}';</value>

@@ -23,7 +23,7 @@
         /// <summary>
         /// 
         /// </summary>
-        public int Position { get; set; }
+        public uint Position { get; set; }
 
         /// <summary>
         /// 
@@ -43,31 +43,31 @@
         /// <summary>
         /// 
         /// </summary>
-        public int? CharacterMaximumLenght { get; set; }
+        public uint? CharacterMaximumLenght { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? CharacterOctetLenght { get; set; }
+        public uint? CharacterOctetLenght { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? NumericPrecision { get; set; }
+        public uint? NumericPrecision { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? NumericPrecisionRadix { get; set; }
+        public uint? NumericPrecisionRadix { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? NumericScale { get; set; }
+        public uint? NumericScale { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int? DateTimePrecision { get; set; }
+        public uint? DateTimePrecision { get; set; }
     }
 }

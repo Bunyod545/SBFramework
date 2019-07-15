@@ -40,40 +40,8 @@ namespace SB.Migrator.MySql
         private void BuildValueCommand(TableValueInfo tableValueInfo)
         {
             ScriptBuilder = new StringBuilder();
-            BuildUpdateCommand();
             BuildInsertCommand();
-
             BuildCommand(tableValueInfo);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void BuildUpdateCommand()
-        {
-            ScriptBuilder.Append("WITH upsert AS (UPDATE ");
-            ScriptBuilder.Append($"{GetTableName()} SET ");
-            Table.Columns.ForEach(BuildUpdateSet);
-
-            var primaryColumn = Table.GetPrimaryColumnName();
-            ScriptBuilder.Append($"WHERE \"{primaryColumn}\" = @{primaryColumn}");
-            ScriptBuilder.AppendLine(" RETURNING *)");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="column"></param>
-        private void BuildUpdateSet(ColumnInfo column)
-        {
-            ScriptBuilder.Append($"\"{column.Name}\"");
-            ScriptBuilder.Append(" = ");
-            ScriptBuilder.Append($"@{column.Name}");
-
-            if (Table.Columns.IsNotLast(column))
-                ScriptBuilder.Append(Strings.Comma);
-
-            ScriptBuilder.Append(Strings.WhiteSpace);
         }
 
         /// <summary>
@@ -83,23 +51,26 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder.Append("INSERT INTO ");
             ScriptBuilder.Append($"{GetTableName()}");
-            ScriptBuilder.Append(Strings.LBracket);
 
+            ScriptBuilder.Append(Strings.LBracket);
             Table.Columns.ForEach(BuildColumn);
             ScriptBuilder.AppendLine(Strings.RBracket);
 
-            ScriptBuilder.Append("SELECT ");
+            ScriptBuilder.Append("VALUES");
+            ScriptBuilder.Append(Strings.LBracket);
             Table.Columns.ForEach(BuildValue);
+            ScriptBuilder.AppendLine(Strings.RBracket);
 
-            ScriptBuilder.AppendLine();
-            ScriptBuilder.Append("WHERE NOT EXISTS (SELECT 1 FROM upsert);");
+            ScriptBuilder.AppendLine("ON DUPLICATE KEY UPDATE");
+            Table.Columns.ForEach(BuildColumnAndValue);
         }
+
         /// <summary>
         /// 
         /// </summary>
         private void BuildColumn(ColumnInfo column)
         {
-            ScriptBuilder.Append($"\"{column.Name}\"");
+            ScriptBuilder.Append($"`{column.Name}`");
 
             if (Table.Columns.IsLast(column))
                 return;
@@ -114,6 +85,22 @@ namespace SB.Migrator.MySql
         /// <param name="column"></param>
         private void BuildValue(ColumnInfo column)
         {
+            ScriptBuilder.Append($"@{column.Name}");
+
+            if (Table.Columns.IsLast(column))
+                return;
+
+            ScriptBuilder.Append(Strings.Comma);
+            ScriptBuilder.Append(Strings.WhiteSpace);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="column"></param>
+        private void BuildColumnAndValue(ColumnInfo column)
+        {
+            ScriptBuilder.Append($"{column.Name}=");
             ScriptBuilder.Append($"@{column.Name}");
 
             if (Table.Columns.IsLast(column))

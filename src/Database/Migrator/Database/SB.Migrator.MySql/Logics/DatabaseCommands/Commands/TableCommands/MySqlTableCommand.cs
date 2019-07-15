@@ -28,7 +28,7 @@ namespace SB.Migrator.MySql
         /// <returns></returns>
         public virtual string GetTableName()
         {
-            return $"{Table.Schema}.\"{Table.Name}\"";
+            return $"{Table.Schema}.`{Table.Name}`";
         }
     }
 }

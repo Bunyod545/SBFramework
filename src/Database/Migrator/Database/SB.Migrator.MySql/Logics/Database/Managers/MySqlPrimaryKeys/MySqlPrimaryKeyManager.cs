@@ -31,7 +31,9 @@ namespace SB.Migrator.MySql
         public void InitializePrimaryKeys()
         {
             MySqlPrimaryKeys = new List<MySqlPrimaryKey>();
-            var command = GetMySqlCommand(Scripts.SelectPrimaryKeys);
+
+            var commandText = string.Format(Scripts.SelectPrimaryKeys, DatabaseTablesManager.GetDatabaseName());
+            var command = GetMySqlCommand(commandText);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
@@ -50,10 +52,10 @@ namespace SB.Migrator.MySql
         {
             return new MySqlPrimaryKey
             {
-                TableSchema = reader["table_schema"] as string,
-                TableName = reader["table_name"] as string,
-                ColumnName = reader["column_name"] as string,
-                ConstraintName = reader["constraint_name"] as string,
+                TableSchema = reader["TABLE_SCHEMA"] as string,
+                TableName = reader["TABLE_NAME"] as string,
+                ColumnName = reader["COLUMN_NAME"] as string,
+                ConstraintName = reader["CONSTRAINT_NAME"] as string,
             };
         }
 
