@@ -15,6 +15,11 @@ namespace SB.Migrator.Metadata
         /// <summary>
         /// 
         /// </summary>
+        public string Decription { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Type { get; set; }
 
         /// <summary>

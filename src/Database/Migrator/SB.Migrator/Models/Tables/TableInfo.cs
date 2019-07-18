@@ -23,6 +23,11 @@ namespace SB.Migrator.Models
         /// <summary>
         /// 
         /// </summary>
+        public string Decription { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string Schema { get; set; }
 
         /// <summary>

@@ -110,6 +110,7 @@ namespace SB.Migrator.Metadata
             var tableInfo = new MetadataTableInfo();
             tableInfo.TableMetadata = tableMetadata;
             tableInfo.Name = tableMetadata.Name;
+            tableInfo.Decription = tableMetadata.Decription;
             tableInfo.Schema = tableMetadata.Schema ?? MigrateManager.DatabaseTablesManager?.DefaultSchema;
             tableInfo.Columns = GetColumns(tableInfo, tableMetadata);
             tableInfo.PrimaryKey = GetPrimaryKey(tableInfo, tableMetadata);
@@ -141,6 +142,7 @@ namespace SB.Migrator.Metadata
             columnInfo.Table = tableInfo;
             columnInfo.IsAllowNull = columnMetadata.IsAllowNull;
             columnInfo.Name = columnMetadata.Name;
+            columnInfo.Decription = columnMetadata.Decription;
             columnInfo.DefaultValue = columnMetadata.DefaultValue;
             columnInfo.Identity = GetColumnIdentity(columnMetadata);
             columnInfo.Type = new MetadataColumnTypeInfo(this, columnMetadata);

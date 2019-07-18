@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SB.Common.Test</name>
+    </assembly>
+    <members>
+        <member name="T:SB.Common.Test.Logics.Application.SBSystemTestContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Application.SBSystemTestContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Application.SBApplicationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Application.SBApplicationTest.InitializeTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer.GetTypeInfos">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.SBTypeTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.SBTypeTest.InitializeMetadata">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.SBTypeTest.MetadataTestEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.SBTypeTest.MetadataTestDetail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.SBTypeTest.MetadataTestDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.Tables.CityTestEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.Tables.CountryTestEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.Tables.MovementDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.Tables.TabTestDetail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Metadata.Types.CitySBType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.Types.CitySBType.#ctor(System.Int64,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="typeId"></param>
+            <param name="clrType"></param>
+        </member>
+        <member name="T:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithArgIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithPropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithArgIndexAndPropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithMultiplePropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithMultipleArgAndMultiplePropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithArgIndexAndMultiplePropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithListProperties">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest.BuildWithListPropertiesAndWithOutArgIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.ObjectTreeItem.ObjectTreeItemBuilderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.ObjectTreeItem.ObjectTreeItemBuilderTest.BuildExceptionNodes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.PhoneNumbers.PhoneNumberTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.PhoneNumbers.PhoneNumberTest.PhoneParseTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Summary.SummaryManagerTest">
+            <summary>
+            Summary manager text
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Summary.SummaryManagerTest.ClassSummaryText">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest.InitializeSynonymProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest.GetSynonymTest">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

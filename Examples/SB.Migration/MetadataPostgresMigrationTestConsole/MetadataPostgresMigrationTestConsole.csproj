@@ -5,6 +5,10 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Bunyod\Desktop\Projects\SBFramework\Examples\SB.Migration\MetadataPostgresMigrationTestConsole\MetadataPostgresMigrationTestConsole.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Database\Migrator\Code\Metadata\SB.Migrator.Metadata\SB.Migrator.Metadata.csproj" />
     <ProjectReference Include="..\..\..\src\Database\Migrator\Database\SB.Migrator.Postgres\SB.Migrator.Postgres.csproj" />

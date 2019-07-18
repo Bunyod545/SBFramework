@@ -1,5 +1,4 @@
-﻿using System;
-using SB.Migrator.Models.Tables.Columns;
+﻿using SB.Migrator.Models.Tables.Columns;
 
 namespace SB.Migrator.Models.Column
 {
@@ -22,6 +21,11 @@ namespace SB.Migrator.Models.Column
         /// 
         /// </summary>
         public string NewName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Decription { get; set; }
 
         /// <summary>
         /// 

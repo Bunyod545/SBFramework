@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Reflection;
+using SB.Common.Logics.Summary;
 
 namespace System
 {
@@ -38,6 +39,16 @@ namespace System
         public static bool IsNullable(this Type type)
         {
             return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static string GetSummary(this Type type)
+        {
+            return SummaryManager.GetSummary(type);
         }
     }
 }

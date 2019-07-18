@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetadataPostgresMigrationTestConsole</name>
+    </assembly>
+    <members>
+        <member name="T:MetadataPostgresMigrationTestConsole.Database.Tables.City">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.City.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.City.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.City.DesignedName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.City.Owner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MetadataPostgresMigrationTestConsole.Database.Tables.Country">
+            <summary>
+            Countrys
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Country.Id">
+            <summary>
+            Country identifier
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Country.Name">
+            <summary>
+            Country name
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Country.DesignedName">
+            <summary>
+            Country designed name
+            </summary>
+        </member>
+        <member name="T:MetadataPostgresMigrationTestConsole.Database.Tables.Holiday">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Holiday.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Holiday.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Holiday.DesignedName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Holiday.MonthsOfYear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.January">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.February">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.March">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.April">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.May">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.June">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.July">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.August">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.September">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.October">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.November">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Database.Tables.MonthsOfYear.December">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MetadataPostgresMigrationTestConsole.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataPostgresMigrationTestConsole.Program.ConnectionString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MetadataPostgresMigrationTestConsole.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>
