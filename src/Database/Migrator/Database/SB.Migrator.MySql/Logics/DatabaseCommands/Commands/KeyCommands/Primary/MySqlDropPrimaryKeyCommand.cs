@@ -20,7 +20,7 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"{PrimaryKey.Table.Schema}.\"{PrimaryKey.Table.Name}\"");
+            ScriptBuilder.Append($"{PrimaryKey.Table.Schema}.`{PrimaryKey.Table.Name}`");
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" DROP CONSTRAINT");

@@ -61,7 +61,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO public.&quot;MigrationsHistory&quot; (&quot;Name&quot; ,&quot;Version&quot;)
+        ///   Looks up a localized string similar to INSERT INTO MigrationsHistory (`Name` ,`Version`)
         ///VALUES (&apos;{0}&apos; ,&apos;{1}&apos;).
         /// </summary>
         internal static string InsertHistoryVersion {
@@ -71,7 +71,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO public.&quot;MigrationsHistory&quot; (&quot;Name&quot; ,&quot;Version2&quot;)
+        ///   Looks up a localized string similar to INSERT INTO MigrationsHistory (`Name` ,`Version2`)
         ///VALUES (&apos;{0}&apos; ,&apos;{1}&apos;).
         /// </summary>
         internal static string InsertHistoryVersion2 {
@@ -92,21 +92,10 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT
-        ///    tc.table_schema, 
-        ///    tc.constraint_name, 
-        ///    tc.table_name, 
-        ///    kcu.column_name, 
-        ///    ccu.table_schema AS foreign_table_schema,
-        ///    ccu.table_name AS foreign_table_name,
-        ///    ccu.column_name AS foreign_column_name 
-        ///FROM 
-        ///    information_schema.table_constraints AS tc 
-        ///    JOIN information_schema.key_column_usage AS kcu
-        ///      ON tc.constraint_name = kcu.constraint_name
-        ///      AND tc.table_schema = kcu.table_schema
-        ///    JOIN information_schema.constraint_column_usage AS ccu
-        ///      ON c [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to SELECT i.TABLE_SCHEMA, i.TABLE_NAME, i.CONSTRAINT_TYPE, i.CONSTRAINT_NAME, k.COLUMN_NAME, k.REFERENCED_TABLE_SCHEMA, k.REFERENCED_TABLE_NAME, k.REFERENCED_COLUMN_NAME 
+        ///FROM information_schema.TABLE_CONSTRAINTS i 
+        ///LEFT JOIN information_schema.KEY_COLUMN_USAGE k ON i.CONSTRAINT_NAME = k.CONSTRAINT_NAME 
+        ///WHERE i.CONSTRAINT_TYPE = &apos;FOREIGN KEY&apos; AND i.TABLE_SCHEMA = &apos;{0}&apos;;.
         /// </summary>
         internal static string SelectForeignKeys {
             get {
@@ -116,8 +105,8 @@ namespace SB.Migrator.MySql.ResxFiles {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT *
-        ///FROM public.&quot;MigrationsHistory&quot;
-        ///WHERE &quot;Name&quot; = &apos;{0}&apos;
+        ///FROM MigrationsHistory
+        ///WHERE Name = &apos;{0}&apos;
         ///LIMIT 1.
         /// </summary>
         internal static string SelectHistory {
@@ -140,12 +129,20 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT *
-        ///FROM information_schema.table_constraints tc 
-        ///JOIN information_schema.constraint_column_usage AS ccu USING (constraint_schema, constraint_name) 
-        ///JOIN information_schema.columns AS c ON c.table_schema = tc.constraint_schema
-        ///AND tc.table_name = c.table_name AND ccu.column_name = c.column_name
-        ///WHERE constraint_type = &apos;PRIMARY KEY&apos;;.
+        ///   Looks up a localized string similar to select tab.table_schema,
+        ///    sta.index_name as CONSTRAINT_NAME,
+        ///    sta.seq_in_index as COLUMN_ID,
+        ///    sta.column_name,
+        ///    tab.table_name
+        ///from information_schema.tables as tab
+        ///inner join information_schema.statistics as sta
+        ///        on sta.table_schema = tab.table_schema
+        ///        and sta.table_name = tab.table_name
+        ///        and sta.index_name = &apos;primary&apos;
+        ///where tab.table_schema = &apos;{0}&apos;
+        ///    and tab.table_type = &apos;BASE TABLE&apos;
+        ///order by tab.table_name,
+        ///    column_id;.
         /// </summary>
         internal static string SelectPrimaryKeys {
             get {

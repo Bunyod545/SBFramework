@@ -31,7 +31,9 @@ namespace SB.Migrator.MySql
         public void InitializeForeignKeys()
         {
             MySqlForeignKeys = new List<MySqlForeignKey>();
-            var command = GetMySqlCommand(Scripts.SelectForeignKeys);
+
+            var commandText = string.Format(Scripts.SelectForeignKeys, DatabaseTablesManager.GetDatabaseName());
+            var command = GetMySqlCommand(commandText);
             var reader = command.ExecuteReader();
 
             if (!reader.HasRows)
@@ -50,13 +52,13 @@ namespace SB.Migrator.MySql
         {
             return new MySqlForeignKey
             {
-                ConstraintName = reader["constraint_name"] as string,
-                TableSchema = reader["table_schema"] as string,
-                TableName = reader["table_name"] as string,
-                ColumnName = reader["column_name"] as string,
-                ReferencedTableSchema = reader["foreign_table_schema"] as string,
-                ReferencedTableName = reader["foreign_table_name"] as string,
-                ReferencedColumnName = reader["foreign_column_name"] as string,
+                ConstraintName = reader["CONSTRAINT_NAME"] as string,
+                TableSchema = reader["TABLE_SCHEMA"] as string,
+                TableName = reader["TABLE_NAME"] as string,
+                ColumnName = reader["COLUMN_NAME"] as string,
+                ReferencedTableSchema = reader["REFERENCED_TABLE_SCHEMA"] as string,
+                ReferencedTableName = reader["REFERENCED_TABLE_NAME"] as string,
+                ReferencedColumnName = reader["REFERENCED_COLUMN_NAME"] as string,
             };
         }
 
