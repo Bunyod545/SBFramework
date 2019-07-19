@@ -23,7 +23,7 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("CREATE TABLE ");
-            ScriptBuilder.AppendFormat("[{0}].[{1}]", Table.Schema, Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetSqlName());
             ScriptBuilder.Append(Strings.LBracket);
 
             Table.Columns.ForEach(BuildColumn);
@@ -38,7 +38,7 @@ namespace SB.Migrator.SqlServer
         private void BuildColumn(ColumnInfo column)
         {
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendFormat("[{0}] ", column.Name);
+            ScriptBuilder.Append($"{column.GetSqlName()} ");
             ScriptBuilder.Append(column.Type.GetColumnType());
 
             BuildIdentity(column);
@@ -63,9 +63,7 @@ namespace SB.Migrator.SqlServer
         /// <param name="column"></param>
         private void BuildNullableInfo(ColumnInfo column)
         {
-            if (!column.IsAllowNull)
-                ScriptBuilder.Append(" NOT");
-
+            ScriptBuilder.AppendIf(!column.IsAllowNull, " NOT");
             ScriptBuilder.Append(" NULL");
         }
 

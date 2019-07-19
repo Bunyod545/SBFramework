@@ -20,7 +20,7 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Column.Table.Schema, Column.Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetPgSqlName());
 
             ScriptBuilder.Append(" DROP CONSTRAINT");
             ScriptBuilder.Append(GetConstraintName());

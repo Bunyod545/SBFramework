@@ -21,13 +21,10 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("sp_rename ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\".\"{2}\" ", 
-                Column.Table.Schema, 
-                Column.Table.Name, 
-                Column.Name);
+            ScriptBuilder.Append($"{Table.GetPgSqlName()}.{Column.GetPgSqlName()} ");
 
             ScriptBuilder.Append(Strings.Comma);
-            ScriptBuilder.AppendFormat("\"{0}\" ", Column.NewName);
+            ScriptBuilder.Append($"{Column.GetPgSqlNewName()} ");
 
             ScriptBuilder.Append(Strings.Comma);
             ScriptBuilder.Append("'COLUMN'");

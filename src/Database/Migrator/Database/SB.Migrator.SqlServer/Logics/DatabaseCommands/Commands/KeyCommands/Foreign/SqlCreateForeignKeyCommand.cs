@@ -20,7 +20,7 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"[{ForeignKey.Table.Schema}].[{ForeignKey.Table.Name}]");
+            ScriptBuilder.Append(Table.GetSqlName());
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" ADD CONSTRAINT");
@@ -30,7 +30,7 @@ namespace SB.Migrator.SqlServer
             ScriptBuilder.Append($" ({ForeignKey.Column.Name})");
 
             ScriptBuilder.Append(" REFERENCES");
-            ScriptBuilder.Append($"[{ForeignKey.ReferenceTable.Schema}].[{ForeignKey.ReferenceTable.Name}]");
+            ScriptBuilder.Append(ForeignKey.ReferenceTable.GetSqlName());
             ScriptBuilder.Append($" ({ForeignKey.ReferenceColumn.Name})");
         }
     }

@@ -110,6 +110,7 @@ namespace SB.Migrator.EntityFramework
             tableInfo.Name = mapping.TableName;
             tableInfo.Schema = mapping.Schema ?? MigrateManager.DatabaseTablesManager?.DefaultSchema;
             tableInfo.ClrType = entity.ClrType;
+            tableInfo.Decription = entity.ClrType.GetSummary();
             tableInfo.Columns = GetColumns(tableInfo);
             tableInfo.PrimaryKey = GetPrimaryKeyInfo(tableInfo);
             
@@ -140,6 +141,7 @@ namespace SB.Migrator.EntityFramework
             var column = new ColumnInfo();
             column.Table = table;
             column.Name = columnRelational.ColumnName;
+            column.Decription = property.PropertyInfo.GetSummary();
             column.Type = new EFColumnTypeInfo(property);
             column.IsAllowNull = property.IsNullable;
             column.DefaultValue = columnRelational.DefaultValue;

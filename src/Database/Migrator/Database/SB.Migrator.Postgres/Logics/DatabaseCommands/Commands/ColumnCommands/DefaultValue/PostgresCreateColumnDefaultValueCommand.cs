@@ -20,7 +20,7 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Column.Table.Schema, Column.Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetPgSqlName());
 
             ScriptBuilder.Append(" ADD CONSTRAINT");
             ScriptBuilder.Append(GetConstraintName());
@@ -28,8 +28,8 @@ namespace SB.Migrator.Postgres
             ScriptBuilder.Append(" DEFAULT");
             ScriptBuilder.Append($" ({Column.DefaultValue})");
 
-            ScriptBuilder.Append(" FOR");
-            ScriptBuilder.Append($" \"{Column.Name}\"");
+            ScriptBuilder.Append(" FOR ");
+            ScriptBuilder.Append(Column.GetPgSqlName());
         }
     }
 }

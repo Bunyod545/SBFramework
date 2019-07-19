@@ -15,7 +15,7 @@ namespace SB.Common.Test.Logics.Summary
         public void ClassSummaryText()
         {
             var summary = SummaryManager.GetSummary(typeof(SummaryManagerTest));
-            Assert.AreEqual(summary, "\n            Summary manager text\n            ");
+            Assert.AreEqual(summary, "Summary manager text");
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using SB.Migrator.Logics.DatabaseCommands;
+﻿using System.Collections.Generic;
+using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models;
+using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.Postgres
 {
@@ -16,19 +18,15 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="info"></param>
-        public virtual void SetTable(TableInfo info)
-        {
-            Table = info;
-        }
+        public List<ColumnInfo> Columns => Table?.Columns;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public virtual string GetTableName()
+        /// <param name="info"></param>
+        public virtual void SetTable(TableInfo info)
         {
-            return $"{Table.Schema}.\"{Table.Name}\"";
+            Table = info;
         }
     }
 }

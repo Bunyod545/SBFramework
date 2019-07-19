@@ -25,5 +25,11 @@ namespace MetadataPostgresMigrationTestConsole.Database.Tables
         /// </summary>
         [Column]
         public string DesignedName { get; set; }
+
+        /// <summary>
+        /// Country test name
+        /// </summary>
+        [Column]
+        public string TestName { get; set; }
     }
 }

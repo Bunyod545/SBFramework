@@ -27,6 +27,7 @@ namespace SB.Migrator.Metadata
             var tableMetadata = new TableMetadata();
             tableMetadata.TableType = tableType;
             tableMetadata.Name = tableAttr?.Name ?? tableType.Name;
+            tableMetadata.Decription = tableType.GetSummary();
             tableMetadata.Schema = tableAttr?.Schema;
             tableMetadata.Columns = GetColumns(tableMetadata);
             tableMetadata.PrimaryKey = GetPrimaryKey(tableMetadata);

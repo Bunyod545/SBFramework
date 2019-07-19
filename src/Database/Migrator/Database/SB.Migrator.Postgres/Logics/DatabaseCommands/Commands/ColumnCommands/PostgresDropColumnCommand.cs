@@ -18,7 +18,7 @@ namespace SB.Migrator.Postgres
         protected override void InternalBuildCommandText()
         {
             SetAlterTable();
-            ScriptBuilder.Append($"DROP COLUMN \"{Column.Name}\"");
+            ScriptBuilder.Append($"DROP COLUMN {Column.GetPgSqlName()}");
         }
     }
 }

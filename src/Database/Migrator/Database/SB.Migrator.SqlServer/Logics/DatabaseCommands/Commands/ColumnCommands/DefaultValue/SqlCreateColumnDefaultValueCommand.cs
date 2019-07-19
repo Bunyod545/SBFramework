@@ -20,7 +20,7 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.AppendFormat("[{0}].[{1}]", Column.Table.Schema, Column.Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetSqlName());
 
             ScriptBuilder.Append(" ADD CONSTRAINT");
             ScriptBuilder.Append(GetConstraintName());
@@ -28,8 +28,8 @@ namespace SB.Migrator.SqlServer
             ScriptBuilder.Append(" DEFAULT");
             ScriptBuilder.Append($" ({Column.DefaultValue})");
 
-            ScriptBuilder.Append(" FOR");
-            ScriptBuilder.Append($" [{Column.Name}]");
+            ScriptBuilder.Append(" FOR ");
+            ScriptBuilder.Append(Column.GetSqlName());
         }
     }
 }

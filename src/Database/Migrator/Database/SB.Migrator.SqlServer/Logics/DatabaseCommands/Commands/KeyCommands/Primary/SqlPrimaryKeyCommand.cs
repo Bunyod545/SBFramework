@@ -1,4 +1,5 @@
 ﻿using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Models;
 using SB.Migrator.Models.Tables.Constraints;
 
 namespace SB.Migrator.SqlServer
@@ -12,6 +13,11 @@ namespace SB.Migrator.SqlServer
         /// 
         /// </summary>
         public PrimaryKeyInfo PrimaryKey { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TableInfo Table => PrimaryKey?.Table;
 
         /// <summary>
         /// 

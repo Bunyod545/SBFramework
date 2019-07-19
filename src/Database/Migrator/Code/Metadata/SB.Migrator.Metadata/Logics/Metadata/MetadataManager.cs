@@ -182,6 +182,7 @@ namespace SB.Migrator.Metadata
             var tableMetadata = new TableMetadata();
             tableMetadata.TableType = tableType;
             tableMetadata.Name = tableAttr?.Name ?? tableType.Name;
+            tableMetadata.Decription = tableType.GetSummary();
             tableMetadata.Schema = tableAttr?.Schema;
             tableMetadata.Columns = GetColumns(tableMetadata);
             tableMetadata.PrimaryKey = GetPrimaryKey(tableMetadata);
@@ -217,6 +218,7 @@ namespace SB.Migrator.Metadata
             columnMetadata.Table = tableMetadata;
             columnMetadata.Property = property;
             columnMetadata.Name = propAttr.Name ?? property.Name;
+            columnMetadata.Decription = property.GetSummary();
             columnMetadata.Type = propAttr.TypeName;
             columnMetadata.IsAllowNull = ColumnIsAllowNull(propAttr, columnMetadata);
             columnMetadata.DefaultValue = propAttr.DefaultValue;

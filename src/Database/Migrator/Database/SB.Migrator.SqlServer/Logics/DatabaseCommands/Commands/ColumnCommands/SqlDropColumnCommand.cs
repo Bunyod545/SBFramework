@@ -18,7 +18,8 @@ namespace SB.Migrator.SqlServer
         protected override void InternalBuildCommandText()
         {
             SetAlterTable();
-            ScriptBuilder.Append($"DROP COLUMN [{Column.Name}]");
+            ScriptBuilder.Append("DROP COLUMN ");
+            ScriptBuilder.Append(Column.GetSqlName());
         }
     }
 }

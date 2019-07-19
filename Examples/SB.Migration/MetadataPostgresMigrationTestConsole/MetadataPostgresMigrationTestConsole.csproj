@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MetadataPostgresMigrationTestConsole.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\src\Database\Migrator\Code\Metadata\SB.Migrator.Metadata\SB.Migrator.Metadata.csproj" />
     <ProjectReference Include="..\..\..\src\Database\Migrator\Database\SB.Migrator.Postgres\SB.Migrator.Postgres.csproj" />
   </ItemGroup>

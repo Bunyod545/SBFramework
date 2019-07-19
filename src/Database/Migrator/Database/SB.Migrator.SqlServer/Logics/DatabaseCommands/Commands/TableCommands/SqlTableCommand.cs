@@ -1,5 +1,7 @@
-﻿using SB.Migrator.Logics.DatabaseCommands;
+﻿using System.Collections.Generic;
+using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models;
+using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.SqlServer
 {
@@ -12,6 +14,11 @@ namespace SB.Migrator.SqlServer
         /// 
         /// </summary>
         public TableInfo Table { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<ColumnInfo> Columns => Table?.Columns;
 
         /// <summary>
         /// 

@@ -20,10 +20,10 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.AppendFormat("[{0}].[{1}]", Table.Schema, Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetSqlName());
 
             ScriptBuilder.Append("RENAME TO ");
-            ScriptBuilder.AppendFormat("[{0}].[{1}]", Table.Schema, Table.NewName);
+            ScriptBuilder.AppendFormat(Table.GetSqlNewName());
         }
     }
 }

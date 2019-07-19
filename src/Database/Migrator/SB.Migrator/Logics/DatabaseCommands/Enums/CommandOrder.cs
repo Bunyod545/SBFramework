@@ -68,6 +68,16 @@
         /// <summary>
         /// 
         /// </summary>
+        DropUniqueKey,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        CreateUniqueKey,
+
+        /// <summary>
+        /// 
+        /// </summary>
         DropForeignKey,
 
         /// <summary>

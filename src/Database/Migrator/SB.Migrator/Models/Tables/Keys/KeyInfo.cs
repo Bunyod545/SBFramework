@@ -1,4 +1,4 @@
-﻿namespace SB.Migrator.Models.Tables.Constraints
+﻿namespace SB.Migrator.Models.Tables
 {
     /// <summary>
     /// 

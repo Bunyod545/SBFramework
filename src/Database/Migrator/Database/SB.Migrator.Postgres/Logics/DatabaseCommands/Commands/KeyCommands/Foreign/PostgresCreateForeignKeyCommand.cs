@@ -20,18 +20,18 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"{ForeignKey.Table.Schema}.\"{ForeignKey.Table.Name}\"");
+            ScriptBuilder.Append(Table.GetPgSqlName());
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append("ADD CONSTRAINT");
             ScriptBuilder.Append($" {GetForeignKeyName()}");
 
             ScriptBuilder.Append(" FOREIGN KEY");
-            ScriptBuilder.Append($" (\"{ForeignKey.Column.Name}\")");
+            ScriptBuilder.Append($" ({ForeignKey.Column.GetPgSqlName()})");
 
             ScriptBuilder.Append(" REFERENCES");
-            ScriptBuilder.Append($" {ForeignKey.ReferenceTable.Schema}.\"{ForeignKey.ReferenceTable.Name}\"");
-            ScriptBuilder.Append($" (\"{ForeignKey.ReferenceColumn.Name}\")");
+            ScriptBuilder.Append($" {ForeignKey.ReferenceTable.GetPgSqlName()}");
+            ScriptBuilder.Append($" ({ForeignKey.ReferenceColumn.GetPgSqlName()})");
         }
     }
 }

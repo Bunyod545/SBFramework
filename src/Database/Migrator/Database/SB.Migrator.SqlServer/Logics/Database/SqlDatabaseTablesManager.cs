@@ -5,6 +5,7 @@ using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Keys;
 using SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource;
 
 namespace SB.Migrator.SqlServer
@@ -37,12 +38,19 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
+        protected SqlUniqueKeyManager SqlUniqueKeyManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected SqlPrimaryKeyManager SqlPrimaryKeyManager { get; }
 
         /// <summary>
         /// 
         /// </summary>
         protected SqlForeignKeyManager SqlForeignKeyManager { get; }
+
+
 
         /// <summary>
         /// 
@@ -57,6 +65,7 @@ namespace SB.Migrator.SqlServer
 
             SqlTableManager = new SqlTableManager(this);
             SqlColumnManager = new SqlColumnManager(this);
+            SqlUniqueKeyManager = new SqlUniqueKeyManager(this);
             SqlPrimaryKeyManager = new SqlPrimaryKeyManager(this);
             SqlForeignKeyManager = new SqlForeignKeyManager(this);
         }
@@ -69,6 +78,7 @@ namespace SB.Migrator.SqlServer
         {
             SqlTableManager.InitializeTables();
             SqlColumnManager.InitializeColumns();
+            SqlUniqueKeyManager.InitializeUniqueKeys();
             SqlPrimaryKeyManager.InitializePrimaryKeys();
             SqlForeignKeyManager.InitializeForeignKeys();
 
@@ -90,6 +100,7 @@ namespace SB.Migrator.SqlServer
             table.Schema = sqlTable.Schema;
             table.Name = sqlTable.Name;
             table.Columns = GetColumns(table, sqlTable);
+            table.UniqueKeys = GetUniqueKeys(table, sqlTable);
             table.PrimaryKey = GetPrimaryKeyInfo(table, sqlTable);
 
             return table;
@@ -123,6 +134,50 @@ namespace SB.Migrator.SqlServer
             column.Table = table;
 
             return column;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="sqlTable"></param>
+        /// <returns></returns>
+        private List<UniqueKeyInfo> GetUniqueKeys(TableInfo table, SqlTable sqlTable)
+        {
+            var uniqueKeys = SqlUniqueKeyManager.GetUniqueKeys(sqlTable);
+            return uniqueKeys.Select(s => ConvertToUniqueInfo(table, s)).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="sqlUniqueKey"></param>
+        /// <returns></returns>
+        private UniqueKeyInfo ConvertToUniqueInfo(TableInfo table, SqlUniqueKeyInfo sqlUniqueKey)
+        {
+            var uniqueKey = new UniqueKeyInfo();
+            uniqueKey.Table = table;
+            uniqueKey.Name = sqlUniqueKey.UniqueName;
+            uniqueKey.UniqueColumns = ConvertToUniqueColumnInfo(table, sqlUniqueKey).ToList();
+
+            return uniqueKey;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="sqlUniqueKey"></param>
+        /// <returns></returns>
+        private IEnumerable<ColumnInfo> ConvertToUniqueColumnInfo(TableInfo table, SqlUniqueKeyInfo sqlUniqueKey)
+        {
+            foreach (var uniqueKey in sqlUniqueKey.SqlUniqueKeys)
+            {
+                var column = table.GetColumn(uniqueKey.ColumnName);
+                if (column != null)
+                    yield return column;
+            }
         }
 
         /// <summary>

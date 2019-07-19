@@ -24,15 +24,16 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("CREATE TABLE ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Table.Schema, Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetPgSqlName());
             ScriptBuilder.Append(Strings.LBracket);
 
-            Table.Columns.ForEach(BuildColumn);
+            Columns.ForEach(BuildColumn);
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(Strings.RBracket);
             ScriptBuilder.Append(Strings.Semicolon);
 
             AlterPrimaryKeyIdentitySequence();
+            SetComments();
         }
 
         /// <summary>
@@ -42,14 +43,12 @@ namespace SB.Migrator.Postgres
         private void BuildColumn(ColumnInfo column)
         {
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendFormat("\"{0}\" ", column.Name);
+            ScriptBuilder.Append($"{column.GetPgSqlName()} ");
             ScriptBuilder.Append(column.Type.GetColumnType());
 
             BuildNullableInfo(column);
             BuildIdentity(column);
-
-            if (Table.Columns.IsNotLast(column))
-                ScriptBuilder.Append(Strings.Comma);
+            ScriptBuilder.AppendIf(Columns.IsNotLast(column), Strings.Comma);
         }
 
         /// <summary>
@@ -58,9 +57,7 @@ namespace SB.Migrator.Postgres
         /// <param name="column"></param>
         private void BuildNullableInfo(ColumnInfo column)
         {
-            if (!column.IsAllowNull)
-                ScriptBuilder.Append(" NOT");
-
+            ScriptBuilder.AppendIf(!column.IsAllowNull, " NOT");
             ScriptBuilder.Append(" NULL");
         }
 
@@ -95,7 +92,8 @@ namespace SB.Migrator.Postgres
             ScriptBuilder.AppendLine();
             ScriptBuilder.AppendLine($"ALTER SEQUENCE \"{GetSequenceName()}\"");
             ScriptBuilder.Append("OWNED BY ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\".\"{2}\"", Table.Schema, Table.Name, Table.PrimaryKey.PrimaryColumn.Name);
+            ScriptBuilder.Append($"{Table.GetPgSqlName()}.{Table.PrimaryKey.PrimaryColumn.GetPgSqlName()}");
+            ScriptBuilder.AppendLine(Strings.Semicolon);
         }
 
         /// <summary>
@@ -105,6 +103,25 @@ namespace SB.Migrator.Postgres
         private string GetSequenceName()
         {
             return $"{Table.Name}_{Table.PrimaryKey.PrimaryColumn.Name}_seq";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetComments()
+        {
+            ScriptBuilder.AppendLine();
+            ScriptBuilder.AppendLine($"comment on table {Table.GetPgSqlName()} is '{Table.Decription}';");
+            Table.Columns.ForEach(SetColumnComment);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="columnInfo"></param>
+        private void SetColumnComment(ColumnInfo columnInfo)
+        {
+            ScriptBuilder.AppendLine($"comment on column {Table.GetPgSqlName()}.{columnInfo.GetPgSqlName()} is '{columnInfo.Decription}';");
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("DROP TABLE ");
-            ScriptBuilder.AppendFormat("[{0}].[{1}]", Table.Schema, Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetSqlName());
         }
     }
 }

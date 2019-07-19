@@ -20,13 +20,13 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"{PrimaryKey.Table.Schema}.\"{PrimaryKey.Table.Name}\"");
+            ScriptBuilder.Append(Table.GetPgSqlName());
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" ADD CONSTRAINT");
             ScriptBuilder.Append($" {GetPrimaryKeyName()}");
             ScriptBuilder.Append(" PRIMARY KEY");
-            ScriptBuilder.Append($"(\"{PrimaryKey.PrimaryColumn.Name}\")");
+            ScriptBuilder.Append($"({PrimaryKey.PrimaryColumn.GetPgSqlName()})");
         }
     }
 }

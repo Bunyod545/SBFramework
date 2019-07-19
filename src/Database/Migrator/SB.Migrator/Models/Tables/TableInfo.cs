@@ -2,6 +2,7 @@
 using System.Linq;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Keys;
 
 namespace SB.Migrator.Models
 {
@@ -34,6 +35,11 @@ namespace SB.Migrator.Models
         /// 
         /// </summary>
         public List<ColumnInfo> Columns { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<UniqueKeyInfo> UniqueKeys { get; set; }
 
         /// <summary>
         /// 

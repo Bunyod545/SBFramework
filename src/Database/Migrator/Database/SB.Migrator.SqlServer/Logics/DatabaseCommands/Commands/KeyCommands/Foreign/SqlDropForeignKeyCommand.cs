@@ -20,7 +20,7 @@ namespace SB.Migrator.SqlServer
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"[{ForeignKey.Table.Schema}].[{ForeignKey.Table.Name}]");
+            ScriptBuilder.Append(Table.GetSqlName());
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" DROP CONSTRAINT");

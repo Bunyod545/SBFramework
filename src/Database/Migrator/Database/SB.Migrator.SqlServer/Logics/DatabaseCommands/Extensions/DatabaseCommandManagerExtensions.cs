@@ -24,6 +24,7 @@ namespace SB.Migrator.SqlServer
             manager.CommandServices.Add<IRenameColumnCommand, SqlRenameColumnCommand>();
 
             manager.CommandServices.Add<ICreateColumnDefaultValueCommand, SqlCreateColumnDefaultValueCommand>();
+            manager.CommandServices.Add<ICreateUniqueKeyCommand, SqlCreateUniqueCommand>();
             manager.CommandServices.Add<ICreatePrimaryKeyCommand, SqlCreatePrimaryKeyCommand>();
             manager.CommandServices.Add<ICreateForeignKeyCommand, SqlCreateForeignKeyCommand>();
 

@@ -24,6 +24,7 @@ namespace SB.Migrator.Postgres
             manager.CommandServices.Add<IRenameColumnCommand, PostgresRenameColumnCommand>();
 
             manager.CommandServices.Add<ICreateColumnDefaultValueCommand, PostgresCreateColumnDefaultValueCommand>();
+            manager.CommandServices.Add<ICreateUniqueKeyCommand, PostgresCreateUniqueCommand>();
             manager.CommandServices.Add<ICreatePrimaryKeyCommand, PostgresCreatePrimaryKeyCommand>();
             manager.CommandServices.Add<ICreateForeignKeyCommand, PostgresCreateForeignKeyCommand>();
 

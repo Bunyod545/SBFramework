@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EFPostgresMigrationTestConsole</name>
+    </assembly>
+    <members>
+        <member name="T:EFPostgresMigrationTestConsole.Contexts.DataContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.DataContext.Countries">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.DataContext.Cities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EFPostgresMigrationTestConsole.Contexts.DataContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:EFPostgresMigrationTestConsole.Contexts.DataContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="T:EFPostgresMigrationTestConsole.Contexts.Tables.City">
+            <summary>
+            City infos
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.City.Id">
+            <summary>
+            City identifier
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.City.Name">
+            <summary>
+            City name
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.City.OwnerId">
+            <summary>
+            City owner Country
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.City.Owner">
+            <summary>
+            City owner Country
+            </summary>
+        </member>
+        <member name="T:EFPostgresMigrationTestConsole.Contexts.Tables.Country">
+            <summary>
+            Country info
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.Country.Id">
+            <summary>
+            Country identifier
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.Country.Name">
+            <summary>
+            Country name
+            </summary>
+        </member>
+        <member name="P:EFPostgresMigrationTestConsole.Contexts.Tables.Country.DesignedName">
+            <summary>
+            Country disegned name
+            </summary>
+        </member>
+        <member name="T:EFPostgresMigrationTestConsole.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:EFPostgresMigrationTestConsole.Program.ConnectionString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:EFPostgresMigrationTestConsole.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>

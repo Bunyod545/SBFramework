@@ -24,5 +24,10 @@
         /// 
         /// </summary>
         public const string MethodExtensions = "M:";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string SummaryWhiteSpace = "\n            ";
     }
 }

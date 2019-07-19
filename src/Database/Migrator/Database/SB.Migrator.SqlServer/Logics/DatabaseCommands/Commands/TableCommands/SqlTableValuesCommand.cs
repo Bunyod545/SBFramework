@@ -51,7 +51,7 @@ namespace SB.Migrator.SqlServer
         private void BuildIfStatement()
         {
             ScriptBuilder.Append("IF EXISTS(SELECT * FROM ");
-            ScriptBuilder.AppendFormat(Table.ToString());
+            ScriptBuilder.AppendFormat(Table.GetSqlName());
             ScriptBuilder.Append(" WHERE ");
 
             var primaryColumn = Table.GetPrimaryColumnName();
@@ -77,9 +77,7 @@ namespace SB.Migrator.SqlServer
                 ScriptBuilder.Append(Strings.Equal);
                 ScriptBuilder.Append($"@{column.Name}");
 
-                if (Table.Columns.IsNotLast(column))
-                    ScriptBuilder.Append(Strings.Comma);
-
+                ScriptBuilder.AppendIf(Columns.IsNotLast(column), Strings.Comma);
                 ScriptBuilder.Append(Strings.WhiteSpace);
             }
 
@@ -102,29 +100,19 @@ namespace SB.Migrator.SqlServer
             ScriptBuilder.AppendFormat(Table.ToString());
             ScriptBuilder.Append(Strings.LBracket);
 
-            foreach (var column in Table.Columns)
+            foreach (var column in Columns)
             {
                 ScriptBuilder.Append(column.Name);
-
-                if (Table.Columns.IsLast(column))
-                    continue;
-
-                ScriptBuilder.Append(Strings.Comma);
-                ScriptBuilder.Append(Strings.WhiteSpace);
+                ScriptBuilder.AppendIf(Columns.IsNotLast(column), ", ");
             }
 
             ScriptBuilder.AppendLine(Strings.RBracket);
             ScriptBuilder.Append("VALUES(");
 
-            foreach (var column in Table.Columns)
+            foreach (var column in Columns)
             {
                 ScriptBuilder.Append($"@{column.Name}");
-
-                if (Table.Columns.IsLast(column))
-                    continue;
-
-                ScriptBuilder.Append(Strings.Comma);
-                ScriptBuilder.Append(Strings.WhiteSpace);
+                ScriptBuilder.AppendIf(Columns.IsNotLast(column), ", ");
             }
 
             ScriptBuilder.Append(Strings.RBracket);

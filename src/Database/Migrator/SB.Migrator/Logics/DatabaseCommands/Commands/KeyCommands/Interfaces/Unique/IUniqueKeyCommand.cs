@@ -1,4 +1,5 @@
 ﻿using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Keys;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -10,12 +11,12 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        ForeignKeyInfo ForeignKey { get; }
+        UniqueKeyInfo UniqueKey { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="foreignKey"></param>
-        void SetForeignKey(ForeignKeyInfo foreignKey);
+        /// <param name="uniqueKey"></param>
+        void SetUniqueKey(UniqueKeyInfo uniqueKey);
     }
 }

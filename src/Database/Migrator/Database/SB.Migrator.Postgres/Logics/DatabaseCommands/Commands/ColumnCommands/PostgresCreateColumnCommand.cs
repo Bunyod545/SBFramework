@@ -20,6 +20,9 @@ namespace SB.Migrator.Postgres
             SetAlterTable();
             ScriptBuilder.Append(" ADD");
             SetColumnInfo();
+
+            ScriptBuilder.AppendLine();
+            ScriptBuilder.AppendLine($"comment on column {Table.GetPgSqlName()}.{Column.GetPgSqlName()} is '{Column.Decription}';");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
-using SB.Migrator.Postgres;
 
 namespace SB.Migrator.Postgres
 {
@@ -14,6 +14,11 @@ namespace SB.Migrator.Postgres
         /// 
         /// </summary>
         public ColumnInfo Column { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TableInfo Table => Column?.Table;
 
         /// <summary>
         /// 
@@ -31,7 +36,7 @@ namespace SB.Migrator.Postgres
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"{Column.Table.Schema}.\"{Column.Table.Name}\"");
+            ScriptBuilder.Append(Table.GetPgSqlName());
             ScriptBuilder.AppendLine();
         }
 
@@ -40,7 +45,7 @@ namespace SB.Migrator.Postgres
         /// </summary>
         protected void SetColumnInfo()
         {
-            ScriptBuilder.Append($" {GetColumnName()} {Column.Type.GetColumnType()}");
+            ScriptBuilder.Append($" {Column.GetPgSqlName()} {Column.Type.GetColumnType()}");
             SetColumnNullableInfo();
         }
 
@@ -52,16 +57,7 @@ namespace SB.Migrator.Postgres
             if (!Column.IsAllowNull)
                 ScriptBuilder.Append(" NOT");
 
-            ScriptBuilder.Append(" NULL");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        protected virtual string GetColumnName()
-        {
-            return $"\"{Column.Name}\"";
+            ScriptBuilder.Append(" NULL;");
         }
     }
 }

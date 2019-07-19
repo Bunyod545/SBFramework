@@ -169,6 +169,17 @@ TC.CONSTRAINT_NAME = KU.CONSTRAINT_NAME;</value>
 FROM INFORMATION_SCHEMA.TABLES     
 WHERE TABLE_TYPE='BASE TABLE'</value>
   </data>
+  <data name="SelectUniqueKeys" xml:space="preserve">
+    <value>select 
+TC.Constraint_Name, 
+CC.Column_Name ,
+TC.TABLE_SCHEMA,
+TC.TABLE_NAME
+from information_schema.table_constraints TC
+inner join information_schema.constraint_column_usage CC on TC.Constraint_Name = CC.Constraint_Name
+where TC.constraint_type = 'Unique'
+order by TC.Constraint_Name</value>
+  </data>
   <data name="UpdateHistoryVersion" xml:space="preserve">
     <value>UPDATE [dbo].[MigrationsHistory]
 SET [Version] = '{1}'

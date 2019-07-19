@@ -73,7 +73,18 @@ namespace SB.Common.Logics.Summary
         public static string GetSummary(Assembly assembly, string memberName)
         {
             var document = GetSummaryDocument(assembly);
-            return document?.Members?.MemberList.FirstOrDefault(f => f.Name == memberName)?.Summary;
+            var summary = document?.Members?.MemberList.FirstOrDefault(f => f.Name == memberName)?.Summary;
+            if (summary == null)
+                return null;
+
+            var whiteSpaceLenght = SummaryHelper.SummaryWhiteSpace.Length;
+            if (summary.StartsWith(SummaryHelper.SummaryWhiteSpace))
+                summary = summary.Substring(whiteSpaceLenght, summary.Length - whiteSpaceLenght);
+
+            if (summary.EndsWith(SummaryHelper.SummaryWhiteSpace))
+                summary = summary.Substring(0, summary.Length - whiteSpaceLenght);
+
+            return summary;
         }
 
         /// <summary>

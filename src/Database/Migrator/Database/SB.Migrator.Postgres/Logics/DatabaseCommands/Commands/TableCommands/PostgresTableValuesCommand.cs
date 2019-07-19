@@ -52,7 +52,7 @@ namespace SB.Migrator.Postgres
         private void BuildUpdateCommand()
         {
             ScriptBuilder.Append("WITH upsert AS (UPDATE ");
-            ScriptBuilder.Append($"{GetTableName()} SET ");
+            ScriptBuilder.Append($"{Table.GetPgSqlName()} SET ");
             Table.Columns.ForEach(BuildUpdateSet);
 
             var primaryColumn = Table.GetPrimaryColumnName();
@@ -66,13 +66,11 @@ namespace SB.Migrator.Postgres
         /// <param name="column"></param>
         private void BuildUpdateSet(ColumnInfo column)
         {
-            ScriptBuilder.Append($"\"{column.Name}\"");
+            ScriptBuilder.Append(column.GetPgSqlName());
             ScriptBuilder.Append(" = ");
             ScriptBuilder.Append($"@{column.Name}");
 
-            if (Table.Columns.IsNotLast(column))
-                ScriptBuilder.Append(Strings.Comma);
-
+            ScriptBuilder.AppendIf(Columns.IsNotLast(column), Strings.Comma);
             ScriptBuilder.Append(Strings.WhiteSpace);
         }
 
@@ -82,7 +80,7 @@ namespace SB.Migrator.Postgres
         private void BuildInsertCommand()
         {
             ScriptBuilder.Append("INSERT INTO ");
-            ScriptBuilder.Append($"{GetTableName()}");
+            ScriptBuilder.Append($"{Table.GetPgSqlName()}");
             ScriptBuilder.Append(Strings.LBracket);
 
             Table.Columns.ForEach(BuildColumn);
@@ -99,13 +97,8 @@ namespace SB.Migrator.Postgres
         /// </summary>
         private void BuildColumn(ColumnInfo column)
         {
-            ScriptBuilder.Append($"\"{column.Name}\"");
-
-            if (Table.Columns.IsLast(column))
-                return;
-
-            ScriptBuilder.Append(Strings.Comma);
-            ScriptBuilder.Append(Strings.WhiteSpace);
+            ScriptBuilder.Append(column.GetPgSqlName());
+            ScriptBuilder.AppendIf(Columns.IsNotLast(column), ", ");
         }
 
         /// <summary>
@@ -115,12 +108,7 @@ namespace SB.Migrator.Postgres
         private void BuildValue(ColumnInfo column)
         {
             ScriptBuilder.Append($"@{column.Name}");
-
-            if (Table.Columns.IsLast(column))
-                return;
-
-            ScriptBuilder.Append(Strings.Comma);
-            ScriptBuilder.Append(Strings.WhiteSpace);
+            ScriptBuilder.AppendIf(Columns.IsNotLast(column), ", ");
         }
 
         /// <summary>

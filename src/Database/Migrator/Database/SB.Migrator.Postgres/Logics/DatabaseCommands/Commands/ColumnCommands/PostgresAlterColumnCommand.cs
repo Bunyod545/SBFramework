@@ -47,7 +47,7 @@ namespace SB.Migrator.Postgres
             if (type == DatabaseColumn.Type.GetColumnType())
                 return;
 
-            ScriptBuilder.AppendLine($"ALTER COLUMN {GetColumnName()} TYPE {type};");
+            ScriptBuilder.AppendLine($"ALTER COLUMN {Column.GetPgSqlName()} TYPE {type};");
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace SB.Migrator.Postgres
             if (Column.IsAllowNull == DatabaseColumn.IsAllowNull)
                 return;
 
-            ScriptBuilder.AppendLine($"ALTER COLUMN {GetColumnName()}");
+            ScriptBuilder.AppendLine($"ALTER COLUMN {Column.GetPgSqlName()}");
             if (Column.IsAllowNull)
                 ScriptBuilder.Append(" DROP NOT NULL");
 
