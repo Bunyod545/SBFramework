@@ -4,16 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using SB.EntityFramework.Context;
-using SB.EntityFramework.Context.Tables;
 using SB.Common.Extensions;
 
-namespace SB.EntityFramework
+namespace SB.Migrator.EntityFramework
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class TableFinder
+    public class TableFinder : ITableFinder
     {
         /// <summary>
         /// 
@@ -30,7 +28,7 @@ namespace SB.EntityFramework
         /// <summary>
         /// 
         /// </summary>
-        public static List<TypeInfo> CacheTypeInfos { get; set; }
+        public static List<TableTypeInfo> CacheTypeInfos { get; set; }
 
         /// <summary>
         /// 
@@ -38,7 +36,7 @@ namespace SB.EntityFramework
         static TableFinder()
         {
             Assemblies = new List<Assembly>();
-            CacheTypeInfos = new List<TypeInfo>();
+            CacheTypeInfos = new List<TableTypeInfo>();
         }
 
         /// <summary>
@@ -64,7 +62,7 @@ namespace SB.EntityFramework
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<TypeInfo> InitalizeTypeInfos()
+        public static List<TableTypeInfo> InitalizeTypeInfos()
         {
             if (CacheTypeInfos != null && CacheTypeInfos.Any())
                 return CacheTypeInfos;
@@ -77,7 +75,7 @@ namespace SB.EntityFramework
         /// </summary>
         /// <param name="assembly"></param>
         /// <returns></returns>
-        public static List<TypeInfo> InitalizeTypeInfos(Assembly assembly)
+        public static List<TableTypeInfo> InitalizeTypeInfos(Assembly assembly)
         {
             return GetContextTypes(assembly).SelectMany(InitalizeTypeInfos).ToList();
         }
@@ -87,7 +85,7 @@ namespace SB.EntityFramework
         /// </summary>
         /// <param name="contextType"></param>
         /// <returns></returns>
-        public static List<TypeInfo> InitalizeTypeInfos(Type contextType)
+        public static List<TableTypeInfo> InitalizeTypeInfos(Type contextType)
         {
             var props = contextType.GetProperties();
             return props.Select(GetTypeInfo).ToList(w => w != null);
@@ -98,17 +96,17 @@ namespace SB.EntityFramework
         /// </summary>
         /// <param name="property"></param>
         /// <returns></returns>
-        public static TypeInfo GetTypeInfo(PropertyInfo property)
+        public static TableTypeInfo GetTypeInfo(PropertyInfo property)
         {
             var tableType = GetTableType(property);
-            if (tableType == null || tableType == typeof(SbType))
+            if (tableType == null)
                 return null;
 
             var attr = tableType.GetCustomAttribute<TableAttribute>();
-            var typeInfo = new TypeInfo(tableType);
+            var typeInfo = new TableTypeInfo(tableType);
 
             typeInfo.Name = attr?.Name ?? property.Name;
-            typeInfo.Schema = attr?.Schema ?? EFContext.DefaultSchema;
+            typeInfo.Schema = attr?.Schema;
 
             CacheTypeInfos.Add(typeInfo);
             return typeInfo;
@@ -135,7 +133,7 @@ namespace SB.EntityFramework
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<Type> GetContextTypes()
+        public List<Type> GetContextTypes()
         {
             var types = SafeAssemblies.SelectMany(s=>s.GetTypes());
             return types.Where(w => typeof(DbContext).IsAssignableFrom(w)).ToList();

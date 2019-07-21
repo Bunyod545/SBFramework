@@ -11,7 +11,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        CommandServices CommandServices { get; }
+        ICommandServices CommandServices { get; }
 
         /// <summary>
         /// 

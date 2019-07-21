@@ -19,6 +19,7 @@ namespace SB.Migrator
 
             services.Remove<IDropTableCommand>();
             services.Remove<IDropColumnCommand>();
+            services.Remove<IDropUniqueKeyCommand>();
             services.Remove<IDropForeignKeyCommand>();
             services.Remove<IDropPrimaryKeyCommand>();
             services.Remove<IDropColumnDefaultValueCommand>();

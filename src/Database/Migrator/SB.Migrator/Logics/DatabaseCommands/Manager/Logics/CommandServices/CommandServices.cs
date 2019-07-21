@@ -7,7 +7,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
     /// <summary>
     /// 
     /// </summary>
-    public class CommandServices
+    public class CommandServices : ICommandServices
     {
         /// <summary>
         /// 

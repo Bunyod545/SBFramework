@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SB.EntityFramework;
 using SB.Migrator.EntityFramework.Logics.Code.Logics.MigrationValidators;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Models;

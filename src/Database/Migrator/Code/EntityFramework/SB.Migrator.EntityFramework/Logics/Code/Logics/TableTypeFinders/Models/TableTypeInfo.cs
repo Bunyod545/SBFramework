@@ -1,12 +1,11 @@
 ﻿using System;
-using SB.EntityFramework.Context.Tables;
 
-namespace SB.EntityFramework
+namespace SB.Migrator.EntityFramework
 {
     /// <summary>
     /// 
     /// </summary>
-    public class TypeInfo
+    public class TableTypeInfo
     {
         /// <summary>
         /// 
@@ -27,23 +26,9 @@ namespace SB.EntityFramework
         /// 
         /// </summary>
         /// <param name="clrType"></param>
-        public TypeInfo(Type clrType)
+        public TableTypeInfo(Type clrType)
         {
             ClrType = clrType;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public bool IsEqual(SbType type)
-        {
-            if (type == null)
-                return false;
-
-            return Schema == type.Prefix &&
-                   Name == type.Name;
         }
     }
 }

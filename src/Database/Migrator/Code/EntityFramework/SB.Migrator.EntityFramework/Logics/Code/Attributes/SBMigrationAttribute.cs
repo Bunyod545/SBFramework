@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SB.EntityFramework
+namespace SB.Migrator.EntityFramework
 {
     /// <summary>
     /// 

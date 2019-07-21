@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SB.EntityFramework.Test.Logics.SbTypes.Context.Tables;
+using SB.Migrator.EntityFramework;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes.Context
 {
@@ -7,7 +8,7 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
     /// 
     /// </summary>
     [SBMigration]
-    public class EFMigrationTestContext : SBSystemContext
+    public class EFMigrationTestContext : DbContext
     {
         /// <summary>
         /// 

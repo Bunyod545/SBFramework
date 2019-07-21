@@ -1,6 +1,6 @@
 ﻿using EFPostgresMigrationTestConsole.Contexts.Tables;
 using Microsoft.EntityFrameworkCore;
-using SB.EntityFramework;
+using SB.Migrator.EntityFramework;
 
 namespace EFPostgresMigrationTestConsole.Contexts
 {

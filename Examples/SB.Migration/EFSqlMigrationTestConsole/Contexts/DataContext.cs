@@ -1,7 +1,6 @@
 ﻿using EFSqlMigrationTestConsole.Contexts.Tables;
 using Microsoft.EntityFrameworkCore;
-using SB.EntityFramework;
-using SB.EntityFramework.Context;
+using SB.Migrator.EntityFramework;
 
 namespace EFSqlMigrationTestConsole.Contexts
 {
@@ -9,7 +8,7 @@ namespace EFSqlMigrationTestConsole.Contexts
     /// 
     /// </summary>
     [SBMigration]
-    public class DataContext : EFContext
+    public class DataContext : DbContext
     {
         /// <summary>
         /// 

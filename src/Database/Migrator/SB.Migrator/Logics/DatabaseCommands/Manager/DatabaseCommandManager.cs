@@ -14,7 +14,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        public CommandServices CommandServices { get; set; }
+        public ICommandServices CommandServices { get; set; }
 
         /// <summary>
         /// 
@@ -70,9 +70,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             Commands.ForEach(f => f.BuildCommandText());
             BeforeMigrate();
 
-            var commands = Commands.OrderBy(o => o.Order).ToList();
-            commands.ForEach(f => f.Execute(MigrateManager.ConnectionString));
-
+            ActualizationMigrate();
             AfterMigrate();
             CorrectMigrateVersions();
         }
@@ -93,6 +91,15 @@ namespace SB.Migrator.Logics.DatabaseCommands
                 beforeActualization.Execute(MigrateManager.ConnectionString);
                 HistoryRepository.SetVersion(beforeScript.MigrateName, beforeScript.Version.ToString());
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ActualizationMigrate()
+        {
+            var commands = Commands.OrderBy(o => o.Order).ToList();
+            commands.ForEach(f => f.Execute(MigrateManager.ConnectionString));
         }
 
         /// <summary>

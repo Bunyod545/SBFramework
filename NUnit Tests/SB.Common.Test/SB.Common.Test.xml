@@ -4,27 +4,6 @@
         <name>SB.Common.Test</name>
     </assembly>
     <members>
-        <member name="T:SB.Common.Test.Logics.Application.SBSystemTestContext">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:SB.Common.Test.Logics.Application.SBSystemTestContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            
-            </summary>
-            <param name="optionsBuilder"></param>
-        </member>
-        <member name="T:SB.Common.Test.Logics.Application.SBApplicationTest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:SB.Common.Test.Logics.Application.SBApplicationTest.InitializeTest">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer">
             <summary>
             

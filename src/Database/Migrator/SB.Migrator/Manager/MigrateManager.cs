@@ -107,6 +107,14 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        protected virtual void OnMigrateBegin()
+        {
+            MigrateBegin?.Invoke(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected virtual void InternalMigrate()
         {
             var codeTables = CodeTablesManager.GetTableInfos();
@@ -114,14 +122,6 @@ namespace SB.Migrator
 
             DatabaseCommandManager.MergeTables(codeTables, databaseTables);
             DatabaseCommandManager.Migrate();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void OnMigrateBegin()
-        {
-            MigrateBegin?.Invoke(this);
         }
 
         /// <summary>

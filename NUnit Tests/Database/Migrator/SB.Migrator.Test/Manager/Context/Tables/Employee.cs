@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using SB.EntityFramework.Context;
 using SB.Common.Logics.Business;
 
 namespace SB.EntityFramework.Test.Logics.SbTypes
@@ -7,7 +6,7 @@ namespace SB.EntityFramework.Test.Logics.SbTypes
     /// <summary>
     /// 
     /// </summary>
-    [Table("Employees", Schema = EFContext.DefaultSchema)]
+    [Table("Employees")]
     public class Employee : Entity
     {
 
