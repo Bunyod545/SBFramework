@@ -5,13 +5,13 @@ using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using SB.EntityFramework;
-using SB.EntityFramework.Context;
 using SB.Migrator.EntityFramework.Logics.Code.Logics.MigrationValidators;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.MigrationHistorys;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Keys;
 
 namespace SB.Migrator.EntityFramework
 {
@@ -113,7 +113,8 @@ namespace SB.Migrator.EntityFramework
             tableInfo.Decription = entity.ClrType.GetSummary();
             tableInfo.Columns = GetColumns(tableInfo);
             tableInfo.PrimaryKey = GetPrimaryKeyInfo(tableInfo);
-            
+            tableInfo.UniqueKeys = GetUniqueKeys(tableInfo).ToList();
+
             return tableInfo;
         }
 
@@ -180,6 +181,36 @@ namespace SB.Migrator.EntityFramework
             result.PrimaryColumn = table.GetColumn(name);
 
             return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        private IEnumerable<UniqueKeyInfo> GetUniqueKeys(EFTableInfo table)
+        {
+            var indexes = table.Entity.GetIndexes().Where(w => w.IsUnique).ToList();
+            foreach (var index in indexes)
+            {
+                var uniqueInfo = new UniqueKeyInfo();
+                uniqueInfo.Table = table;
+                uniqueInfo.Name = index.Relational()?.Name;
+                uniqueInfo.UniqueColumns = index.Properties.Select(s => GetUniqueColumn(table, s)).ToList();
+
+                yield return uniqueInfo;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        private ColumnInfo GetUniqueColumn(EFTableInfo table, IProperty property)
+        {
+            return table.GetColumn(property.Relational().ColumnName);
         }
 
         /// <summary>

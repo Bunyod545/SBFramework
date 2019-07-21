@@ -29,7 +29,28 @@ namespace SB.Migrator.SqlServer
         protected override void InternalBuildCommandText()
         {
             Commands = new List<SqlCommand>();
+
+            BuildIdentityInsertOn();
             Table.TableValues.ForEach(BuildValueCommand);
+            BuildIdentityInsertOff();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void BuildIdentityInsertOn()
+        {
+            var command = new SqlCommand($"SET IDENTITY_INSERT {Table.GetSqlName()} ON");
+            Commands.Add(command);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void BuildIdentityInsertOff()
+        {
+            var command = new SqlCommand($"SET IDENTITY_INSERT {Table.GetSqlName()} OFF");
+            Commands.Add(command);
         }
 
         /// <summary>

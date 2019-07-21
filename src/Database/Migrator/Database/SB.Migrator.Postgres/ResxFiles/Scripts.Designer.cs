@@ -170,6 +170,23 @@ namespace SB.Migrator.Postgres.ResxFiles {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to select 
+        ///TC.Constraint_Name, 
+        ///CC.Column_Name ,
+        ///TC.TABLE_SCHEMA,
+        ///TC.TABLE_NAME
+        ///from information_schema.table_constraints TC
+        ///inner join information_schema.constraint_column_usage CC on TC.Constraint_Name = CC.Constraint_Name
+        ///where TC.constraint_type = &apos;UNIQUE&apos;
+        ///order by TC.Constraint_Name.
+        /// </summary>
+        internal static string SelectUniqueKeys {
+            get {
+                return ResourceManager.GetString("SelectUniqueKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UPDATE public.&quot;MigrationsHistory&quot;
         ///SET &quot;Version&quot; = &apos;{1}&apos;
         ///WHERE &quot;Name&quot; = &apos;{0}&apos;.

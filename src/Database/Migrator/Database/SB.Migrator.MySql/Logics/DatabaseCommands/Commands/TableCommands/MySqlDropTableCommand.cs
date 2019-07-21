@@ -20,7 +20,7 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("DROP TABLE ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Table.Schema, Table.Name);
+            ScriptBuilder.Append(Table.GetMySqlName());
         }
     }
 }

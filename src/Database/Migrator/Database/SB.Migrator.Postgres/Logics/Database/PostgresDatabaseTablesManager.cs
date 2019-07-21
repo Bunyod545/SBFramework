@@ -41,6 +41,11 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
+        protected PostgresUniqueKeyManager PostgresUniqueKeyManager { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected PostgresForeignKeyManager PostgresForeignKeyManager { get; }
 
         /// <summary>
@@ -57,6 +62,7 @@ namespace SB.Migrator.Postgres
             PostgresTableManager = new PostgresTableManager(this);
             PostgresColumnManager = new PostgresColumnManager(this);
             PostgresPrimaryKeyManager = new PostgresPrimaryKeyManager(this);
+            PostgresUniqueKeyManager = new PostgresUniqueKeyManager(this);
             PostgresForeignKeyManager = new PostgresForeignKeyManager(this);
         }
 
@@ -70,7 +76,8 @@ namespace SB.Migrator.Postgres
             PostgresColumnManager.InitializeColumns();
             PostgresPrimaryKeyManager.InitializePrimaryKeys();
             PostgresForeignKeyManager.InitializeForeignKeys();
-
+            PostgresUniqueKeyManager.InitializeUniqueKeys();
+            
             var postgresTables = PostgresTableManager.GetTables();
             _tableInfos = postgresTables.Select(ConvertToTableInfo).ToList();
             _tableInfos.ForEach(FillForeignKeyInfos);

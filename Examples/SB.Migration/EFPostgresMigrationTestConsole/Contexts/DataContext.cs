@@ -26,7 +26,14 @@ namespace EFPostgresMigrationTestConsole.Contexts
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Country>()
+                .HasIndex(u => u.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Country>()
+                .HasIndex(u => u.DesignedName)
+                .IsUnique();
+
             modelBuilder.HasDefaultSchema("public");
         }
 

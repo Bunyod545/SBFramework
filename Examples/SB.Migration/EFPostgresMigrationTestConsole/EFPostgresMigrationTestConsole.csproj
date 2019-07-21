@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Projects\SBFramework\Examples\SB.Migration\EFPostgresMigrationTestConsole\EFPostgresMigrationTestConsole.xml</DocumentationFile>
+    <DocumentationFile>..\..\SB.Migration\EFPostgresMigrationTestConsole\EFPostgresMigrationTestConsole.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

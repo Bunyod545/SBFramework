@@ -47,7 +47,7 @@ namespace SB.Migrator.Postgres
             ScriptBuilder.Append(column.Type.GetColumnType());
 
             BuildNullableInfo(column);
-            BuildIdentity(column);
+            BuildPrimaryKeyAndIdentity(column);
             ScriptBuilder.AppendIf(Columns.IsNotLast(column), Strings.Comma);
         }
 
@@ -65,8 +65,9 @@ namespace SB.Migrator.Postgres
         /// 
         /// </summary>
         /// <param name="column"></param>
-        private void BuildIdentity(ColumnInfo column)
+        private void BuildPrimaryKeyAndIdentity(ColumnInfo column)
         {
+            ScriptBuilder.AppendIf(column.IsPrimary(), " PRIMARY KEY");
             if (column.Identity == null)
                 return;
 

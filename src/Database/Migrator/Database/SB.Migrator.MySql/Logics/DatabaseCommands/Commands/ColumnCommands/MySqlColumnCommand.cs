@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 
 namespace SB.Migrator.MySql
@@ -17,6 +18,11 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
+        public TableInfo Table => Column?.Table;
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="column"></param>
         public virtual void SetColumn(ColumnInfo column)
         {
@@ -30,7 +36,7 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"{Column.Table.Schema}.\"{Column.Table.Name}\"");
+            ScriptBuilder.Append(Table.GetMySqlName());
             ScriptBuilder.AppendLine();
         }
 
@@ -39,7 +45,7 @@ namespace SB.Migrator.MySql
         /// </summary>
         protected void SetColumnInfo()
         {
-            ScriptBuilder.Append($" {GetColumnName()} {Column.Type.GetColumnType()}");
+            ScriptBuilder.Append($" {Column.GetMySqlName()} {Column.Type.GetColumnType()}");
             SetColumnNullableInfo();
         }
 
@@ -52,15 +58,6 @@ namespace SB.Migrator.MySql
                 ScriptBuilder.Append(" NOT");
 
             ScriptBuilder.Append(" NULL");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        protected virtual string GetColumnName()
-        {
-            return $"\"{Column.Name}\"";
         }
     }
 }

@@ -5,7 +5,7 @@ namespace MetadataMySqlMigrationTestConsole.Database.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("MonthsOfYear")]
+    [Table("monthsofyear")]
     public enum MonthsOfYear
     {
         /// <summary>

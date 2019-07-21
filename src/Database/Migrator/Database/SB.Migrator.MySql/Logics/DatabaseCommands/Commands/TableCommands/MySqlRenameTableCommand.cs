@@ -20,10 +20,10 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Table.Schema, Table.Name);
+            ScriptBuilder.AppendFormat(Table.GetMySqlName());
 
             ScriptBuilder.Append("RENAME TO ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\"", Table.Schema, Table.NewName);
+            ScriptBuilder.AppendFormat(Table.GetMySqlNewName());
         }
     }
 }

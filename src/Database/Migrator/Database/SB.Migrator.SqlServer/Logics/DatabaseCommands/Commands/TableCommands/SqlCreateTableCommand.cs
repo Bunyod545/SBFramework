@@ -44,6 +44,7 @@ namespace SB.Migrator.SqlServer
             BuildIdentity(column);
             BuildNullableInfo(column);
 
+            ScriptBuilder.AppendIf(column.IsPrimary(), " PRIMARY KEY");
             ScriptBuilder.Append(Strings.Comma);
         }
 

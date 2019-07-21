@@ -24,7 +24,6 @@ namespace SB.Migrator.Logics.DatabaseCommands
             if (databaseTable == null)
             {
                 CreateTable(codeTable);
-                CreatePrimaryKey(codeTable.PrimaryKey);
                 codeTable.ForeignKeys.ForEach(CreateForeignKey);
                 MergeTableValues(codeTable);
 

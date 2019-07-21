@@ -49,6 +49,11 @@
             Country designed name
             </summary>
         </member>
+        <member name="P:MetadataPostgresMigrationTestConsole.Database.Tables.Country.TestName">
+            <summary>
+            Country test name
+            </summary>
+        </member>
         <member name="T:MetadataPostgresMigrationTestConsole.Database.Tables.Holiday">
             <summary>
             

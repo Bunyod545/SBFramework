@@ -20,18 +20,18 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("ALTER TABLE ");
-            ScriptBuilder.Append($"{ForeignKey.Table.Schema}.\"{ForeignKey.Table.Name}\"");
+            ScriptBuilder.Append(Table.GetMySqlName());
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append("ADD CONSTRAINT");
             ScriptBuilder.Append($" {GetForeignKeyName()}");
 
             ScriptBuilder.Append(" FOREIGN KEY");
-            ScriptBuilder.Append($" (\"{ForeignKey.Column.Name}\")");
+            ScriptBuilder.Append($" ({ForeignKey.Column.GetMySqlName()})");
 
             ScriptBuilder.Append(" REFERENCES");
-            ScriptBuilder.Append($" {ForeignKey.ReferenceTable.Schema}.\"{ForeignKey.ReferenceTable.Name}\"");
-            ScriptBuilder.Append($" (\"{ForeignKey.ReferenceColumn.Name}\")");
+            ScriptBuilder.Append($" {ForeignKey.ReferenceTable.GetMySqlName()}");
+            ScriptBuilder.Append($"({ForeignKey.ReferenceColumn.GetMySqlName()});");
         }
     }
 }

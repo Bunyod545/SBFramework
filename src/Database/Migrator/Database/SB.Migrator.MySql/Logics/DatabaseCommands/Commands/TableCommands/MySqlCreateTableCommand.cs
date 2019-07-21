@@ -24,19 +24,20 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("CREATE TABLE ");
-            ScriptBuilder.AppendFormat("`{0}`.`{1}`", Table.Schema, Table.Name);
+            ScriptBuilder.Append(Table.GetMySqlName());
             ScriptBuilder.Append(Strings.LBracket);
-            Table.Columns.ForEach(BuildColumn);
+            Columns.ForEach(BuildColumn);
 
             var primaryColumn = Table.PrimaryKey?.PrimaryColumn;
             if (primaryColumn != null)
             {
                 ScriptBuilder.AppendLine(Strings.Comma);
-                ScriptBuilder.AppendLine($"PRIMARY KEY (`{primaryColumn.Name}`)");
+                ScriptBuilder.AppendLine($"PRIMARY KEY ({primaryColumn.GetMySqlName()})");
             }
 
             ScriptBuilder.Append(Strings.RBracket);
-            ScriptBuilder.Append(" ENGINE=INNODB;");
+            ScriptBuilder.AppendLine(" ENGINE=INNODB");
+            ScriptBuilder.Append($"COMMENT = '{Table.Decription}';");
         }
 
         /// <summary>
@@ -46,16 +47,15 @@ namespace SB.Migrator.MySql
         private void BuildColumn(ColumnInfo column)
         {
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendFormat("`{0}` ", column.Name);
+            ScriptBuilder.Append($"{column.GetMySqlName()} ");
             ScriptBuilder.Append(column.Type.GetColumnType());
 
             if (column.Identity != null)
                 ScriptBuilder.Append(" AUTO_INCREMENT");
 
             BuildNullableInfo(column);
-
-            if (Table.Columns.IsNotLast(column))
-                ScriptBuilder.Append(Strings.Comma);
+            ScriptBuilder.Append($" COMMENT '{column.Decription}'");
+            ScriptBuilder.AppendIf(Columns.IsNotLast(column), Strings.Comma);
         }
 
         /// <summary>

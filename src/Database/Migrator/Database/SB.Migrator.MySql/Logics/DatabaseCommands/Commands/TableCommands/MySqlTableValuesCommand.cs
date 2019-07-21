@@ -50,7 +50,7 @@ namespace SB.Migrator.MySql
         private void BuildInsertCommand()
         {
             ScriptBuilder.Append("INSERT INTO ");
-            ScriptBuilder.Append($"{GetTableName()}");
+            ScriptBuilder.Append($"{Table.GetMySqlName()}");
 
             ScriptBuilder.Append(Strings.LBracket);
             Table.Columns.ForEach(BuildColumn);
@@ -70,7 +70,7 @@ namespace SB.Migrator.MySql
         /// </summary>
         private void BuildColumn(ColumnInfo column)
         {
-            ScriptBuilder.Append($"`{column.Name}`");
+            ScriptBuilder.Append($"{column.GetMySqlName()}");
 
             if (Table.Columns.IsLast(column))
                 return;

@@ -180,6 +180,17 @@ WHERE
    schemaname != 'pg_catalog'
 AND schemaname != 'information_schema';</value>
   </data>
+  <data name="SelectUniqueKeys" xml:space="preserve">
+    <value>select 
+TC.Constraint_Name, 
+CC.Column_Name ,
+TC.TABLE_SCHEMA,
+TC.TABLE_NAME
+from information_schema.table_constraints TC
+inner join information_schema.constraint_column_usage CC on TC.Constraint_Name = CC.Constraint_Name
+where TC.constraint_type = 'UNIQUE'
+order by TC.Constraint_Name</value>
+  </data>
   <data name="UpdateHistoryVersion" xml:space="preserve">
     <value>UPDATE public."MigrationsHistory"
 SET "Version" = '{1}'

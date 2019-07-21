@@ -5,7 +5,7 @@ namespace MetadataMySqlMigrationTestConsole.Database.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("Holidays")]
+    [Table("holidays")]
     public class Holiday
     {
         /// <summary>
@@ -25,6 +25,12 @@ namespace MetadataMySqlMigrationTestConsole.Database.Tables
         /// </summary>
         [Column]
         public string DesignedName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Column]
+        public string TestName { get; set; }
 
         /// <summary>
         /// 

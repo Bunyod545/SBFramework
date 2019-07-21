@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="InsertHistoryVersion" xml:space="preserve">
-    <value>INSERT INTO MigrationsHistory (`Name` ,`Version`)
+    <value>INSERT INTO MigrationsHistory (Name ,Version)
 VALUES ('{0}' ,'{1}')</value>
   </data>
   <data name="InsertHistoryVersion2" xml:space="preserve">
-    <value>INSERT INTO MigrationsHistory (`Name` ,`Version2`)
+    <value>INSERT INTO MigrationsHistory (Name ,Version2)
 VALUES ('{0}' ,'{1}')</value>
   </data>
   <data name="SelectColumns" xml:space="preserve">
@@ -143,11 +143,11 @@ WHERE Name = '{0}'
 LIMIT 1</value>
   </data>
   <data name="SelectMigrationsHistory" xml:space="preserve">
-    <value>SELECT `Id`
-      ,`Name`
-      ,`Version`
-      ,`Version2`
-  FROM `{0}`.`MigrationsHistory`</value>
+    <value>SELECT Id
+      ,Name
+      ,Version
+      ,Version2
+  FROM {0}.MigrationsHistory</value>
   </data>
   <data name="SelectPrimaryKeys" xml:space="preserve">
     <value>select tab.table_schema,
@@ -166,16 +166,16 @@ order by tab.table_name,
     column_id;</value>
   </data>
   <data name="SelectTables" xml:space="preserve">
-    <value>SELECT * FROM information_schema.tables where `TABLE_SCHEMA` = '{0}';</value>
+    <value>SELECT * FROM information_schema.tables where TABLE_SCHEMA = '{0}';</value>
   </data>
   <data name="UpdateHistoryVersion" xml:space="preserve">
-    <value>UPDATE public."MigrationsHistory"
+    <value>UPDATE MigrationsHistory
 SET "Version" = '{1}'
 WHERE "Name" = '{0}'</value>
   </data>
   <data name="UpdateHistoryVersion2" xml:space="preserve">
-    <value>UPDATE public."MigrationsHistory"
-SET "Version2" = '{1}'
-WHERE "Name" = '{0}'</value>
+    <value>UPDATE MigrationsHistory
+SET Version2 = '{1}'
+WHERE Name = '{0}'</value>
   </data>
 </root>

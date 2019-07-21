@@ -8,16 +8,19 @@
         /// <summary>
         /// 
         /// </summary>
+        [Column, PrimaryKey]
         public int Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Column]
         public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        [Column]
         public string Synonym { get; set; }
     }
 }

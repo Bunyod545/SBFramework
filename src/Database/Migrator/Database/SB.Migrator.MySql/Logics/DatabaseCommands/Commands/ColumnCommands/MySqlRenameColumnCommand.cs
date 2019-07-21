@@ -21,13 +21,10 @@ namespace SB.Migrator.MySql
         {
             ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append("sp_rename ");
-            ScriptBuilder.AppendFormat("{0}.\"{1}\".\"{2}\" ", 
-                Column.Table.Schema, 
-                Column.Table.Name, 
-                Column.Name);
+            ScriptBuilder.Append($"{Table.GetMySqlName()}.{Column.GetMySqlName()} ");
 
             ScriptBuilder.Append(Strings.Comma);
-            ScriptBuilder.AppendFormat("\"{0}\" ", Column.NewName);
+            ScriptBuilder.Append(Column.GetMySqlNewName());
 
             ScriptBuilder.Append(Strings.Comma);
             ScriptBuilder.Append("'COLUMN'");

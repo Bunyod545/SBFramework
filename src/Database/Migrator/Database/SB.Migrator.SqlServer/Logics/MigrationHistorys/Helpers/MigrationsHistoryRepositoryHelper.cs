@@ -89,11 +89,6 @@ namespace SB.Migrator.SqlServer
             createTableCommand.SetTable(table);
             createTableCommand.BuildCommandText();
             createTableCommand.Execute(ConnectionString);
-
-            var createPrimaryKeyCommand = new SqlCreatePrimaryKeyCommand();
-            createPrimaryKeyCommand.SetPrimaryKey(table.PrimaryKey);
-            createPrimaryKeyCommand.BuildCommandText();
-            createPrimaryKeyCommand.Execute(ConnectionString);
         }
 
         /// <summary>

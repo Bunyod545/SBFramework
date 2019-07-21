@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetadataMySqlMigrationTestConsole</name>
+    </assembly>
+    <members>
+        <member name="T:MetadataMySqlMigrationTestConsole.Database.Tables.City">
+            <summary>
+            City table
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.City.Id">
+            <summary>
+            City identifier
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.City.Name">
+            <summary>
+            City name
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.City.DesignedName">
+            <summary>
+            City disegned name
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.City.Owner">
+            <summary>
+            City owner country
+            </summary>
+        </member>
+        <member name="T:MetadataMySqlMigrationTestConsole.Database.Tables.Country">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Country.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Country.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Country.DesignedName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MetadataMySqlMigrationTestConsole.Database.Tables.Holiday">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Holiday.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Holiday.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Holiday.DesignedName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Holiday.TestName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MetadataMySqlMigrationTestConsole.Database.Tables.Holiday.MonthsOfYear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.January">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.February">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.March">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.April">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.May">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.June">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.July">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.August">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.September">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.October">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.November">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Database.Tables.MonthsOfYear.December">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MetadataMySqlMigrationTestConsole.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MetadataMySqlMigrationTestConsole.Program.ConnectionString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MetadataMySqlMigrationTestConsole.Program.Main(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+    </members>
+</doc>

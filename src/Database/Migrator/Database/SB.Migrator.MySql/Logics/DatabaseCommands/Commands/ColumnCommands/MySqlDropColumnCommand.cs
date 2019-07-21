@@ -18,7 +18,7 @@ namespace SB.Migrator.MySql
         protected override void InternalBuildCommandText()
         {
             SetAlterTable();
-            ScriptBuilder.Append($"DROP COLUMN \"{Column.Name}\"");
+            ScriptBuilder.Append($"DROP COLUMN {Column.GetMySqlName()}");
         }
     }
 }

@@ -61,7 +61,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO MigrationsHistory (`Name` ,`Version`)
+        ///   Looks up a localized string similar to INSERT INTO MigrationsHistory (Name ,Version)
         ///VALUES (&apos;{0}&apos; ,&apos;{1}&apos;).
         /// </summary>
         internal static string InsertHistoryVersion {
@@ -71,7 +71,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO MigrationsHistory (`Name` ,`Version2`)
+        ///   Looks up a localized string similar to INSERT INTO MigrationsHistory (Name ,Version2)
         ///VALUES (&apos;{0}&apos; ,&apos;{1}&apos;).
         /// </summary>
         internal static string InsertHistoryVersion2 {
@@ -116,11 +116,11 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT `Id`
-        ///      ,`Name`
-        ///      ,`Version`
-        ///      ,`Version2`
-        ///  FROM `{0}`.`MigrationsHistory`.
+        ///   Looks up a localized string similar to SELECT Id
+        ///      ,Name
+        ///      ,Version
+        ///      ,Version2
+        ///  FROM {0}.MigrationsHistory.
         /// </summary>
         internal static string SelectMigrationsHistory {
             get {
@@ -151,7 +151,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM information_schema.tables where `TABLE_SCHEMA` = &apos;{0}&apos;;.
+        ///   Looks up a localized string similar to SELECT * FROM information_schema.tables where TABLE_SCHEMA = &apos;{0}&apos;;.
         /// </summary>
         internal static string SelectTables {
             get {
@@ -160,7 +160,7 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE public.&quot;MigrationsHistory&quot;
+        ///   Looks up a localized string similar to UPDATE MigrationsHistory
         ///SET &quot;Version&quot; = &apos;{1}&apos;
         ///WHERE &quot;Name&quot; = &apos;{0}&apos;.
         /// </summary>
@@ -171,9 +171,9 @@ namespace SB.Migrator.MySql.ResxFiles {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE public.&quot;MigrationsHistory&quot;
-        ///SET &quot;Version2&quot; = &apos;{1}&apos;
-        ///WHERE &quot;Name&quot; = &apos;{0}&apos;.
+        ///   Looks up a localized string similar to UPDATE MigrationsHistory
+        ///SET Version2 = &apos;{1}&apos;
+        ///WHERE Name = &apos;{0}&apos;.
         /// </summary>
         internal static string UpdateHistoryVersion2 {
             get {
