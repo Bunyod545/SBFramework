@@ -27,6 +27,7 @@ namespace SB.Migrator.MySql
             manager.CommandServices.Add<ICreatePrimaryKeyCommand, MySqlCreatePrimaryKeyCommand>();
             manager.CommandServices.Add<ICreateForeignKeyCommand, MySqlCreateForeignKeyCommand>();
             manager.CommandServices.Add<ICreateUniqueKeyCommand, MySqlCreateUniqueCommand>();
+            manager.CommandServices.Add<IDropUniqueKeyCommand, MySqlDropUniqueCommand>();
 
             manager.CommandServices.Add<IBeforeActualizationScriptCommand, MySqlBeforeActualizationScriptCommand>();
             manager.CommandServices.Add<IAfterActualizationScriptCommand, MySqlAfterActualizationScriptCommand>();

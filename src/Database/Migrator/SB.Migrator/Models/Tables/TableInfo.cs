@@ -64,6 +64,7 @@ namespace SB.Migrator.Models
             Columns = new List<ColumnInfo>();
             TableValues = new List<TableValueInfo>();
             ForeignKeys = new List<ForeignKeyInfo>();
+            UniqueKeys = new List<UniqueKeyInfo>();
         }
 
         /// <summary>

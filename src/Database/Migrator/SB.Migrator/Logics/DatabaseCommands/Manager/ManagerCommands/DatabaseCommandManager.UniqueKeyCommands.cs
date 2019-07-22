@@ -20,7 +20,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// 
         /// </summary>
         /// <param name="uniqueKey"></param>
-        protected virtual void DropForeignKey(UniqueKeyInfo uniqueKey)
+        protected virtual void DropUniqueKey(UniqueKeyInfo uniqueKey)
         {
             UniqueKeyCommand<IDropUniqueKeyCommand>(uniqueKey);
         }
@@ -29,14 +29,14 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="foreignKey"></param>
-        protected virtual T UniqueKeyCommand<T>(UniqueKeyInfo foreignKey) where T : class, IUniqueKeyCommand
+        /// <param name="uniqueKey"></param>
+        protected virtual T UniqueKeyCommand<T>(UniqueKeyInfo uniqueKey) where T : class, IUniqueKeyCommand
         {
             var service = CommandServices.GetCommand<T>();
             if (service == null)
                 return null;
 
-            service.SetUniqueKey(foreignKey);
+            service.SetUniqueKey(uniqueKey);
             Commands.Add(service);
             return service;
         }

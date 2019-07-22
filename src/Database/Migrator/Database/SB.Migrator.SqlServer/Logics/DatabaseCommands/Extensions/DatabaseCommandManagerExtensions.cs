@@ -25,6 +25,7 @@ namespace SB.Migrator.SqlServer
 
             manager.CommandServices.Add<ICreateColumnDefaultValueCommand, SqlCreateColumnDefaultValueCommand>();
             manager.CommandServices.Add<ICreateUniqueKeyCommand, SqlCreateUniqueCommand>();
+            manager.CommandServices.Add<IDropUniqueKeyCommand, SqlDropUniqueCommand>();
             manager.CommandServices.Add<ICreatePrimaryKeyCommand, SqlCreatePrimaryKeyCommand>();
             manager.CommandServices.Add<ICreateForeignKeyCommand, SqlCreateForeignKeyCommand>();
 

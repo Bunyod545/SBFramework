@@ -29,7 +29,7 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        public List<ColumnInfo> UniqueColumns => Table.Columns;
+        public List<ColumnInfo> UniqueColumns => UniqueKey.UniqueColumns;
 
         /// <summary>
         /// 
