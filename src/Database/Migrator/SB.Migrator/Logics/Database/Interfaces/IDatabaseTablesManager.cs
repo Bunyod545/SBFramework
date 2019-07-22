@@ -21,7 +21,7 @@ namespace SB.Migrator.Logics.Database
         /// <summary>
         /// 
         /// </summary>
-        string DefaultSchema { get; }
+        string DefaultSchema { get; set; }
 
         /// <summary>
         /// 

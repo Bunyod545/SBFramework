@@ -35,7 +35,7 @@ namespace SB.Migrator.Postgres
         protected void BuildSingleColumnUnique()
         {
             var column = UniqueKey.UniqueColumns.FirstOrDefault();
-            ScriptBuilder.Append($"ALTER TABLE {Table.GetPgSqlName()} ADD CONSTRAINT {GetUniqueName()} UNIQUE({column.GetPgSqlName()});");
+            ScriptBuilder.Append($"ALTER TABLE {Table.GetPgSqlName()} ADD CONSTRAINT {UniqueName} UNIQUE({column.GetPgSqlName()});");
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace SB.Migrator.Postgres
         protected void BuildMultipleColumnUnique()
         {
             ScriptBuilder.AppendLine($"ALTER TABLE {Table.GetPgSqlName()}");
-            ScriptBuilder.Append($"ADD CONSTRAINT {GetUniqueName()} UNIQUE (");
+            ScriptBuilder.Append($"ADD CONSTRAINT {UniqueName} UNIQUE (");
 
             foreach (var column in UniqueColumns)
             {

@@ -37,6 +37,9 @@ namespace SB.Migrator
 
             if (MigrateManager.DatabaseCommandManager == null)
                 throw new ArgumentNullException(nameof(MigrateManager.DatabaseCommandManager));
+
+            if (MigrateManager.NamingManager == null)
+                throw new ArgumentNullException(nameof(MigrateManager.NamingManager));
         }
 
         /// <summary>

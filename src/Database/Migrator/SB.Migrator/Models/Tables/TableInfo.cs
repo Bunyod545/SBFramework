@@ -24,7 +24,7 @@ namespace SB.Migrator.Models
         /// <summary>
         /// 
         /// </summary>
-        public string Decription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
@@ -39,24 +38,6 @@ namespace SB.Migrator.SqlServer
         public virtual void SetUniqueKey(UniqueKeyInfo uniqueKey)
         {
             UniqueKey = uniqueKey;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public virtual string GetUniqueName()
-        {
-            return string.IsNullOrEmpty(UniqueName) ? InternalUniqueName() : UniqueName;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        protected string InternalUniqueName()
-        {
-            return "UC_" + Table.Name + "_" + string.Join("_", UniqueKey.UniqueColumns.Select(s => s.Name));
         }
     }
 }

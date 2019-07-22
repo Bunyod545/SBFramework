@@ -1,6 +1,7 @@
 ﻿using SB.Migrator.Logics.Code;
 using SB.Migrator.Logics.Database;
 using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Logics.NamingManagers;
 
 namespace SB.Migrator
 {
@@ -55,6 +56,11 @@ namespace SB.Migrator
         /// 
         /// </summary>
         IDatabaseCreator DatabaseCreator { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        INamingManager NamingManager { get; set; }
 
         /// <summary>
         /// 

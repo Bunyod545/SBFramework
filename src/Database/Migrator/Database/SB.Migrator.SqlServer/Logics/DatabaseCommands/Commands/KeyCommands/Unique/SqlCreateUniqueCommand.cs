@@ -20,7 +20,7 @@ namespace SB.Migrator.SqlServer
         protected override void InternalBuildCommandText()
         {
             ScriptBuilder.AppendLine($"ALTER TABLE {Table.GetSqlName()}");
-            ScriptBuilder.Append($"ADD CONSTRAINT {GetUniqueName()} UNIQUE (");
+            ScriptBuilder.Append($"ADD CONSTRAINT {UniqueName} UNIQUE (");
 
             foreach (var column in UniqueColumns)
             {

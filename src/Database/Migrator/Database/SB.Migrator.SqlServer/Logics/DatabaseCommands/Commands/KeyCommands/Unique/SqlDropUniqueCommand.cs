@@ -17,7 +17,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         protected override void InternalBuildCommandText()
         {
-            ScriptBuilder.Append($"ALTER TABLE {Table.GetSqlName()} DROP CONSTRAINT {GetUniqueName()};");
+            ScriptBuilder.Append($"ALTER TABLE {Table.GetSqlName()} DROP CONSTRAINT {UniqueName};");
         }
     }
 }

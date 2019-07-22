@@ -7,6 +7,7 @@ using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.Models.Tables.Keys;
 using SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource;
+using SB.Migrator.SqlServer.Logics.NamingManagers;
 
 namespace SB.Migrator.SqlServer
 {
@@ -60,6 +61,10 @@ namespace SB.Migrator.SqlServer
         {
             MigrateManager.DatabaseCreator = new SqlDatabaseCreator(migrateManager);
             MigrateManager.MigrationsHistoryRepository = new SqlMigrationsHistoryRepository(migrateManager);
+            MigrateManager.NamingManager.ForeignKeyNamingManager = new SqlForeignKeyNamingManager();
+            MigrateManager.NamingManager.PrimaryKeyNamingManager = new SqlPrimaryKeyNamingManager();
+            MigrateManager.NamingManager.UniqueKeyNamingManager = new SqlUniqueKeyNamingManager();
+
             MigrateManager.DatabaseCommandManager.UseSqlCommands();
             ColumnTypeMappingSource = new SqlColumnTypeMappingSource();
 

@@ -24,7 +24,7 @@ namespace SB.Migrator.SqlServer
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" DROP CONSTRAINT");
-            ScriptBuilder.Append($" {GetForeignKeyName()}");
+            ScriptBuilder.Append($" {ForeignKeyName}");
         }
     }
 }

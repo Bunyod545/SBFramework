@@ -24,7 +24,7 @@ namespace SB.Migrator.SqlServer
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" ADD CONSTRAINT");
-            ScriptBuilder.Append($" {GetForeignKeyName()}");
+            ScriptBuilder.Append($" {ForeignKeyName}");
 
             ScriptBuilder.Append(" FOREIGN KEY");
             ScriptBuilder.Append($" ({ForeignKey.Column.Name})");

@@ -22,21 +22,15 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="foreignKey"></param>
-        public virtual void SetForeignKey(ForeignKeyInfo foreignKey)
-        {
-            ForeignKey = foreignKey;
-        }
+        public string ForeignKeyName => ForeignKey?.Name;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        protected string GetForeignKeyName()
+        /// <param name="foreignKey"></param>
+        public virtual void SetForeignKey(ForeignKeyInfo foreignKey)
         {
-            return string.IsNullOrEmpty(ForeignKey.Name) ? 
-                $"FK_{ForeignKey.Table.Name}_{ForeignKey.ReferenceTable.Name}_{ForeignKey.Column.Name}" : 
-                ForeignKey.Name;
+            ForeignKey = foreignKey;
         }
     }
 }

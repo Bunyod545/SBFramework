@@ -2,6 +2,7 @@
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Logics.Database;
 using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Logics.NamingManagers;
 
 namespace SB.Migrator
 {
@@ -48,6 +49,11 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
+        public INamingManager NamingManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public IMigrationsHistoryRepository MigrationsHistoryRepository { get; set; }
 
         /// <summary>
@@ -63,6 +69,7 @@ namespace SB.Migrator
         {
             ConnectionString = connectionString;
             DatabaseCommandManager = new DatabaseCommandManager(this);
+            NamingManager = new DefaultNamingManager();
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace SB.Migrator.Postgres
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" DROP CONSTRAINT");
-            ScriptBuilder.Append($" {GetPrimaryKeyName()}");
+            ScriptBuilder.Append($" {PrimaryKeyName}");
         }
     }
 }

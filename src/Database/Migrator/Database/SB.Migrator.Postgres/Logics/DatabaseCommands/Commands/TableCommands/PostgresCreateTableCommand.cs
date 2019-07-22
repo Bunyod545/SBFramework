@@ -112,7 +112,7 @@ namespace SB.Migrator.Postgres
         private void SetComments()
         {
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendLine($"comment on table {Table.GetPgSqlName()} is '{Table.Decription}';");
+            ScriptBuilder.AppendLine($"comment on table {Table.GetPgSqlName()} is '{Table.Description}';");
             Table.Columns.ForEach(SetColumnComment);
         }
 

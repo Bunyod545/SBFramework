@@ -24,7 +24,7 @@ namespace SB.Migrator.Postgres
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append("ADD CONSTRAINT");
-            ScriptBuilder.Append($" {GetForeignKeyName()}");
+            ScriptBuilder.Append($" {ForeignKeyName}");
 
             ScriptBuilder.Append(" FOREIGN KEY");
             ScriptBuilder.Append($" ({ForeignKey.Column.GetPgSqlName()})");

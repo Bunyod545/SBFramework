@@ -37,7 +37,7 @@ namespace SB.Migrator.MySql
 
             ScriptBuilder.Append(Strings.RBracket);
             ScriptBuilder.AppendLine(" ENGINE=INNODB");
-            ScriptBuilder.Append($"COMMENT = '{Table.Decription}';");
+            ScriptBuilder.Append($"COMMENT = '{Table.Description}';");
         }
 
         /// <summary>

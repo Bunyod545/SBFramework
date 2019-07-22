@@ -27,10 +27,16 @@ namespace SB.Migrator.EntityFramework
         /// <summary>
         /// 
         /// </summary>
+        public ITableFinder TableFinder { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="migrateManager"></param>
         public EFCodeTablesManager(MigrateManager migrateManager) : base(migrateManager)
         {
             MigrateManager.Validator = new EntityFrameworkMigrationValidator(migrateManager);
+            TableFinder = new TableFinder();
         }
 
         /// <summary>
@@ -40,7 +46,7 @@ namespace SB.Migrator.EntityFramework
         public override List<TableInfo> GetTableInfos()
         {
             _tableInfos = GetTables();
-            _tableInfos.ForEach(f=> f.ForeignKeys = GetForeignKeys(f));
+            _tableInfos.ForEach(f => f.ForeignKeys = GetForeignKeys(f));
 
             return _tableInfos.Select(s => (TableInfo)s).ToList();
         }
@@ -109,7 +115,9 @@ namespace SB.Migrator.EntityFramework
             tableInfo.Name = mapping.TableName;
             tableInfo.Schema = mapping.Schema ?? MigrateManager.DatabaseTablesManager?.DefaultSchema;
             tableInfo.ClrType = entity.ClrType;
-            tableInfo.Decription = entity.ClrType.GetSummary();
+            tableInfo.Description = entity.ClrType.GetSummary();
+            MigrateManager.CorrectName(tableInfo);
+
             tableInfo.Columns = GetColumns(tableInfo);
             tableInfo.PrimaryKey = GetPrimaryKeyInfo(tableInfo);
             tableInfo.UniqueKeys = GetUniqueKeys(tableInfo).ToList();
@@ -147,6 +155,7 @@ namespace SB.Migrator.EntityFramework
             column.DefaultValue = columnRelational.DefaultValue;
             column.Identity = GetIdentity(property);
 
+            MigrateManager.CorrectName(column);
             return column;
         }
 
@@ -179,6 +188,7 @@ namespace SB.Migrator.EntityFramework
             var name = prop?.Relational()?.ColumnName;
             result.PrimaryColumn = table.GetColumn(name);
 
+            MigrateManager.CorrectName(result);
             return result;
         }
 
@@ -197,6 +207,7 @@ namespace SB.Migrator.EntityFramework
                 uniqueInfo.Name = index.Relational()?.Name;
                 uniqueInfo.UniqueColumns = index.Properties.Select(s => GetUniqueColumn(table, s)).ToList();
 
+                MigrateManager.CorrectName(uniqueInfo);
                 yield return uniqueInfo;
             }
         }
@@ -238,6 +249,8 @@ namespace SB.Migrator.EntityFramework
 
             result.ReferenceTable = GetReferenceTable(foreignKey);
             result.ReferenceColumn = result.ReferenceTable.GetColumn(foreignKey.GetReferenceColumnName());
+
+            MigrateManager.CorrectName(result);
             return result;
         }
 

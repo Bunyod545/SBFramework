@@ -21,7 +21,7 @@ namespace SB.Migrator.Logics.Database
         /// <summary>
         /// 
         /// </summary>
-        public virtual string DefaultSchema { get; protected set; }
+        public virtual string DefaultSchema { get; set; }
 
         /// <summary>
         /// 

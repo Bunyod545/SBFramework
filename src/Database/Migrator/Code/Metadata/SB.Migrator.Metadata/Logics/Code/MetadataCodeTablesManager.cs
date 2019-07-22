@@ -110,8 +110,10 @@ namespace SB.Migrator.Metadata
             var tableInfo = new MetadataTableInfo();
             tableInfo.TableMetadata = tableMetadata;
             tableInfo.Name = tableMetadata.Name;
-            tableInfo.Decription = tableMetadata.Decription;
+            tableInfo.Description = tableMetadata.Decription;
             tableInfo.Schema = tableMetadata.Schema ?? MigrateManager.DatabaseTablesManager?.DefaultSchema;
+            MigrateManager.CorrectName(tableInfo);
+
             tableInfo.Columns = GetColumns(tableInfo, tableMetadata);
             tableInfo.PrimaryKey = GetPrimaryKey(tableInfo, tableMetadata);
             tableInfo.TableValues = GetTableValues(tableInfo, tableMetadata);
@@ -147,6 +149,7 @@ namespace SB.Migrator.Metadata
             columnInfo.Identity = GetColumnIdentity(columnMetadata);
             columnInfo.Type = new MetadataColumnTypeInfo(this, columnMetadata);
 
+            MigrateManager.CorrectName(columnInfo);
             return columnInfo;
         }
 
@@ -178,6 +181,7 @@ namespace SB.Migrator.Metadata
             primaryKey.Name = primaryKeyMetadata.Name;
             primaryKey.PrimaryColumn = tableInfo.GetColumn(primaryKeyMetadata.PrimaryColumn?.Name);
 
+            MigrateManager.CorrectName(primaryKey);
             return primaryKey;
         }
 
@@ -248,6 +252,7 @@ namespace SB.Migrator.Metadata
             foreignKey.ReferenceTable = GetReferenceTable(foreignKeyMetadata);
             foreignKey.ReferenceColumn = GetReferenceColumn(foreignKey, foreignKeyMetadata);
 
+            MigrateManager.CorrectName(foreignKey);
             return foreignKey;
         }
 

@@ -24,7 +24,7 @@ namespace SB.Migrator.SqlServer
 
             ScriptBuilder.AppendLine();
             ScriptBuilder.Append(" ADD CONSTRAINT");
-            ScriptBuilder.Append($" {GetPrimaryKeyName()}");
+            ScriptBuilder.Append($" {PrimarykeyName}");
             ScriptBuilder.Append(" PRIMARY KEY");
             ScriptBuilder.Append($"({PrimaryKey.PrimaryColumn.Name})");
         }

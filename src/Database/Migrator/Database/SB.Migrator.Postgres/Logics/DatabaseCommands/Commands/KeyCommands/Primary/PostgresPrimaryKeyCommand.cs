@@ -22,19 +22,15 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="primaryKey"></param>
-        public virtual void SetPrimaryKey(PrimaryKeyInfo primaryKey)
-        {
-            PrimaryKey = primaryKey;
-        }
+        public string PrimaryKeyName => PrimaryKey?.Name;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        protected string GetPrimaryKeyName()
+        /// <param name="primaryKey"></param>
+        public virtual void SetPrimaryKey(PrimaryKeyInfo primaryKey)
         {
-            return string.IsNullOrEmpty(PrimaryKey.Name) ? $"PK_{PrimaryKey.Table.Name}" : PrimaryKey.Name;
+            PrimaryKey = primaryKey;
         }
     }
 }

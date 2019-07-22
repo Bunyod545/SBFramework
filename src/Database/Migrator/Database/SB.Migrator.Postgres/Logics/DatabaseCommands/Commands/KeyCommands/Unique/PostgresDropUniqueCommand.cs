@@ -17,7 +17,7 @@ namespace SB.Migrator.Postgres
         /// </summary>
         protected override void InternalBuildCommandText()
         {
-            ScriptBuilder.Append($"ALTER TABLE {Table.GetPgSqlName()} DROP CONSTRAINT {GetUniqueName()};");
+            ScriptBuilder.Append($"ALTER TABLE {Table.GetPgSqlName()} DROP CONSTRAINT {UniqueName};");
         }
     }
 }

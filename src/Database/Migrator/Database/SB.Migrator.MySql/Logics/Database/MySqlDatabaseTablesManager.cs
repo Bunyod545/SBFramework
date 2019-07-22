@@ -6,6 +6,7 @@ using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.MySql.Logics.NamingManagers;
 
 namespace SB.Migrator.MySql
 {
@@ -22,7 +23,7 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        public override string DefaultSchema => "public";
+        public override string DefaultSchema { get; set; }
 
         /// <summary>
         /// 
@@ -52,6 +53,10 @@ namespace SB.Migrator.MySql
         {
             MigrateManager.DatabaseCreator = new MySqlDatabaseCreator(migrateManager);
             MigrateManager.MigrationsHistoryRepository = new MySqlMigrationsHistoryRepository(migrateManager);
+            MigrateManager.NamingManager.ForeignKeyNamingManager = new MySqlForeignKeyNamingManager();
+            MigrateManager.NamingManager.PrimaryKeyNamingManager = new MySqlPrimaryKeyNamingManager();
+            MigrateManager.NamingManager.UniqueKeyNamingManager = new MySqlUniqueKeyNamingManager();
+
             MigrateManager.DatabaseCommandManager.UseMySqlCommands();
             ColumnTypeMappingSource = new MySqlColumnTypeMappingSource();
 
@@ -59,6 +64,14 @@ namespace SB.Migrator.MySql
             MySqlColumnManager = new MySqlColumnManager(this);
             MySqlPrimaryKeyManager = new MySqlPrimaryKeyManager(this);
             MySqlForeignKeyManager = new MySqlForeignKeyManager(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Initialize()
+        {
+            DefaultSchema = GetDatabaseName();
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ namespace SB.Migrator.SqlServer
     /// <summary>
     /// 
     /// </summary>
-    public abstract class SqlColumnDefaultValueCommand :SqlColumnCommand, IColumnDefaultValueCommand
+    public abstract class SqlColumnDefaultValueCommand : SqlColumnCommand, IColumnDefaultValueCommand
     {
         /// <summary>
         /// 

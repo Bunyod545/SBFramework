@@ -1,4 +1,5 @@
-﻿using SB.Migrator;
+﻿using System;
+using SB.Migrator;
 using SB.Migrator.EntityFramework.Logics.Code.Extensions;
 using SB.Migrator.SqlServer.Logics.Database.Extensions;
 
@@ -24,6 +25,9 @@ namespace EFSqlMigrationTestConsole
                 .UseSqlServerDatabase()
                 .UseEfCodeTablesManager()
                 .Migrate();
+
+            Console.WriteLine("Migrate success");
+            Console.ReadLine();
         }
     }
 }
