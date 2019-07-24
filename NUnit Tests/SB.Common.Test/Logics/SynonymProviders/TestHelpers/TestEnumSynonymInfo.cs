@@ -1,6 +1,6 @@
 ﻿using SB.Common.Logics.SynonymProviders;
 
-namespace SB.Common.Test.Logics.EnumSynonyms.TestHelpers
+namespace SB.Common.Test.Logics.SynonymProviders.TestHelpers
 {
     /// <summary>
     /// 

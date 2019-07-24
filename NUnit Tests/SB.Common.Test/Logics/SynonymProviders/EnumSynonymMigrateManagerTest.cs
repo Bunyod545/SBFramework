@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using SB.Common.Logics.SynonymProviders;
-using SB.Common.Test.Logics.EnumSynonyms.TestHelpers;
+using SB.Common.Test.Logics.SynonymProviders.TestHelpers;
 
-namespace SB.Common.Test.Logics.EnumSynonyms
+namespace SB.Common.Test.Logics.SynonymProviders
 {
     /// <summary>
     /// 
