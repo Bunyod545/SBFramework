@@ -20,6 +20,7 @@ namespace SB.Migrator.MySql
         /// </summary>
         protected override void InternalBuildCommandText()
         {
+            ScriptBuilder = new StringBuilder();
             if (UniqueColumns.Count == 1)
             {
                 BuildSingleColumnUnique();

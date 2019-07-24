@@ -20,6 +20,7 @@ namespace SB.Migrator.Postgres
         /// </summary>
         protected override void InternalBuildCommandText()
         {
+            ScriptBuilder = new StringBuilder();
             if (UniqueColumns.Count == 1)
             {
                 BuildSingleColumnUnique();

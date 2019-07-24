@@ -5,6 +5,7 @@ using SB.Migrator.Logics.Database;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Keys;
 using SB.Migrator.Postgres.Logics.NamingManagers;
 
 namespace SB.Migrator.Postgres
@@ -82,7 +83,7 @@ namespace SB.Migrator.Postgres
             PostgresPrimaryKeyManager.InitializePrimaryKeys();
             PostgresForeignKeyManager.InitializeForeignKeys();
             PostgresUniqueKeyManager.InitializeUniqueKeys();
-            
+
             var postgresTables = PostgresTableManager.GetTables();
             _tableInfos = postgresTables.Select(ConvertToTableInfo).ToList();
             _tableInfos.ForEach(FillForeignKeyInfos);
@@ -102,6 +103,7 @@ namespace SB.Migrator.Postgres
             table.Name = postgresTable.Name;
             table.Columns = GetColumns(table, postgresTable);
             table.PrimaryKey = GetPrimaryKeyInfo(table, postgresTable);
+            table.UniqueKeys = GetUniques(table, postgresTable);
 
             return table;
         }
@@ -163,6 +165,36 @@ namespace SB.Migrator.Postgres
             primaryKey.Table = table;
             primaryKey.PrimaryColumn = table.GetColumn(sqlPrimaryKey.ColumnName);
             return primaryKey;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="postgresTable"></param>
+        /// <returns></returns>
+        private List<UniqueKeyInfo> GetUniques(TableInfo table, PostgresTable postgresTable)
+        {
+            return PostgresUniqueKeyManager
+                .GetUniqueKeys(postgresTable)
+                .Select(s => GetUnique(table, s))
+                .ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="postgresUniqueKey"></param>
+        /// <returns></returns>
+        private UniqueKeyInfo GetUnique(TableInfo table, PostgresUniqueKeyInfo postgresUniqueKey)
+        {
+            var unique = new UniqueKeyInfo();
+            unique.Table = table;
+            unique.Name = postgresUniqueKey.UniqueName;
+            unique.UniqueColumns = postgresUniqueKey.SqlUniqueKeys.Select(s => table.GetColumn(s.ColumnName)).ToList();
+
+            return unique;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using SB.Migrator.Logics.DatabaseCommands;
+﻿using System.Text;
+using SB.Migrator.Logics.DatabaseCommands;
 
 namespace SB.Migrator.SqlServer
 {
@@ -17,6 +18,7 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         protected override void InternalBuildCommandText()
         {
+            ScriptBuilder = new StringBuilder();
             ScriptBuilder.Append($"ALTER TABLE {Table.GetSqlName()} DROP CONSTRAINT {UniqueName};");
         }
     }

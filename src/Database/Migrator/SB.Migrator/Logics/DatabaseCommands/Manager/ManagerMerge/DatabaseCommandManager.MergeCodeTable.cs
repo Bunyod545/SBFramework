@@ -5,6 +5,7 @@ using SB.Common.Extensions;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
+using SB.Migrator.Models.Tables.Keys;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -25,13 +26,14 @@ namespace SB.Migrator.Logics.DatabaseCommands
             {
                 CreateTable(codeTable);
                 codeTable.ForeignKeys.ForEach(CreateForeignKey);
+                codeTable.UniqueKeys.ForEach(CreateUniqueKey);
                 MergeTableValues(codeTable);
-
                 return;
             }
 
             codeTable.ForeignKeys.ForEach(f => MergeCodeTableForeignKey(f, databaseTable.ForeignKeys));
             codeTable.Columns.ForEach(f => MergeCodeColumn(f, databaseTable.Columns));
+            codeTable.UniqueKeys.ForEach(f => MergeTableUnique(f, databaseTable.UniqueKeys));
             MergeTableValues(codeTable);
         }
 
@@ -141,6 +143,38 @@ namespace SB.Migrator.Logics.DatabaseCommands
         {
             if (!codeTableInfo.TableValues.IsNullOrEmpty())
                 SetTableValues(codeTableInfo);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codeUnique"></param>
+        /// <param name="databaseUniques"></param>
+        protected virtual void MergeTableUnique(UniqueKeyInfo codeUnique, List<UniqueKeyInfo> databaseUniques)
+        {
+            var databaseUnique = databaseUniques.FirstOrDefault(f => f.Name == codeUnique.Name);
+            if (databaseUnique == null)
+            {
+                CreateUniqueKey(codeUnique);
+                return;
+            }
+
+            if (databaseUnique.UniqueColumns.Count != codeUnique.UniqueColumns.Count)
+            {
+                DropUniqueKey(databaseUnique);
+                CreateUniqueKey(codeUnique);
+                return;
+            }
+
+            var dbColumns = databaseUnique.UniqueColumns;
+            var codeColumns = codeUnique.UniqueColumns;
+
+            var equalColumns = codeColumns.All(c => dbColumns.Any(db => db.IsEqual(c)));
+            if (equalColumns)
+                return;
+
+            DropUniqueKey(databaseUnique);
+            CreateUniqueKey(databaseUnique);
         }
     }
 }

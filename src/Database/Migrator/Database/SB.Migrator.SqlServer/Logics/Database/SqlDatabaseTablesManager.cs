@@ -51,8 +51,6 @@ namespace SB.Migrator.SqlServer
         /// </summary>
         protected SqlForeignKeyManager SqlForeignKeyManager { get; }
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -107,6 +105,7 @@ namespace SB.Migrator.SqlServer
             table.Columns = GetColumns(table, sqlTable);
             table.UniqueKeys = GetUniqueKeys(table, sqlTable);
             table.PrimaryKey = GetPrimaryKeyInfo(table, sqlTable);
+            table.UniqueKeys = GetUniques(table, sqlTable);
 
             return table;
         }
@@ -212,6 +211,36 @@ namespace SB.Migrator.SqlServer
             primaryKey.Table = table;
             primaryKey.PrimaryColumn = table.GetColumn(sqlPrimaryKey.ColumnName);
             return primaryKey;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="sqlTable"></param>
+        /// <returns></returns>
+        private List<UniqueKeyInfo> GetUniques(TableInfo table, SqlTable sqlTable)
+        {
+            return SqlUniqueKeyManager
+                .GetUniqueKeys(sqlTable)
+                .Select(s => GetUnique(table, s))
+                .ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="sqlUniqueKey"></param>
+        /// <returns></returns>
+        private UniqueKeyInfo GetUnique(TableInfo table, SqlUniqueKeyInfo sqlUniqueKey)
+        {
+            var unique = new UniqueKeyInfo();
+            unique.Table = table;
+            unique.Name = sqlUniqueKey.UniqueName;
+            unique.UniqueColumns = sqlUniqueKey.SqlUniqueKeys.Select(s => table.GetColumn(s.ColumnName)).ToList();
+
+            return unique;
         }
 
         /// <summary>
