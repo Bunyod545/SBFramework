@@ -6,7 +6,7 @@ namespace SB.Common.Logics.SynonymProviders
     /// <summary>
     /// 
     /// </summary>
-    public class EnumSynonymProvider
+    public static class EnumSynonymProvider
     {
         /// <summary>
         /// 
