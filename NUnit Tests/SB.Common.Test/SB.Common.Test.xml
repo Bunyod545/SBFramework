@@ -271,5 +271,35 @@
             <param name="cultureInfo"></param>
             <returns></returns>
         </member>
+        <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.Age">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.InitializeVariables">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Variables.VariableManagerTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Variables.VariableManagerTest.InitializeTest">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>
