@@ -1,9 +1,18 @@
 ﻿using System;
+using System.Reflection;
 using SB.Common.Logics.Variables.Interfaces;
+using SB.Common.Logics.Variables.Logics;
+using SB.Common.Logics.Variables.Logics.ValueConverter;
 using SB.Common.Logics.Variables.Logics.VariableValue;
 
 namespace SB.Common.Logics.Variables
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="variable"></param>
+    public delegate void VariableValueChangeHandler(Variable variable);
+
     /// <summary>
     /// 
     /// </summary>
@@ -13,6 +22,16 @@ namespace SB.Common.Logics.Variables
         /// 
         /// </summary>
         public string Name { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public PropertyInfo PropertyInfo { get; internal set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Type ValueType { get; internal set; }
 
         /// <summary>
         /// 
@@ -42,9 +61,26 @@ namespace SB.Common.Logics.Variables
         /// <summary>
         /// 
         /// </summary>
+        public IVariableValueSetter VariableValueSetter { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IVariableValueConverter VariableValueConverter { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event VariableValueChangeHandler ValueChange;
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected Variable()
         {
             VariableValueGetter = new DefaultVariableValueGetter(this);
+            VariableValueSetter = new DefaultVariableValueSetter(this);
+            VariableValueConverter = new DefaultVariableValueConverter(this);
         }
 
         /// <summary>
@@ -65,10 +101,26 @@ namespace SB.Common.Logics.Variables
         /// <param name="value"></param>
         public virtual void SetVariableValue(object value)
         {
-            if (VariableService == null)
-                throw new NotImplementedException(nameof(VariableService));
+            if (VariableValueSetter == null)
+                throw new NotImplementedException(nameof(VariableValueSetter));
 
-            VariableService.SetVariableValue(this, value);
+            VariableValueSetter.SetVariableValue(value);
+            OnValueChange();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void OnValueChange()
+        {
+            ValueChange?.Invoke(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public abstract Variable Clone(object context);
     }
 }

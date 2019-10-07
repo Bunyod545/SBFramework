@@ -1,5 +1,4 @@
 ﻿using System;
-using SB.Common.Logics.Variables.Logics.ValueConverter;
 
 namespace SB.Common.Logics.Variables.Logics.VariableValue
 {
@@ -11,12 +10,12 @@ namespace SB.Common.Logics.Variables.Logics.VariableValue
         /// <summary>
         /// 
         /// </summary>
-        public IVariableValueConverter ValueConverter { get; set; }
+        public Variable Variable { get; protected set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Variable Variable { get; protected set; }
+        public Type ValueType => Variable.ValueType;
 
         /// <summary>
         /// 
@@ -33,14 +32,29 @@ namespace SB.Common.Logics.Variables.Logics.VariableValue
         /// <returns></returns>
         public object GetVariableValue()
         {
-            if(Variable.VariableService == null)
+            if (Variable.VariableService == null)
                 throw new NotImplementedException(nameof(Variable.VariableService));
 
             var value = Variable.VariableService.GetVariableValue(Variable);
-            if (ValueConverter.IsCanConvert(Variable, value))
-                return ValueConverter.Convert(Variable, value);
+            if (value == null)
+                return GetNullValueOrDefault();
 
-            return value;
+            return Variable.VariableValueConverter.IsCanConvert(value) ? Variable.VariableValueConverter.Convert(value) : value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual object GetNullValueOrDefault()
+        {
+            if (ValueType.IsClass || ValueType.IsNullable())
+                return null;
+
+            if (ValueType.IsValueType)
+                return Activator.CreateInstance(ValueType);
+
+            return null;
         }
     }
 }

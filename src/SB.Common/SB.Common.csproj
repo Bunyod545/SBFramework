@@ -6,7 +6,7 @@
     <Authors>Bunyod545</Authors>
     <Company>SB</Company>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,6 +21,10 @@
     <Compile Remove="Logics\Business\Subcounts\**" />
     <EmbeddedResource Remove="Logics\Business\Subcounts\**" />
     <None Remove="Logics\Business\Subcounts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logics\Variables\Logics\VariableValueConverter\Converters\" />
   </ItemGroup>
 
 </Project>

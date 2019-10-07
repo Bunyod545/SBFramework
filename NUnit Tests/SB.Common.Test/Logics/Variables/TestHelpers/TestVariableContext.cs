@@ -22,6 +22,11 @@ namespace SB.Common.Test.Logics.Variables.TestHelpers
         /// <summary>
         /// 
         /// </summary>
+        public Variable<bool?> IsTest { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void InitializeVariables()
         {
             VariableManager.Initialize(this);

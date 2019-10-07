@@ -8,17 +8,20 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="variable"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        bool IsCanConvert(Variable variable, object value);
+        Variable Variable { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="variable"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        object Convert(Variable variable, object value);
+        bool IsCanConvert(object value);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        object Convert(object value);
     }
 }
