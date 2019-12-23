@@ -1,11 +1,12 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
+using SB.Migrator.Logics.Database;
 
 namespace SB.Migrator.Firebird
 {
     /// <summary>
     /// 
     /// </summary>
-    public class FirebirdDatabaseCreator : Migrator.Logics.Database.DatabaseCreator
+    public class FirebirdDatabaseCreator : DatabaseCreator
     {
         /// <summary>
         /// 

@@ -123,13 +123,13 @@ namespace SB.Common.Logics.SynonymProviders
         {
             var document = SummaryManager.GetSummaryXmlDocument(field.DeclaringType.Assembly);
             if (document == null)
-                return null;
+                return new List<XmlNode>();
 
             var element = SummaryHelper.FieldExtensions + field.DeclaringType.FullName + Strings.Point + field.Name;
             var membersNode = document.LastChild?.LastChild;
 
             var nodes = membersNode?.ChildNodes.OfType<XmlNode>().ToList();
-            return nodes?.FirstOrDefault(f => f.Attributes["name"]?.Value == element)?.ChildNodes.OfType<XmlNode>();
+            return nodes?.FirstOrDefault(f => f.Attributes["name"]?.Value == element)?.ChildNodes.OfType<XmlNode>() ?? new List<XmlNode>();
         }
     }
 }
