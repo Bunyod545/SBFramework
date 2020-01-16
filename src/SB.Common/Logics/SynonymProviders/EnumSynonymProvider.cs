@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SB.Common.Logics.SynonymProviders.Helpers;
+using System;
 using System.Globalization;
 
 namespace SB.Common.Logics.SynonymProviders
@@ -42,10 +43,9 @@ namespace SB.Common.Logics.SynonymProviders
             if (item == null)
                 return string.Empty;
 
-            var type = item.GetType();
-            var value = Enum.GetName(type, item);
-
-            return SynonymStorage?.Get($"{type.Name}.{value}", cultureInfo) ?? value;
+            var key = EnumSynonymProviderHelper.GetEnumKey(item);
+            return SynonymStorage?.Get(key, cultureInfo) ?? key;
         }
+
     }
 }

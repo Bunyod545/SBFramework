@@ -5,8 +5,8 @@
     <RootNamespace>SB.Common</RootNamespace>
     <Authors>Bunyod545</Authors>
     <Company>SB</Company>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.0.9</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.10</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

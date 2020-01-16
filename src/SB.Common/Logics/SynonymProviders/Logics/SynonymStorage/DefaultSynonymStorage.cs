@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SB.Common.Logics.SynonymProviders.Helpers;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -30,6 +32,26 @@ namespace SB.Common.Logics.SynonymProviders
         {
             if(synonymInfo != null)
                 Synonyms.Add(synonymInfo);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static SynonymInfo GetInfo(Enum item)
+        {
+            var key = EnumSynonymProviderHelper.GetEnumKey(item);
+            return GetInfo(key);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        public static SynonymInfo GetInfo(string key)
+        {
+            return Synonyms.FirstOrDefault(f => f.Key == key);
         }
 
         /// <summary>
