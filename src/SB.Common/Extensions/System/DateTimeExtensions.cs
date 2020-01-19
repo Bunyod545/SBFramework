@@ -47,6 +47,7 @@ namespace System
             var days = DateTime.DaysInMonth(date.Year, date.Month);
             return new DateTime(date.Year, date.Month, days).EndOfDay();
         }
+
         /// <summary>
         /// 
         /// </summary>

@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\Bunyod\Desktop\Projects\SBFramework\NUnit Tests\SB.Common.Test\SB.Common.Test.xml</DocumentationFile>
+    <DocumentationFile>SB.Common.Test.xml</DocumentationFile>
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
