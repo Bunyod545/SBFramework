@@ -132,6 +132,7 @@ namespace SB.Report.Logics.ExcelTemplate
             namedRange.Copy(cellRange);
 
             CurrentRowIndex += namedRange.Rows;
+            CurrentColumnIndex = endColumn;
         }
 
         /// <summary>
@@ -141,7 +142,18 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <param name="namedRange"></param>
         public virtual void ImportColumn(ExcelNamedRange namedRange)
         {
+            var worksheet = GetWorksheet(namedRange.Worksheet.Name);
+            worksheet.InsertColumn(CurrentColumnIndex, namedRange.Columns);
 
+            var startRow = CurrentRowIndex;
+            var startColumn = CurrentColumnIndex + namedRange.Start.Column - 1;
+            var endRow = startRow + namedRange.Rows - 1;
+            var endColumn = namedRange.Columns;
+
+            var cellRange = worksheet.Cells[startRow, startColumn, endRow, endColumn];
+            namedRange.Copy(cellRange);
+
+            CurrentColumnIndex += namedRange.Columns;
         }
 
         /// <summary>

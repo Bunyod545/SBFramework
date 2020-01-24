@@ -16,7 +16,8 @@ namespace SB.Report.Test.Logics.ExcelTemplate
         {
             var customReport = new CustomExcelTemplateReport();
             var headerRange = customReport.GetTempNamedRange("header");
-            customReport.ImportRow(headerRange);
+            customReport.ImportColumn(headerRange);
+            customReport.ImportColumn(headerRange);
 
             var rowRange = customReport.GetTempNamedRange("row");
             for (int i = 0; i < 50; i++)
