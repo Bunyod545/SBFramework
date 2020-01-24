@@ -4,6 +4,16 @@
         <name>SB.Common.Test</name>
     </assembly>
     <members>
+        <member name="T:SB.Common.Test.Extensions.System.DateTimeExtensionsTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Extensions.System.DateTimeExtensionsTest.BeginOfDay">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer">
             <summary>
             
@@ -271,6 +281,21 @@
             <param name="cultureInfo"></param>
             <returns></returns>
         </member>
+        <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVaariableContextConstants">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.Variables.TestHelpers.TestVaariableContextConstants.TestName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.Variables.TestHelpers.TestVaariableContextConstants.TestAge">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext">
             <summary>
             
@@ -286,17 +311,46 @@
             
             </summary>
         </member>
+        <member name="P:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.IsTest">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.InitializeVariables">
             <summary>
             
             </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContextVariableService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContextVariableService.VariableObjects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContextVariableService.GetVariableValue(SB.Common.Logics.Variables.Variable)">
+            <summary>
+            
+            </summary>
+            <param name="variable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContextVariableService.SetVariableValue(SB.Common.Logics.Variables.Variable,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="variable"></param>
+            <param name="value"></param>
         </member>
         <member name="T:SB.Common.Test.Logics.Variables.VariableManagerTest">
             <summary>
             
             </summary>
         </member>
-        <member name="M:SB.Common.Test.Logics.Variables.VariableManagerTest.InitializeTest">
+        <member name="M:SB.Common.Test.Logics.Variables.VariableManagerTest.VariablesTest">
             <summary>
             
             </summary>

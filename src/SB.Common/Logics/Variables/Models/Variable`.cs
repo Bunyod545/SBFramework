@@ -17,7 +17,7 @@
         /// <param name="value"></param>
         public void SetValue(T value)
         {
-            base.SetVariableValue(value);
+            SetVariableValue(value);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@
         /// <returns></returns>
         public T GetValue()
         {
-            return (T)base.GetVariableValue();
+            return (T)GetVariableValue();
         }
 
         /// <summary>

@@ -6,24 +6,23 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>SB.Common.Test.xml</DocumentationFile>
-    <OutputPath></OutputPath>
-  </PropertyGroup>
-
   <ItemGroup>
-    <None Remove="SB.Common.Test.xml" />
+    <None Remove="Logics\ExcelTemplate\CustomExcelTemplateReport.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.1" />
+    <EmbeddedResource Include="Logics\ExcelTemplate\Reports\CustomExcelTemplateReport.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
     <PackageReference Include="nunit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SB.Common\SB.Common.csproj" />
+    <ProjectReference Include="..\..\src\SB.Report\SB.Report.csproj" />
   </ItemGroup>
 
 </Project>
