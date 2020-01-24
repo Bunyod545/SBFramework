@@ -15,12 +15,15 @@ namespace SB.Report.Test.Logics.ExcelTemplate
         public void GetTemplateTest()
         {
             var customReport = new CustomExcelTemplateReport();
-            var tempReport = customReport.GetTemplate();
+            var headerRange = customReport.GetTempNamedRange("header");
+            customReport.ImportRow(headerRange);
 
-            var sheet = tempReport.Workbook.Worksheets[0];
-            var name = sheet.Names["Test"];
+            var rowRange = customReport.GetTempNamedRange("row");
+            for (int i = 0; i < 50; i++)
+                customReport.ImportRow(rowRange);
 
-            Assert.NotNull(tempReport);
+            customReport.SaveReport();
+            Assert.NotNull(customReport.ExcelTempReport);
         }
 
         /// <summary>

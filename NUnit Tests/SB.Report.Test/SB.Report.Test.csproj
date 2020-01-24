@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Logics\ExcelTemplate\Reports\CustomExcelTemplateReport.xlsx" />
+    <EmbeddedResource Include="Logics\ExcelTemplate\Reports\CustomExcelTemplateReport.xlsx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
