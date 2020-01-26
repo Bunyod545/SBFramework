@@ -8,6 +8,12 @@ namespace SB.Report.Test.Logics.ExcelTemplate
     /// </summary>
     public class WithoutExcelTemplateReport : ExcelTemplateReport
     {
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Generate()
+        {
+            
+        }
     }
 }

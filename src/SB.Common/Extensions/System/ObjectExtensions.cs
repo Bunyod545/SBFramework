@@ -15,5 +15,27 @@
         {
             return obj?.ToString() ?? defaultValue;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsNotTypeOf<T>(this object obj)
+        {
+            return !IsTypeOf<T>(obj);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsTypeOf<T>(this object obj)
+        {
+            return obj is T;
+        }
     }
 }

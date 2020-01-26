@@ -21,6 +21,17 @@ namespace SB.Common.Extensions
         /// 
         /// </summary>
         /// <param name="text"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsNotContains(this string text, string value)
+        {
+            return !text.Contains(value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
         /// <returns></returns>
         public static bool IsNullOrEmpty(this string text)
         {

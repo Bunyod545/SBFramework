@@ -22,7 +22,8 @@ namespace SB.Report.Logics.ExcelTemplate.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ws"></param>
+        /// <param name="workbook"></param>
+        /// <param name="tempWorksheet"></param>
         private static void InitializeWorksheet(ExcelWorkbook workbook, ExcelWorksheet tempWorksheet)
         {
             var worksheet = workbook.Worksheets.Add(tempWorksheet.Name);
@@ -32,11 +33,12 @@ namespace SB.Report.Logics.ExcelTemplate.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ws"></param>
+        /// <param name="worksheet"></param>
+        /// <param name="tempWorksheet"></param>
         private static void InitializeWorksheetColumns(ExcelWorksheet worksheet, ExcelWorksheet tempWorksheet)
         {
             var tempColumns = tempWorksheet.GetColumns().ToList();
-            tempColumns.ForEach(f => worksheet.CopyColumnFromTemplate(f));
+            tempColumns.ForEach(worksheet.CopyColumnFromTemplate);
         }
     }
 }

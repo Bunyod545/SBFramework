@@ -8,6 +8,11 @@ namespace SB.Report.Test.Logics.ExcelTemplate
     [ExcelTemplate("CustomExcelTemplateReport.xlsx")]
     public class CustomExcelTemplateReport : ExcelTemplateReport
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Generate()
+        {
+        }
     }
 }
