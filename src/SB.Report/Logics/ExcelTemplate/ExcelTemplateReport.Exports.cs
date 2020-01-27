@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using OfficeOpenXml;
+using SB.Report.Logics.ExcelTemplate.Logics.ObjectExporters;
 
 namespace SB.Report.Logics.ExcelTemplate
 {
@@ -17,6 +19,11 @@ namespace SB.Report.Logics.ExcelTemplate
         /// 
         /// </summary>
         public ITemplateReportExportValueReplacer ExportValueReplacer { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ITemplateReportObjectExporter ObjectExporter { get; set; }
 
         /// <summary>
         /// 
@@ -43,8 +50,18 @@ namespace SB.Report.Logics.ExcelTemplate
         {
             ExportCalculator = new TemplateReportExportCalculator();
             ExportValueReplacer = new TemplateReportExportValueReplacer();
+            ObjectExporter = new TemplateReportObjectExporter(this);
             RowExporter = new TemplateReportRowExporter(this);
             ColumnExporter = new TemplateReportColumnExporter(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="reportInfo"></param>
+        public virtual void Export<T>(T reportInfo) where T : class
+        {
+            ObjectExporter.Export(reportInfo);
         }
 
         /// <summary>
@@ -67,6 +84,16 @@ namespace SB.Report.Logics.ExcelTemplate
         public void ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class
         {
             RowExporter.ExportRow(tempNamedRange, values);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        /// <param name="values"></param>
+        public void ExportRows(string tempNamedRangeName, IEnumerable values)
+        {
+            RowExporter.ExportRows(tempNamedRangeName, values);
         }
 
         /// <summary>
@@ -131,6 +158,16 @@ namespace SB.Report.Logics.ExcelTemplate
         public void ExportColumn<T>(ExcelNamedRange tempNamedRange, T values) where T : class
         {
             ColumnExporter.ExportColumn(tempNamedRange, values);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        /// <param name="values"></param>
+        public void ExportColumns(string tempNamedRangeName, IEnumerable values)
+        {
+            ColumnExporter.ExportColumn(tempNamedRangeName, values);
         }
 
         /// <summary>

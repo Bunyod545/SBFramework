@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using OfficeOpenXml;
 
 namespace SB.Report.Logics.ExcelTemplate
@@ -22,6 +23,14 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
         void ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tempNamedRangeName"></param>
+        /// <param name="values"></param>
+        void ExportRows(string tempNamedRangeName, IEnumerable values);
 
         /// <summary>
         /// 

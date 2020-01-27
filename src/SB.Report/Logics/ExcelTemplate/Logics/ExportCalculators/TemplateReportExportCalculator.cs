@@ -40,7 +40,7 @@ namespace SB.Report.Logics.ExcelTemplate
             var address = ExcelCellBase.GetAddress(startRow, startColumn, endRow, endColumn);
 
             RowIndex += tempNamedRange.Rows;
-            ColumnIndex = tempNamedRange.Columns;
+            ColumnIndex = 1;
             return address;
         }
 
