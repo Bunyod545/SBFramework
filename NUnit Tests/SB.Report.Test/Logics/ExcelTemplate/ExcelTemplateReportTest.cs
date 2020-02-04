@@ -27,19 +27,6 @@ namespace SB.Report.Test.Logics.ExcelTemplate
             var row = new CustomExcelRowTemplate();
             row.GroupName = "Test";
             info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
-            info.Rows.Add(row);
 
             customReport.Export(info);
             customReport.SaveReport("Test.xlsx");
