@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using OfficeOpenXml;
@@ -48,6 +48,18 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        /// <param name="values"></param>
+        public void ExportColumns(string tempNamedRangeName, IEnumerable values)
+        {
+            var enumerator = values.GetEnumerator();
+            while (enumerator.MoveNext())
+                ExportColumn(tempNamedRangeName, enumerator.Current);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
@@ -87,12 +99,8 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <param name="values"></param>
         public void ExportColumn(ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
         {
-            var worksheet = Report.GetWorksheet(tempNamedRange.Worksheet.Name);
             var address = ExportCalculator.GetExportColumnAddress(tempNamedRange);
-
-            var cellRange = worksheet.Cells[address];
-            tempNamedRange.Copy(cellRange);
-            ExportValueReplacer.Replace(cellRange, values);
+            ExportRange(address, tempNamedRange, values);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using OfficeOpenXml;
+using SB.Report.Logics.ExcelTemplate.Extensions;
 using SB.Report.Logics.ExcelTemplate.Logics.Exporters.Attributes;
 
 namespace SB.Report.Logics.ExcelTemplate
@@ -58,7 +59,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <returns></returns>
         protected Dictionary<string, object> GetPropertyValues<T>(T values) where T : class
         {
-            var props = typeof(T).GetProperties().ToList();
+            var props = values.GetType().GetProperties().ToList();
             var dicValues = new Dictionary<string, object>();
             props.ForEach(f => dicValues.Add(GetPropertyName(f), f.GetValue(values)));
 
@@ -74,6 +75,23 @@ namespace SB.Report.Logics.ExcelTemplate
         {
             var attr = property.GetCustomAttribute<TemplateReportPropertyAttribute>();
             return attr?.Name ?? property.Name;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="address"></param>
+        /// <param name="tempNamedRange"></param>
+        /// <param name="values"></param>
+        protected void ExportRange(string address, ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
+        {
+            var worksheet = Report.GetWorksheet(tempNamedRange.Worksheet.Name);
+
+            var cellRange = worksheet.Cells[address];
+            tempNamedRange.Copy(cellRange);
+            tempNamedRange.CopySettings(cellRange);
+
+            ExportValueReplacer.Replace(cellRange, values);
         }
     }
 }
