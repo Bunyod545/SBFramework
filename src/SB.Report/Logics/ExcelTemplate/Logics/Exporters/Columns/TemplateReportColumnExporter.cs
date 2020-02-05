@@ -88,7 +88,7 @@ namespace SB.Report.Logics.ExcelTemplate
         public void ExportColumn(ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
         {
             var worksheet = Report.GetWorksheet(tempNamedRange.Worksheet.Name);
-            var address = ExportCalculator.GetExportRowAddress(tempNamedRange);
+            var address = ExportCalculator.GetExportColumnAddress(tempNamedRange);
 
             var cellRange = worksheet.Cells[address];
             tempNamedRange.Copy(cellRange);
