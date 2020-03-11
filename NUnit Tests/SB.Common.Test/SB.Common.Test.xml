@@ -172,21 +172,6 @@
             
             </summary>
         </member>
-        <member name="T:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest.InitializeSynonymProvider">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest.GetSynonymTest">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="T:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestEnum">
             <summary>
             
@@ -279,6 +264,132 @@
             </summary>
             <param name="key"></param>
             <param name="cultureInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestType.LoginOrPasswordIncorrect">
+            <summary>
+            Entered login or password incorrect
+            </summary>
+            <uz>Foydalanuvchi nomi yoki parol noto'g'ri</uz>
+            <ru>Неверный логин или пароль</ru>
+            <en>Login or password incorrect</en>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestType.IncorrectData">
+            <summary>
+            Incorrect data entered
+            </summary>
+            <uz>Noto'g'ri ma'lumotlar kiritildi</uz>
+            <ru>Введен неправильный данные</ru>
+            <en>Incorrect data entered</en>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestType.IncorrectAmountData">
+            <summary>
+            Incorrect amount data entered
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymInfo.Uz">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymInfo.Ru">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymInfo.En">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymMigrator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymMigrator.IsActual">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymMigrator.Migrate(System.Collections.Generic.List{SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymInfo})">
+            <summary>
+            
+            </summary>
+            <param name="synonymInfos"></param>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage.SynonymInfos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage.#ctor(System.Collections.Generic.List{SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymInfo})">
+            <summary>
+            
+            </summary>
+            <param name="synonymInfos"></param>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage.Get(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage.Get(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="cultureInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest.InitializeSynonymProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.SynonymProviderTest.GetSynonymTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SynonymProviders.TypeSynonymMigrateManagerTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TypeSynonymMigrateManagerTest.MigrateTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SynonymProviders.TypeSynonymMigrateManagerTest.Property(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
             <returns></returns>
         </member>
         <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVaariableContextConstants">

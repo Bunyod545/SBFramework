@@ -46,6 +46,5 @@ namespace SB.Common.Logics.SynonymProviders
             var key = EnumSynonymProviderHelper.GetEnumKey(item);
             return SynonymStorage?.Get(key, cultureInfo) ?? key;
         }
-
     }
 }
