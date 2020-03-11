@@ -21,6 +21,24 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        public void ExportColumn(string tempNamedRangeName)
+        {
+            ExportColumn(tempNamedRangeName, new Dictionary<string, object>());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempNamedRange"></param>
+        public void ExportColumn(ExcelNamedRange tempNamedRange)
+        {
+            ExportColumn(tempNamedRange, new Dictionary<string, object>());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
@@ -101,6 +119,14 @@ namespace SB.Report.Logics.ExcelTemplate
         {
             var address = ExportCalculator.GetExportColumnAddress(tempNamedRange);
             ExportRange(address, tempNamedRange, values);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ExportColumnsFinished()
+        {
+            ExportCalculator.ExportColumnsFinished();
         }
     }
 }

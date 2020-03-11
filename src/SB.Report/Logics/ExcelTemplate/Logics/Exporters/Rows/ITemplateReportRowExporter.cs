@@ -9,6 +9,17 @@ namespace SB.Report.Logics.ExcelTemplate
     /// </summary>
     public interface ITemplateReportRowExporter : ITemplateReportExporter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        void ExportRow(string tempNamedRangeName);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempNamedRange"></param>
+        void ExportRow(ExcelNamedRange tempNamedRange); 
 
         /// <summary>
         /// 

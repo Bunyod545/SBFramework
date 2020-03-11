@@ -21,6 +21,25 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        public void ExportRow(string tempNamedRangeName)
+        {
+            ExportRow(tempNamedRangeName, new Dictionary<string, object>());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tempNamedRange"></param>
+        public void ExportRow(ExcelNamedRange tempNamedRange) 
+        {
+            ExportRow(tempNamedRange, new Dictionary<string, object>());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>

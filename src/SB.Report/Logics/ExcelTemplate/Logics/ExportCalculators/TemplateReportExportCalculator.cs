@@ -28,11 +28,6 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <param name="tempNamedRange"></param>
         public string GetExportRowAddress(ExcelNamedRange tempNamedRange)
         {
-            if (ImportedColumnRowsCount > 0)
-                RowIndex += ImportedColumnRowsCount;
-
-            ImportedColumnRowsCount = 0;
-
             var startRow = RowIndex;
             var startColumn = tempNamedRange.Start.Column;
             var endRow = startRow + tempNamedRange.Rows - 1;
@@ -52,7 +47,7 @@ namespace SB.Report.Logics.ExcelTemplate
         public string GetExportColumnAddress(ExcelNamedRange tempNamedRange)
         {
             var startRow = RowIndex;
-            var startColumn = ColumnIndex + tempNamedRange.Start.Column - 1;
+            var startColumn = ColumnIndex;
             var endRow = startRow + tempNamedRange.Rows - 1;
             var endColumn = ColumnIndex + tempNamedRange.Columns - 1;
             var address = ExcelCellBase.GetAddress(startRow, startColumn, endRow, endColumn);
@@ -62,6 +57,18 @@ namespace SB.Report.Logics.ExcelTemplate
                 ImportedColumnRowsCount = tempNamedRange.Rows;
 
             return address;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ExportColumnsFinished()
+        {
+            if (ImportedColumnRowsCount > 0)
+                RowIndex += ImportedColumnRowsCount;
+
+            ImportedColumnRowsCount = 0;
+            ColumnIndex = 1;
         }
     }
 }

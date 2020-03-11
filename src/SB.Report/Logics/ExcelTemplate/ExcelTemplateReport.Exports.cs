@@ -67,10 +67,29 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        public virtual void ExportRow(string tempNamedRangeName)
+        {
+            RowExporter.ExportRow(tempNamedRangeName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tempNamedRange"></param>
+        public virtual void ExportRow(ExcelNamedRange tempNamedRange)
+        {
+            RowExporter.ExportRow(tempNamedRange);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRow<T>(string tempNamedRangeName, T values) where T : class
+        public virtual void ExportRow<T>(string tempNamedRangeName, T values) where T : class
         {
             RowExporter.ExportRow(tempNamedRangeName, values);
         }
@@ -81,7 +100,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class
+        public virtual void ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class
         {
             RowExporter.ExportRow(tempNamedRange, values);
         }
@@ -91,7 +110,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRows(string tempNamedRangeName, IEnumerable values)
+        public virtual void ExportRows(string tempNamedRangeName, IEnumerable values)
         {
             RowExporter.ExportRows(tempNamedRangeName, values);
         }
@@ -102,7 +121,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRows<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class
+        public virtual void ExportRows<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class
         {
             RowExporter.ExportRows(tempNamedRangeName, values);
         }
@@ -113,7 +132,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportRows<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class
+        public virtual void ExportRows<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class
         {
             RowExporter.ExportRows(tempNamedRange, values);
         }
@@ -141,10 +160,28 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tempNamedRangeName"></param>
+        public virtual void ExportColumn(string tempNamedRangeName)
+        {
+            ColumnExporter.ExportColumn(tempNamedRangeName);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tempNamedRange"></param>
+        public virtual void ExportColumn(ExcelNamedRange tempNamedRange)
+        {
+            ColumnExporter.ExportColumn(tempNamedRange);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportColumn<T>(string tempNamedRangeName, T values) where T : class
+        public virtual void ExportColumn<T>(string tempNamedRangeName, T values) where T : class
         {
             ColumnExporter.ExportColumn(tempNamedRangeName, values);
         }
@@ -155,7 +192,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportColumn<T>(ExcelNamedRange tempNamedRange, T values) where T : class
+        public virtual void ExportColumn<T>(ExcelNamedRange tempNamedRange, T values) where T : class
         {
             ColumnExporter.ExportColumn(tempNamedRange, values);
         }
@@ -165,7 +202,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportColumns(string tempNamedRangeName, IEnumerable values)
+        public virtual void ExportColumns(string tempNamedRangeName, IEnumerable values)
         {
             ColumnExporter.ExportColumn(tempNamedRangeName, values);
         }
@@ -176,7 +213,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportColumns<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class
+        public virtual void ExportColumns<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class
         {
             ColumnExporter.ExportColumn(tempNamedRangeName, values);
         }
@@ -187,7 +224,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportColumns<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class
+        public virtual void ExportColumns<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class
         {
             ColumnExporter.ExportColumn(tempNamedRange, values);
         }
@@ -197,7 +234,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportColumn(string tempNamedRangeName, Dictionary<string, object> values)
+        public virtual void ExportColumn(string tempNamedRangeName, Dictionary<string, object> values)
         {
             ColumnExporter.ExportColumn(tempNamedRangeName, values);
         }
@@ -210,6 +247,14 @@ namespace SB.Report.Logics.ExcelTemplate
         public virtual void ExportColumn(ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
         {
             ColumnExporter.ExportColumn(tempNamedRange, values);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void ExportColumnsFinished()
+        {
+            ColumnExporter.ExportColumnsFinished();
         }
     }
 }

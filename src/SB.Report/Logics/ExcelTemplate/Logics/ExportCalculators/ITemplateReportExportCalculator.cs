@@ -28,5 +28,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRange"></param>
         string GetExportColumnAddress(ExcelNamedRange tempNamedRange);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void ExportColumnsFinished();
     }
 }
