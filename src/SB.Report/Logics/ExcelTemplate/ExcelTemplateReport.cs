@@ -48,5 +48,14 @@ namespace SB.Report.Logics.ExcelTemplate
             var file = new FileInfo(filePath);
             ExcelReport.SaveAs(file);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetFileExtension()
+        {
+            return ".xlsx";
+        }
     }
 }
