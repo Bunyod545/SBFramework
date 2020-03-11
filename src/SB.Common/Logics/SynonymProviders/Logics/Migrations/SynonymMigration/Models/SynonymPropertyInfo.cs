@@ -1,5 +1,4 @@
-﻿using SB.Common.Logics.SynonymProviders;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Reflection;
 
 namespace SB.Common.Logics.SynonymProviders

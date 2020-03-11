@@ -29,6 +29,7 @@ namespace SB.Report.Test.Logics.ExcelTemplate
             info.Rows.Add(row);
 
             customReport.Export(info);
+
             customReport.SaveReport("Test.xlsx");
         }
 
