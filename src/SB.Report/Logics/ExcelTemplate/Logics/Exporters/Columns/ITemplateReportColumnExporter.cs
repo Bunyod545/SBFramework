@@ -13,13 +13,13 @@ namespace SB.Report.Logics.ExcelTemplate
         /// 
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
-        void ExportColumn(string tempNamedRangeName);
+        ExcelRange ExportColumn(string tempNamedRangeName);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRange"></param>
-        void ExportColumn(ExcelNamedRange tempNamedRange);
+        ExcelRange ExportColumn(ExcelNamedRange tempNamedRange);
 
         /// <summary>
         /// 
@@ -27,31 +27,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        void ExportColumn<T>(string tempNamedRangeName, T values) where T : class;
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="tempNamedRange"></param>
-        /// <param name="values"></param>
-        void ExportColumn<T>(ExcelNamedRange tempNamedRange, T values) where T : class;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="tempNamedRangeName"></param>
-        /// <param name="values"></param>
-        void ExportColumns(string tempNamedRangeName, IEnumerable values);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="tempNamedRangeName"></param>
-        /// <param name="values"></param>
-        void ExportColumns<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class;
+        ExcelRange ExportColumn<T>(string tempNamedRangeName, T values) where T : class;
 
         /// <summary>
         /// 
@@ -59,21 +35,45 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        void ExportColumns<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class;
+        ExcelRange ExportColumn<T>(ExcelNamedRange tempNamedRange, T values) where T : class;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tempNamedRangeName"></param>
+        /// <param name="values"></param>
+        List<ExcelRange> ExportColumns(string tempNamedRangeName, IEnumerable values);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tempNamedRangeName"></param>
+        /// <param name="values"></param>
+        List<ExcelRange> ExportColumns<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tempNamedRange"></param>
+        /// <param name="values"></param>
+        List<ExcelRange> ExportColumns<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        void ExportColumn(string tempNamedRangeName, Dictionary<string, object> values);
+        ExcelRange ExportColumn(string tempNamedRangeName, Dictionary<string, object> values);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        void ExportColumn(ExcelNamedRange tempNamedRange, Dictionary<string, object> values);
+        ExcelRange ExportColumn(ExcelNamedRange tempNamedRange, Dictionary<string, object> values);
 
         /// <summary>
         /// 

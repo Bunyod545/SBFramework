@@ -22,9 +22,9 @@ namespace SB.Report.Logics.ExcelTemplate
         /// 
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
-        public void ExportRow(string tempNamedRangeName)
+        public ExcelRange ExportRow(string tempNamedRangeName)
         {
-            ExportRow(tempNamedRangeName, new Dictionary<string, object>());
+            return ExportRow(tempNamedRangeName, new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
-        public void ExportRow(ExcelNamedRange tempNamedRange) 
+        public ExcelRange ExportRow(ExcelNamedRange tempNamedRange)
         {
-            ExportRow(tempNamedRange, new Dictionary<string, object>());
+            return ExportRow(tempNamedRange, new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -43,10 +43,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRow<T>(string tempNamedRangeName, T values) where T: class
+        public ExcelRange ExportRow<T>(string tempNamedRangeName, T values) where T : class
         {
             var tempNamedRange = GetTempNamedRange(tempNamedRangeName);
-            ExportRow(tempNamedRange, values);
+            return ExportRow(tempNamedRange, values);
         }
 
         /// <summary>
@@ -55,13 +55,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class
+        public ExcelRange ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class
         {
-            if (Equals(values, null))
-                return;
-
             var dicValues = GetPropertyValues(values);
-            ExportRow(tempNamedRange, dicValues);
+            return ExportRow(tempNamedRange, dicValues);
         }
 
         /// <summary>
@@ -69,11 +66,14 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRows(string tempNamedRangeName, IEnumerable values)
+        public List<ExcelRange> ExportRows(string tempNamedRangeName, IEnumerable values)
         {
+            var result = new List<ExcelRange>();
             var enumerator = values.GetEnumerator();
             while (enumerator.MoveNext())
-                ExportRow(tempNamedRangeName, enumerator.Current);
+                result.Add(ExportRow(tempNamedRangeName, enumerator.Current));
+
+            return result;
         }
 
         /// <summary>
@@ -82,10 +82,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRows<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class
+        public List<ExcelRange> ExportRows<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class
         {
             var valueList = values.ToList();
-            valueList.ForEach(f => ExportRow(tempNamedRangeName, f));
+            return valueList.Select(f => ExportRow(tempNamedRangeName, f)).ToList();
         }
 
         /// <summary>
@@ -94,10 +94,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportRows<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class
+        public List<ExcelRange> ExportRows<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class
         {
             var valueList = values.ToList();
-            valueList.ForEach(f => ExportRow(tempNamedRange, f));
+            return valueList.Select(f => ExportRow(tempNamedRange, f)).ToList();
         }
 
         /// <summary>
@@ -105,10 +105,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        public void ExportRow(string tempNamedRangeName, Dictionary<string, object> values)
+        public ExcelRange ExportRow(string tempNamedRangeName, Dictionary<string, object> values)
         {
             var tempNamedRange = GetTempNamedRange(tempNamedRangeName);
-            ExportRow(tempNamedRange, values);
+            return ExportRow(tempNamedRange, values);
         }
 
         /// <summary>
@@ -116,10 +116,10 @@ namespace SB.Report.Logics.ExcelTemplate
         /// </summary>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        public void ExportRow(ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
+        public ExcelRange ExportRow(ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
         {
             var address = ExportCalculator.GetExportRowAddress(tempNamedRange);
-            ExportRange(address, tempNamedRange, values);
+            return ExportRange(address, tempNamedRange, values);
         }
     }
 }

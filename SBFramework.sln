@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Common.Test", "NUnit Tests\SB.Common.Test\SB.Common.Test.csproj", "{EC413110-2446-4B40-9D2D-DB82A47A3F87}"
 EndProject
@@ -67,7 +67,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetadataMySqlMigrationTestC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Report", "src\SB.Report\SB.Report.csproj", "{8C55D03A-6FA0-4CAB-9815-CA87A5582079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.Report.Test", "NUnit Tests\SB.Report.Test\SB.Report.Test.csproj", "{28800D77-0130-4A30-8505-4FEEC32F1970}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Report.Test", "NUnit Tests\SB.Report.Test\SB.Report.Test.csproj", "{28800D77-0130-4A30-8505-4FEEC32F1970}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.RestClient", "src\SB.RestClient\SB.RestClient.csproj", "{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +153,10 @@ Global
 		{28800D77-0130-4A30-8505-4FEEC32F1970}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28800D77-0130-4A30-8505-4FEEC32F1970}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28800D77-0130-4A30-8505-4FEEC32F1970}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +192,7 @@ Global
 		{CCB9AD02-0DDA-49C9-8457-A31585E60853} = {0A2FE0BF-9BCA-4CFE-B6FC-995C1543A809}
 		{8C55D03A-6FA0-4CAB-9815-CA87A5582079} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
 		{28800D77-0130-4A30-8505-4FEEC32F1970} = {093CEE95-3D29-4DC4-B25B-529DA3F7050B}
+		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

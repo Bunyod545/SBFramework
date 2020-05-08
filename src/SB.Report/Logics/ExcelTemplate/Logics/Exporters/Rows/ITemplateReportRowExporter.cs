@@ -13,27 +13,27 @@ namespace SB.Report.Logics.ExcelTemplate
         /// 
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
-        void ExportRow(string tempNamedRangeName);
+        ExcelRange ExportRow(string tempNamedRangeName);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRange"></param>
-        void ExportRow(ExcelNamedRange tempNamedRange); 
+        ExcelRange ExportRow(ExcelNamedRange tempNamedRange);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        void ExportRow<T>(string tempNamedRangeName, T values) where T : class;
+        ExcelRange ExportRow<T>(string tempNamedRangeName, T values) where T : class;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        void ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class;
+        ExcelRange ExportRow<T>(ExcelNamedRange tempNamedRange, T values) where T : class;
 
         /// <summary>
         /// 
@@ -41,7 +41,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        void ExportRows(string tempNamedRangeName, IEnumerable values);
+        List<ExcelRange> ExportRows(string tempNamedRangeName, IEnumerable values);
 
         /// <summary>
         /// 
@@ -49,7 +49,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        void ExportRows<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class;
+        List<ExcelRange> ExportRows<T>(string tempNamedRangeName, IEnumerable<T> values) where T : class;
 
         /// <summary>
         /// 
@@ -57,20 +57,20 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <typeparam name="T"></typeparam>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        void ExportRows<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class;
+        List<ExcelRange> ExportRows<T>(ExcelNamedRange tempNamedRange, IEnumerable<T> values) where T : class;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRangeName"></param>
         /// <param name="values"></param>
-        void ExportRow(string tempNamedRangeName, Dictionary<string, object> values);
+        ExcelRange ExportRow(string tempNamedRangeName, Dictionary<string, object> values);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        void ExportRow(ExcelNamedRange tempNamedRange, Dictionary<string, object> values);
+        ExcelRange ExportRow(ExcelNamedRange tempNamedRange, Dictionary<string, object> values);
     }
 }

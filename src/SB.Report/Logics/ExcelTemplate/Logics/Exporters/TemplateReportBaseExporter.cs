@@ -83,7 +83,7 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <param name="address"></param>
         /// <param name="tempNamedRange"></param>
         /// <param name="values"></param>
-        protected void ExportRange(string address, ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
+        protected ExcelRange ExportRange(string address, ExcelNamedRange tempNamedRange, Dictionary<string, object> values)
         {
             var worksheet = Report.GetWorksheet(tempNamedRange.Worksheet.Name);
 
@@ -92,6 +92,7 @@ namespace SB.Report.Logics.ExcelTemplate
             tempNamedRange.CopySettings(cellRange);
 
             ExportValueReplacer.Replace(cellRange, values);
+            return cellRange;
         }
     }
 }
