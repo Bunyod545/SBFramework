@@ -1,4 +1,5 @@
 ﻿using SB.Common.Logics.SynonymProviders.Helpers;
+using SB.Common.Logics.SynonymProviders.Logics.SynonymCulture;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -19,9 +20,22 @@ namespace SB.Common.Logics.SynonymProviders
         /// <summary>
         /// 
         /// </summary>
+        public ISynonymCultureService CultureService { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         static DefaultSynonymStorage()
         {
             Synonyms = new List<SynonymInfo>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DefaultSynonymStorage()
+        {
+            CultureService = new SynonymCultureService();
         }
 
         /// <summary>
@@ -61,7 +75,7 @@ namespace SB.Common.Logics.SynonymProviders
         /// <returns></returns>
         public string Get(string key)
         {
-            return Get(key, CultureInfo.CurrentCulture);
+            return Get(key, CultureService.GetCulture());
         }
 
         /// <summary>
@@ -75,7 +89,7 @@ namespace SB.Common.Logics.SynonymProviders
             if (Synonyms == null)
                 return key;
 
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
+            cultureInfo = cultureInfo ?? CultureService.GetCulture();
             var synonymInfo = Synonyms.ToList().FirstOrDefault(f => f.Key == key);
             if (synonymInfo == null)
                 return key;
