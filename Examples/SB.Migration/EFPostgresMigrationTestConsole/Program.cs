@@ -1,6 +1,6 @@
 ﻿using System;
 using SB.Migrator;
-using SB.Migrator.EntityFramework.Logics.Code.Extensions;
+using SB.Migrator.EntityFramework;
 using SB.Migrator.Postgres.Logics.Database.Extensions;
 
 namespace EFPostgresMigrationTestConsole

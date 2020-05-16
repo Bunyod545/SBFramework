@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using SB.Migrator.Logics.Database.Interfaces;
 
 namespace SB.Migrator.Postgres
 {
@@ -10,15 +11,15 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        public PostgresDatabaseTablesManager DatabaseTablesManager { get; }
+        public IDatabaseConnection DatabaseConnection { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        protected PostgresBaseMappingManager(PostgresDatabaseTablesManager databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        protected PostgresBaseMappingManager(IDatabaseConnection databaseConnection)
         {
-            DatabaseTablesManager = databaseTablesManager;
+            DatabaseConnection = databaseConnection;
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace SB.Migrator.Postgres
         /// <returns></returns>
         public NpgsqlCommand GetPostgresCommand(string commandText)
         {
-            var connection = new NpgsqlConnection(DatabaseTablesManager.MigrateManager.ConnectionString);
+            var connection = new NpgsqlConnection(DatabaseConnection.ConnectionString);
             connection.Open();
 
             return new NpgsqlCommand(commandText, connection);

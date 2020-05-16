@@ -5,7 +5,7 @@ namespace MetadataMySqlMigrationTestConsole.Database.Tables
     /// <summary>
     /// City table
     /// </summary>
-    [Table("citys")]
+    [Table("cities")]
     public class City
     {   
         /// <summary>

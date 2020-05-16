@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Npgsql;
 using SB.Common.Extensions;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.Models;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Models.MigrationHistories;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.Postgres.ResxFiles;
 
@@ -27,20 +28,15 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresMigrationsHistoryRepository Repository { get; }
+        protected string ConnectionString { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected string ConnectionString => Repository?.MigrateManager?.ConnectionString;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="repository"></param>
-        public MigrationsHistoryRepositoryHelper(PostgresMigrationsHistoryRepository repository)
+        /// <param name="databaseConnection"></param>
+        public MigrationsHistoryRepositoryHelper(IDatabaseConnection databaseConnection)
         {
-            Repository = repository;
+            ConnectionString = databaseConnection.ConnectionString;
         }
 
         /// <summary>
@@ -89,9 +85,10 @@ namespace SB.Migrator.Postgres
             table.Columns.Add(version2Column);
 
             var createTableCommand = new PostgresCreateTableCommand();
+            createTableCommand.ConnectionString = ConnectionString;
             createTableCommand.SetTable(table);
             createTableCommand.BuildCommandText();
-            createTableCommand.Execute(ConnectionString);
+            createTableCommand.Execute();
         }
 
         /// <summary>

@@ -48,11 +48,10 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
         /// <returns></returns>
-        protected override SqlCommand GetSqlCommand(string connectionString)
+        protected override SqlCommand GetSqlCommand()
         {
-            var connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection(ConnectionString);
             connection.Open();
             Transaction = connection.BeginTransaction();
 
@@ -64,12 +63,11 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public override void Execute(string connectionString)
+        public override void Execute()
         {
             try
             {
-                InternalExecute(connectionString);
+                InternalExecute();
             }
             catch (Exception e)
             {
@@ -82,9 +80,9 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void InternalExecute(string connectionString)
+        protected virtual void InternalExecute()
         {
-            var command = GetSqlCommand(connectionString);
+            var command = GetSqlCommand();
             var commandTexts = CommandText.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var commandText in commandTexts)

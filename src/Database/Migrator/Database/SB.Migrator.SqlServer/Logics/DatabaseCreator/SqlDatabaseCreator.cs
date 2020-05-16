@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.Database.Interfaces;
 
 namespace SB.Migrator.SqlServer
 {
@@ -17,10 +18,10 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public SqlDatabaseCreator(MigrateManager migrateManager) : base(migrateManager)
+        /// <param name="databaseConnection"></param>
+        public SqlDatabaseCreator(IDatabaseConnection databaseConnection) 
         {
-            Connection = new SqlConnectionStringBuilder(migrateManager.ConnectionString);
+            Connection = new SqlConnectionStringBuilder(databaseConnection.ConnectionString);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@ namespace SB.Migrator.Postgres
     /// <summary>
     /// 
     /// </summary>
-    public class SqlDropColumnDefaultValueCommand : PostgresColumnDefaultValueCommand, IDropColumnDefaultValueCommand
+    public class PostgresDropColumnDefaultValueCommand : PostgresColumnDefaultValueCommand, IDropColumnDefaultValueCommand
     {
         /// <summary>
         /// 

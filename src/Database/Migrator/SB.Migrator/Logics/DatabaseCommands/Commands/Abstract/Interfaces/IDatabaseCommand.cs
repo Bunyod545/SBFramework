@@ -13,6 +13,11 @@
         /// <summary>
         /// 
         /// </summary>
+        string ConnectionString { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         string CommandText { get; }
 
         /// <summary>
@@ -23,7 +28,6 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        void Execute(string connectionString);
+        void Execute();
     }
 }

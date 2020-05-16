@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.Postgres.ResxFiles;
 
 namespace SB.Migrator.Postgres
@@ -16,8 +17,8 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        public PostgresTableManager(PostgresDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        public PostgresTableManager(IDatabaseConnection databaseConnection) : base(databaseConnection)
         {
         }
 

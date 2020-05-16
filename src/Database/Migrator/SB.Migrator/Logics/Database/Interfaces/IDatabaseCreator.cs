@@ -8,11 +8,6 @@
         /// <summary>
         /// 
         /// </summary>
-        IMigrateManager MigrateManager { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         bool IsDatabaseExists();
 

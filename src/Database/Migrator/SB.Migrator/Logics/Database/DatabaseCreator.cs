@@ -8,20 +8,6 @@
         /// <summary>
         /// 
         /// </summary>
-        public IMigrateManager MigrateManager { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="migrateManager"></param>
-        protected DatabaseCreator(IMigrateManager migrateManager)
-        {
-            MigrateManager = migrateManager;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         public abstract bool IsDatabaseExists();
 

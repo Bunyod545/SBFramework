@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using MySql.Data.MySqlClient;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.Database.Interfaces;
+using SB.Migrator.Logics.NamingManagers;
+using SB.Migrator.Logics.ServiceContainers;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
@@ -23,47 +26,40 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        public override string DefaultSchema { get; set; }
+        public IMigrateServicesContainer ServicesContainer { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected MySqlTableManager MySqlTableManager { get; }
+        public IDatabaseConnection DatabaseConnection { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected MySqlColumnManager MySqlColumnManager { get; }
+        protected MySqlTableManager MySqlTableManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected MySqlPrimaryKeyManager MySqlPrimaryKeyManager { get; }
+        protected MySqlColumnManager MySqlColumnManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected MySqlForeignKeyManager MySqlForeignKeyManager { get; }
+        protected MySqlPrimaryKeyManager MySqlPrimaryKeyManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public MySqlDatabaseTablesManager(MigrateManager migrateManager) : base(migrateManager)
+        protected MySqlForeignKeyManager MySqlForeignKeyManager { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="servicesContainer"></param>
+        public MySqlDatabaseTablesManager(IMigrateServicesContainer servicesContainer)
         {
-            MigrateManager.DatabaseCreator = new MySqlDatabaseCreator(migrateManager);
-            MigrateManager.MigrationsHistoryRepository = new MySqlMigrationsHistoryRepository(migrateManager);
-            MigrateManager.NamingManager.ForeignKeyNamingManager = new MySqlForeignKeyNamingManager();
-            MigrateManager.NamingManager.PrimaryKeyNamingManager = new MySqlPrimaryKeyNamingManager();
-            MigrateManager.NamingManager.UniqueKeyNamingManager = new MySqlUniqueKeyNamingManager();
-
-            MigrateManager.DatabaseCommandManager.UseMySqlCommands();
-            ColumnTypeMappingSource = new MySqlColumnTypeMappingSource();
-
-            MySqlTableManager = new MySqlTableManager(this);
-            MySqlColumnManager = new MySqlColumnManager(this);
-            MySqlPrimaryKeyManager = new MySqlPrimaryKeyManager(this);
-            MySqlForeignKeyManager = new MySqlForeignKeyManager(this);
+            ServicesContainer = servicesContainer;
         }
 
         /// <summary>
@@ -71,6 +67,16 @@ namespace SB.Migrator.MySql
         /// </summary>
         public override void Initialize()
         {
+            DatabaseConnection = ServicesContainer.GetService<IDatabaseConnection>();
+            var namingManager = ServicesContainer.GetService<INamingManager>();
+            namingManager.ForeignKeyNamingManager = new MySqlForeignKeyNamingManager();
+            namingManager.PrimaryKeyNamingManager = new MySqlPrimaryKeyNamingManager();
+            namingManager.UniqueKeyNamingManager = new MySqlUniqueKeyNamingManager();
+
+            MySqlTableManager = new MySqlTableManager(this);
+            MySqlColumnManager = new MySqlColumnManager(this);
+            MySqlPrimaryKeyManager = new MySqlPrimaryKeyManager(this);
+            MySqlForeignKeyManager = new MySqlForeignKeyManager(this);
             DefaultSchema = GetDatabaseName();
         }
 
@@ -80,7 +86,7 @@ namespace SB.Migrator.MySql
         /// <returns></returns>
         public string GetDatabaseName()
         {
-            return new MySqlConnectionStringBuilder(MigrateManager.ConnectionString).Database;
+            return new MySqlConnectionStringBuilder(DatabaseConnection.ConnectionString).Database;
         }
 
         /// <summary>

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using SB.Common.Extensions;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.Models;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Models.MigrationHistories;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.MySql.ResxFiles;
 
@@ -22,20 +23,15 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        protected MySqlMigrationsHistoryRepository Repository { get; }
+        protected string ConnectionString { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected string ConnectionString => Repository?.MigrateManager?.ConnectionString;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="repository"></param>
-        public MigrationsHistoryRepositoryHelper(MySqlMigrationsHistoryRepository repository)
+        /// <param name="databaseConnection"></param>
+        public MigrationsHistoryRepositoryHelper(IDatabaseConnection databaseConnection)
         {
-            Repository = repository;
+            ConnectionString = databaseConnection.ConnectionString;
         }
 
         /// <summary>
@@ -85,9 +81,10 @@ namespace SB.Migrator.MySql
             table.Columns.Add(version2Column);
 
             var createTableCommand = new MySqlCreateTableCommand();
+            createTableCommand.ConnectionString = ConnectionString;
             createTableCommand.SetTable(table);
             createTableCommand.BuildCommandText();
-            createTableCommand.Execute(ConnectionString);
+            createTableCommand.Execute();
         }
 
         /// <summary>

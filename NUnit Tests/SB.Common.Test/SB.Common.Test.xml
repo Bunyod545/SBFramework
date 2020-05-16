@@ -245,6 +245,11 @@
             
             </summary>
         </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestSynonymStorage.CultureService">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestSynonymStorage.#ctor(System.Collections.Generic.List{SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestEnumSynonymInfo})">
             <summary>
             
@@ -335,6 +340,11 @@
             </summary>
         </member>
         <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage.SynonymInfos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestTypeSynonymStorage.CultureService">
             <summary>
             
             </summary>

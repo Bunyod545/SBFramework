@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.SqlServer.ResxFiles;
 
 namespace SB.Migrator.SqlServer
@@ -16,8 +17,8 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        public SqlTableManager(SqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        public SqlTableManager(IDatabaseConnection databaseConnection) : base(databaseConnection)
         {
         }
 

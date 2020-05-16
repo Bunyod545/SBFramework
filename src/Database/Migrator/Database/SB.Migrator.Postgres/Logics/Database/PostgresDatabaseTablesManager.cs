@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.NamingManagers;
+using SB.Migrator.Logics.ServiceContainers;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
@@ -28,48 +30,57 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresTableManager PostgresTableManager { get; }
+        public IMigrateServicesContainer ServicesContainer { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresColumnManager PostgresColumnManager { get; }
+        protected PostgresTableManager PostgresTableManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresPrimaryKeyManager PostgresPrimaryKeyManager { get; }
+        protected PostgresColumnManager PostgresColumnManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresUniqueKeyManager PostgresUniqueKeyManager { get; }
+        protected PostgresPrimaryKeyManager PostgresPrimaryKeyManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected PostgresForeignKeyManager PostgresForeignKeyManager { get; }
+        protected PostgresUniqueKeyManager PostgresUniqueKeyManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public PostgresDatabaseTablesManager(MigrateManager migrateManager) : base(migrateManager)
+        protected PostgresForeignKeyManager PostgresForeignKeyManager { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="servicesContainer"></param>
+        public PostgresDatabaseTablesManager(IMigrateServicesContainer servicesContainer)
         {
-            MigrateManager.DatabaseCreator = new PostgresDatabaseCreator(migrateManager);
-            MigrateManager.MigrationsHistoryRepository = new PostgresMigrationsHistoryRepository(migrateManager);
-            MigrateManager.NamingManager.ForeignKeyNamingManager = new PostgresForeignKeyNamingManager();
-            MigrateManager.NamingManager.PrimaryKeyNamingManager = new PostgresPrimaryKeyNamingManager();
-            MigrateManager.NamingManager.UniqueKeyNamingManager = new PostgresUniqueKeyNamingManager();
+            ServicesContainer = servicesContainer;
+        }
 
-            MigrateManager.DatabaseCommandManager.UsePostgresCommands();
-            ColumnTypeMappingSource = new PostgresColumnTypeMappingSource();
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Initialize()
+        {
+            var namingManager = ServicesContainer.GetService<INamingManager>();
+            namingManager.ForeignKeyNamingManager = new PostgresForeignKeyNamingManager();
+            namingManager.PrimaryKeyNamingManager = new PostgresPrimaryKeyNamingManager();
+            namingManager.UniqueKeyNamingManager = new PostgresUniqueKeyNamingManager();
 
-            PostgresTableManager = new PostgresTableManager(this);
-            PostgresColumnManager = new PostgresColumnManager(this);
-            PostgresPrimaryKeyManager = new PostgresPrimaryKeyManager(this);
-            PostgresUniqueKeyManager = new PostgresUniqueKeyManager(this);
-            PostgresForeignKeyManager = new PostgresForeignKeyManager(this);
+            PostgresTableManager = ServicesContainer.GetService<PostgresTableManager>();
+            PostgresColumnManager = ServicesContainer.GetService<PostgresColumnManager>();
+            PostgresPrimaryKeyManager = ServicesContainer.GetService<PostgresPrimaryKeyManager>();
+            PostgresUniqueKeyManager = ServicesContainer.GetService<PostgresUniqueKeyManager>();
+            PostgresForeignKeyManager = ServicesContainer.GetService<PostgresForeignKeyManager>();
         }
 
         /// <summary>

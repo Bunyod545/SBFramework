@@ -2,6 +2,7 @@
 using System.Linq;
 using Npgsql;
 using SB.Common.Extensions;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.Postgres.ResxFiles;
 
 namespace SB.Migrator.Postgres
@@ -19,8 +20,8 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        public PostgresUniqueKeyManager(PostgresDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        public PostgresUniqueKeyManager(IDatabaseConnection databaseConnection) : base(databaseConnection)
         {
 
         }

@@ -11,26 +11,7 @@ namespace SB.Migrator.Logics.Database
         /// <summary>
         /// 
         /// </summary>
-        public IMigrateManager MigrateManager { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public IColumnTypeMappingSource ColumnTypeMappingSource { get; protected set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public virtual string DefaultSchema { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="migrateManager"></param>
-        protected DatabaseTablesManager(IMigrateManager migrateManager)
-        {
-            MigrateManager = migrateManager;
-        }
 
         /// <summary>
         /// 

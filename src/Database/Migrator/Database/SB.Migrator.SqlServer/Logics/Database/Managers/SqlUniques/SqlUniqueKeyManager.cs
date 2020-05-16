@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Linq;
 using SB.Common.Extensions;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.SqlServer.ResxFiles;
 
 namespace SB.Migrator.SqlServer
@@ -19,8 +20,8 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        public SqlUniqueKeyManager(SqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        public SqlUniqueKeyManager(IDatabaseConnection databaseConnection) : base(databaseConnection)
         {
 
         }

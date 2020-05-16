@@ -128,10 +128,9 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public override void Execute(string connectionString)
+        public override void Execute()
         {
-            var connection = new MySqlConnection(connectionString);
+            var connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             foreach (var command in Commands)

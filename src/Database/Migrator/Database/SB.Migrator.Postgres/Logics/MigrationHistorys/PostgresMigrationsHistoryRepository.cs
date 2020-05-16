@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Logics.Database.Interfaces;
+using SB.Migrator.Models.MigrationHistories;
 
 namespace SB.Migrator.Postgres
 {
@@ -9,11 +10,6 @@ namespace SB.Migrator.Postgres
     /// </summary>
     public class PostgresMigrationsHistoryRepository : IMigrationsHistoryRepository
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public IMigrateManager MigrateManager { get; }
-
         /// <summary>
         /// 
         /// </summary>
@@ -27,11 +23,10 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public PostgresMigrationsHistoryRepository(IMigrateManager migrateManager)
+        /// <param name="databaseConnection"></param>
+        public PostgresMigrationsHistoryRepository(IDatabaseConnection databaseConnection)
         {
-            MigrateManager = migrateManager;
-            Helper = new MigrationsHistoryRepositoryHelper(this);
+            Helper = new MigrationsHistoryRepositoryHelper(databaseConnection);
         }
 
         /// <summary>

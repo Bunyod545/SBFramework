@@ -129,10 +129,9 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public override void Execute(string connectionString)
+        public override void Execute()
         {
-            var connection = new NpgsqlConnection(connectionString);
+            var connection = new NpgsqlConnection(ConnectionString);
             connection.Open();
 
             foreach (var command in Commands)
