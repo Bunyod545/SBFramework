@@ -48,6 +48,9 @@ namespace SB.Common.Logics.Variables.Logics.VariableValue
         /// <returns></returns>
         public virtual object GetNullValueOrDefault()
         {
+            if (ValueType == Variable.DefaultValue?.GetType())
+                return Variable.DefaultValue;
+
             if (ValueType.IsClass || ValueType.IsNullable())
                 return null;
 

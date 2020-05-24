@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using SB.Common.Logics.Variables.Attributes;
@@ -92,6 +93,7 @@ namespace SB.Common.Logics.Variables
             variable.ContextType = context.GetType();
             variable.TableType = GetVariableTableType(context, prop);
             variable.VariableService = GetVariableService(context, prop);
+            variable.DefaultValue = GetVariableDefaultValue(prop);
 
             prop.SetValue(context, variable);
             return variable;
@@ -123,6 +125,16 @@ namespace SB.Common.Logics.Variables
                 return (IVariableService)Activator.CreateInstance(attr.VariableServiceType);
 
             return context as IVariableService;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prop"></param>
+        /// <returns></returns>
+        public static object GetVariableDefaultValue(PropertyInfo prop)
+        {
+            return prop.GetCustomAttribute<DefaultValueAttribute>()?.Value;
         }
     }
 }

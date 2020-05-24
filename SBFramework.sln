@@ -71,6 +71,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Report.Test", "NUnit Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.RestClient", "src\SB.RestClient\SB.RestClient.csproj", "{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SB.RestClient", "SB.RestClient", "{7FFB01BE-910F-45B5-9DB3-5F0F1084304D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.RestClient.Console.Example", "Examples\SB.RestClient\SB.RestClient.Console.Example\SB.RestClient.Console.Example.csproj", "{D1F4F7A4-488F-4DA3-B30D-4115BB17EF21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -157,6 +161,10 @@ Global
 		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1F4F7A4-488F-4DA3-B30D-4115BB17EF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F4F7A4-488F-4DA3-B30D-4115BB17EF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F4F7A4-488F-4DA3-B30D-4115BB17EF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F4F7A4-488F-4DA3-B30D-4115BB17EF21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,6 +201,8 @@ Global
 		{8C55D03A-6FA0-4CAB-9815-CA87A5582079} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
 		{28800D77-0130-4A30-8505-4FEEC32F1970} = {093CEE95-3D29-4DC4-B25B-529DA3F7050B}
 		{BB317400-8A52-45F5-9AD0-AD6834D0E4EF} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
+		{7FFB01BE-910F-45B5-9DB3-5F0F1084304D} = {EF10AA03-534F-4903-B30D-D3BF7A53AFDA}
+		{D1F4F7A4-488F-4DA3-B30D-4115BB17EF21} = {7FFB01BE-910F-45B5-9DB3-5F0F1084304D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

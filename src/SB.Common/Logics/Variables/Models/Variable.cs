@@ -46,6 +46,11 @@ namespace SB.Common.Logics.Variables
         /// <summary>
         /// 
         /// </summary>
+        public object DefaultValue { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Type TableType { get; internal set; }
 
         /// <summary>
