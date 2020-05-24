@@ -7,7 +7,6 @@ namespace SBRestClientConsoleExample
     /// </summary>
     public interface ITestService
     {
-        []
         IRestResponse<string, string> SearchGoogle();
     }
 }

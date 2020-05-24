@@ -20,13 +20,5 @@ namespace SB.RestClient.Logics.ServiceCreators.Helpers
         {
             InterfaceType = interfaceType;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void CreateTypeBuilder()
-        {
-            var app = AppDomain.CreateDomain("").
-        }
     }
 }
