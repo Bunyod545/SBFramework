@@ -48,11 +48,10 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
         /// <returns></returns>
-        protected override MySqlCommand GetSqlCommand(string connectionString)
+        protected override MySqlCommand GetSqlCommand()
         {
-            var connection = new MySqlConnection(connectionString);
+            var connection = new MySqlConnection(ConnectionString);
             connection.Open();
             Transaction = connection.BeginTransaction();
 
@@ -64,12 +63,11 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public override void Execute(string connectionString)
+        public override void Execute()
         {
             try
             {
-                InternalExecute(connectionString);
+                InternalExecute();
             }
             catch (Exception e)
             {
@@ -82,9 +80,9 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void InternalExecute(string connectionString)
+        protected virtual void InternalExecute()
         {
-            var command = GetSqlCommand(connectionString);
+            var command = GetSqlCommand();
             var commandTexts = CommandText.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var commandText in commandTexts)

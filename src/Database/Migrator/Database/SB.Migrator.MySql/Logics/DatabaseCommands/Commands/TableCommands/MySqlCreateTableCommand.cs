@@ -73,10 +73,9 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public override void Execute(string connectionString)
+        public override void Execute()
         {
-            base.Execute(connectionString);
+            base.Execute();
             MigrationCommandEvents.TableCreatedInvoke(Table);
         }
     }

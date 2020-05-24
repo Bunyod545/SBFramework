@@ -1,6 +1,7 @@
 ﻿using System;
 using Npgsql;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.Database.Interfaces;
 
 namespace SB.Migrator.Postgres
 {
@@ -17,10 +18,10 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public PostgresDatabaseCreator(MigrateManager migrateManager) : base(migrateManager)
+        /// <param name="databaseConnection"></param>
+        public PostgresDatabaseCreator(IDatabaseConnection databaseConnection) 
         {
-            Connection = new NpgsqlConnectionStringBuilder(migrateManager.ConnectionString);
+            Connection = new NpgsqlConnectionStringBuilder(databaseConnection.ConnectionString);
         }
 
         /// <summary>

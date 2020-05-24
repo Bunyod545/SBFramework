@@ -48,11 +48,10 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
         /// <returns></returns>
-        protected override NpgsqlCommand GetSqlCommand(string connectionString)
+        protected override NpgsqlCommand GetSqlCommand()
         {
-            var connection = new NpgsqlConnection(connectionString);
+            var connection = new NpgsqlConnection(ConnectionString);
             connection.Open();
             Transaction = connection.BeginTransaction();
 
@@ -64,12 +63,11 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public override void Execute(string connectionString)
+        public override void Execute()
         {
             try
             {
-                InternalExecute(connectionString);
+                InternalExecute();
             }
             catch (Exception e)
             {
@@ -82,9 +80,9 @@ namespace SB.Migrator.Postgres
         /// <summary>
         /// 
         /// </summary>
-        protected virtual void InternalExecute(string connectionString)
+        protected virtual void InternalExecute()
         {
-            var command = GetSqlCommand(connectionString);
+            var command = GetSqlCommand();
             var commandTexts = CommandText.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
 
             foreach (var commandText in commandTexts)

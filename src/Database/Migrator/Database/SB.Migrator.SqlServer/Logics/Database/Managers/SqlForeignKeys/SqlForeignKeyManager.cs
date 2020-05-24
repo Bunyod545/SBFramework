@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.Models;
 using SB.Migrator.SqlServer.ResxFiles;
 
@@ -19,8 +20,8 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        public SqlForeignKeyManager(SqlDatabaseTablesManager databaseTablesManager) : base(databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        public SqlForeignKeyManager(IDatabaseConnection databaseConnection) : base(databaseConnection)
         {
         }
 

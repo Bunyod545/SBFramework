@@ -1,5 +1,6 @@
 ﻿using FirebirdSql.Data.FirebirdClient;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.Database.Interfaces;
 
 namespace SB.Migrator.Firebird
 {
@@ -16,10 +17,10 @@ namespace SB.Migrator.Firebird
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public FirebirdDatabaseCreator(MigrateManager migrateManager) : base(migrateManager)
+        /// <param name="databaseConnection"></param>
+        public FirebirdDatabaseCreator(IDatabaseConnection databaseConnection)
         {
-            Connection = new FbConnectionStringBuilder(migrateManager.ConnectionString);
+            Connection = new FbConnectionStringBuilder(databaseConnection.ConnectionString);
         }
 
         /// <summary>

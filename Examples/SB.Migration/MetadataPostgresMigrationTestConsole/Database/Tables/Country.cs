@@ -3,9 +3,9 @@
 namespace MetadataPostgresMigrationTestConsole.Database.Tables
 {
     /// <summary>
-    /// Countrys
+    /// Countries
     /// </summary>
-    [Table("Countrys")]
+    [Table("Countries")]
     public class Country 
     {      
         /// <summary>

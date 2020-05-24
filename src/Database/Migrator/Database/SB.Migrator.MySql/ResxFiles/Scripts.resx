@@ -170,8 +170,8 @@ order by tab.table_name,
   </data>
   <data name="UpdateHistoryVersion" xml:space="preserve">
     <value>UPDATE MigrationsHistory
-SET "Version" = '{1}'
-WHERE "Name" = '{0}'</value>
+SET Version = '{1}'
+WHERE Name = '{0}'</value>
   </data>
   <data name="UpdateHistoryVersion2" xml:space="preserve">
     <value>UPDATE MigrationsHistory

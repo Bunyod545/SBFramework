@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SB.Migrator.Logics.Code;
+using SB.Migrator.Logics.Database.Interfaces;
+using SB.Migrator.Logics.DatabaseCommandServices;
+using SB.Migrator.Logics.ServiceContainers;
 using SB.Migrator.Models;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Models.MigrationHistories;
+using SB.Migrator.Models.Scripts;
 
 namespace SB.Migrator.Logics.DatabaseCommands
 {
@@ -14,30 +19,39 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
-        public ICommandServices CommandServices { get; set; }
+        public IMigrateServicesContainer Container { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IMigrateManager MigrateManager { get; }
+        protected IDatabaseCommandsService CommandServices { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public List<IDatabaseCommand> Commands { get; }
+        protected List<IDatabaseCommand> Commands { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public IMigrationsHistoryRepository HistoryRepository => MigrateManager.MigrationsHistoryRepository;
+        protected IDatabaseConnection DatabaseConnection { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public DatabaseCommandManager(IMigrateManager migrateManager)
+        protected IMigrationsHistoryRepository HistoryRepository { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected ICodeTablesManager CodeTablesManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DatabaseCommandManager(IMigrateServicesContainer container)
         {
-            MigrateManager = migrateManager;
-            CommandServices = new CommandServices();
+            Container = container;
             Commands = new List<IDatabaseCommand>();
         }
 
@@ -46,7 +60,10 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         public void Initialize()
         {
-
+            CommandServices = Container.GetService<IDatabaseCommandsService>();
+            DatabaseConnection = Container.GetService<IDatabaseConnection>();
+            HistoryRepository = Container.GetService<IMigrationsHistoryRepository>();
+            CodeTablesManager = Container.GetService<ICodeTablesManager>();
         }
 
         /// <summary>
@@ -67,11 +84,13 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         public void Migrate()
         {
+            Commands.ForEach(f => f.ConnectionString = DatabaseConnection.ConnectionString);
             Commands.ForEach(f => f.BuildCommandText());
-            BeforeMigrate();
 
+            BeforeMigrate();
             ActualizationMigrate();
             AfterMigrate();
+
             CorrectMigrateVersions();
         }
 
@@ -80,17 +99,26 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         private void BeforeMigrate()
         {
-            var beforeScripts = MigrateManager.CodeTablesManager.GetBeforeActualizationScripts();
+            var beforeScripts = CodeTablesManager.GetBeforeActualizationScripts();
             beforeScripts = beforeScripts.OrderBy(o => o.Version).ToList();
 
-            var beforeActualization = CommandServices.GetCommand<IBeforeActualizationScriptCommand>();
-            foreach (var beforeScript in beforeScripts)
-            {
-                beforeActualization.SetScript(beforeScript);
-                beforeActualization.BuildCommandText();
-                beforeActualization.Execute(MigrateManager.ConnectionString);
-                HistoryRepository.SetVersion(beforeScript.MigrateName, beforeScript.Version.ToString());
-            }
+            var beforeActualization = Container.GetService<IBeforeActualizationScriptCommand>();
+            beforeActualization.ConnectionString = DatabaseConnection.ConnectionString;
+            beforeScripts.ForEach(f => ExecuteBeforeMigrate(beforeActualization, f));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scriptCommand"></param>
+        /// <param name="beforeScript"></param>
+        private void ExecuteBeforeMigrate(IBeforeActualizationScriptCommand scriptCommand, ScriptInfo beforeScript)
+        {
+            scriptCommand.SetScript(beforeScript);
+            scriptCommand.BuildCommandText();
+            scriptCommand.Execute();
+
+            HistoryRepository.SetVersion(beforeScript.MigrateName, beforeScript.Version.ToString());
         }
 
         /// <summary>
@@ -99,7 +127,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         private void ActualizationMigrate()
         {
             var commands = Commands.OrderBy(o => o.Order).ToList();
-            commands.ForEach(f => f.Execute(MigrateManager.ConnectionString));
+            commands.ForEach(f => f.Execute());
         }
 
         /// <summary>
@@ -107,17 +135,26 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         private void AfterMigrate()
         {
-            var afterScripts = MigrateManager.CodeTablesManager.GetAfterActualizationScripts();
+            var afterScripts = CodeTablesManager.GetAfterActualizationScripts();
             afterScripts = afterScripts.OrderBy(o => o.Version).ToList();
 
-            var afterActualization = CommandServices.GetCommand<IAfterActualizationScriptCommand>();
-            foreach (var afterScript in afterScripts)
-            {
-                afterActualization.SetScript(afterScript);
-                afterActualization.BuildCommandText();
-                afterActualization.Execute(MigrateManager.ConnectionString);
-                HistoryRepository.SetVersion2(afterScript.MigrateName, afterScript.Version.ToString());
-            }
+            var afterActualization = Container.GetService<IAfterActualizationScriptCommand>();
+            afterActualization.ConnectionString = DatabaseConnection.ConnectionString;
+            afterScripts.ForEach(f => ExecuteAfterMigrate(afterActualization, f));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scriptCommand"></param>
+        /// <param name="afterScript"></param>
+        private void ExecuteAfterMigrate(IAfterActualizationScriptCommand scriptCommand, ScriptInfo afterScript)
+        {
+            scriptCommand.SetScript(afterScript);
+            scriptCommand.BuildCommandText();
+            scriptCommand.Execute();
+
+            HistoryRepository.SetVersion2(afterScript.MigrateName, afterScript.Version.ToString());
         }
 
         /// <summary>
@@ -125,7 +162,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         private void CorrectMigrateVersions()
         {
-            var actualVersions = MigrateManager.CodeTablesManager.GetMigrationVersionInfos();
+            var actualVersions = CodeTablesManager.GetMigrationVersionInfos();
             actualVersions.ForEach(CorrectMigrateVersion);
         }
 

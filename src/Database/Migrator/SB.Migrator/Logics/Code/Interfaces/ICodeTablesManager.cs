@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using SB.Migrator.Models;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Models.MigrationHistories;
 using SB.Migrator.Models.Scripts;
 
 namespace SB.Migrator.Logics.Code
@@ -10,11 +10,6 @@ namespace SB.Migrator.Logics.Code
     /// </summary>
     public interface ICodeTablesManager
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        IMigrateManager MigrateManager { get; }
-
         /// <summary>
         /// 
         /// </summary>

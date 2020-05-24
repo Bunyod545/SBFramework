@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using SB.Common.Logics.SynonymProviders;
+using SB.Common.Logics.SynonymProviders.Logics.SynonymCulture;
 
 namespace SB.Common.Test.Logics.SynonymProviders.TestHelpers
 {
@@ -18,10 +19,16 @@ namespace SB.Common.Test.Logics.SynonymProviders.TestHelpers
         /// <summary>
         /// 
         /// </summary>
+        public ISynonymCultureService CultureService { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="synonymInfos"></param>
         public TestTypeSynonymStorage(List<TestTypeSynonymInfo> synonymInfos)
         {
             SynonymInfos = synonymInfos;
+            CultureService = new SynonymCultureService();
         }
 
         /// <summary>

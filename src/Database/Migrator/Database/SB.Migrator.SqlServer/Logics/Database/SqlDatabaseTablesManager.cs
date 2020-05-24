@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.NamingManagers;
+using SB.Migrator.Logics.ServiceContainers;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
 using SB.Migrator.Models.Tables.Keys;
-using SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource;
 using SB.Migrator.SqlServer.Logics.NamingManagers;
 
 namespace SB.Migrator.SqlServer
@@ -29,48 +30,57 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        protected SqlTableManager SqlTableManager { get; }
+        protected IMigrateServicesContainer ServicesContainer { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected SqlColumnManager SqlColumnManager { get; }
+        protected SqlTableManager SqlTableManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected SqlUniqueKeyManager SqlUniqueKeyManager { get; }
+        protected SqlColumnManager SqlColumnManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected SqlPrimaryKeyManager SqlPrimaryKeyManager { get; }
+        protected SqlUniqueKeyManager SqlUniqueKeyManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        protected SqlForeignKeyManager SqlForeignKeyManager { get; }
+        protected SqlPrimaryKeyManager SqlPrimaryKeyManager { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public SqlDatabaseTablesManager(MigrateManager migrateManager) : base(migrateManager)
+        protected SqlForeignKeyManager SqlForeignKeyManager { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="servicesContainer"></param>
+        public SqlDatabaseTablesManager(IMigrateServicesContainer servicesContainer)
         {
-            MigrateManager.DatabaseCreator = new SqlDatabaseCreator(migrateManager);
-            MigrateManager.MigrationsHistoryRepository = new SqlMigrationsHistoryRepository(migrateManager);
-            MigrateManager.NamingManager.ForeignKeyNamingManager = new SqlForeignKeyNamingManager();
-            MigrateManager.NamingManager.PrimaryKeyNamingManager = new SqlPrimaryKeyNamingManager();
-            MigrateManager.NamingManager.UniqueKeyNamingManager = new SqlUniqueKeyNamingManager();
+            ServicesContainer = servicesContainer;
+        }
 
-            MigrateManager.DatabaseCommandManager.UseSqlCommands();
-            ColumnTypeMappingSource = new SqlColumnTypeMappingSource();
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Initialize()
+        {
+            var namingManager = ServicesContainer.GetService<INamingManager>();
+            namingManager.ForeignKeyNamingManager = new SqlForeignKeyNamingManager();
+            namingManager.PrimaryKeyNamingManager = new SqlPrimaryKeyNamingManager();
+            namingManager.UniqueKeyNamingManager = new SqlUniqueKeyNamingManager();
 
-            SqlTableManager = new SqlTableManager(this);
-            SqlColumnManager = new SqlColumnManager(this);
-            SqlUniqueKeyManager = new SqlUniqueKeyManager(this);
-            SqlPrimaryKeyManager = new SqlPrimaryKeyManager(this);
-            SqlForeignKeyManager = new SqlForeignKeyManager(this);
+            SqlTableManager = ServicesContainer.GetService<SqlTableManager>();
+            SqlColumnManager = ServicesContainer.GetService<SqlColumnManager>();
+            SqlUniqueKeyManager = ServicesContainer.GetService<SqlUniqueKeyManager>();
+            SqlPrimaryKeyManager = ServicesContainer.GetService<SqlPrimaryKeyManager>();
+            SqlForeignKeyManager = ServicesContainer.GetService<SqlForeignKeyManager>();
         }
 
         /// <summary>

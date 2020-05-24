@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using SB.Common.Logics.SynonymProviders.Logics.SynonymCulture;
+using System.Globalization;
 
 namespace SB.Common.Logics.SynonymProviders
 {
@@ -7,6 +8,11 @@ namespace SB.Common.Logics.SynonymProviders
     /// </summary>
     public interface ISynonymStorage
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        ISynonymCultureService CultureService { get; set; }
+
         /// <summary>
         /// 
         /// </summary>

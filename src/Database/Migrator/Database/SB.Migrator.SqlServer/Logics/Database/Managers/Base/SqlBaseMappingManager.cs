@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using SB.Migrator.Logics.Database.Interfaces;
 
 namespace SB.Migrator.SqlServer
 {
@@ -10,15 +11,15 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        public SqlDatabaseTablesManager DatabaseTablesManager { get; }
+        protected IDatabaseConnection DatabaseConnection { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="databaseTablesManager"></param>
-        protected SqlBaseMappingManager(SqlDatabaseTablesManager databaseTablesManager)
+        /// <param name="databaseConnection"></param>
+        protected SqlBaseMappingManager(IDatabaseConnection databaseConnection)
         {
-            DatabaseTablesManager = databaseTablesManager;
+            DatabaseConnection = databaseConnection;
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace SB.Migrator.SqlServer
         /// <returns></returns>
         public SqlCommand GetSqlCommand(string commandText)
         {
-            var connection = new SqlConnection(DatabaseTablesManager.MigrateManager.ConnectionString);
+            var connection = new SqlConnection(DatabaseConnection.ConnectionString);
             connection.Open();
 
             return new SqlCommand(commandText, connection);

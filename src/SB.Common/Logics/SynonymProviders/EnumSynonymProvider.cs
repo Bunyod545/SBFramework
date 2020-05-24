@@ -29,7 +29,7 @@ namespace SB.Common.Logics.SynonymProviders
         /// <returns></returns>
         public static string Get(Enum item)
         {
-            return Get(item, CultureInfo.CurrentCulture);
+            return Get(item, null);
         }
 
         /// <summary>

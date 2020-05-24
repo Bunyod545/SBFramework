@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.Database.Interfaces;
 
 namespace SB.Migrator.MySql
 {
@@ -16,10 +17,10 @@ namespace SB.Migrator.MySql
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        public MySqlDatabaseCreator(MigrateManager migrateManager) : base(migrateManager)
+        /// <param name="databaseConnection"></param>
+        public MySqlDatabaseCreator(IDatabaseConnection databaseConnection)
         {
-            Connection = new MySqlConnectionStringBuilder(migrateManager.ConnectionString);
+            Connection = new MySqlConnectionStringBuilder(databaseConnection.ConnectionString);
         }
 
         /// <summary>

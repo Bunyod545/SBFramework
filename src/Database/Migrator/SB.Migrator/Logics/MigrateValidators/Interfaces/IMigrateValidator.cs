@@ -8,11 +8,6 @@
         /// <summary>
         /// 
         /// </summary>
-        MigrateManager MigrateManager { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         void Valid();
 
         /// <summary>

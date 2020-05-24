@@ -161,8 +161,8 @@ namespace SB.Migrator.MySql.ResxFiles {
         
         /// <summary>
         ///   Looks up a localized string similar to UPDATE MigrationsHistory
-        ///SET &quot;Version&quot; = &apos;{1}&apos;
-        ///WHERE &quot;Name&quot; = &apos;{0}&apos;.
+        ///SET Version = &apos;{1}&apos;
+        ///WHERE Name = &apos;{0}&apos;.
         /// </summary>
         internal static string UpdateHistoryVersion {
             get {

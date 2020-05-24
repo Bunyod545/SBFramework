@@ -5,7 +5,7 @@ namespace MetadataSqlMigrationTestConsole.Database.Tables
     /// <summary>
     /// 
     /// </summary>
-    [Table("Countrys")]
+    [Table("Countries")]
     public class Country 
     {      
         /// <summary>

@@ -1,4 +1,6 @@
 ﻿using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Logics.DatabaseCommandServices;
+using SB.Migrator.Logics.NamingManagers;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
 using SB.Migrator.Models.Tables.Constraints;
@@ -14,19 +16,56 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="manager"></param>
-        public static void UseSafeMode(this MigrateManager manager)
+        public static void UseUnsafeMode(this IMigrateManager manager)
         {
-            var services = manager?.DatabaseCommandManager?.CommandServices;
-            if (services == null)
+            var servicesContainer = manager?.ServicesContainer;
+            var commandsService = servicesContainer?.GetService<IDatabaseCommandsService>();
+            if (commandsService == null)
                 return;
 
-            services.Remove<IDropTableCommand>();
-            services.Remove<IDropColumnCommand>();
-            services.Remove<IDropUniqueKeyCommand>();
-            services.Remove<IDropForeignKeyCommand>();
-            services.Remove<IDropPrimaryKeyCommand>();
-            services.Remove<IDropColumnDefaultValueCommand>();
+            commandsService.Clear();
+            commandsService.Register<ICreateColumnDefaultValueCommand>();
+            commandsService.Register<IDropColumnDefaultValueCommand>();
+            commandsService.Register<ICreateColumnCommand>();
+            commandsService.Register<IDropColumnCommand>();
+            commandsService.Register<IRenameColumnCommand>();
+            commandsService.Register<ICreateForeignKeyCommand>();
+            commandsService.Register<IDropForeignKeyCommand>();
+            commandsService.Register<ICreatePrimaryKeyCommand>();
+            commandsService.Register<IDropPrimaryKeyCommand>();
+            commandsService.Register<ICreateUniqueKeyCommand>();
+            commandsService.Register<IDropUniqueKeyCommand>();
+            commandsService.Register<IAfterActualizationScriptCommand>();
+            commandsService.Register<IBeforeActualizationScriptCommand>();
+            commandsService.Register<ICreateTableCommand>();
+            commandsService.Register<IDropTableCommand>();
+            commandsService.Register<IRenameTableCommand>();
+            commandsService.Register<ITableValuesCommand>();
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void UseSafeMode(this IMigrateManager manager)
+        {
+            var servicesContainer = manager?.ServicesContainer;
+            var commandsService = servicesContainer?.GetService<IDatabaseCommandsService>();
+            if (commandsService == null)
+                return;
+
+            commandsService.Clear();
+            commandsService.Register<ICreateColumnDefaultValueCommand>();
+            commandsService.Register<ICreateColumnCommand>();
+            commandsService.Register<IRenameColumnCommand>();
+            commandsService.Register<ICreateForeignKeyCommand>();
+            commandsService.Register<ICreatePrimaryKeyCommand>();
+            commandsService.Register<ICreateUniqueKeyCommand>();
+            commandsService.Register<IAfterActualizationScriptCommand>();
+            commandsService.Register<IBeforeActualizationScriptCommand>();
+            commandsService.Register<ICreateTableCommand>();
+            commandsService.Register<IRenameTableCommand>();
+            commandsService.Register<ITableValuesCommand>();
         }
 
         /// <summary>
@@ -36,7 +75,7 @@ namespace SB.Migrator
         /// <param name="table"></param>
         public static void CorrectName(this IMigrateManager manager, TableInfo table)
         {
-            manager?.NamingManager?.TableNamingManager?.Correct(table);
+            manager?.GetNamingManager()?.TableNamingManager?.Correct(table);
         }
 
         /// <summary>
@@ -46,7 +85,7 @@ namespace SB.Migrator
         /// <param name="column"></param>
         public static void CorrectName(this IMigrateManager manager, ColumnInfo column)
         {
-            manager?.NamingManager?.ColumnNamingManager?.Correct(column);
+            manager?.GetNamingManager()?.ColumnNamingManager?.Correct(column);
         }
 
         /// <summary>
@@ -56,7 +95,7 @@ namespace SB.Migrator
         /// <param name="primaryKey"></param>
         public static void CorrectName(this IMigrateManager manager, PrimaryKeyInfo primaryKey)
         {
-            manager?.NamingManager?.PrimaryKeyNamingManager?.Correct(primaryKey);
+            manager?.GetNamingManager()?.PrimaryKeyNamingManager?.Correct(primaryKey);
         }
 
         /// <summary>
@@ -66,7 +105,7 @@ namespace SB.Migrator
         /// <param name="foreignKey"></param>
         public static void CorrectName(this IMigrateManager manager, ForeignKeyInfo foreignKey)
         {
-            manager?.NamingManager?.ForeignKeyNamingManager?.Correct(foreignKey);
+            manager?.GetNamingManager()?.ForeignKeyNamingManager?.Correct(foreignKey);
         }
 
         /// <summary>
@@ -76,7 +115,17 @@ namespace SB.Migrator
         /// <param name="uniqueKey"></param>
         public static void CorrectName(this IMigrateManager manager, UniqueKeyInfo uniqueKey)
         {
-            manager?.NamingManager?.UniqueKeyNamingManager?.Correct(uniqueKey);
+            manager?.GetNamingManager()?.UniqueKeyNamingManager?.Correct(uniqueKey);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="manager"></param>
+        /// <returns></returns>
+        public static INamingManager GetNamingManager(this IMigrateManager manager)
+        {
+            return manager.ServicesContainer.GetService<INamingManager>();
         }
     }
 }

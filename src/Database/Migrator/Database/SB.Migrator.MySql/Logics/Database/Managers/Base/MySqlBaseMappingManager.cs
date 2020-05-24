@@ -28,7 +28,7 @@ namespace SB.Migrator.MySql
         /// <returns></returns>
         public MySqlCommand GetMySqlCommand(string commandText)
         {
-            var connection = new MySqlConnection(DatabaseTablesManager.MigrateManager.ConnectionString);
+            var connection = new MySqlConnection(DatabaseTablesManager.DatabaseConnection.ConnectionString);
             connection.Open();
 
             return new MySqlCommand(commandText, connection);

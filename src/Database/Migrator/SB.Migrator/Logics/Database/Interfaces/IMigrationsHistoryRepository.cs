@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Models.MigrationHistories;
 
 namespace SB.Migrator
 {
@@ -8,11 +8,6 @@ namespace SB.Migrator
     /// </summary>
     public interface IMigrationsHistoryRepository
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        IMigrateManager MigrateManager { get; }
-
         /// <summary>
         /// 
         /// </summary>

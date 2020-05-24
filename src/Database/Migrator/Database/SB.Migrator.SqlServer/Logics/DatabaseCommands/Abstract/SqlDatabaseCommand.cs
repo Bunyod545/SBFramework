@@ -17,6 +17,11 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
+        public string ConnectionString { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string CommandText { get; protected set; }
 
         /// <summary>
@@ -41,10 +46,9 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        public virtual void Execute(string connectionString)
+        public virtual void Execute()
         {
-            var command = GetSqlCommand(connectionString);
+            var command = GetSqlCommand();
             command.ExecuteNonQuery();
 
             command.Connection.Close();
@@ -54,11 +58,10 @@ namespace SB.Migrator.SqlServer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
         /// <returns></returns>
-        protected virtual SqlCommand GetSqlCommand(string connectionString)
+        protected virtual SqlCommand GetSqlCommand()
         {
-            var connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection(ConnectionString);
             connection.Open();
 
             return new SqlCommand(CommandText, connection);

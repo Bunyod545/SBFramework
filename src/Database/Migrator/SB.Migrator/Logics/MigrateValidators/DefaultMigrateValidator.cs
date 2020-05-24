@@ -1,4 +1,9 @@
 ﻿using System;
+using SB.Migrator.Logics.Code;
+using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.DatabaseCommands;
+using SB.Migrator.Logics.NamingManagers;
+using SB.Migrator.Logics.ServiceContainers;
 
 namespace SB.Migrator
 {
@@ -10,15 +15,15 @@ namespace SB.Migrator
         /// <summary>
         /// 
         /// </summary>
-        public MigrateManager MigrateManager { get; }
+        public IMigrateServicesContainer Container { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="migrateManager"></param>
-        protected DefaultMigrateValidator(MigrateManager migrateManager)
+        /// <param name="container"></param>
+        protected DefaultMigrateValidator(IMigrateServicesContainer container)
         {
-            MigrateManager = migrateManager;
+            Container = container;
         }
 
         /// <summary>
@@ -26,20 +31,22 @@ namespace SB.Migrator
         /// </summary>
         public virtual void Valid()
         {
-            if (MigrateManager.DatabaseCreator == null)
-                throw new ArgumentNullException(nameof(MigrateManager.DatabaseCreator));
+            ValidateService<IDatabaseCreator>();
+            ValidateService<ICodeTablesManager>();
+            ValidateService<IDatabaseTablesManager>();
+            ValidateService<IDatabaseCommandManager>();
+            ValidateService<INamingManager>();
+        }
 
-            if (MigrateManager.CodeTablesManager == null)
-                throw new ArgumentNullException(nameof(MigrateManager.CodeTablesManager));
-
-            if (MigrateManager.DatabaseTablesManager == null)
-                throw new ArgumentNullException(nameof(MigrateManager.DatabaseTablesManager));
-
-            if (MigrateManager.DatabaseCommandManager == null)
-                throw new ArgumentNullException(nameof(MigrateManager.DatabaseCommandManager));
-
-            if (MigrateManager.NamingManager == null)
-                throw new ArgumentNullException(nameof(MigrateManager.NamingManager));
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TService"></typeparam>
+        protected virtual void ValidateService<TService>() where TService : class
+        {
+            var service = Container.GetService<TService>();
+            if (service == null)
+                throw new ArgumentNullException(typeof(TService).Name);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Threading;
 
 namespace SB.Common.Logics.SynonymProviders
 {
@@ -21,6 +22,11 @@ namespace SB.Common.Logics.SynonymProviders
         /// 
         /// </summary>
         public const string EnLanguageName = "en";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static AsyncLocal<CultureInfo> ThreadSafeCulture = new AsyncLocal<CultureInfo>();
 
         /// <summary>
         /// 

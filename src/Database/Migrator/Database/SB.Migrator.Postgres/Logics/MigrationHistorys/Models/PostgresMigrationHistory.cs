@@ -1,6 +1,6 @@
 ﻿using Npgsql;
 using SB.Common.Extensions;
-using SB.Migrator.Models.MigrationHistorys;
+using SB.Migrator.Models.MigrationHistories;
 
 namespace SB.Migrator.Postgres
 {
