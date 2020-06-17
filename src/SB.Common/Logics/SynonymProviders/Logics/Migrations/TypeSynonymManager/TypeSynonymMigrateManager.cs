@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Xml;
 using SB.Common.Helpers;
-using SB.Common.Logics.Summary;
-using SB.Common.Logics.Summary.Helpers;
+using SB.Common.Logics.MemberDocumentations;
 
 namespace SB.Common.Logics.SynonymProviders
 {
@@ -102,7 +100,7 @@ namespace SB.Common.Logics.SynonymProviders
             var info = new TModel();
             info.Key = property.DeclaringType.Name + Strings.Point + property.Name;
 
-            var synonymsNodes = GetSynonymElement(property);
+            var synonymsNodes = MemberDocumentationManager.GetElementNodes(property);
             foreach (var node in synonymsNodes)
             {
                 var prop = _propertyInfos.FirstOrDefault(f => f.Key == node.Name);
@@ -110,24 +108,6 @@ namespace SB.Common.Logics.SynonymProviders
             }
 
             return info;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="property"></param>
-        /// <returns></returns>
-        private IEnumerable<XmlNode> GetSynonymElement(PropertyInfo property)
-        {
-            var document = SummaryManager.GetSummaryXmlDocument(property.DeclaringType.Assembly);
-            if (document == null)
-                return new List<XmlNode>();
-
-            var element = SummaryHelper.PropertyExtensions + property.DeclaringType.FullName + Strings.Point + property.Name;
-            var membersNode = document.LastChild?.LastChild;
-
-            var nodes = membersNode?.ChildNodes.OfType<XmlNode>().ToList();
-            return nodes?.FirstOrDefault(f => f.Attributes["name"]?.Value == element)?.ChildNodes.OfType<XmlNode>() ?? new List<XmlNode>();
         }
     }
 }

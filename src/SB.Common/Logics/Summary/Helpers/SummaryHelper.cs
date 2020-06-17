@@ -8,26 +8,6 @@
         /// <summary>
         /// 
         /// </summary>
-        public const string TypeExtensions = "T:";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string PropertyExtensions = "P:";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string FieldExtensions = "F:";
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string MethodExtensions = "M:";
-
-        /// <summary>
-        /// 
-        /// </summary>
         public const string SummaryWhiteSpace = "\n            ";
     }
 }

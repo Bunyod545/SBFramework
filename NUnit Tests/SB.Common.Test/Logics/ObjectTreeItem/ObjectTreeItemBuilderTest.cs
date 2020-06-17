@@ -19,6 +19,10 @@ namespace SB.Common.Test.Logics.ObjectTreeItem
             var node = ObjectTreeItemBuilder<ExceptionTreeItemNode>.Create().Build(exception);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private Exception GetException()
         {
             try

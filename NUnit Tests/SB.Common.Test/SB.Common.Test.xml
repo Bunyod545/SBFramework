@@ -14,6 +14,89 @@
             
             </summary>
         </member>
+        <member name="T:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest._testField">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.TestProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.TestEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.TestTypeName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.TestFieldName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.TestPropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.MemberDocumentations.Helpers.MemberDocumentationNameHelperTest.TestEventName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.MemberDocumentations.MemberDocumentationManagerTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.MemberDocumentations.MemberDocumentationManagerTest.TestProperty">
+            <summary>
+            
+            </summary>
+            <test>test</test>
+            <test2>test2</test2>
+            <test3>test3</test3>
+        </member>
+        <member name="M:SB.Common.Test.Logics.MemberDocumentations.MemberDocumentationManagerTest.GetMemberDocumentationTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.MemberDocumentations.Models.TestMemberDocumentationInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.MemberDocumentations.Models.TestMemberDocumentationInfo.Test">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.MemberDocumentations.Models.TestMemberDocumentationInfo.Test2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.MemberDocumentations.Models.TestMemberDocumentationInfo.Test3">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer">
             <summary>
             
@@ -142,6 +225,12 @@
             
             </summary>
         </member>
+        <member name="M:SB.Common.Test.Logics.ObjectTreeItem.ObjectTreeItemBuilderTest.GetException">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SB.Common.Test.Logics.PhoneNumbers.PhoneNumberTest">
             <summary>
             
@@ -252,7 +341,7 @@
         </member>
         <member name="M:SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestSynonymStorage.#ctor(System.Collections.Generic.List{SB.Common.Test.Logics.SynonymProviders.TestHelpers.TestEnumSynonymInfo})">
             <summary>
-            
+            Test Synonym storage ctor
             </summary>
             <param name="synonymInfos"></param>
         </member>

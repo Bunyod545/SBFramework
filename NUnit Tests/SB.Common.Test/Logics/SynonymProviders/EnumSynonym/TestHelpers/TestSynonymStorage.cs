@@ -22,7 +22,7 @@ namespace SB.Common.Test.Logics.SynonymProviders.TestHelpers
         public ISynonymCultureService CultureService { get; set; }
 
         /// <summary>
-        /// 
+        /// Test Synonym storage ctor
         /// </summary>
         /// <param name="synonymInfos"></param>
         public TestSynonymStorage(List<TestEnumSynonymInfo> synonymInfos)
