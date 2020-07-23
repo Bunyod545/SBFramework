@@ -37,11 +37,17 @@ namespace SB.Migrator.EntityFramework
         /// <summary>
         /// 
         /// </summary>
+        public IDatabaseTablesManager DatabaseTablesManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="migrateManager"></param>
         public EFCodeTablesManager(IMigrateManager migrateManager)
         {
             MigrateManager = migrateManager;
             TableFinder = new TableFinder();
+            DatabaseTablesManager = MigrateManager.ServicesContainer.GetService<IDatabaseTablesManager>();
         }
 
         /// <summary>
@@ -113,13 +119,11 @@ namespace SB.Migrator.EntityFramework
         private EFTableInfo ConvertToTableInfo(DbContext context, IEntityType entity)
         {
             var mapping = entity.Relational();
-            var databaseTablesManager = MigrateManager.ServicesContainer.GetService<IDatabaseTablesManager>();
-
             var tableInfo = new EFTableInfo();
             tableInfo.Context = context;
             tableInfo.Entity = entity;
             tableInfo.Name = mapping.TableName;
-            tableInfo.Schema = mapping.Schema ?? databaseTablesManager.DefaultSchema;
+            tableInfo.Schema = mapping.Schema ?? DatabaseTablesManager.DefaultSchema;
             tableInfo.ClrType = entity.ClrType;
             tableInfo.Description = entity.ClrType.GetSummary();
             MigrateManager.CorrectName(tableInfo);
@@ -268,7 +272,10 @@ namespace SB.Migrator.EntityFramework
         private EFTableInfo GetReferenceTable(IForeignKey key)
         {
             var entity = key.PrincipalEntityType.Relational();
-            return _tableInfos.FirstOrDefault(f => f.Schema == entity.Schema && f.Name == entity.TableName);
+            var schema = entity.Schema ?? DatabaseTablesManager.DefaultSchema;
+            var tableName = entity.TableName;
+
+            return _tableInfos.FirstOrDefault(f => f.Schema == schema && f.Name == tableName);
         }
 
         /// <summary>
