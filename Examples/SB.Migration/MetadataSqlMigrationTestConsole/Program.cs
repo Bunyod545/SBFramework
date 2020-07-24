@@ -1,7 +1,7 @@
 ﻿using System;
 using SB.Migrator;
 using SB.Migrator.Metadata;
-using SB.Migrator.SqlServer.Logics.Database.Extensions;
+using SB.Migrator.SqlServer;
 
 [assembly: BeforeActualization("BeforeActualizationScripts.resources")]
 [assembly: Migrate("MetadataSqlMigration", "1.0.0.4")]

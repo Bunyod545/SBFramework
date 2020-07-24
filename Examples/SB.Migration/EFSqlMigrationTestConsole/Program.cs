@@ -1,7 +1,7 @@
 ﻿using System;
 using SB.Migrator;
 using SB.Migrator.EntityFramework;
-using SB.Migrator.SqlServer.Logics.Database.Extensions;
+using SB.Migrator.SqlServer;
 
 namespace EFSqlMigrationTestConsole
 {
@@ -13,7 +13,7 @@ namespace EFSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=User\\SQLEXPRESS;Database=TestEFSql;Trusted_Connection=True;";
+        public const string ConnectionString = "Server=MWI_91\\SQLSERVER2014;Database=TestEFSql;Trusted_Connection=True;";
 
         /// <summary>
         /// 

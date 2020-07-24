@@ -1,10 +1,12 @@
-﻿using SB.Common.Logics.Business;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using SB.Common.Logics.Business;
 
 namespace EFSqlMigrationTestConsole.Contexts.Tables
 {
     /// <summary>
     /// 
     /// </summary>
+    [Table("Cities")]
     public class City : Entity, IOwned
     {
         /// <summary>

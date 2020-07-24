@@ -2,7 +2,7 @@
 using SB.Migrator.Logics.DatabaseCommands;
 using SB.Migrator.SqlServer.Logics.ColumnTypeMappingSource;
 
-namespace SB.Migrator.SqlServer.Logics.Database.Extensions
+namespace SB.Migrator.SqlServer
 {
     /// <summary>
     /// 

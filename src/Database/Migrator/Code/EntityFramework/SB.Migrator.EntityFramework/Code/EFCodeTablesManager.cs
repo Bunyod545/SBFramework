@@ -59,7 +59,8 @@ namespace SB.Migrator.EntityFramework
             _tableInfos = GetTables();
             _tableInfos.ForEach(f => f.ForeignKeys = GetForeignKeys(f));
 
-            return _tableInfos.Select(s => (TableInfo)s).ToList();
+            var tables = _tableInfos.GroupBy(g => g.ClrType).Select(s => s.FirstOrDefault());
+            return tables.Select(s => (TableInfo)s).ToList();
         }
 
         /// <summary>
@@ -89,7 +90,7 @@ namespace SB.Migrator.EntityFramework
         /// <returns></returns>
         private Type GetMigrateContextType(Type contextType)
         {
-            var attr = contextType?.GetCustomAttribute<SBMigrationAttribute>();
+            var attr = contextType?.GetCustomAttribute<SbMigrationAttribute>();
             if (attr == null)
                 return null;
 

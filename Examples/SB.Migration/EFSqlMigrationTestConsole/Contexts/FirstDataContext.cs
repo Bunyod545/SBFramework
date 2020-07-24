@@ -7,8 +7,8 @@ namespace EFSqlMigrationTestConsole.Contexts
     /// <summary>
     /// 
     /// </summary>
-    [SBMigration]
-    public class DataContext : DbContext
+    [SbMigration("1.0.0.0")]
+    public class FirstDataContext : DbContext
     {
         /// <summary>
         /// 
