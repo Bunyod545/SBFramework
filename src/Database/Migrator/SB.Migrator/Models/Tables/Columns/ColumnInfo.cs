@@ -25,7 +25,7 @@ namespace SB.Migrator.Models.Column
         /// <summary>
         /// 
         /// </summary>
-        public string Decription { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// 

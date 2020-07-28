@@ -50,12 +50,10 @@
             clone.PropertyInfo = PropertyInfo;
             clone.ValueType = ValueType;
             clone.ContextType = ContextType;
+            clone.ContextObject = context;
+            clone.DefaultValue = DefaultValue;
             clone.TableType = TableType;
             clone.VariableService = VariableService;
-            clone.VariableValueGetter = VariableValueGetter;
-            clone.VariableValueSetter = VariableValueSetter;
-            clone.VariableValueConverter = VariableValueConverter;
-            clone.ContextObject = context;
 
             return clone;
         }

@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace SB.Migrator.Metadata.Logics.DbCodeMigrators.Attributes
+namespace SB.Migrator.EntityFramework
 {
     /// <summary>
     /// 
     /// </summary>
-    public class DbCodeMigrateAttribute
+    public class EfDbCodeMigrateAttribute
     {
         /// <summary>
         /// 
@@ -16,7 +16,7 @@ namespace SB.Migrator.Metadata.Logics.DbCodeMigrators.Attributes
         /// 
         /// </summary>
         /// <param name="version"></param>
-        public DbCodeMigrateAttribute(string version)
+        public EfDbCodeMigrateAttribute(string version)
         {
             Validate(version);
             Version = version;

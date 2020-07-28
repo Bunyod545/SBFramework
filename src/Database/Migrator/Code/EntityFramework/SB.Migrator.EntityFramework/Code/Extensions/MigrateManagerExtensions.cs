@@ -13,8 +13,9 @@ namespace SB.Migrator.EntityFramework
         /// <returns></returns>
         public static MigrateManager UseEfCodeTablesManager(this MigrateManager migrateManager)
         {
-            migrateManager.ServicesContainer.Register<ICodeTablesManager, EFCodeTablesManager>();
+            migrateManager.ServicesContainer.Register<ICodeTablesManager, EfCodeTablesManager>();
             migrateManager.ServicesContainer.Register<IMigrateValidator, EntityFrameworkMigrationValidator>();
+            migrateManager.ServicesContainer.Register<ITableFinder, TableFinder>();
 
             migrateManager.UseSafeMode();
             return migrateManager;

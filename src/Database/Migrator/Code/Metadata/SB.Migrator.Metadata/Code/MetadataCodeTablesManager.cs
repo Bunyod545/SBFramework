@@ -4,8 +4,6 @@ using System.Linq;
 using SB.Common.Extensions;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Logics.Database;
-using SB.Migrator.Logics.ServiceContainers;
-using SB.Migrator.Metadata.Logics.Code.Logics.MigrationValidators;
 using SB.Migrator.Metadata.Logics.Code.Models;
 using SB.Migrator.Models;
 using SB.Migrator.Models.Column;
@@ -152,7 +150,7 @@ namespace SB.Migrator.Metadata
             columnInfo.Table = tableInfo;
             columnInfo.IsAllowNull = columnMetadata.IsAllowNull;
             columnInfo.Name = columnMetadata.Name;
-            columnInfo.Decription = columnMetadata.Decription;
+            columnInfo.Description = columnMetadata.Decription;
             columnInfo.DefaultValue = columnMetadata.DefaultValue;
             columnInfo.Identity = GetColumnIdentity(columnMetadata);
             columnInfo.Type = new MetadataColumnTypeInfo(this, columnMetadata);

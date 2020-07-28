@@ -4,6 +4,7 @@ using System.Linq;
 using SB.Migrator.Logics.Code;
 using SB.Migrator.Logics.Database.Interfaces;
 using SB.Migrator.Logics.DatabaseCommandServices;
+using SB.Migrator.Logics.Scripts;
 using SB.Migrator.Logics.ServiceContainers;
 using SB.Migrator.Models;
 using SB.Migrator.Models.MigrationHistories;
@@ -49,6 +50,11 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// <summary>
         /// 
         /// </summary>
+        protected IActualizationScriptsManager ActualizationScriptsManager { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public DatabaseCommandManager(IMigrateServicesContainer container)
         {
             Container = container;
@@ -64,6 +70,7 @@ namespace SB.Migrator.Logics.DatabaseCommands
             DatabaseConnection = Container.GetService<IDatabaseConnection>();
             HistoryRepository = Container.GetService<IMigrationsHistoryRepository>();
             CodeTablesManager = Container.GetService<ICodeTablesManager>();
+            ActualizationScriptsManager = Container.GetService<IActualizationScriptsManager>();
         }
 
         /// <summary>
@@ -99,7 +106,10 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         private void BeforeMigrate()
         {
-            var beforeScripts = CodeTablesManager.GetBeforeActualizationScripts();
+            if (ActualizationScriptsManager == null)
+                return;
+
+            var beforeScripts = ActualizationScriptsManager.GetBeforeActualizationScripts();
             beforeScripts = beforeScripts.OrderBy(o => o.Version).ToList();
 
             var beforeActualization = Container.GetService<IBeforeActualizationScriptCommand>();
@@ -135,7 +145,10 @@ namespace SB.Migrator.Logics.DatabaseCommands
         /// </summary>
         private void AfterMigrate()
         {
-            var afterScripts = CodeTablesManager.GetAfterActualizationScripts();
+            if (ActualizationScriptsManager == null)
+                return;
+
+            var afterScripts = ActualizationScriptsManager.GetAfterActualizationScripts();
             afterScripts = afterScripts.OrderBy(o => o.Version).ToList();
 
             var afterActualization = Container.GetService<IAfterActualizationScriptCommand>();

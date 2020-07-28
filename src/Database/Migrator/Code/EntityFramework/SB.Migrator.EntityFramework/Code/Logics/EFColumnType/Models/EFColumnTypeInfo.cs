@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SB.Migrator.Logics.Code;
+using SB.Migrator.Logics.Database;
+using SB.Migrator.Logics.ServiceContainers;
 using SB.Migrator.Models.Tables.Columns;
 
 namespace SB.Migrator.EntityFramework
@@ -10,6 +13,11 @@ namespace SB.Migrator.EntityFramework
     /// </summary>
     public class EFColumnTypeInfo : ColumnTypeInfo
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IMigrateServicesContainer _servicesContainer;
+
         /// <summary>
         /// 
         /// </summary>
@@ -29,6 +37,30 @@ namespace SB.Migrator.EntityFramework
             Property = property;
             Type = property.Relational()?.ColumnType;
             ClrType = property.ClrType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="columnClrType"></param>
+        /// <param name="servicesContainer"></param>
+        public EFColumnTypeInfo(Type columnClrType, IMigrateServicesContainer servicesContainer)
+        {
+            _servicesContainer = servicesContainer;
+            ClrType = columnClrType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string GetColumnType()
+        {
+            if (!string.IsNullOrEmpty(Type))
+                return Type;
+
+            var columnTypeMappingSource = _servicesContainer.GetService<IColumnTypeMappingSource>();
+            return columnTypeMappingSource?.FindType(ClrType);
         }
     }
 }

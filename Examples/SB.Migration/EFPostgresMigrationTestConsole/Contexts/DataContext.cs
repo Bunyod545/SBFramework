@@ -7,7 +7,7 @@ namespace EFPostgresMigrationTestConsole.Contexts
     /// <summary>
     /// 
     /// </summary>
-    [SbMigration]
+    [SbMigration("1.0.0.0")]
     public class DataContext : DbContext
     {
         /// <summary>
