@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SB.Common.Extensions.System.List;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,6 +32,27 @@ namespace SB.Common.Extensions
         {
             var index = 0;
             list.ForEach(f => action(f, index++));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="action"></param>
+        public static void ForEach<T>(this List<T> list, Action<T, IterationArgs> action)
+        {
+            var args = new IterationArgs();
+            args.Count = list.Count;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                args.Index = i;
+                action(list[i], args);
+
+                if (args.IsBreak)
+                    break;
+            }
         }
 
         /// <summary>
