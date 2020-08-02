@@ -54,7 +54,7 @@ namespace SB.Migrator.MySql
                 ScriptBuilder.Append(" AUTO_INCREMENT");
 
             BuildNullableInfo(column);
-            ScriptBuilder.Append($" COMMENT '{column.Decription}'");
+            ScriptBuilder.Append($" COMMENT '{column.Description}'");
             ScriptBuilder.AppendIf(Columns.IsNotLast(column), Strings.Comma);
         }
 

@@ -14,5 +14,24 @@
         /// 
         /// </summary>
         public string Version { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public MigrationVersionInfo()
+        {
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="version"></param>
+        public MigrationVersionInfo(string name, string version)
+        {
+            Name = name;
+            Version = version;
+        }
     }
 }

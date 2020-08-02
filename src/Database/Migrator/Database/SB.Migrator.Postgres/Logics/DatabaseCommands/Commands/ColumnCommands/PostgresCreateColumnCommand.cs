@@ -22,7 +22,7 @@ namespace SB.Migrator.Postgres
             SetColumnInfo();
 
             ScriptBuilder.AppendLine();
-            ScriptBuilder.AppendLine($"comment on column {Table.GetPgSqlName()}.{Column.GetPgSqlName()} is '{Column.Decription}';");
+            ScriptBuilder.AppendLine($"comment on column {Table.GetPgSqlName()}.{Column.GetPgSqlName()} is '{Column.Description}';");
         }
     }
 }

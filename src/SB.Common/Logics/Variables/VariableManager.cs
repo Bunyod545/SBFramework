@@ -39,13 +39,26 @@ namespace SB.Common.Logics.Variables
 
             if (Cache.TryGetValue(context.GetType(), out var variables))
             {
-                variables.ForEach(f => f.PropertyInfo.SetValue(context, f.Clone(context)));
+                variables.ForEach(f => InitFromCache(f, context));
                 return;
             }
 
             var variableProps = GetVariableProperties(context).ToList();
             var initializedVariables = variableProps.Select(s => InitializeVariableProperty(context, s)).ToList();
             Cache.Add(context.GetType(), initializedVariables);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cacheVariable"></param>
+        /// <param name="context"></param>
+        private static void InitFromCache(Variable cacheVariable, object context)
+        {
+            var variableClone = cacheVariable.Clone(context);
+            variableClone.VariableService = GetVariableService(context, variableClone.PropertyInfo);
+
+            variableClone.PropertyInfo.SetValue(context, variableClone);
         }
 
         /// <summary>

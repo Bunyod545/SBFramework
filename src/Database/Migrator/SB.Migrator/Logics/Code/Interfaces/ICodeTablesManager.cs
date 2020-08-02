@@ -13,6 +13,11 @@ namespace SB.Migrator.Logics.Code
         /// <summary>
         /// 
         /// </summary>
+        void Initialize();
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         List<ScriptInfo> GetBeforeActualizationScripts();
 
@@ -33,10 +38,5 @@ namespace SB.Migrator.Logics.Code
         /// </summary>
         /// <returns></returns>
         List<MigrationVersionInfo> GetMigrationVersionInfos();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void Initialize();
     }
 }

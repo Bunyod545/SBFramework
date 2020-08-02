@@ -7,7 +7,7 @@ namespace SB.EntityFramework.Test.Logics.SbTypes.Context
     /// <summary>
     /// 
     /// </summary>
-    [SbMigration]
+    [SbMigration("1.0.0.0")]
     public class EFMigrationTestContext : DbContext
     {
         /// <summary>

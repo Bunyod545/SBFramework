@@ -122,7 +122,7 @@ namespace SB.Migrator.Postgres
         /// <param name="columnInfo"></param>
         private void SetColumnComment(ColumnInfo columnInfo)
         {
-            ScriptBuilder.AppendLine($"comment on column {Table.GetPgSqlName()}.{columnInfo.GetPgSqlName()} is '{columnInfo.Decription}';");
+            ScriptBuilder.AppendLine($"comment on column {Table.GetPgSqlName()}.{columnInfo.GetPgSqlName()} is '{columnInfo.Description}';");
         }
 
         /// <summary>
