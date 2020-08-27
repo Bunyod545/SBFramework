@@ -14,6 +14,16 @@
             
             </summary>
         </member>
+        <member name="T:SB.Common.Test.Helpers.StringCompressorTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Helpers.StringCompressorTest.CompressDecompressTest">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.ExceptionTree.ExceptionTreeBuilderTest">
             <summary>
             
@@ -253,6 +263,31 @@
             </summary>
         </member>
         <member name="M:SB.Common.Test.Logics.PhoneNumbers.PhoneNumberTest.PhoneParseTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SbStringConverters.Models.SbStringTestModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SbStringConverters.Models.SbStringTestModel.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.SbStringConverters.Models.SbStringTestModel.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.SbStringConverters.SbStringConvertTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.SbStringConverters.SbStringConvertTest.SerializeTest">
             <summary>
             
             </summary>
