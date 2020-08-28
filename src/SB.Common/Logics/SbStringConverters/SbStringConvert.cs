@@ -47,7 +47,7 @@ namespace SB.Common.Logics.SbStringConverters
         public static T Deserialize<T>(string text) where T: class, new()
         {
             if (string.IsNullOrEmpty(text))
-                return default;
+                return default(T);
 
             var props = typeof(T).GetProperties().ToList();
             var value = new T();

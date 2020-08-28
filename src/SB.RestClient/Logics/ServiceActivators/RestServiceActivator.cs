@@ -16,7 +16,7 @@ namespace SB.RestClient.Logics.ServiceActivators
         public static T For<T>(string rootUrl)
         {
             RestServiceActivateValidateManager.Validate<T>();
-            return default;
+            return default(T);
         } 
     }
 }
