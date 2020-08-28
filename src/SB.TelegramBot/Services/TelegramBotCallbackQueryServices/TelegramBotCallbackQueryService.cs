@@ -2,7 +2,7 @@
 using SB.TelegramBot.Logics.TelegramBotClients;
 using Telegram.Bot.Types;
 
-namespace SB.TelegramBot.Services.TelegramBotCallbackQueryServices
+namespace SB.TelegramBot.Services
 {
     /// <summary>
     /// 

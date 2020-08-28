@@ -1,5 +1,5 @@
 ﻿using SB.TelegramBot.Logics.TelegramBotDIContainers;
-using SB.TelegramBot.Services.TelegramBotCallbackQueryServices;
+using SB.TelegramBot.Services;
 
 namespace SB.TelegramBot.Logics.TelegramBotCommands
 {

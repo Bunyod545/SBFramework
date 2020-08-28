@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using System;
 
 namespace SB.TelegramBot.Logics.TelegramBotDIContainers
 {
@@ -70,6 +71,15 @@ namespace SB.TelegramBot.Logics.TelegramBotDIContainers
         public static TInterface GetService<TInterface>()
         {
             return _container.Resolve<TInterface>();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TInterface"></typeparam>
+        public static object GetService(Type type)
+        {
+            return _container.Resolve(type);
         }
 
         /// <summary>

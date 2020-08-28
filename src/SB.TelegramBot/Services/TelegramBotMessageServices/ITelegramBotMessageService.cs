@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot.Types;
 
-namespace SB.TelegramBot.Services.TelegramBotMessageServices
+namespace SB.TelegramBot.Services
 {
     /// <summary>
     /// 
