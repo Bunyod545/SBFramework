@@ -13,6 +13,11 @@
         /// <summary>
         /// 
         /// </summary>
-        public int? CurrentCommandId { get; set; }
+        public string Language { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CurrentCommandClrName { get; set; }
     }
 }

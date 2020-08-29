@@ -9,7 +9,7 @@
         /// 
         /// </summary>
         /// <param name="chat"></param>
-        void RegisterUser();
+        TelegramBotUserInfo RegisterUser();
 
         /// <summary>
         /// 
@@ -17,5 +17,11 @@
         /// <param name="chatId"></param>
         /// <returns></returns>
         TelegramBotUserInfo GetUserInfo(long chatId);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        TelegramBotUserInfo GetCurrentUserInfo();
     }
 }

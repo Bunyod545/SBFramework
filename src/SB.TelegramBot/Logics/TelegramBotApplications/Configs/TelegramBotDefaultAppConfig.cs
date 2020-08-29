@@ -23,10 +23,14 @@ namespace SB.TelegramBot
         /// <param name="services"></param>
         public override void RegisterServices(ITelegramBotServicesCollection services)
         {
+            services.AddScoped<ITelegramBotCommandFactoryInitializer, TelegramBotCommandFactoryInitializer>();
+            services.AddScoped<ITelegramBotUserService, TelegramBotUserService>();
             services.AddScoped<ITelegramBotMessageService, TelegramBotMessageService>();
             services.AddScoped<ITelegramBotCallbackQueryService, TelegramBotCallbackQueryService>();
             services.AddScoped<ITelegramBotCommandActivator, TelegramBotCommandActivator>();
             services.AddScoped<ITelegramBotUnknownMessageService, TelegramBotUnknownMessageService>();
+            services.AddScoped<ITelegramBotMessageHandler, TelegramBotMessageHandler>();
+            services.AddScoped<ITelegramBotCallbackQueryHandler, TelegramBotCallbackQueryHandler>();
         }
     }
 }

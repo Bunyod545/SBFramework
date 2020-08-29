@@ -1,4 +1,4 @@
-﻿namespace SB.TelegramBot.Logics.TelegramBotCommands.Enums
+﻿namespace SB.TelegramBot
 {
     /// <summary>
     /// 

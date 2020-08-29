@@ -12,6 +12,11 @@ namespace SB.TelegramBot
         /// <summary>
         /// 
         /// </summary>
+        public const string Version = "1.0.0.0";
+
+        /// <summary>
+        /// 
+        /// </summary>
         public TelegramBotAppConfig AppConfig { get; private set; }
 
         /// <summary>
@@ -52,6 +57,32 @@ namespace SB.TelegramBot
             TelegramBotServicesContainer.Dispose();
             TelegramBotServicesContainer.Dispose();
             TelegramBotClientManager.Dispose();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public static TelegramBotApplication Run(string token)
+        {
+            var telegramBotApp = new TelegramBotApplication(token);
+            telegramBotApp.Run();
+
+            return telegramBotApp;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appConfig"></param>
+        /// <returns></returns>
+        public static TelegramBotApplication Run(TelegramBotAppConfig appConfig)
+        {
+            var telegramBotApp = new TelegramBotApplication(appConfig);
+            telegramBotApp.Run();
+
+            return telegramBotApp;
         }
     }
 }

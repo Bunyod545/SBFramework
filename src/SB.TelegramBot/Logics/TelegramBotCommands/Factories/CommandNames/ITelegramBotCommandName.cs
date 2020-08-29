@@ -1,4 +1,4 @@
-﻿namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories.Interfaces
+﻿namespace SB.TelegramBot
 {
     /// <summary>
     /// 

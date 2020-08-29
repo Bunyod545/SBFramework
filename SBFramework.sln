@@ -83,7 +83,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ResourceScript", "ResourceS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Migrator.ResourceScript", "src\Database\Migrator\Code\ResourceScript\SB.Migrator.ResourceScript\SB.Migrator.ResourceScript.csproj", "{95148717-C143-4739-AA54-2E80CBA3540A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.TelegramBot", "src\SB.TelegramBot\SB.TelegramBot.csproj", "{59BD10C6-BF31-40BB-BE21-2AACD5975DBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.TelegramBot", "src\SB.TelegramBot\SB.TelegramBot.csproj", "{59BD10C6-BF31-40BB-BE21-2AACD5975DBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SB.TelegramBot", "SB.TelegramBot", "{7FBAEF94-F050-4ED3-8F0B-CA9694B338D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.TeleramBot.Console.Example", "Examples\SB.TelegramBot\SB.TeleramBot.Console.Example\SB.TeleramBot.Console.Example.csproj", "{0D4266FD-7A61-49D4-918B-4B9AACD0FA0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -187,6 +191,10 @@ Global
 		{59BD10C6-BF31-40BB-BE21-2AACD5975DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59BD10C6-BF31-40BB-BE21-2AACD5975DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59BD10C6-BF31-40BB-BE21-2AACD5975DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D4266FD-7A61-49D4-918B-4B9AACD0FA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D4266FD-7A61-49D4-918B-4B9AACD0FA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D4266FD-7A61-49D4-918B-4B9AACD0FA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D4266FD-7A61-49D4-918B-4B9AACD0FA0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -230,6 +238,8 @@ Global
 		{DF16E61C-F732-4A0E-B37B-06936C87D01C} = {34764869-89AD-4B44-8E52-C884ECE17810}
 		{95148717-C143-4739-AA54-2E80CBA3540A} = {DF16E61C-F732-4A0E-B37B-06936C87D01C}
 		{59BD10C6-BF31-40BB-BE21-2AACD5975DBA} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
+		{7FBAEF94-F050-4ED3-8F0B-CA9694B338D0} = {EF10AA03-534F-4903-B30D-D3BF7A53AFDA}
+		{0D4266FD-7A61-49D4-918B-4B9AACD0FA0B} = {7FBAEF94-F050-4ED3-8F0B-CA9694B338D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

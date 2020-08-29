@@ -1,7 +1,6 @@
-﻿using SB.TelegramBot.Logics.TelegramBotCommands.Enums;
-using System;
+﻿using System;
 
-namespace SB.TelegramBot.Logics.TelegramBotCommands.Attributes
+namespace SB.TelegramBot
 {
     /// <summary>
     /// 
@@ -12,11 +11,6 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Attributes
         /// <summary>
         /// 
         /// </summary>
-        public int Id { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public TelegramBotCommandType Type { get; private set; }
 
         /// <summary>
@@ -24,9 +18,8 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Attributes
         /// </summary>
         /// <param name="id"></param>
         /// <param name="type"></param>
-        public TelegramBotCommandAttribute(int id, TelegramBotCommandType type)
+        public TelegramBotCommandAttribute(TelegramBotCommandType type)
         {
-            Id = id;
             Type = type;
         }
     }

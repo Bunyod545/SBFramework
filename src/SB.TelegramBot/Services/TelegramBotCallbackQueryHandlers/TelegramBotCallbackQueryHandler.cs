@@ -1,18 +1,18 @@
 ﻿using Telegram.Bot.Args;
 
-namespace SB.TelegramBot.Logics.TelegramBotClients
+namespace SB.TelegramBot.Services
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class TelegramBotClientManager
+    public class TelegramBotCallbackQueryHandler : ITelegramBotCallbackQueryHandler
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void Client_OnCallbackQuery(object sender, CallbackQueryEventArgs e)
+        public void Handle(object sender, CallbackQueryEventArgs e)
         {
 
         }

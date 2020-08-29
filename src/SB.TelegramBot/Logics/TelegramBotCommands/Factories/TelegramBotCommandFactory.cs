@@ -1,7 +1,4 @@
-﻿using SB.TelegramBot.Logics.TelegramBotCommands.Attributes;
-using SB.TelegramBot.Logics.TelegramBotCommands.CommandTypes;
-using SB.TelegramBot.Logics.TelegramBotCommands.Enums;
-using SB.TelegramBot.Logics.TelegramBotCommands.Factories.Models;
+﻿using SB.TelegramBot.Logics.TelegramBotCommands.Factories.Models;
 using SB.TelegramBot.Logics.TelegramBotDIContainers;
 using SB.TelegramBot.Services;
 using System;
@@ -40,7 +37,7 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
             var types = assemblies.SelectMany(s => s.GetTypes());
 
             var interfaceType = typeof(ITelegramBotCommand);
-            var commandTypes = types.Where(w => w.IsAssignableFrom(interfaceType)).ToList();
+            var commandTypes = types.Where(w => interfaceType.IsAssignableFrom(w)).ToList();
             commandTypes.ForEach(InitializeInfo);
 
             var initializer = TelegramBotServicesContainer.GetService<ITelegramBotCommandFactoryInitializer>();
@@ -62,8 +59,8 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
 
             var info = new TelegramBotCommandInfo();
             info.ClrType = commandClrType;
+            info.CommandClrName = commandClrType.Name;
             info.CommandType = attr.Type;
-            info.CommandId = attr.Id;
 
             Infos.Add(info);
         }
@@ -82,11 +79,11 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="commandId"></param>
+        /// <param name="clrName"></param>
         /// <returns></returns>
-        public static ITelegramBotCommand GetCommand(int commandId)
+        public static ITelegramBotCommand GetCommandByClrName(string clrName)
         {
-            var info = Infos.FirstOrDefault(s => s.CommandId == commandId);
+            var info = Infos.FirstOrDefault(s => s.CommandClrName == clrName);
             return InternalGetCommand(info);
         }
 
@@ -107,13 +104,13 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="commandId"></param>
+        /// <param name="clrName"></param>
         /// <returns></returns>
-        public static ITelegramBotCommand GetPublicOrInternalCommand(int commandId)
+        public static ITelegramBotCommand GetPublicOrInternalCommandByClrName(string clrName)
         {
             var info = Infos.FirstOrDefault(s => (s.CommandType == TelegramBotCommandType.PublicCommand ||
                                                   s.CommandType == TelegramBotCommandType.InternalCommand) &&
-                                                  s.CommandId == commandId);
+                                                  s.CommandClrName == clrName);
 
             return InternalGetCommand(info);
         }
@@ -134,12 +131,12 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="commandId"></param>
+        /// <param name="clrName"></param>
         /// <returns></returns>
-        public static ITelegramBotCommand GetPublicCommand(int commandId)
+        public static ITelegramBotCommand GetPublicCommandByClrName(string clrName)
         {
             var info = Infos.FirstOrDefault(s => s.CommandType == TelegramBotCommandType.PublicCommand &&
-                                                s.CommandId == commandId);
+                                                s.CommandClrName == clrName);
 
             return InternalGetCommand(info);
         }
@@ -160,12 +157,12 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="commandId"></param>
+        /// <param name="clrName"></param>
         /// <returns></returns>
-        public static ITelegramBotCommand GetCallbackCommand(int commandId)
+        public static ITelegramBotCommand GetCallbackCommandByClrName(string clrName)
         {
             var info = Infos.FirstOrDefault(s => s.CommandType == TelegramBotCommandType.CallbackCommand &&
-                                                   s.CommandId == commandId);
+                                                   s.CommandClrName == clrName);
 
             return InternalGetCommand(info);
         }
@@ -186,12 +183,12 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="commandId"></param>
+        /// <param name="clrName"></param>
         /// <returns></returns>
-        public static ITelegramBotCommand GetInternalCommand(int commandId)
+        public static ITelegramBotCommand GetInternalCommandByClrName(string clrName)
         {
             var info = Infos.FirstOrDefault(s => s.CommandType == TelegramBotCommandType.InternalCommand &&
-                                                s.CommandId == commandId);
+                                                s.CommandClrName == clrName);
 
             return InternalGetCommand(info);
         }

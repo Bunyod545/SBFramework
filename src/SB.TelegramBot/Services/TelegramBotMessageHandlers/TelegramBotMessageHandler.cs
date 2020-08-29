@@ -1,36 +1,33 @@
 ﻿using SB.TelegramBot.Logics.TelegramBotCommands.Factories;
 using SB.TelegramBot.Logics.TelegramBotDIContainers;
 using SB.TelegramBot.Logics.TelegramBotMessages;
-using SB.TelegramBot.Services;
 using Telegram.Bot.Args;
 
-namespace SB.TelegramBot.Logics.TelegramBotClients
+namespace SB.TelegramBot.Services
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class TelegramBotClientManager
+    public class TelegramBotMessageHandler : ITelegramBotMessageHandler
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void Client_OnMessage(object sender, MessageEventArgs e)
+        public void Handle(object sender, MessageEventArgs e)
         {
             TelegramBotMessageManager.Message.Value = e.Message;
 
             var userService = TelegramBotServicesContainer.GetService<ITelegramBotUserService>();
             var currentUser = userService.GetUserInfo(e.Message.Chat.Id);
-            if (currentUser == null)
-            {
-                userService.RegisterUser();
-                return;
-            }
 
-            if (currentUser.CurrentCommandId.HasValue)
+            if (currentUser == null)
+                currentUser = userService.RegisterUser();
+
+            if (!string.IsNullOrEmpty(currentUser.CurrentCommandClrName))
             {
-                var currentCommand = TelegramBotCommandFactory.GetPublicOrInternalCommand(currentUser.CurrentCommandId.Value);
+                var currentCommand = TelegramBotCommandFactory.GetPublicOrInternalCommand(currentUser.CurrentCommandClrName);
                 currentCommand?.Execute();
                 return;
             }
@@ -44,23 +41,6 @@ namespace SB.TelegramBot.Logics.TelegramBotClients
 
             var unknownMessageService = TelegramBotServicesContainer.GetService<ITelegramBotUnknownMessageService>();
             unknownMessageService.Execute();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        private static void FirstInitializeUser(MessageEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="user"></param>
-        private static void ExecuteInternalCommand()
-        {
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using SB.TelegramBot.Logics.TelegramBotClients;
 using Telegram.Bot;
 
-namespace SB.TelegramBot.Logics.TelegramBotCommands
+namespace SB.TelegramBot
 {
     /// <summary>
     /// 
