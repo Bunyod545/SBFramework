@@ -15,6 +15,11 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories.Models
         /// <summary>
         /// 
         /// </summary>
+        public long CommandId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public TelegramBotCommandType CommandType { get; set; }
 
         /// <summary>

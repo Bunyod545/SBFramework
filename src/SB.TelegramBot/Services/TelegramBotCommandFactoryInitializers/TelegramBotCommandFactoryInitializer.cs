@@ -16,6 +16,9 @@ namespace SB.TelegramBot.Services
         /// </summary>
         private List<TelegramBotDbCommand> _dbCommands;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TelegramBotCommandFactoryInitializer()
         {
             _dbCommands = TelegramBotDb.Commands.FindAll().ToList();
@@ -36,6 +39,32 @@ namespace SB.TelegramBot.Services
         /// </summary>
         /// <param name="info"></param>
         private void InitializeInfo(TelegramBotCommandInfo info)
+        {
+            InitializeIdentifier(info);
+            InitializeNames(info);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        private void InitializeIdentifier(TelegramBotCommandInfo info)
+        {
+            var dbCommand = _dbCommands.FirstOrDefault(f => f.ClrName == info.ClrType.Name);
+            if (dbCommand == null)
+            {
+                dbCommand = new TelegramBotDbCommand();
+                dbCommand.ClrName = info.ClrType.Name;
+                TelegramBotDb.Commands.Insert(dbCommand);
+            }
+
+            info.CommandId = dbCommand.Id;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void InitializeNames(TelegramBotCommandInfo info)
         {
             var commandName = new TelegramBotCommandName(info);
             var attrs = info.ClrType.GetCustomAttributes(typeof(TelegramBotCommandNameAttribute), false);

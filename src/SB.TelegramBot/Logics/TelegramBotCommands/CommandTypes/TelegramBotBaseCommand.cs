@@ -13,12 +13,27 @@ namespace SB.TelegramBot
         /// <summary>
         /// 
         /// </summary>
-        public TelegramBotClient Client => TelegramBotClientManager.Client;
+        public TelegramBotClient Client { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public ITelegramBotUserService UserService = TelegramBotServicesContainer.GetService<ITelegramBotUserService>();
+        public ITelegramBotUserService UserService { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ITelegramBotCommandService CommandService { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected TelegramBotBaseCommand()
+        {
+            Client = TelegramBotClientManager.Client;
+            UserService = TelegramBotServicesContainer.GetService<ITelegramBotUserService>();
+            CommandService = new TelegramBotCommandService(this);
+        }
 
         /// <summary>
         /// 

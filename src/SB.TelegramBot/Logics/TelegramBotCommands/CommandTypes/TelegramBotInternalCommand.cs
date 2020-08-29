@@ -12,6 +12,14 @@ namespace SB.TelegramBot
         /// <summary>
         /// 
         /// </summary>
-        public ITelegramBotMessageService MessageService = TelegramBotServicesContainer.GetService<ITelegramBotMessageService>();
+        public ITelegramBotMessageService MessageService { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TelegramBotInternalCommand()
+        {
+            MessageService = TelegramBotServicesContainer.GetService<ITelegramBotMessageService>();
+        }
     }
 }

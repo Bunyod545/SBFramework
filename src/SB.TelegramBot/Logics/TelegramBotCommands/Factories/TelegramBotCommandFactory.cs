@@ -68,6 +68,16 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="commandType"></param>
+        /// <returns></returns>
+        public static TelegramBotCommandInfo GetCommand(Type commandType)
+        {
+            return Infos.FirstOrDefault(s => s.ClrType == commandType);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         public static ITelegramBotCommand GetCommand(string name)
