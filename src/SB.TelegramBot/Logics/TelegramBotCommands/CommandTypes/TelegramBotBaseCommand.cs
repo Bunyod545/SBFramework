@@ -1,4 +1,6 @@
 ﻿using SB.TelegramBot.Logics.TelegramBotClients;
+using SB.TelegramBot.Logics.TelegramBotDIContainers;
+using SB.TelegramBot.Services;
 using Telegram.Bot;
 
 namespace SB.TelegramBot
@@ -12,6 +14,11 @@ namespace SB.TelegramBot
         /// 
         /// </summary>
         public TelegramBotClient Client => TelegramBotClientManager.Client;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ITelegramBotUserService UserService = TelegramBotServicesContainer.GetService<ITelegramBotUserService>();
 
         /// <summary>
         /// 

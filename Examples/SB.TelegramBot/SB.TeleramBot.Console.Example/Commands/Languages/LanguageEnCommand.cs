@@ -6,14 +6,15 @@ namespace SB.TeleramBot.Example.Commands
     /// <summary>
     /// 
     /// </summary>
-    [TelegramBotCommandName("/start")]
-    public class StartCommand : TelegramBotPublicCommand
+    [TelegramBotCommandName("Choose English language")]
+    public class LanguageEnCommand : TelegramBotPublicCommand
     {
         /// <summary>
         /// 
         /// </summary>
         public override void Execute()
         {
+            UserService.SetCurrentUserLanguage("en");
             MessageService.SendText(TelegramBotMessages.UserSuccessfulyRegistered);
         }
     }

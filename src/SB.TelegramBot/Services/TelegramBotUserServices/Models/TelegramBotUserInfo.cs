@@ -19,5 +19,22 @@
         /// 
         /// </summary>
         public string CurrentCommandClrName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TelegramBotUserInfo()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="chatId"></param>
+        public TelegramBotUserInfo(long chatId)
+        {
+            ChatId = chatId;
+        }
     }
 }

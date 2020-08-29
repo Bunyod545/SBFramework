@@ -1,5 +1,6 @@
 ﻿using SB.TelegramBot.Logics.TelegramBotClients;
 using SB.TelegramBot.Logics.TelegramBotDIContainers;
+using SB.TelegramBot.Services;
 using System;
 
 namespace SB.TelegramBot
@@ -34,7 +35,7 @@ namespace SB.TelegramBot
         /// <param name="token"></param>
         public TelegramBotApplication(string token)
         {
-            AppConfig = new TelegramBotDefaultAppConfig(token);
+            AppConfig = new TelegramBotAppConfig(token);
         }
 
         /// <summary>
@@ -43,10 +44,28 @@ namespace SB.TelegramBot
         public virtual void Run()
         {
             TelegramBotClientManager.Token = AppConfig.Token;
+            RegisterServices(new TelegramBotServicesCollection());
 
-            AppConfig.RegisterServices(new TelegramBotServicesCollection());
             TelegramBotServicesContainer.Initialize();
             TelegramBotClientManager.Initialize();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        protected virtual void RegisterServices(ITelegramBotServicesCollection services)
+        {
+            services.AddScoped<ITelegramBotCommandFactoryInitializer, TelegramBotCommandFactoryInitializer>();
+            services.AddScoped<ITelegramBotUserService, TelegramBotUserService>();
+            services.AddScoped<ITelegramBotMessageService, TelegramBotMessageService>();
+            services.AddScoped<ITelegramBotCallbackQueryService, TelegramBotCallbackQueryService>();
+            services.AddScoped<ITelegramBotCommandActivator, TelegramBotCommandActivator>();
+            services.AddScoped<ITelegramBotUnknownMessageService, TelegramBotUnknownMessageService>();
+            services.AddScoped<ITelegramBotMessageHandler, TelegramBotMessageHandler>();
+            services.AddScoped<ITelegramBotCallbackQueryHandler, TelegramBotCallbackQueryHandler>();
+
+            AppConfig.RegisterServices(services);
         }
 
         /// <summary>

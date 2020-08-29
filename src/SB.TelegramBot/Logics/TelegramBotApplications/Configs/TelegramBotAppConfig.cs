@@ -15,6 +15,23 @@ namespace SB.TelegramBot
         /// <summary>
         /// 
         /// </summary>
+        public TelegramBotAppConfig()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        public TelegramBotAppConfig(string token)
+        {
+            Token = token;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="services"></param>
         public virtual void RegisterServices(ITelegramBotServicesCollection services)
         {

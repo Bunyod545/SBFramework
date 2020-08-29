@@ -10,4 +10,28 @@
     <ProjectReference Include="..\..\..\src\SB.TelegramBot\SB.TelegramBot.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Resources\Commands\TelegramBotCommandsSynonyms.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TelegramBotCommandsSynonyms.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Messages\TelegramBotMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TelegramBotMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Commands\TelegramBotCommandsSynonyms.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TelegramBotCommandsSynonyms.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Messages\TelegramBotMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TelegramBotMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

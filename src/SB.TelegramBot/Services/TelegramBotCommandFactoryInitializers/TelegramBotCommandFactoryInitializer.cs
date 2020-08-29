@@ -1,4 +1,6 @@
-﻿using SB.TelegramBot.Logics.TelegramBotCommands.Factories.Models;
+﻿using SB.TelegramBot.Databases;
+using SB.TelegramBot.Databases.Tables;
+using SB.TelegramBot.Logics.TelegramBotCommands.Factories.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +11,17 @@ namespace SB.TelegramBot.Services
     /// </summary>
     public class TelegramBotCommandFactoryInitializer : ITelegramBotCommandFactoryInitializer
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private List<TelegramBotDbCommand> _dbCommands;
+
+        public TelegramBotCommandFactoryInitializer()
+        {
+            _dbCommands = TelegramBotDb.Commands.FindAll().ToList();
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
