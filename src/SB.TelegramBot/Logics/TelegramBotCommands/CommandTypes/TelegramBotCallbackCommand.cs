@@ -12,14 +12,14 @@ namespace SB.TelegramBot
         /// <summary>
         /// 
         /// </summary>
-        public ITelegramBotCallbackQueryService MessageService { get; }
+        public ITelegramBotCallbackQueryService CallbackQueryService { get; }
 
         /// <summary>
         /// 
         /// </summary>
         public TelegramBotCallbackCommand()
         {
-            MessageService = TelegramBotServicesContainer.GetService<ITelegramBotCallbackQueryService>();
+            CallbackQueryService = TelegramBotServicesContainer.GetService<ITelegramBotCallbackQueryService>();
         }
     }
 }

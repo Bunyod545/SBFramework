@@ -6,8 +6,7 @@ namespace SB.TeleramBot.Example.Commands
     /// <summary>
     /// 
     /// </summary>
-    [TelegramBotCommandName("Выбрать русский язык")]
-    public class LanguageRuCommand : TelegramBotPublicCommand
+    public class LanguageRuCommand : TelegramBotCallbackCommand
     {
         /// <summary>
         /// 
@@ -15,7 +14,7 @@ namespace SB.TeleramBot.Example.Commands
         public override void Execute()
         {
             UserService.SetCurrentUserLanguage("ru-RU");
-            MessageService.SendText(TelegramBotMessages.UserSuccessfulyRegistered);
+            CallbackQueryService.SendText(TelegramBotMessages.UserSuccessfulyRegistered);
         }
     }
 }

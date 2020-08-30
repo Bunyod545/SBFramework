@@ -62,8 +62,11 @@ namespace SB.TelegramBot
             services.AddScoped<ITelegramBotCallbackQueryService, TelegramBotCallbackQueryService>();
             services.AddScoped<ITelegramBotCommandActivator, TelegramBotCommandActivator>();
             services.AddScoped<ITelegramBotUnknownMessageService, TelegramBotUnknownMessageService>();
+
             services.AddScoped<ITelegramBotMessageHandler, TelegramBotMessageHandler>();
             services.AddScoped<ITelegramBotCallbackQueryHandler, TelegramBotCallbackQueryHandler>();
+            services.AddScoped<ITelegramBotMessageEditedHandler, TelegramBotMessageEditedHandler>();
+            services.AddScoped<ITelegramBotInlineQueryHandler, TelegramBotInlineQueryHandler>();
 
             AppConfig.RegisterServices(services);
         }

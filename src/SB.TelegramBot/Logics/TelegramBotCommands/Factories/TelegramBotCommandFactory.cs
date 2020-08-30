@@ -154,6 +154,19 @@ namespace SB.TelegramBot.Logics.TelegramBotCommands.Factories
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="commandId"></param>
+        /// <returns></returns>
+        public static ITelegramBotCommand GetCallbackCommand(long commandId)
+        {
+            var info = Infos.FirstOrDefault(s => s.CommandType == TelegramBotCommandType.CallbackCommand &&
+                                                   s.CommandId == commandId);
+
+            return InternalGetCommand(info);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
         public static ITelegramBotCommand GetCallbackCommand(string name)
