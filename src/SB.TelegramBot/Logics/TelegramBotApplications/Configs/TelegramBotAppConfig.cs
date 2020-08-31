@@ -37,5 +37,14 @@ namespace SB.TelegramBot
         {
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        public virtual void Configure(TelegramBotApplication app)
+        {
+
+        }
     }
 }

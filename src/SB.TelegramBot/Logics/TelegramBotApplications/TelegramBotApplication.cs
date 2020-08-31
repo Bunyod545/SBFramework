@@ -1,4 +1,5 @@
 ﻿using SB.TelegramBot.Logics.TelegramBotClients;
+using SB.TelegramBot.Logics.TelegramBotCommands.Factories;
 using SB.TelegramBot.Logics.TelegramBotDIContainers;
 using SB.TelegramBot.Services;
 using System;
@@ -47,6 +48,9 @@ namespace SB.TelegramBot
             RegisterServices(new TelegramBotServicesCollection());
 
             TelegramBotServicesContainer.Initialize();
+            TelegramBotCommandFactory.Initialize();
+            AppConfig.Configure(this);
+
             TelegramBotClientManager.Initialize();
         }
 
@@ -56,6 +60,7 @@ namespace SB.TelegramBot
         /// <param name="services"></param>
         protected virtual void RegisterServices(ITelegramBotServicesCollection services)
         {
+            services.AddTransient<ITelegramBotCommandName, TelegramBotCommandName>();
             services.AddScoped<ITelegramBotCommandFactoryInitializer, TelegramBotCommandFactoryInitializer>();
             services.AddScoped<ITelegramBotUserService, TelegramBotUserService>();
             services.AddScoped<ITelegramBotMessageService, TelegramBotMessageService>();

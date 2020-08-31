@@ -21,6 +21,20 @@ namespace SB.TelegramBot
         /// <summary>
         /// 
         /// </summary>
+        public Type CommandNameType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="commandNameType"></param>
+        public TelegramBotCommandNameAttribute(Type commandNameType)
+        {
+            CommandNameType = commandNameType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="name"></param>
         public TelegramBotCommandNameAttribute(string name)
         {

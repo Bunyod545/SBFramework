@@ -120,7 +120,4 @@
   <data name="HomeCommand" xml:space="preserve">
     <value>Home menu</value>
   </data>
-  <data name="LanguageRuCommand" xml:space="preserve">
-    <value>Choose Russian language</value>
-  </data>
 </root>

@@ -6,7 +6,6 @@ namespace SB.TeleramBot.Example.Commands
     /// <summary>
     /// 
     /// </summary>
-    [TelegramBotCommandName("/home")]
     public class HomeCommand : TelegramBotPublicCommand
     {
         /// <summary>

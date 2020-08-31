@@ -68,14 +68,5 @@ namespace SB.TeleramBot.Example.Resources.Commands {
                 return ResourceManager.GetString("HomeCommand", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose Russian language.
-        /// </summary>
-        internal static string LanguageRuCommand {
-            get {
-                return ResourceManager.GetString("LanguageRuCommand", resourceCulture);
-            }
-        }
     }
 }
