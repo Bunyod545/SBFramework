@@ -9,7 +9,7 @@
 
 ## Create the bot on telegram first
 
-![bot-creating-in-telegram](assets/createbot.png)
+![bot-creating-in-telegram](createbot.png)
 
 Namespace
 -------
