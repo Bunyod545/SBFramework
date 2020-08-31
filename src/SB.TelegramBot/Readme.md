@@ -11,12 +11,12 @@
 
 ![bot-creating-in-telegram](createbot.png)
 
-Namespace
+## Namespace
 -------
 ```csharp
 using SB.TelegramBot;
 ```
-Run telegram bot application
+## Run telegram bot application
 -------
 ```csharp
 public static void Main()
@@ -28,3 +28,6 @@ public static void Main()
     Console.ReadLine();
 }
 ```
+## Now go to your bot
+
+![bot-creating-in-telegram](telegrambotversion.png)
