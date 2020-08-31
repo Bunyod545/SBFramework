@@ -14,7 +14,7 @@
 Namespace
 -------
 ```csharp
-    using SB.TelegramBot;
+using SB.TelegramBot;
 ```
 Run telegram bot application
 -------
