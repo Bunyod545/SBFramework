@@ -20,11 +20,11 @@ Run telegram bot application
 -------
 ```csharp
     public static void Main()
-    {
-        TelegramBotApplication.Run("teleram bot token here");
+{
+    TelegramBotApplication.Run("teleram bot token here");
 
-        Console.WriteLine("Telegram bot started!");
-        Console.WriteLine("Press enter to close!");
-        Console.ReadLine();
-    }
+    Console.WriteLine("Telegram bot started!");
+    Console.WriteLine("Press enter to close!");
+    Console.ReadLine();
+}
 ```
