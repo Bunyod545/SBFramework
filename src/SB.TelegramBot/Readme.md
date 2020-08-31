@@ -19,7 +19,7 @@ using SB.TelegramBot;
 Run telegram bot application
 -------
 ```csharp
-    public static void Main()
+public static void Main()
 {
     TelegramBotApplication.Run("teleram bot token here");
 
