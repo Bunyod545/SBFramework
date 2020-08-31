@@ -5,6 +5,10 @@
 
 [![downloads](https://img.shields.io/nuget/dt/SB.TelegramBot.svg?style=flat-square&label=Package%20Downloads)](https://www.nuget.org/packages/SB.TelegramBot)
 
+## 🚧 Supported Platforms
+
+Project targets **.NET Standard 2**.
+
 ## 🔨 Getting Started
 
 ## Create the bot on telegram first
