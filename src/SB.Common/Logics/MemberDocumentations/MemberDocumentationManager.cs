@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
+using NLog;
 using SB.Common.Logics.MemberDocumentations.Extensions;
 
 namespace SB.Common.Logics.MemberDocumentations
@@ -13,6 +14,11 @@ namespace SB.Common.Logics.MemberDocumentations
     /// </summary>
     public static class MemberDocumentationManager
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// 
         /// </summary>
@@ -74,20 +80,31 @@ namespace SB.Common.Logics.MemberDocumentations
         /// <returns></returns>
         public static XmlDocument GetXmlDocument(Assembly assembly)
         {
+            Logger.Info("Get xml document begin for assembly: " + assembly);
             if (assembly == null)
                 return null;
 
-            var documentPath = assembly.GetAssemblyXmlDocumentPath();
-            if (!File.Exists(documentPath))
-                return null;
-
+            Logger.Info("Check cached document for assembly: " + assembly);
             if (XmlDocuments.TryGetValue(assembly, out var cacheDocument))
+            {
+                Logger.Info("Find cached document for assembly: " + assembly);
                 return cacheDocument;
+            }
+
+            var documentPath = assembly.GetAssemblyXmlDocumentPath();
+            Logger.Info("Get xml document begin from path: " + documentPath);
+
+            if (!File.Exists(documentPath))
+            {
+                Logger.Info("Xml document not exists on path: " + documentPath);
+                return null;
+            }
 
             var document = new XmlDocument();
             document.LoadXml(File.ReadAllText(documentPath));
 
             XmlDocuments.Add(assembly, document);
+            Logger.Info("Read xml document finished for assembly: " + assembly);
             return document;
         }
     }

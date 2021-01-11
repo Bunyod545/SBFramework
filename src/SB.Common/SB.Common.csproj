@@ -6,7 +6,7 @@
     <Authors>Bunyod545</Authors>
     <Company>SB</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.21</Version>
+    <Version>1.0.22</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,6 +25,10 @@
 
   <ItemGroup>
     <Folder Include="Logics\Variables\Logics\VariableValueConverter\Converters\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.7.6" />
   </ItemGroup>
 
 </Project>
