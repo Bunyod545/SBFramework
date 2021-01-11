@@ -1,5 +1,4 @@
-﻿using SB.Common;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 
 namespace System
@@ -30,7 +29,7 @@ namespace System
             var uri = new UriBuilder(assembly.CodeBase);
             var dllPath = Uri.UnescapeDataString(uri.Path);
 
-            return dllPath.Substring(0, dllPath.LastIndexOf(".", StringComparison.Ordinal)) + ".XML";
+            return dllPath.Substring(0, dllPath.LastIndexOf(".", StringComparison.Ordinal)) + ".xml";
         }
 
         /// <summary>
