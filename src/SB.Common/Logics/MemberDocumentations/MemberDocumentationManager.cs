@@ -80,17 +80,13 @@ namespace SB.Common.Logics.MemberDocumentations
         /// <returns></returns>
         public static XmlDocument GetXmlDocument(Assembly assembly)
         {
-            Logger.Info("Get xml document begin for assembly: " + assembly);
             if (assembly == null)
                 return null;
 
-            Logger.Info("Check cached document for assembly: " + assembly);
             if (XmlDocuments.TryGetValue(assembly, out var cacheDocument))
-            {
-                Logger.Info("Find cached document for assembly: " + assembly);
                 return cacheDocument;
-            }
-
+           
+            Logger.Info("Get xml document begin for assembly: " + assembly);
             var documentPath = assembly.GetAssemblyXmlDocumentPath();
             Logger.Info("Get xml document begin from path: " + documentPath);
 
