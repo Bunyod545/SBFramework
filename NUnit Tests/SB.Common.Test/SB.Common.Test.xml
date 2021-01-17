@@ -24,6 +24,28 @@
             
             </summary>
         </member>
+        <member name="T:SB.Common.Test.Helpers.Words.TranscriptionHelperTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Helpers.Words.TranscriptionHelperTest.expects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Helpers.Words.TranscriptionHelperTest.TranslateTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Helpers.Words.TranscriptionHelperTest.TranslateTestElement(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="expected"></param>
+        </member>
         <member name="T:SB.Common.Test.Logics.ExceptionTree.ExceptionTreeBuilderTest">
             <summary>
             
