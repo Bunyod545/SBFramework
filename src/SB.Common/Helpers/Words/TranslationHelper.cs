@@ -49,6 +49,8 @@ namespace SB.Common.Helpers.Words
              {"щ", "sh"},
              {"ъ", ""},
              {"ь", ""},
+             {"h", "x"},
+             {"o'", "o"},
         };
     }
 }
