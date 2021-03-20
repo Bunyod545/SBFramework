@@ -56,6 +56,7 @@ namespace SB.Common.Helpers.Words
              {"g`", "g"},
              {"`", ""},
              {"'", ""},
+             {"‘", ""},
         };
     }
 }
