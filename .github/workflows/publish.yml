@@ -15,3 +15,11 @@ jobs:
         with:
           PROJECT_FILE_PATH: src/SB.Common/SB.Common.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+
+      - uses: up9cloud/action-notify@master
+        name: Notify Telegram
+        if: always()
+        env:
+          GITHUB_JOB_STATUS: ${{ job.status }}
+          TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_TOKEN}}
+          TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_USER}}
