@@ -17,7 +17,7 @@ namespace MetadataSqlMigrationTestConsole
         /// <summary>
         /// 
         /// </summary>
-        public const string ConnectionString = "Server=.;Database=TestMetadataMigrator;Trusted_Connection=True;";
+        public const string ConnectionString = @"Server=DESKTOP-GDLLM62\SQLEXPRESS;Database=TestMetadataMigrator;Trusted_Connection=True;";
 
         /// <summary>
         /// 
