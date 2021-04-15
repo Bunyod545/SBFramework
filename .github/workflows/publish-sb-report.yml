@@ -1,4 +1,4 @@
-name: publish to nuget
+name: publish SB.Report to nuget
 on:
   push:
     branches:
@@ -22,9 +22,9 @@ jobs:
           type: now
           target_branch: master
           github_token: ${{ github.token }}
-
-      - name: Notify Telegram
+      
       - uses: up9cloud/action-notify@master
+      - name: Notify Telegram
         if: always()
         env:
           GITHUB_JOB_STATUS: ${{ job.status }}
