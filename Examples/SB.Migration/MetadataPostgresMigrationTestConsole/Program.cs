@@ -4,7 +4,7 @@ using SB.Migrator.Metadata;
 using SB.Migrator.Postgres.Logics.Database.Extensions;
 
 [assembly: BeforeActualization("BeforeActualizationScripts.resources")]
-[assembly: Migrate("MetadataPostgresMigration", "1.0.0.23")]
+[assembly: Migrate("MetadataPostgresMigration", "1.0.0.29")]
 [assembly: AfterActualization("AfterActualizationScripts.resources")]
 
 namespace MetadataPostgresMigrationTestConsole

@@ -28,11 +28,6 @@
         /// <summary>
         /// 
         /// </summary>
-        TableValue,
-
-        /// <summary>
-        /// 
-        /// </summary>
         CreateColumn,
 
         /// <summary>
@@ -89,6 +84,11 @@
         /// 
         /// </summary>
         CreateForeignKey,
+
+        /// <summary>
+        /// 
+        /// </summary>
+        TableValue,
 
         /// <summary>
         /// 

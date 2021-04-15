@@ -10,7 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Database\Scripts\Files\1.0.0.1_addFunctionCreate.sql" />
+    <None Remove="Database\Scripts\Files\1.0.0.29_Delete-column-test.sql" />
+    <None Remove="Database\Scripts\Files\1.0.0.2_FillTables.sql" />
     <None Remove="MetadataPostgresMigrationTestConsole.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Scripts\Files\1.0.0.2_FillTables.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Scripts\Files\1.0.0.1_addFunctionCreate.sql" />
+    <EmbeddedResource Include="Database\Scripts\Files\1.0.0.29_Delete-column-test.sql" />
   </ItemGroup>
 
   <ItemGroup>
