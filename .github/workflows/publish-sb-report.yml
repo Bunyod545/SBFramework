@@ -8,23 +8,23 @@ jobs:
     name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: publish on version change
+      - uses: actions/checkout@v2
         id: publish_nuget
         uses: rohith/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: src/SB.Report/SB.Report.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
-      - uses: devmasx/merge-branch@v1.3.1
       - name: Merge development -> master
+      - uses: devmasx/merge-branch@v1.3.1
         with:
           type: now
           target_branch: master
           github_token: ${{ github.token }}
       
-      - uses: up9cloud/action-notify@master
       - name: Notify Telegram
+      - uses: up9cloud/action-notify@master
         if: always()
         env:
           GITHUB_JOB_STATUS: ${{ job.status }}
