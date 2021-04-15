@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: publish on version change
-      - uses: actions/checkout@v2
-        id: publish_nuget
-        uses: rohith/publish-nuget@v2
+      - uses: rohith/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: src/SB.Report/SB.Report.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
