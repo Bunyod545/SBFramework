@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Company>SB</Company>
+    <Authors>Bunyod545</Authors>
   </PropertyGroup>
 
   <ItemGroup>
