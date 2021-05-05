@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Bunyod545</Authors>
     <Company>SB</Company>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
