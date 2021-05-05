@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: publish SB.Auto.DependenyInjection on version change
-        id: publish_nuget
+        id: publish_nuget_SB_Auto_DependenyInjection
         uses: rohith/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: src/DependecyInjection/SB.Auto.DependenyInjection/SB.Auto.DependenyInjection.csproj
@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/checkout@v2
       - name: publish SB.Auto.DependecyInjection.AspNetCore on version change
-        id: publish_nuget
+        id: publish_nuget_SB_Auto_DependecyInjection_AspNetCore
         uses: rohith/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: src/DependecyInjection/SB.Auto.DependecyInjection.AspNetCore/SB.Auto.DependecyInjection.AspNetCore.csproj
