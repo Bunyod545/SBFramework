@@ -22,7 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection
             scopedServices.ForEach(f => RegisterScopedService(services, f));
 
             var singletonServices = servicesInfos.Where(w => w.LifeCycle == ServiceLifeCycle.Singleton).ToList();
-            scopedServices.ForEach(f => RegisterSingletonService(services, f));
+            singletonServices.ForEach(f => RegisterSingletonService(services, f));
         }
 
         /// <summary>
