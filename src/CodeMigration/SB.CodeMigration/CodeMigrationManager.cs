@@ -39,7 +39,7 @@ namespace SB.CodeMigration
                 .ToList();
 
             options.Logger.Log($"Find {notMigratedMigrators.Count} not migrated migrations");
-            migrators.ForEach(f => Migrate(f, versionManager, options));
+            notMigratedMigrators.ForEach(f => Migrate(f, versionManager, options));
 
             options.Logger.Log($"Code migration finished with actualVersion: {actualVersion}");
         }
