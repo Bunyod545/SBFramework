@@ -11,5 +11,14 @@ namespace SB.CodeMigration
         /// 
         /// </summary>
         public string Version { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="version"></param>
+        public CodeMigrationAttribute(string version)
+        {
+            Version = version;
+        }
     }
 }
