@@ -31,7 +31,7 @@ namespace SB.CodeMigration
             options.Logger.Log($"Code migration begin with actualVersion: {actualVersion}");
 
             var migrators = GetMigrators();
-            options.Logger.Log($"Find {migrators.Count} not migrated migrations");
+            options.Logger.Log($"Find {migrators.Count} migrations");
 
             var notMigratedMigrators = migrators
                 .Where(w => w.MigratorVersion > actualVersion)
@@ -56,9 +56,9 @@ namespace SB.CodeMigration
             var migrator = options.Activator.Activate(info.MigratorType);
             options.Logger.Log($"Code migrator type {info.MigratorType} activate end, with version {info.MigratorVersion}");
 
-            options.Logger.Log($"Code migrator {info.MigratorType} migrate begin, with version {info.MigratorVersion}");
+            options.Logger.Log($"Code migrator type {info.MigratorType} migrate begin, with version {info.MigratorVersion}");
             migrator.Migrate();
-            options.Logger.Log($"Code migrator {info.MigratorType} migrate end, with version {info.MigratorVersion}");
+            options.Logger.Log($"Code migrator type {info.MigratorType} migrate end, with version {info.MigratorVersion}");
 
             versionManager.SetVersion(info.MigratorVersion);
         }
