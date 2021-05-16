@@ -9,19 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: publish SB.Code.Migration on version change
-        id: publish_nuget_SB_Code_Migration
+      - name: publish SB.CodeMigration on version change
+        id: publish_nuget_SB_CodeMigration
         uses: rohith/publish-nuget@v2
         with:
-          PROJECT_FILE_PATH: src/CodeMigration/SB.Code.Migration/SB.Code.Migration.csproj
+          PROJECT_FILE_PATH: src/CodeMigration/SB.CodeMigration/SB.CodeMigration.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - uses: actions/checkout@v2
-      - name: publish SB.Code.Migration.AspNetCore on version change
-        id: publish_nuget_SB_Code_Migration_AspNetCore
+      - name: publish SB.CodeMigration.AspNetCore on version change
+        id: publish_nuget_SB_CodeMigration_AspNetCore
         uses: rohith/publish-nuget@v2
         with:
-          PROJECT_FILE_PATH: src/CodeMigration/SB.Code.Migration.AspNetCore/SB.Code.Migration.AspNetCore.csproj
+          PROJECT_FILE_PATH: src/CodeMigration/SB.CodeMigration.AspNetCore/SB.CodeMigration.AspNetCore.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - uses: devmasx/merge-branch@v1.3.1
