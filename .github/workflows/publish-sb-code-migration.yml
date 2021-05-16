@@ -1,0 +1,40 @@
+name: publish SB.Code.Migration to nuget
+on:
+  push:
+    branches:
+      - master-sb-code-migration 
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: publish SB.CodeMigration on version change
+        id: publish_nuget_SB_CodeMigration
+        uses: rohith/publish-nuget@v2
+        with:
+          PROJECT_FILE_PATH: src/CodeMigration/SB.CodeMigration/SB.CodeMigration.csproj
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+
+      - uses: actions/checkout@v2
+      - name: publish SB.CodeMigration.AspNetCore on version change
+        id: publish_nuget_SB_CodeMigration_AspNetCore
+        uses: rohith/publish-nuget@v2
+        with:
+          PROJECT_FILE_PATH: src/CodeMigration/SB.CodeMigration.AspNetCore/SB.CodeMigration.AspNetCore.csproj
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+
+      - uses: devmasx/merge-branch@v1.3.1
+        name: Merge development -> master
+        with:
+          type: now
+          target_branch: master
+          github_token: ${{ github.token }}
+      
+      - uses: up9cloud/action-notify@master
+        name: Notify Telegram
+        if: always()
+        env:
+          GITHUB_JOB_STATUS: ${{ job.status }}
+          TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_TOKEN}}
+          TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_USER}}
