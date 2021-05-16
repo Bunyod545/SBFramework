@@ -22,7 +22,7 @@ namespace SB.CodeMigration.AspNetCore
             var defaultOptions = new CodeMigrationDefaultOptions();
             defaultOptions.Activator = new CodeMigrationDIActivator(scope.ServiceProvider);
 
-            var versionManager = (ICodeMigrationVersionManager)app.ApplicationServices.GetService(typeof(ICodeMigrationVersionManager));
+            var versionManager = (ICodeMigrationVersionManager)scope.ServiceProvider.GetService(typeof(ICodeMigrationVersionManager));
             if (versionManager == null)
                 throw new Exception("ICodeMigrationVersion manager not registered to DI");
 
