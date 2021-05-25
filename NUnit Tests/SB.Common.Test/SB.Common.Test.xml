@@ -564,6 +564,83 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="T:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTexts">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTexts.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTexts.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTexts.TestText">
+             <summary>
+               Looks up a localized string similar to КАСБ-КОРГА ҚОДИР БЎЛГАН, СОҒЛОМ УКАМГА ЗАКОТ БЕРСАМ БЎЛАДИМИ?
+            
+            @Savollar_kanal 8863-савол
+            
+            Ассалому алайкум! Закотни ака-укага берса бўлар экан. Менинг укам намоз ўқимайди. Ўзининг уйи, оиласи бор, ўзи соғлом, икки нафар фарзанди бор. Рўзғори алоҳида. Ишчи бўлиб ишлайди. 2млн атрофида ойлик олади. Раҳбари талабига кўра ҳафтасига 7 кун ишлайди (ҳатто Ҳайит кунлари ҳам). Мен бермоқчи бўлган закот билан ҳам пули нисобга етмайди. “Мўминнинг нажоти” китоби “Закот олиши мумкин бўлмаганлар” боби 140-саҳифада “ [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes.QuestionTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes.QuestionNumberLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes.QuestionContent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes.AnswerTitleLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes.AnswerContent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.TextParsers.SavollarChannelTextparserTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.TextParsers.SavollarChannelTextparserTest.ParseTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.TextParsers.SavollarChannelTextparserTest.QuestionTitleOptions(SB.Common.Logics.TextParsers.TextParseOptions)">
+            <summary>
+            
+            </summary>
+            <param name="parseOptions"></param>
+        </member>
+        <member name="M:SB.Common.Test.Logics.TextParsers.SavollarChannelTextparserTest.QuestionContentOptions(SB.Common.Logics.TextParsers.TextParseOptions)">
+            <summary>
+            
+            </summary>
+            <param name="parseOptions"></param>
+        </member>
         <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVaariableContextConstants">
             <summary>
             

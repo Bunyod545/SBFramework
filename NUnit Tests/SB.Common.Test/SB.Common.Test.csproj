@@ -26,4 +26,19 @@
     <ProjectReference Include="..\..\src\SB.Common\SB.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Logics\TextParsers\Helpers\TextParserTexts.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TextParserTexts.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Logics\TextParsers\Helpers\TextParserTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TextParserTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
