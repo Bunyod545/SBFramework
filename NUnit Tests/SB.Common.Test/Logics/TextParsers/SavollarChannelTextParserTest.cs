@@ -15,12 +15,11 @@ namespace SB.Common.Test.Logics.TextParsers
         [Test]
         public void ParseTest()
         {
-            var text = TextParserTexts.TestText;
+            var text = TextParserTexts.TestTextOldVersion;
 
             var parseOptions = new TextParseOptions();
             parseOptions.UseTokenizer<TextNewLineTokenizer>();
             QuestionTitleOptions(parseOptions);
-            QuestionContentOptions(parseOptions);
 
             var parseResult = TextParser.Parse(text, parseOptions);
         }
@@ -34,33 +33,12 @@ namespace SB.Common.Test.Logics.TextParsers
             var questionTitleAnalyzer = new TextTokenAnalyzer(TextParserTypes.QuestionTitle);
             parseOptions.AddAnalyzer(questionTitleAnalyzer);
 
-            questionTitleAnalyzer.UseScanner<TextTokenTextUppercaseScanner>();
-            questionTitleAnalyzer.UseScanner<TextTokenNextEmptyTextScanner>();
-
-            var nextTokenScanner = new TextTokenNextTextScanner();
-            nextTokenScanner.WithText("@Savollar_kanal");
-            nextTokenScanner.WithTextScannerType(TextTokenTextScannerType.StartsWith);
-            nextTokenScanner.WithNextCount(2);
-            questionTitleAnalyzer.UseScanner(nextTokenScanner);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="parseOptions"></param>
-        private void QuestionContentOptions(TextParseOptions parseOptions)
-        {
-            var questionContentAnalyzer = new TextTokenAnalyzer(TextParserTypes.QuestionContent);
-            parseOptions.AddAnalyzer(questionContentAnalyzer);
-
             var previousTokenScanner = new TextTokenPreviousTextScanner();
-            previousTokenScanner.WithPreviousCount(2);
-            previousTokenScanner.WithText("@Savollar_kanal");
-            previousTokenScanner.WithTextScannerType(TextTokenTextScannerType.StartsWith);
-
-            questionContentAnalyzer.UseScanner(previousTokenScanner);
-            questionContentAnalyzer.UseScannerWith<TextTokenPreviousEmptyTextScanner>();
-            questionContentAnalyzer.UseScannerWith<TextTokenNextEmptyTextScanner>();
+            previousTokenScanner.WithText("^[0-9]*-савол");
+            previousTokenScanner.WithTextScannerType(TextTokenTextScannerType.Regex);
+            
+            questionTitleAnalyzer.UseScanner(previousTokenScanner);
+            questionTitleAnalyzer.UseScanner<TextTokenNextEmptyTextScanner>();
         }
     }
 }
