@@ -72,5 +72,29 @@ namespace SB.Common.Test.Logics.TextParsers.Helpers {
                 return ResourceManager.GetString("TestText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Forwarded from Fotiha.uz]
+        ///@Savollar_kanal
+        ///11-савол
+        ///Кимларга салом бериш мумкин эмас?
+        ///
+        ///AZIZXONXXX · 20/07/2014 ·
+        ///
+        ///Ассалому алайкум, ҳурматли Шайх Ҳазратлари! Кимларга салом бериш мумкин ёки керак эмас?
+        ///
+        ///ЖАВОБ
+        ///
+        ///— Ношаръий ишларни қилиб турганларга.
+        ///
+        ///Шайх Муҳаммад Содиқ Муҳаммад Юсуф
+        ///
+        ///http://savollar.islom.uz/savol-29094/.
+        /// </summary>
+        internal static string TestTextOldVersion {
+            get {
+                return ResourceManager.GetString("TestTextOldVersion", resourceCulture);
+            }
+        }
     }
 }

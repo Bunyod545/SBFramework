@@ -589,6 +589,26 @@
             Ассалому алайкум! Закотни ака-укага берса бўлар экан. Менинг укам намоз ўқимайди. Ўзининг уйи, оиласи бор, ўзи соғлом, икки нафар фарзанди бор. Рўзғори алоҳида. Ишчи бўлиб ишлайди. 2млн атрофида ойлик олади. Раҳбари талабига кўра ҳафтасига 7 кун ишлайди (ҳатто Ҳайит кунлари ҳам). Мен бермоқчи бўлган закот билан ҳам пули нисобга етмайди. “Мўминнинг нажоти” китоби “Закот олиши мумкин бўлмаганлар” боби 140-саҳифада “ [rest of string was truncated]&quot;;.
              </summary>
         </member>
+        <member name="P:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTexts.TestTextOldVersion">
+             <summary>
+               Looks up a localized string similar to [Forwarded from Fotiha.uz]
+            @Savollar_kanal
+            11-савол
+            Кимларга салом бериш мумкин эмас?
+            
+            AZIZXONXXX · 20/07/2014 ·
+            
+            Ассалому алайкум, ҳурматли Шайх Ҳазратлари! Кимларга салом бериш мумкин ёки керак эмас?
+            
+            ЖАВОБ
+            
+            — Ношаръий ишларни қилиб турганларга.
+            
+            Шайх Муҳаммад Содиқ Муҳаммад Юсуф
+            
+            http://savollar.islom.uz/savol-29094/.
+             </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.TextParsers.Helpers.TextParserTypes">
             <summary>
             
@@ -630,12 +650,6 @@
             </summary>
         </member>
         <member name="M:SB.Common.Test.Logics.TextParsers.SavollarChannelTextparserTest.QuestionTitleOptions(SB.Common.Logics.TextParsers.TextParseOptions)">
-            <summary>
-            
-            </summary>
-            <param name="parseOptions"></param>
-        </member>
-        <member name="M:SB.Common.Test.Logics.TextParsers.SavollarChannelTextparserTest.QuestionContentOptions(SB.Common.Logics.TextParsers.TextParseOptions)">
             <summary>
             
             </summary>
