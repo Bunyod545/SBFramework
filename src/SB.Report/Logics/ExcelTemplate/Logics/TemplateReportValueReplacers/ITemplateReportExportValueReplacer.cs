@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
+using System.Collections.Generic;
 
 namespace SB.Report.Logics.ExcelTemplate
 {

@@ -61,7 +61,7 @@ namespace SB.Report.Logics.ExcelTemplate
         {
             var props = values.GetType().GetProperties().ToList();
             var dicValues = new Dictionary<string, object>();
-            props.ForEach(f => dicValues.Add(GetPropertyName(f), f.GetValue(values)));
+            props.ForEach(f => dicValues.Add(GetPropertyName(f),f.GetValue(values)));
 
             return dicValues;
         }

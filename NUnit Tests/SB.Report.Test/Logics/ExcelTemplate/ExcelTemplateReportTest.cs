@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using System.IO;
 using SB.Report.Test.Logics.ExcelTemplate.Reports.Models;
+using SB.Report.Logics.ExcelTemplate.Extensions;
+using System.Drawing;
 
 namespace SB.Report.Test.Logics.ExcelTemplate
 {
@@ -25,7 +27,11 @@ namespace SB.Report.Test.Logics.ExcelTemplate
 
             info.Rows = new List<CustomExcelRowTemplate>();
             var row = new CustomExcelRowTemplate();
-            row.GroupName = "Test";
+            var img = Image.FromFile("C:\\Users\\User\\Desktop\\photo_2023-04-09_17-03-51.jpg");
+            img = img.ResizeImage(100, 100);
+
+            row.GroupName = "Test"; 
+            row.Image = img;
             info.Rows.Add(row);
 
             customReport.Export(info);

@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
+using OfficeOpenXml.Drawing;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.RefAndLookup;
 using SB.Common.Extensions;
 using SB.Common.Helpers;
+using SB.Report.Logics.ExcelTemplate.Extensions;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Image = System.Drawing.Image;
+using Match = System.Text.RegularExpressions.Match;
 
 namespace SB.Report.Logics.ExcelTemplate
 {
@@ -70,12 +75,30 @@ namespace SB.Report.Logics.ExcelTemplate
         /// <param name="cell"></param>
         /// <param name="replaceValue"></param>
         /// <param name="values"></param>
-        private void ReplaceTemplate(ExcelRangeBase cell, string replaceValue, Dictionary<string, object> values)
+        private void ReplaceTemplate(ExcelRangeBase cell,
+            string replaceValue, Dictionary<string, object> values)
         {
             if (!values.TryGetValue(replaceValue, out var value))
                 return;
 
             var replaceText = Strings.LFigureBracket + replaceValue + Strings.RFigureBracket;
+            if (value is Image img)
+            {
+                var row = cell.Start.Row;
+                var column = cell.Start.Column;
+
+                var rowOffset = row - 1;
+                var columnOffset = column - 1;
+                
+                cell.Worksheet.Row(row).Height = img.Height;
+                cell.Worksheet.Column(column).Width = img.Width / 6;
+                cell.Value = cell.Text.Replace(replaceText, string.Empty);
+
+                var pic = cell.Worksheet.Drawings.AddPicture(string.Empty, img);
+                pic.SetPosition(rowOffset, 15, columnOffset, 10);
+                return;
+            }
+
             if (replaceText == cell.Text)
             {
                 cell.Value = value;
