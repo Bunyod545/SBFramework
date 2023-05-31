@@ -19,8 +19,10 @@ namespace SB.Report.Logics.ExcelTemplate.Extensions
         {
             var destRect = new Rectangle(0, 0, width, height);
             var destImage = new Bitmap(width, height);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+            if (image.HorizontalResolution == 0 || image.VerticalResolution == 0)
+                destImage.SetResolution(96, 96);
+            else
+                destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
             using (var graphics = Graphics.FromImage(destImage))
             {
