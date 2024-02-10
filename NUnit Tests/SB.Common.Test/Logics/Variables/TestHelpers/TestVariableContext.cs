@@ -1,5 +1,6 @@
 ﻿using SB.Common.Logics.Variables;
 using SB.Common.Logics.Variables.Attributes;
+using System.ComponentModel;
 
 namespace SB.Common.Test.Logics.Variables.TestHelpers
 {
@@ -18,6 +19,12 @@ namespace SB.Common.Test.Logics.Variables.TestHelpers
         /// 
         /// </summary>
         public Variable<int> Age { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [DefaultValue(TestVaariableContextConstants.TestDefaultValue)]
+        public Variable<int> DefaultValueTest { get; set; }
 
         /// <summary>
         /// 

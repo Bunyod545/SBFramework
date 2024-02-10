@@ -14,5 +14,10 @@
         /// 
         /// </summary>
         public const int TestAge = 3;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int TestDefaultValue = 10;
     }
 }

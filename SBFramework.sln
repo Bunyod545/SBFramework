@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Common.Test", "NUnit Tests\SB.Common.Test\SB.Common.Test.csproj", "{EC413110-2446-4B40-9D2D-DB82A47A3F87}"
 EndProject
@@ -93,7 +93,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeMigration", "CodeMigrat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.CodeMigration", "src\CodeMigration\SB.CodeMigration\SB.CodeMigration.csproj", "{E9B735D0-9531-428A-9634-3A017A169466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SB.CodeMigration.AspNetCore", "src\CodeMigration\SB.CodeMigration.AspNetCore\SB.CodeMigration.AspNetCore.csproj", "{D8FD0204-00FC-4098-8E09-6F1EB9B5F72E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.CodeMigration.AspNetCore", "src\CodeMigration\SB.CodeMigration.AspNetCore\SB.CodeMigration.AspNetCore.csproj", "{D8FD0204-00FC-4098-8E09-6F1EB9B5F72E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SB.Common", "SB.Common", "{791FDDC0-BF1E-4726-8CC5-AB0F8790975C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SB.Common.App", "Examples\SB.Common.App\SB.Common.App.csproj", "{AAE283EE-137C-4C52-A351-16DFF1F39665}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -209,6 +213,10 @@ Global
 		{D8FD0204-00FC-4098-8E09-6F1EB9B5F72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8FD0204-00FC-4098-8E09-6F1EB9B5F72E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8FD0204-00FC-4098-8E09-6F1EB9B5F72E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAE283EE-137C-4C52-A351-16DFF1F39665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE283EE-137C-4C52-A351-16DFF1F39665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE283EE-137C-4C52-A351-16DFF1F39665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE283EE-137C-4C52-A351-16DFF1F39665}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +265,8 @@ Global
 		{F2D1961B-8F30-4856-852E-B0DB842C848B} = {05EB8D07-92B3-450E-B4B0-D388404BA307}
 		{E9B735D0-9531-428A-9634-3A017A169466} = {F2D1961B-8F30-4856-852E-B0DB842C848B}
 		{D8FD0204-00FC-4098-8E09-6F1EB9B5F72E} = {F2D1961B-8F30-4856-852E-B0DB842C848B}
+		{791FDDC0-BF1E-4726-8CC5-AB0F8790975C} = {EF10AA03-534F-4903-B30D-D3BF7A53AFDA}
+		{AAE283EE-137C-4C52-A351-16DFF1F39665} = {791FDDC0-BF1E-4726-8CC5-AB0F8790975C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6ECE328-60A0-4BF9-B273-4B04E9BFA8E8}

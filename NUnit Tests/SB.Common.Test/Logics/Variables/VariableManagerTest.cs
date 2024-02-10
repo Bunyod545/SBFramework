@@ -27,6 +27,7 @@ namespace SB.Common.Test.Logics.Variables
             context.Name.SetValue(TestVaariableContextConstants.TestName);
             context.Age.SetValue(TestVaariableContextConstants.TestAge);
 
+            Assert.AreEqual(context.DefaultValueTest.GetValue(), TestVaariableContextConstants.TestDefaultValue);
             Assert.AreEqual(context.Name.GetValue(), TestVaariableContextConstants.TestName);
             Assert.AreEqual(context.Age.GetValue(), TestVaariableContextConstants.TestAge);
         }

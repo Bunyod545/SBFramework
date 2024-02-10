@@ -685,6 +685,11 @@
             
             </summary>
         </member>
+        <member name="P:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.DefaultValueTest">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext.IsTest">
             <summary>
             
