@@ -670,6 +670,11 @@
             
             </summary>
         </member>
+        <member name="F:SB.Common.Test.Logics.Variables.TestHelpers.TestVaariableContextConstants.TestDefaultValue">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.Variables.TestHelpers.TestVariableContext">
             <summary>
             

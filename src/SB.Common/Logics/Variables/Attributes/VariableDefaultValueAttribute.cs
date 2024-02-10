@@ -1,100 +1,106 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace SB.Common.Logics.Variables.Attributes
 {
     /// <summary>
     /// 
     /// </summary>
-    public class VariableDefaultValueAttribute : DefaultValueAttribute
+    [AttributeUsage(AttributeTargets.Property)]
+    public class VariableDefaultValueAttribute : Attribute
     {
         /// <summary>
         /// 
         /// </summary>
+        public object Value { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(bool value) : base(value)
+        public VariableDefaultValueAttribute(bool value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(byte value) : base(value)
+        public VariableDefaultValueAttribute(byte value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(char value) : base(value)
+        public VariableDefaultValueAttribute(char value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(double value) : base(value)
+        public VariableDefaultValueAttribute(double value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(short value) : base(value)
+        public VariableDefaultValueAttribute(short value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(int value) : base(value)
+        public VariableDefaultValueAttribute(int value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(long value) : base(value)
+        public VariableDefaultValueAttribute(long value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(object value) : base(value)
+        public VariableDefaultValueAttribute(object value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(float value) : base(value)
+        public VariableDefaultValueAttribute(float value)
         {
+            Value = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
-        public VariableDefaultValueAttribute(string value) : base(value)
+        public VariableDefaultValueAttribute(string value)
         {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="value"></param>
-        public VariableDefaultValueAttribute(Type type, string value) : base(type, value)
-        {
+            Value = value;
         }
     }
 }

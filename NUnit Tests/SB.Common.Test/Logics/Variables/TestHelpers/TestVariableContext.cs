@@ -23,7 +23,7 @@ namespace SB.Common.Test.Logics.Variables.TestHelpers
         /// <summary>
         /// 
         /// </summary>
-        [DefaultValue(TestVaariableContextConstants.TestDefaultValue)]
+        [VariableDefaultValue(TestVaariableContextConstants.TestDefaultValue)]
         public Variable<int> DefaultValueTest { get; set; }
 
         /// <summary>
