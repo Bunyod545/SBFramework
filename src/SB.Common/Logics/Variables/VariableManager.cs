@@ -147,7 +147,11 @@ namespace SB.Common.Logics.Variables
         /// <returns></returns>
         public static object GetVariableDefaultValue(PropertyInfo prop)
         {
-            return prop.GetCustomAttribute<DefaultValueAttribute>()?.Value;
+            var defValAttr = prop.GetCustomAttribute<DefaultValueAttribute>();
+            if (defValAttr != null)
+                return defValAttr.Value;
+
+            return prop.GetCustomAttribute<VariableDefaultValueAttribute>()?.Value;
         }
     }
 }
