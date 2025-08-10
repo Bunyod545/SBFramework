@@ -1,38 +1,77 @@
-name: publish SB.Code.Migration to nuget
+name: Publish SB.CodeMigration packages to NuGet
+
 on:
   push:
     branches:
-      - master-sb-code-migration 
+      - master-sb-code-migration
+
 jobs:
   publish:
-    name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: publish SB.CodeMigration on version change
-        id: publish_nuget_SB_CodeMigration
-        uses: rohith/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: src/CodeMigration/SB.CodeMigration/SB.CodeMigration.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      # 1. Kodni yuklash
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - uses: actions/checkout@v2
-      - name: publish SB.CodeMigration.AspNetCore on version change
-        id: publish_nuget_SB_CodeMigration_AspNetCore
-        uses: rohith/publish-nuget@v2
+      # 2. .NET SDK ni o‘rnatish
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
         with:
-          PROJECT_FILE_PATH: src/CodeMigration/SB.CodeMigration.AspNetCore/SB.CodeMigration.AspNetCore.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          dotnet-version: 8.0.x
 
-      - uses: devmasx/merge-branch@v1.3.1
-        name: Merge development -> master
+      # =====================
+      # SB.CodeMigration
+      # =====================
+      - name: Restore SB.CodeMigration
+        run: dotnet restore src/CodeMigration/SB.CodeMigration/SB.CodeMigration.csproj
+
+      - name: Build SB.CodeMigration
+        run: dotnet build -c Release src/CodeMigration/SB.CodeMigration/SB.CodeMigration.csproj --no-restore
+
+      - name: Pack SB.CodeMigration
+        run: dotnet pack -c Release src/CodeMigration/SB.CodeMigration/SB.CodeMigration.csproj -o ./artifacts --no-build
+
+      - name: Push SB.CodeMigration to NuGet
+        run: |
+          dotnet nuget push ./artifacts/SB.CodeMigration.*.nupkg \
+            --api-key ${{secrets.NUGET_API_KEY}} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      # =====================
+      # SB.CodeMigration.AspNetCore
+      # =====================
+      - name: Restore SB.CodeMigration.AspNetCore
+        run: dotnet restore src/CodeMigration/SB.CodeMigration.AspNetCore/SB.CodeMigration.AspNetCore.csproj
+
+      - name: Build SB.CodeMigration.AspNetCore
+        run: dotnet build -c Release src/CodeMigration/SB.CodeMigration.AspNetCore/SB.CodeMigration.AspNetCore.csproj --no-restore
+
+      - name: Pack SB.CodeMigration.AspNetCore
+        run: dotnet pack -c Release src/CodeMigration/SB.CodeMigration.AspNetCore/SB.CodeMigration.AspNetCore.csproj -o ./artifacts --no-build
+
+      - name: Push SB.CodeMigration.AspNetCore to NuGet
+        run: |
+          dotnet nuget push ./artifacts/SB.CodeMigration.AspNetCore.*.nupkg \
+            --api-key ${{secrets.NUGET_API_KEY}} \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
+
+      # =====================
+      # Merge development -> master
+      # =====================
+      - name: Merge development -> master
+        uses: devmasx/merge-branch@v1.3.1
         with:
           type: now
           target_branch: master
           github_token: ${{ github.token }}
-      
-      - uses: up9cloud/action-notify@master
-        name: Notify Telegram
+
+      # =====================
+      # Notify Telegram
+      # =====================
+      - name: Notify Telegram
+        uses: up9cloud/action-notify@master
         if: always()
         env:
           GITHUB_JOB_STATUS: ${{ job.status }}
