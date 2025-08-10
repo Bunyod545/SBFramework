@@ -14,6 +14,19 @@ namespace SB.Common.Extensions
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static List<T> AddItem<T>(this List<T> list, T item)
+        {
+            list.Add(item);
+            return list;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="items"></param>
         /// <param name="expression"></param>
         /// <returns></returns>

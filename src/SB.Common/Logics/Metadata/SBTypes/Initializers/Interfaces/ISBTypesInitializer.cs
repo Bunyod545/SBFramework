@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SB.Common.Logics.Metadata.SBTypes;
+using System.Collections.Generic;
 
 namespace SB.Common.Logics.Metadata
 {
@@ -11,6 +12,6 @@ namespace SB.Common.Logics.Metadata
         /// 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<SBTypeInfo> GetTypeInfos();
+        List<SBTypeInfo> GetTypeInfos();
     }
 }

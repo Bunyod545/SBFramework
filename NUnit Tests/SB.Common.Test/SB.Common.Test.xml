@@ -46,6 +46,56 @@
             <param name="value"></param>
             <param name="expected"></param>
         </member>
+        <member name="T:SB.Common.Test.Logics.Constants.ConstantContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.Constants.ConstantContext.OrgName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SB.Common.Test.Logics.Constants.ConstantContext.Director">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Constants.ConstantContext.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Constants.ConstantTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:SB.Common.Test.Logics.Constants.ConstantTest.OrgName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Constants.ConstantTest.SetUp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Constants.ConstantTest.TestOrgName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Constants.ConstantTest.TestDirector">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SB.Common.Test.Logics.Constants.Models.ConstantEmployee">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:SB.Common.Test.Logics.ExceptionTree.ExceptionTreeBuilderTest">
             <summary>
             
@@ -150,11 +200,22 @@
             
             </summary>
         </member>
-        <member name="M:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer.GetTypeInfos">
+        <member name="F:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer.MaxId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer.GetDbTypeInfos">
             <summary>
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SB.Common.Test.Logics.Metadata.Initializers.SBTypeTestInitializer.SubmitNewTypes(System.Collections.Generic.List{SB.Common.Logics.Metadata.SBTypeInfo})">
+            <summary>
+            
+            </summary>
+            <param name="newTypes"></param>
         </member>
         <member name="T:SB.Common.Test.Logics.Metadata.SBTypeTest">
             <summary>
@@ -205,13 +266,6 @@
             <summary>
             
             </summary>
-        </member>
-        <member name="M:SB.Common.Test.Logics.Metadata.Types.CitySBType.#ctor(System.Int64,System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="typeId"></param>
-            <param name="clrType"></param>
         </member>
         <member name="T:SB.Common.Test.Logics.ObjectMessage.ObjectMessageBuilderTest">
             <summary>

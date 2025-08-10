@@ -11,30 +11,6 @@ namespace SB.Common.Logics.Metadata
         /// <summary>
         /// 
         /// </summary>
-        private void InternalInitialize()
-        {
-            try
-            {
-                Initialize();
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual void Initialize()
-        {
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         public object CreateInstance()
         {
             return ClrType.GetConstructor(Type.EmptyTypes)?.Invoke(null);

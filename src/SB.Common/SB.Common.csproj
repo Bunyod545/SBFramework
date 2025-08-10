@@ -1,34 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>SB.Common</RootNamespace>
-    <Authors>Bunyod545</Authors>
-    <Company>SB</Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.33</Version>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>SB.Common</RootNamespace>
+		<Authors>Bunyod545</Authors>
+		<Company>SB</Company>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>1.0.33</Version>
+		<LangVersion>8.0</LangVersion>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\..\bin\Debug\</OutputPath>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\..\bin\Debug\</OutputPath>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>C:\Users\Bunyod\Desktop\Projects\SBFramework\bin\Release\</OutputPath>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>C:\Users\Bunyod\Desktop\Projects\SBFramework\bin\Release\</OutputPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Logics\Business\Subcounts\**" />
-    <EmbeddedResource Remove="Logics\Business\Subcounts\**" />
-    <None Remove="Logics\Business\Subcounts\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Logics\Business\Subcounts\**" />
+		<EmbeddedResource Remove="Logics\Business\Subcounts\**" />
+		<None Remove="Logics\Business\Subcounts\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logics\Variables\Logics\VariableValueConverter\Converters\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Logics\Variables\Logics\VariableValueConverter\Converters\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NLog" Version="4.7.6" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="NLog" Version="4.7.6" />
+	</ItemGroup>
 
 </Project>

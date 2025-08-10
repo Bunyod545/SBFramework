@@ -35,7 +35,7 @@ namespace SB.Common.Logics.Metadata
                 throw new ArgumentNullException(nameof(Initializer));
 
             CacheList.Clear();
-            var types = Initializer.GetTypeInfos().ToList();
+            var types = Initializer.GetTypeInfos();
             types.ForEach(InitializeType);
         }
 
@@ -46,7 +46,9 @@ namespace SB.Common.Logics.Metadata
         {
             if (info.ClrType.IsEnum)
             {
-                AddToCache(new SBEnumType(info.TypeId, info.ClrType));
+                var enumType = new SBEnumType();
+                enumType.Initialize(info);
+                AddToCache(enumType);
                 return;
             }
 
@@ -55,7 +57,9 @@ namespace SB.Common.Logics.Metadata
             if (type == null)
                 type = typeof(SBType);
 
-            var sbType = (SBType)Activator.CreateInstance(type, info.TypeId, info.ClrType);
+            var sbType = (SBType)Activator.CreateInstance(type);
+            sbType.Initialize(info);
+
             AddToCache(sbType);
         }
 

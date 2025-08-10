@@ -6,7 +6,7 @@ namespace SB.Common.Logics.Business
     /// 
     /// </summary>
     [SBType(typeof(SBDetailType))]
-    public class Detail : SBObject, IDetail
+    public abstract class Detail : SBObject, IDetail
     {
         /// <summary>
         /// 

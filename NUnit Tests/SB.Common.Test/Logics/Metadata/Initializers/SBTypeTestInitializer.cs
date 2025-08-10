@@ -1,24 +1,43 @@
 ﻿using System.Collections.Generic;
 using SB.Common.Test.Logics.Metadata.Tables;
 using SB.Common.Logics.Metadata;
+using SB.Common.Test.Logics.Constants.Models;
+using SB.Common.Logics.Metadata.SBTypes.Initializers;
+using SB.Common.Logics.Metadata.SBTypes;
+using System.Linq;
 
 namespace SB.Common.Test.Logics.Metadata.Initializers
 {
     /// <summary>
     /// 
     /// </summary>
-    public class SBTypeTestInitializer : ISBTypesInitializer
+    public class SBTypeTestInitializer : BaseSBTypesInitializer
     {
         /// <summary>
         /// 
         /// </summary>
+        private static long MaxId = 0;
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
-        public IEnumerable<SBTypeInfo> GetTypeInfos()
+        protected override List<SBTypeInfo> GetDbTypeInfos()
         {
-            yield return new SBTypeInfo(1, typeof(CountryTestEntity));
-            yield return new SBTypeInfo(2, typeof(CityTestEntity));
-            yield return new SBTypeInfo(3, typeof(TabTestDetail));
-            yield return new SBTypeInfo(4, typeof(MovementDocument));
+            var dbTypes = new List<SBTypeInfo>();
+            dbTypes.Add(new SBTypeInfo(1, SBPrimitiveTypes.String));
+
+            MaxId = dbTypes.Max(m => m.TypeId);
+            return dbTypes;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newTypes"></param>
+        protected override void SubmitNewTypes(List<SBTypeInfo> newTypes)
+        {
+            newTypes.ForEach(newType => newType.TypeId = ++MaxId);
         }
     }
 }

@@ -1,24 +1,27 @@
-﻿namespace SB.Common.Logics.Business
+using System.Collections.Generic;
+
+namespace SB.Common
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class SBObjectBase : IIdentifiedTyped
+    public interface IConstantValueGetter
     {
         /// <summary>
         /// 
         /// </summary>
-        public virtual long Id { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual long TypeId => GetTypeId();
+        ConstantSet Constant { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        protected abstract long GetTypeId();
+        T GetConstantValue<T>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        List<ConstantValueInfo<T>> GetConstantValues<T>();
     }
 }

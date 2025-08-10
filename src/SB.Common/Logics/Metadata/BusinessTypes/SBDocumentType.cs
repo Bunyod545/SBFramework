@@ -11,23 +11,6 @@ namespace SB.Common.Logics.Metadata
         /// <summary>
         /// 
         /// </summary>
-        public Periodicity Periodicity { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="typeId"></param>
-        /// <param name="clrType"></param>
-        public SBDocumentType(long typeId, Type clrType) : base(typeId, clrType)
-        {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public override void Initialize()
-        {
-
-        }
+        public Periodicity Periodicity { get; set; } = Periodicity.Year;
     }
 }
