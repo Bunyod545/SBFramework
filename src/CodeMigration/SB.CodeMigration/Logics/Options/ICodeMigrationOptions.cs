@@ -1,4 +1,6 @@
-﻿namespace SB.CodeMigration
+﻿using System;
+
+namespace SB.CodeMigration
 {
     /// <summary>
     /// 
@@ -14,5 +16,10 @@
         /// 
         /// </summary>
         ICodeMigrationLogger Logger { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        Type AttributeType { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SB.CodeMigration
+﻿using System;
+
+namespace SB.CodeMigration
 {
     /// <summary>
     /// 
@@ -18,10 +20,16 @@
         /// <summary>
         /// 
         /// </summary>
+        public Type AttributeType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public CodeMigrationDefaultOptions()
         {
             Activator = new CodeMigrationDefaultActivator();
             Logger = new CodeMigrationDefaultLogger();
+            AttributeType = typeof(CodeMigrationAttribute);
         }
     }
 }

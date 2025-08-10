@@ -30,7 +30,7 @@ namespace SB.CodeMigration
             var actualVersion = versionManager.GetVersion();
             options.Logger.Log($"Code migration begin with actualVersion: {actualVersion}");
 
-            var migrators = GetMigrators();
+            var migrators = GetMigrators(options);
             options.Logger.Log($"Find {migrators.Count} migrations");
 
             var notMigratedMigrators = migrators
@@ -42,6 +42,48 @@ namespace SB.CodeMigration
             notMigratedMigrators.ForEach(f => Migrate(f, versionManager, options));
 
             options.Logger.Log($"Code migration finished with actualVersion: {actualVersion}");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public static List<CodeMigratorInfo> GetMigrators(ICodeMigrationOptions options)
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            var types = assemblies.SelectMany(s => s.GetTypes());
+
+            var migratorInterface = typeof(ICodeMigrator);
+            var migratorTypes = types.Where(w =>
+                migratorInterface.IsAssignableFrom(w) &&
+                !w.IsAbstract &&
+                !w.IsInterface &&
+                Attribute.IsDefined(w, options.AttributeType)
+            );
+
+            return migratorTypes
+                .Select(s => GetMigrator(s, options.AttributeType))
+                .Where(w => w != null)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="migratorType"></param>
+        /// <returns></returns>
+        private static CodeMigratorInfo GetMigrator(Type migratorType, Type attributeType)
+        {
+            var attr = migratorType.GetCustomAttribute(attributeType) as CodeMigrationAttribute;
+            if (attr == null)
+                return null;
+
+            var info = new CodeMigratorInfo();
+            info.MigratorVersion = Version.Parse(attr.Version);
+            info.MigratorType = migratorType;
+
+            return info;
         }
 
         /// <summary>
@@ -61,39 +103,6 @@ namespace SB.CodeMigration
             options.Logger.Log($"Code migrator type {info.MigratorType} migrate end, with version {info.MigratorVersion}");
 
             versionManager.SetVersion(info.MigratorVersion);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static List<CodeMigratorInfo> GetMigrators()
-        {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            var types = assemblies.SelectMany(s => s.GetTypes());
-
-            var migratorInterface = typeof(ICodeMigrator);
-            var migratorTypes = types.Where(w => migratorInterface.IsAssignableFrom(w) && !w.IsAbstract && !w.IsInterface);
-
-            return migratorTypes.Select(GetMigrator).Where(w => w != null).ToList();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="migratorType"></param>
-        /// <returns></returns>
-        private static CodeMigratorInfo GetMigrator(Type migratorType)
-        {
-            var attr = migratorType.GetCustomAttribute<CodeMigrationAttribute>();
-            if (attr == null)
-                return null;
-
-            var info = new CodeMigratorInfo();
-            info.MigratorVersion = Version.Parse(attr.Version);
-            info.MigratorType = migratorType;
-
-            return info;
         }
     }
 }
