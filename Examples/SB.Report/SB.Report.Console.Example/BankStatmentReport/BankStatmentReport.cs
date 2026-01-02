@@ -32,7 +32,7 @@ namespace SB.Report.Console.Example.BankStatmentReport
             foreach (var row in info.Rows)
                 ExportRow("row", row);
 
-            ExportRow("footer", info.Header);
+            ExportRow("footer", info.Footer);
         }
     }
 }

@@ -19,6 +19,9 @@ namespace SB.Report.Console.Example.BankStatmentReport
             info.Header.DocNumber = 1;
             info.Header.DocDate = DateTime.Now;
 
+            info.Rows = new List<BankStatementRow>();
+            info.Footer = new BankStatementFooter();
+
             return info;
         }
     }
