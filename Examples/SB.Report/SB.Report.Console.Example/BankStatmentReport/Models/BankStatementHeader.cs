@@ -14,16 +14,16 @@ namespace SB.Report.Console.Example.BankStatmentReport.Models
         /// <summary>
         /// 
         /// </summary>
-        public string DocName { get; set; }
+        public string DocName { get; set; } = "Test doc";
 
         /// <summary>
         /// 
         /// </summary>
-        public DateTime DocDate { get; set; }
+        public DateTime DocDate { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 
         /// </summary>
-        public int DocNumber { get; set; }
+        public int DocNumber { get; set; } = 5;
     }
 }
