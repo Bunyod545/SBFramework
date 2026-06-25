@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\bin\Release\</OutputPath>
+    <OutputPath>C:\Users\Bunyod\Desktop\Projects\SBFramework\bin\Release\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
