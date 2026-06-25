@@ -48,7 +48,7 @@ namespace SB.Report.Logics.ExcelTemplate.Extensions
                 var tempRowIndex = namedRange.Start.Row + i;
                 var tempRow = namedRange.Worksheet.Row(tempRowIndex);
 
-                var rowIndex = range.Start.Column + i;
+                var rowIndex = range.Start.Row + i;
                 var row = range.Worksheet.Row(rowIndex);
                 row.CopyFromTemplate(tempRow);
             }

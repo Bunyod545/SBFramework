@@ -31,7 +31,7 @@ namespace SB.Report.Logics.ExcelTemplate
             var startRow = RowIndex;
             var startColumn = tempNamedRange.Start.Column;
             var endRow = startRow + tempNamedRange.Rows - 1;
-            var endColumn = tempNamedRange.Columns;
+            var endColumn = startColumn + tempNamedRange.Columns - 1;
             var address = ExcelCellBase.GetAddress(startRow, startColumn, endRow, endColumn);
 
             RowIndex += tempNamedRange.Rows;
